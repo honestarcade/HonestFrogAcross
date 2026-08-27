@@ -2,6 +2,15 @@
 
 2D Unity game (Unity 6000.5.10f1, Universal Render Pipeline 2D, Input System). Binary assets go through Git LFS (`.gitattributes`); serialization is Force Text — keep it that way so diffs work.
 
+## Project invariants
+
+Load-bearing constraints no story may breach without an explicit conversation with the owner. Changing one is plan drift by definition: log it as an ad-hoc ledger entry in `.n8/decisions.md` and suggest `/n8-replan`.
+
+1. **No ads, no tracking, no analytics, no network calls** — all player data stays on-device. *(test-enforced: guard test fails the build if network permissions or ads/analytics packages appear)*
+2. **Levels are pure data (JSON)** — adding a level requires zero code changes. *(test-enforced: schema validation; levels load with no code registration)*
+3. **Every game piece is a data-defined object type** (characters, lane types, lane objects, obstructions) — new pieces slot in without rewriting systems. *(honor-system, checked by audits)*
+4. **Deterministic levels** — a level plays identically every run (seeded, fixed traffic patterns). *(test-enforced: replay/determinism guard test)*
+
 ## n8SDLC project
 
 This project is managed by the n8SDLC workflow (GitHub Issues = the plan; `/n8-stat` shows where things stand). If a change made in this session deviates from what planned issues assume — different library, provider, architecture, dropped/added scope, or amending a declared invariant below — do two things before finishing:
