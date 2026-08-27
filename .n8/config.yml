@@ -1,0 +1,10 @@
+version: 1
+stack: unity
+unity_version: 6000.5.10f1
+initialized: 2026-08-27
+wiki: enabled
+repo: honestarcade/HonestFrogAcross
+visibility: public
+context7: installed
+security_findings: issues
+areas: [gameplay, content, project, ci, docs]

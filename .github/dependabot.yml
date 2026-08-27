@@ -1,0 +1,9 @@
+# Dependabot has no ecosystem for Unity packages (Packages/manifest.json is not
+# supported) — Unity dependency updates are reviewed manually during audits.
+# This config covers what Dependabot CAN see: GitHub Actions workflows.
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
