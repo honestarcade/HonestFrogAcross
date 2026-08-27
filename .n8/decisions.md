@@ -57,3 +57,21 @@ When `/n8-replan` processes an ad-hoc entry it appends `— reconciled by /n8-re
   **Issue:** #20
 - **Decision:** No subtasks and no spikes in M0.
   **Why:** Each story's how is fully specified in its body or is self-evident; no unknown needs a prototype.
+
+## /n8-plan M1 — 2026-08-27
+
+- **Decision:** Unity Personal license → ULF activation path for CI (UNITY_LICENSE secret; repeatable activation workflow committed).
+  **Why:** Owner confirmed Personal when asked; determines the whole activation story shape.
+  **Issue:** #22
+- **Decision:** One reusable workflow_call gate consumed by both PRs and the tag pipeline; PR AABs kept as short-retention artifacts for device testing.
+  **Why:** Single definition of "green" per the CI conventions; artifact sideloading costs nothing and helps manual testing.
+  **Issue:** #23, #25
+- **Decision:** Play service account gets testing-track-only permission; production-release permission deliberately withheld until M7.
+  **Why:** Least privilege — CI cannot accidentally ship to production before the closed-testing gate clears.
+  **Issue:** #24
+- **Decision:** Keystore secrets are set by the agent from the local material #19 generates (documented in signing.md); if absent at exec time, block rather than regenerate.
+  **Why:** Regenerating an upload keystore mid-stream would fork the signing identity.
+  **Issue:** #25
+- **Decision:** GameCI actions pinned at v4 in story bodies with a standing instruction to verify current versions via context7/docs before writing workflows.
+  **Why:** context7 unavailable this session (loads next session); stale-doc CI configs are a known failure mode.
+  **Issue:** #22, #23, #25
