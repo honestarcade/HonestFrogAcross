@@ -8,3 +8,20 @@ visibility: public
 context7: installed
 security_findings: issues
 areas: [gameplay, content, project, ci, docs]
+design_source: "claude.ai/design project f3f74fad-a926-4ae3-986b-fd6531c21085 (Frog Across Mobile Game) — screens, sprite specs, lane rules"
+platforms:
+  v1: android            # landscape-only; iOS explicitly deferred to post-v1 (epic #1)
+deployment:
+  dev: Unity editor + local device builds (signed AAB buildable locally)
+  stage: Google Play internal testing track, uploaded automatically by CI on tag
+  production: Google Play production, promoted from internal track (M7)
+  notes: GameCI (game-ci/unity-builder) on GitHub Actions; iOS/App Store deferred to post-v1
+ci:
+  provider: github-actions
+  on_pr: [editmode-tests, playmode-tests, android-build, analyzers, invariant-guards]
+  release: "tag -> signed AAB -> Google Play internal track (fastlane or Play Developer API)"
+  secrets_needed: [UNITY_LICENSE, android-keystore, play-service-account-json]
+levels:
+  authoring: generator + hand-tuning; schema + solvability validation in CI
+audio:
+  assets: owner-supplied (needs-owner-action); system built against placeholders
