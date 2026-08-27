@@ -1,0 +1,21 @@
+{
+    "name": "FrogAcross.Tests.PlayMode",
+    "rootNamespace": "FrogAcross.Tests.PlayMode",
+    "references": [
+        "UnityEngine.TestRunner",
+        "FrogAcross.Runtime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

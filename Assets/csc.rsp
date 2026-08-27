@@ -1,0 +1,2 @@
+-analyzer:"Assets/Microsoft.Unity.Analyzers.dll"
+-ruleset:"Assets/Default.ruleset"

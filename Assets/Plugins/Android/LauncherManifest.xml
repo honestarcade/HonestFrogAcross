@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Custom launcher manifest (highest-priority in the Gradle manifest merge).
+     The tools:node="remove" entries strip the network permissions Unity's
+     engine template injects — the OS-level enforcement of project invariant 1
+     (no ads, no tracking, no analytics, no network). ManifestGuard verifies
+     these directives reach the Gradle project and that the final AAB carries
+     no network permissions. NOTE: this also strips INTERNET from development
+     builds, so Wi-Fi profiler connections won't work; profile in-editor or
+     temporarily delete this file locally (never commit that). -->
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:installLocation="preferExternal">
+    <supports-screens
+        android:smallScreens="true"
+        android:normalScreens="true"
+        android:largeScreens="true"
+        android:xlargeScreens="true"
+        android:anyDensity="true"/>
+
+    <uses-permission android:name="android.permission.INTERNET" tools:node="remove"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" tools:node="remove"/>
+
+    <application android:label="@string/app_name"
+                 android:icon="@mipmap/app_icon"/>
+</manifest>

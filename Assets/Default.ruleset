@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Applies to all assemblies built from Assets/ (wired via Assets/csc.rsp: -ruleset
+     plus -analyzer for the vendored Microsoft.Unity.Analyzers.dll).
+     IncludeAll=Error escalates compiler warnings; the explicit UNT/USP entries pin every
+     analyzer rule to Error regardless of its default (many default to Info, which
+     IncludeAll does not lift). Rule list extracted from the analyzer DLL v1.27.0.
+     To tune a rule down: change its Action here AND add a rationale line in
+     Assets/Analyzers/SUPPRESSIONS.md (AnalyzerConfigTests enforces the pair). -->
+<RuleSet Name="FrogAcross" ToolsVersion="10.0">
+  <IncludeAll Action="Error" />
+  <Rules AnalyzerId="Microsoft.Unity.Analyzers" RuleNamespace="Microsoft.Unity.Analyzers">
+    <Rule Id="UNT0001" Action="Error" />
+    <Rule Id="UNT0002" Action="Error" />
+    <Rule Id="UNT0003" Action="Error" />
+    <Rule Id="UNT0004" Action="Error" />
+    <Rule Id="UNT0005" Action="Error" />
+    <Rule Id="UNT0006" Action="Error" />
+    <Rule Id="UNT0007" Action="Error" />
+    <Rule Id="UNT0008" Action="Error" />
+    <Rule Id="UNT0009" Action="Error" />
+    <Rule Id="UNT0010" Action="Error" />
+    <Rule Id="UNT0011" Action="Error" />
+    <Rule Id="UNT0012" Action="Error" />
+    <Rule Id="UNT0013" Action="Error" />
+    <Rule Id="UNT0014" Action="Error" />
+    <Rule Id="UNT0015" Action="Error" />
+    <Rule Id="UNT0016" Action="Error" />
+    <Rule Id="UNT0017" Action="Error" />
+    <Rule Id="UNT0018" Action="Error" />
+    <Rule Id="UNT0019" Action="Error" />
+    <Rule Id="UNT0020" Action="Error" />
+    <Rule Id="UNT0021" Action="Error" />
+    <Rule Id="UNT0022" Action="Error" />
+    <Rule Id="UNT0023" Action="Error" />
+    <Rule Id="UNT0024" Action="Error" />
+    <Rule Id="UNT0025" Action="Error" />
+    <Rule Id="UNT0026" Action="Error" />
+    <Rule Id="UNT0027" Action="Error" />
+    <Rule Id="UNT0028" Action="Error" />
+    <Rule Id="UNT0029" Action="Error" />
+    <Rule Id="UNT0030" Action="Error" />
+    <Rule Id="UNT0031" Action="Error" />
+    <Rule Id="UNT0032" Action="Error" />
+    <Rule Id="UNT0033" Action="Error" />
+    <Rule Id="UNT0034" Action="Error" />
+    <Rule Id="UNT0035" Action="Error" />
+    <Rule Id="UNT0036" Action="Error" />
+    <Rule Id="UNT0037" Action="Error" />
+    <Rule Id="UNT0038" Action="Error" />
+    <Rule Id="UNT0039" Action="Error" />
+    <Rule Id="UNT0040" Action="Error" />
+    <Rule Id="UNT0041" Action="Error" />
+    <Rule Id="UNT0042" Action="Error" />
+    <Rule Id="UNT0043" Action="Error" />
+    <Rule Id="USP0001" Action="Error" />
+    <Rule Id="USP0002" Action="Error" />
+    <Rule Id="USP0003" Action="Error" />
+    <Rule Id="USP0004" Action="Error" />
+    <Rule Id="USP0005" Action="Error" />
+    <Rule Id="USP0006" Action="Error" />
+    <Rule Id="USP0007" Action="Error" />
+    <Rule Id="USP0008" Action="Error" />
+    <Rule Id="USP0009" Action="Error" />
+    <Rule Id="USP0010" Action="Error" />
+    <Rule Id="USP0011" Action="Error" />
+    <Rule Id="USP0012" Action="Error" />
+    <Rule Id="USP0013" Action="Error" />
+    <Rule Id="USP0014" Action="Error" />
+    <Rule Id="USP0015" Action="Error" />
+    <Rule Id="USP0016" Action="Error" />
+    <Rule Id="USP0017" Action="Error" />
+    <Rule Id="USP0018" Action="Error" />
+    <Rule Id="USP0019" Action="Error" />
+    <Rule Id="USP0020" Action="Error" />
+    <Rule Id="USP0021" Action="Error" />
+    <Rule Id="USP0022" Action="Error" />
+    <Rule Id="USP0023" Action="Error" />
+  </Rules>
+</RuleSet>
