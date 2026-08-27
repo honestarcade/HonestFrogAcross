@@ -6,7 +6,7 @@
 
 Load-bearing constraints no story may breach without an explicit conversation with the owner. Changing one is plan drift by definition: log it as an ad-hoc ledger entry in `.n8/decisions.md` and suggest `/n8-replan`.
 
-1. **No ads, no tracking, no analytics, no network calls** — all player data stays on-device. *(test-enforced: guard test fails the build if network permissions or ads/analytics packages appear)*
+1. **No ads, no tracking, no analytics, no network calls** — all player data stays on-device. *(test-enforced: guard test fails the build if network permissions or ads/analytics packages appear — guard: #17, planned; marking becomes true when the guard code merges)*
 2. **Levels are pure data (JSON)** — adding a level requires zero code changes. *(test-enforced: schema validation; levels load with no code registration)*
 3. **Every game piece is a data-defined object type** (characters, lane types, lane objects, obstructions) — new pieces slot in without rewriting systems. *(honor-system, checked by audits)*
 4. **Deterministic levels** — a level plays identically every run (seeded, fixed traffic patterns). *(test-enforced: replay/determinism guard test)*
