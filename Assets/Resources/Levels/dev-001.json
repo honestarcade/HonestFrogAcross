@@ -1,0 +1,41 @@
+{
+  "id": "dev-001",
+  "name": "Dev Board",
+  "columns": 11,
+  "medal": { "gold": 24.0, "silver": 31.0, "bronze": 40.0 },
+  "startColumn": 5,
+  "bays": [1, 5, 9],
+  "rows": [
+    { "kind": "goal" },
+    { "kind": "road", "dir": "right", "speed": 2.2, "objects": [
+      { "pieceId": "truck", "offset": 0, "spacing": 7.5, "phase": 0 },
+      { "pieceId": "car", "offset": 4.0, "spacing": 7.5, "phase": 0 }
+    ]},
+    { "kind": "grass", "obstructions": [
+      { "pieceId": "tree", "column": 2 }, { "pieceId": "bench", "column": 7 }
+    ]},
+    { "kind": "river", "dir": "left", "speed": 1.6, "objects": [
+      { "pieceId": "log", "offset": 0, "spacing": 6.5, "phase": 0 },
+      { "pieceId": "turtle-log", "offset": 3.2, "spacing": 6.5, "phase": 60 }
+    ]},
+    { "kind": "concrete", "obstructions": [
+      { "pieceId": "lamp", "column": 4 }, { "pieceId": "planter-daisy", "column": 8 }
+    ]},
+    { "kind": "tracks", "dir": "right", "speed": 6.0, "objects": [
+      { "pieceId": "freight", "offset": 0, "spacing": 26, "phase": 0 }
+    ]},
+    { "kind": "bike", "dir": "left", "speed": 2.6, "objects": [
+      { "pieceId": "cyclist", "offset": 0, "spacing": 5.0, "phase": 0 },
+      { "pieceId": "runner", "offset": 2.5, "spacing": 5.0, "phase": 0 }
+    ]},
+    { "kind": "swamp", "dir": "right", "speed": 1.3, "objects": [
+      { "pieceId": "gator", "offset": 0, "spacing": 6.0, "phase": 0 },
+      { "pieceId": "lily-pad", "offset": 3.0, "spacing": 6.0, "phase": 0 }
+    ]},
+    { "kind": "road", "dir": "left", "speed": 2.8, "objects": [
+      { "pieceId": "bus", "offset": 0, "spacing": 6.0, "phase": 0 },
+      { "pieceId": "convertible", "offset": 3.4, "spacing": 6.0, "phase": 0 }
+    ]},
+    { "kind": "bank" }
+  ]
+}

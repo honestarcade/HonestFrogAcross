@@ -1,0 +1,2 @@
+{ "id": "broken-2", "columns": 11, "medal": {"gold": 10, "silver": 20, "bronze": 30}, "startColumn": 5, "bays": [],
+  "rows": [ {"kind": "goal"}, {"kind": "grass"}, {"kind": "bank"} ] }
