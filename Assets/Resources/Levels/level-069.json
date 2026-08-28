@@ -1,0 +1,168 @@
+{
+    "id": "level-069",
+    "name": "level-069",
+    "columns": 13,
+    "medal": {
+        "gold": 30.600000381469728,
+        "silver": 44.400001525878909,
+        "bronze": 64.30000305175781
+    },
+    "startColumn": 2,
+    "bays": [
+        0,
+        1,
+        9,
+        12
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "right",
+            "speed": 2.6500000953674318,
+            "objects": [
+                {
+                    "pieceId": "runner",
+                    "offset": 0.5899999737739563,
+                    "spacing": 8.600000381469727,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "cyclist",
+                    "offset": 4.739999771118164,
+                    "spacing": 7.440000057220459,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "walkway",
+            "dir": "right",
+            "speed": 1.6100000143051148,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "right",
+            "speed": 1.600000023841858,
+            "objects": [
+                {
+                    "pieceId": "turtle-log",
+                    "offset": 0.05999999865889549,
+                    "spacing": 12.880000114440918,
+                    "phase": 175
+                },
+                {
+                    "pieceId": "turtle-log",
+                    "offset": 10.90999984741211,
+                    "spacing": 12.539999961853028,
+                    "phase": 132
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "right",
+            "speed": 1.559999942779541,
+            "objects": [
+                {
+                    "pieceId": "raft",
+                    "offset": 1.659999966621399,
+                    "spacing": 13.859999656677246,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "log",
+                    "offset": 12.069999694824219,
+                    "spacing": 14.520000457763672,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "tree",
+                    "column": 0
+                },
+                {
+                    "pieceId": "bench",
+                    "column": 6
+                },
+                {
+                    "pieceId": "planter-daisy",
+                    "column": 11
+                }
+            ]
+        },
+        {
+            "kind": "tracks",
+            "dir": "right",
+            "speed": 2.4000000953674318,
+            "objects": [
+                {
+                    "pieceId": "passenger",
+                    "offset": 12.550000190734864,
+                    "spacing": 14.100000381469727,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "tracks",
+            "dir": "left",
+            "speed": 1.9900000095367432,
+            "objects": [
+                {
+                    "pieceId": "passenger",
+                    "offset": 3.809999942779541,
+                    "spacing": 14.3100004196167,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "left",
+            "speed": 1.659999966621399,
+            "objects": [
+                {
+                    "pieceId": "log-long",
+                    "offset": 3.5399999618530275,
+                    "spacing": 17.260000228881837,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "turtle-log",
+                    "offset": 11.149999618530274,
+                    "spacing": 12.239999771118164,
+                    "phase": 152
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}

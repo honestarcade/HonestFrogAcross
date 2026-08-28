@@ -1,0 +1,117 @@
+{
+    "id": "level-025",
+    "name": "level-025",
+    "columns": 10,
+    "medal": {
+        "gold": 34.0,
+        "silver": 49.29999923706055,
+        "bronze": 71.5
+    },
+    "startColumn": 1,
+    "bays": [
+        0,
+        5
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "right",
+            "speed": 1.3899999856948853,
+            "objects": [
+                {
+                    "pieceId": "log-short",
+                    "offset": 3.3499999046325685,
+                    "spacing": 6.989999771118164,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "left",
+            "speed": 1.440000057220459,
+            "objects": [
+                {
+                    "pieceId": "gator",
+                    "offset": 4.699999809265137,
+                    "spacing": 7.150000095367432,
+                    "phase": 266
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "right",
+            "speed": 1.25,
+            "objects": [
+                {
+                    "pieceId": "turtle-log",
+                    "offset": 2.759999990463257,
+                    "spacing": 13.520000457763672,
+                    "phase": 287
+                },
+                {
+                    "pieceId": "gator",
+                    "offset": 14.319999694824219,
+                    "spacing": 16.31999969482422,
+                    "phase": 393
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "right",
+            "speed": 1.340000033378601,
+            "objects": [
+                {
+                    "pieceId": "gator",
+                    "offset": 6.300000190734863,
+                    "spacing": 6.96999979019165,
+                    "phase": 214
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-daisy",
+                    "column": 1
+                }
+            ]
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-fern",
+                    "column": 4
+                }
+            ]
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}

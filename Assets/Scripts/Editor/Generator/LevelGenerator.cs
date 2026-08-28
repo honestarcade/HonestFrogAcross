@@ -55,36 +55,47 @@ namespace FrogAcross.Editor.Generator
             for (int i = 0; i < p.count; i++)
             {
                 string id = $"gen-{p.baseSeed + i:D5}";
-                var rng = new Random(p.baseSeed + i);
-                var dto = BuildCandidate(id, p, rng, registry);
-
-                var errors = LevelValidator.Validate(dto, registry);
-                if (errors.Count > 0)
-                {
-                    report.Rejected.Add((id, "validation: " + errors[0]));
-                    continue;
-                }
-
-                var level = LevelLoader.Parse(JsonUtility.ToJson(dto), registry);
-                var solve = LevelSolver.Solve(level, allowDiagonals: false,
-                    p.solverNodeBudget, p.solverTickBudget);
-                if (!solve.Solved)
-                {
-                    report.Rejected.Add((id, "solver: " + solve.FailReason));
-                    continue;
-                }
-
-                // Provisional medals from the diagonal-free floor (#63 recalibrates).
-                float minSec = solve.MinTicks / 60f;
-                dto.medal = new MedalDto
-                {
-                    gold = Round1(minSec * 2.0f),
-                    silver = Round1(minSec * 2.9f),
-                    bronze = Round1(minSec * 4.2f),
-                };
-                report.Accepted.Add((id, JsonUtility.ToJson(dto, true), solve.MinTicks));
+                var (json, minTicks, _, reason) = TryGenerateOne(id, p, p.baseSeed + i, registry);
+                if (json == null) report.Rejected.Add((id, reason));
+                else report.Accepted.Add((id, json, minTicks));
             }
             return report;
+        }
+
+        /// <summary>
+        /// One candidate from one seed through the validate+solve gate.
+        /// requiredKinds (curve introductions, #61) reject candidates that
+        /// missed a kind the band must teach. Returns (null, 0, reason) on
+        /// rejection.
+        /// </summary>
+        public static (string json, long minTicks, int moves, string reason) TryGenerateOne(
+            string id, GeneratorParams p, int seed, PieceRegistry registry, string[] requiredKinds = null)
+        {
+            var rng = new Random(seed);
+            var dto = BuildCandidate(id, p, rng, registry);
+
+            if (requiredKinds != null)
+                foreach (var kind in requiredKinds)
+                    if (!dto.rows.Any(r => r.kind == kind))
+                        return (null, 0, 0, $"required kind missing: {kind}");
+
+            var errors = LevelValidator.Validate(dto, registry);
+            if (errors.Count > 0) return (null, 0, 0, "validation: " + errors[0]);
+
+            var level = LevelLoader.Parse(JsonUtility.ToJson(dto), registry);
+            var solve = LevelSolver.Solve(level, allowDiagonals: false,
+                p.solverNodeBudget, p.solverTickBudget);
+            if (!solve.Solved) return (null, 0, 0, "solver: " + solve.FailReason);
+
+            // Provisional medals from the diagonal-free floor (#63 recalibrates).
+            float minSec = solve.MinTicks / 60f;
+            dto.medal = new MedalDto
+            {
+                gold = Round1(minSec * 2.0f),
+                silver = Round1(minSec * 2.9f),
+                bronze = Round1(minSec * 4.2f),
+            };
+            return (JsonUtility.ToJson(dto, true), solve.MinTicks, solve.Script.Count, null);
         }
 
         private static float Round1(float v) => (float)Math.Round(v, 1);

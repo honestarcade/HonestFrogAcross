@@ -1,0 +1,183 @@
+{
+    "id": "level-083",
+    "name": "level-083",
+    "columns": 11,
+    "medal": {
+        "gold": 48.20000076293945,
+        "silver": 69.9000015258789,
+        "bronze": 101.30000305175781
+    },
+    "startColumn": 8,
+    "bays": [
+        2,
+        4,
+        6,
+        8
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "right",
+            "speed": 2.990000009536743,
+            "objects": [
+                {
+                    "pieceId": "skater",
+                    "offset": 0.20000000298023225,
+                    "spacing": 8.600000381469727,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "runner",
+                    "offset": 5.71999979019165,
+                    "spacing": 8.399999618530274,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "right",
+            "speed": 1.6200000047683716,
+            "objects": [
+                {
+                    "pieceId": "log-long",
+                    "offset": 7.480000019073486,
+                    "spacing": 17.18000030517578,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "log-long",
+                    "offset": 12.420000076293946,
+                    "spacing": 16.059999465942384,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "tracks",
+            "dir": "left",
+            "speed": 2.2699999809265138,
+            "objects": [
+                {
+                    "pieceId": "passenger",
+                    "offset": 2.619999885559082,
+                    "spacing": 13.9399995803833,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "right",
+            "speed": 1.809999942779541,
+            "objects": [
+                {
+                    "pieceId": "log",
+                    "offset": 2.3499999046325685,
+                    "spacing": 6.489999771118164,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "tracks",
+            "dir": "right",
+            "speed": 2.319999933242798,
+            "objects": [
+                {
+                    "pieceId": "passenger",
+                    "offset": 10.739999771118164,
+                    "spacing": 14.350000381469727,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "left",
+            "speed": 1.7400000095367432,
+            "objects": [
+                {
+                    "pieceId": "gator",
+                    "offset": 0.4099999964237213,
+                    "spacing": 14.520000457763672,
+                    "phase": 81
+                },
+                {
+                    "pieceId": "gator",
+                    "offset": 9.619999885559082,
+                    "spacing": 13.15999984741211,
+                    "phase": 118
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "tracks",
+            "dir": "left",
+            "speed": 2.609999895095825,
+            "objects": [
+                {
+                    "pieceId": "freight",
+                    "offset": 4.639999866485596,
+                    "spacing": 13.930000305175782,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "left",
+            "speed": 1.7400000095367432,
+            "objects": [
+                {
+                    "pieceId": "log",
+                    "offset": 2.2300000190734865,
+                    "spacing": 6.860000133514404,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "left",
+            "speed": 2.5299999713897707,
+            "objects": [
+                {
+                    "pieceId": "bus",
+                    "offset": 2.4100000858306886,
+                    "spacing": 11.34000015258789,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "bus",
+                    "offset": 6.960000038146973,
+                    "spacing": 12.239999771118164,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}

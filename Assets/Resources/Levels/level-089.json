@@ -1,0 +1,151 @@
+{
+    "id": "level-089",
+    "name": "level-089",
+    "columns": 11,
+    "medal": {
+        "gold": 43.599998474121097,
+        "silver": 63.29999923706055,
+        "bronze": 91.5999984741211
+    },
+    "startColumn": 9,
+    "bays": [
+        1,
+        7,
+        8,
+        9
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "left",
+            "speed": 1.559999942779541,
+            "objects": [
+                {
+                    "pieceId": "raft",
+                    "offset": 2.859999895095825,
+                    "spacing": 12.140000343322754,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "log",
+                    "offset": 8.869999885559082,
+                    "spacing": 13.819999694824219,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "walkway",
+            "dir": "right",
+            "speed": 1.5,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "left",
+            "speed": 2.819999933242798,
+            "objects": [
+                {
+                    "pieceId": "skater",
+                    "offset": 3.190000057220459,
+                    "spacing": 4.300000190734863,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "right",
+            "speed": 2.690000057220459,
+            "objects": [
+                {
+                    "pieceId": "skater",
+                    "offset": 3.3399999141693117,
+                    "spacing": 3.9600000381469728,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "left",
+            "speed": 3.059999942779541,
+            "objects": [
+                {
+                    "pieceId": "runner",
+                    "offset": 2.490000009536743,
+                    "spacing": 4.300000190734863,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "right",
+            "speed": 2.5999999046325685,
+            "objects": [
+                {
+                    "pieceId": "skater",
+                    "offset": 1.8899999856948853,
+                    "spacing": 3.930000066757202,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "walkway",
+            "dir": "right",
+            "speed": 1.9299999475479127,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "tracks",
+            "dir": "left",
+            "speed": 2.5399999618530275,
+            "objects": [
+                {
+                    "pieceId": "freight",
+                    "offset": 0.17000000178813935,
+                    "spacing": 13.979999542236329,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "tracks",
+            "dir": "left",
+            "speed": 2.9600000381469728,
+            "objects": [
+                {
+                    "pieceId": "freight",
+                    "offset": 6.409999847412109,
+                    "spacing": 14.449999809265137,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}

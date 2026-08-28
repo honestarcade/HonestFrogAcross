@@ -1,0 +1,266 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59807df785cc14ea2b6d77241480c358, type: 3}
+  m_Name: curve
+  m_EditorClassIdentifier: FrogAcross.Editor::FrogAcross.Editor.Generator.DifficultyCurve
+  levelCount: 100
+  baseSeed: 5000
+  bands:
+  - label: first-hop
+    startLevel: 1
+    endLevel: 1
+    laneKindPool:
+    - road
+    - road
+    - grass
+    requiredKinds:
+    - road
+    middleRowsStartEnd: {x: 3, y: 3}
+    bayCountStartEnd: {x: 1, y: 1}
+    columnsRange: {x: 9, y: 10}
+    deadlySpeedStart: {x: 1, y: 1.2}
+    deadlySpeedEnd: {x: 1, y: 1.2}
+    waterSpeedStart: {x: 0.9, y: 1.2}
+    waterSpeedEnd: {x: 1, y: 1.5}
+    crashSpeedStart: {x: 1.8, y: 2.2}
+    crashSpeedEnd: {x: 2, y: 2.6}
+    conveyorSpeedStart: {x: 1, y: 1.3}
+    conveyorSpeedEnd: {x: 1.2, y: 1.7}
+    spacingSlackStart: {x: 3.5, y: 4.5}
+    spacingSlackEnd: {x: 3.5, y: 4.5}
+    obstructionChanceStart: 0
+    obstructionChanceEnd: 0
+    maxSolverMoves: 7
+  - label: teaching-road
+    startLevel: 2
+    endLevel: 10
+    laneKindPool:
+    - road
+    - road
+    - grass
+    requiredKinds:
+    - road
+    middleRowsStartEnd: {x: 5, y: 6}
+    bayCountStartEnd: {x: 2, y: 3}
+    columnsRange: {x: 9, y: 11}
+    deadlySpeedStart: {x: 1, y: 1.3}
+    deadlySpeedEnd: {x: 1.4, y: 1.8}
+    waterSpeedStart: {x: 0.9, y: 1.2}
+    waterSpeedEnd: {x: 1, y: 1.5}
+    crashSpeedStart: {x: 1.8, y: 2.2}
+    crashSpeedEnd: {x: 2, y: 2.6}
+    conveyorSpeedStart: {x: 1, y: 1.3}
+    conveyorSpeedEnd: {x: 1.2, y: 1.7}
+    spacingSlackStart: {x: 3, y: 4.5}
+    spacingSlackEnd: {x: 2.2, y: 3.6}
+    obstructionChanceStart: 0
+    obstructionChanceEnd: 0.08
+    maxSolverMoves: 0
+  - label: river
+    startLevel: 11
+    endLevel: 20
+    laneKindPool:
+    - road
+    - grass
+    - river
+    - river
+    requiredKinds:
+    - river
+    middleRowsStartEnd: {x: 5, y: 7}
+    bayCountStartEnd: {x: 2, y: 3}
+    columnsRange: {x: 9, y: 11}
+    deadlySpeedStart: {x: 1.3, y: 1.8}
+    deadlySpeedEnd: {x: 1.5, y: 2.1}
+    waterSpeedStart: {x: 0.9, y: 1.2}
+    waterSpeedEnd: {x: 1, y: 1.5}
+    crashSpeedStart: {x: 1.8, y: 2.2}
+    crashSpeedEnd: {x: 2, y: 2.6}
+    conveyorSpeedStart: {x: 1, y: 1.3}
+    conveyorSpeedEnd: {x: 1.2, y: 1.7}
+    spacingSlackStart: {x: 2.4, y: 3.8}
+    spacingSlackEnd: {x: 2, y: 3.4}
+    obstructionChanceStart: 0.06
+    obstructionChanceEnd: 0.1
+    maxSolverMoves: 0
+  - label: swamp
+    startLevel: 21
+    endLevel: 30
+    laneKindPool:
+    - road
+    - grass
+    - river
+    - swamp
+    - swamp
+    requiredKinds:
+    - swamp
+    middleRowsStartEnd: {x: 6, y: 7}
+    bayCountStartEnd: {x: 2, y: 3}
+    columnsRange: {x: 9, y: 12}
+    deadlySpeedStart: {x: 1.4, y: 1.9}
+    deadlySpeedEnd: {x: 1.6, y: 2.2}
+    waterSpeedStart: {x: 1, y: 1.4}
+    waterSpeedEnd: {x: 1.1, y: 1.6}
+    crashSpeedStart: {x: 1.8, y: 2.2}
+    crashSpeedEnd: {x: 2, y: 2.6}
+    conveyorSpeedStart: {x: 1, y: 1.3}
+    conveyorSpeedEnd: {x: 1.2, y: 1.7}
+    spacingSlackStart: {x: 2.2, y: 3.6}
+    spacingSlackEnd: {x: 1.9, y: 3.2}
+    obstructionChanceStart: 0.08
+    obstructionChanceEnd: 0.12
+    maxSolverMoves: 0
+  - label: tracks
+    startLevel: 31
+    endLevel: 40
+    laneKindPool:
+    - road
+    - grass
+    - river
+    - swamp
+    - tracks
+    - concrete
+    requiredKinds:
+    - tracks
+    middleRowsStartEnd: {x: 6, y: 8}
+    bayCountStartEnd: {x: 2, y: 4}
+    columnsRange: {x: 10, y: 12}
+    deadlySpeedStart: {x: 1.5, y: 2}
+    deadlySpeedEnd: {x: 1.7, y: 2.4}
+    waterSpeedStart: {x: 1, y: 1.5}
+    waterSpeedEnd: {x: 1.2, y: 1.7}
+    crashSpeedStart: {x: 1.8, y: 2.2}
+    crashSpeedEnd: {x: 2, y: 2.6}
+    conveyorSpeedStart: {x: 1, y: 1.3}
+    conveyorSpeedEnd: {x: 1.2, y: 1.7}
+    spacingSlackStart: {x: 2, y: 3.4}
+    spacingSlackEnd: {x: 1.8, y: 3}
+    obstructionChanceStart: 0.1
+    obstructionChanceEnd: 0.14
+    maxSolverMoves: 0
+  - label: bike
+    startLevel: 41
+    endLevel: 50
+    laneKindPool:
+    - road
+    - grass
+    - river
+    - swamp
+    - tracks
+    - bike
+    - bike
+    - concrete
+    requiredKinds:
+    - bike
+    middleRowsStartEnd: {x: 7, y: 8}
+    bayCountStartEnd: {x: 3, y: 4}
+    columnsRange: {x: 10, y: 12}
+    deadlySpeedStart: {x: 1.6, y: 2.2}
+    deadlySpeedEnd: {x: 1.8, y: 2.5}
+    waterSpeedStart: {x: 1.1, y: 1.6}
+    waterSpeedEnd: {x: 1.2, y: 1.8}
+    crashSpeedStart: {x: 1.8, y: 2.4}
+    crashSpeedEnd: {x: 2, y: 2.8}
+    conveyorSpeedStart: {x: 1, y: 1.3}
+    conveyorSpeedEnd: {x: 1.2, y: 1.7}
+    spacingSlackStart: {x: 1.9, y: 3.2}
+    spacingSlackEnd: {x: 1.7, y: 2.9}
+    obstructionChanceStart: 0.12
+    obstructionChanceEnd: 0.16
+    maxSolverMoves: 0
+  - label: walkway
+    startLevel: 51
+    endLevel: 60
+    laneKindPool:
+    - road
+    - grass
+    - river
+    - swamp
+    - tracks
+    - bike
+    - walkway
+    - walkway
+    - concrete
+    requiredKinds:
+    - walkway
+    middleRowsStartEnd: {x: 7, y: 9}
+    bayCountStartEnd: {x: 3, y: 4}
+    columnsRange: {x: 10, y: 13}
+    deadlySpeedStart: {x: 1.7, y: 2.3}
+    deadlySpeedEnd: {x: 1.9, y: 2.6}
+    waterSpeedStart: {x: 1.1, y: 1.7}
+    waterSpeedEnd: {x: 1.3, y: 1.8}
+    crashSpeedStart: {x: 2, y: 2.6}
+    crashSpeedEnd: {x: 2.2, y: 2.9}
+    conveyorSpeedStart: {x: 1, y: 1.4}
+    conveyorSpeedEnd: {x: 1.2, y: 1.8}
+    spacingSlackStart: {x: 1.8, y: 3}
+    spacingSlackEnd: {x: 1.6, y: 2.8}
+    obstructionChanceStart: 0.14
+    obstructionChanceEnd: 0.18
+    maxSolverMoves: 0
+  - label: combination-1
+    startLevel: 61
+    endLevel: 80
+    laneKindPool:
+    - road
+    - river
+    - swamp
+    - tracks
+    - bike
+    - walkway
+    - grass
+    - concrete
+    requiredKinds: []
+    middleRowsStartEnd: {x: 8, y: 9}
+    bayCountStartEnd: {x: 3, y: 5}
+    columnsRange: {x: 11, y: 13}
+    deadlySpeedStart: {x: 1.9, y: 2.6}
+    deadlySpeedEnd: {x: 2.1, y: 2.9}
+    waterSpeedStart: {x: 1.2, y: 1.8}
+    waterSpeedEnd: {x: 1.4, y: 1.9}
+    crashSpeedStart: {x: 2.2, y: 2.8}
+    crashSpeedEnd: {x: 2.4, y: 3}
+    conveyorSpeedStart: {x: 1.2, y: 1.7}
+    conveyorSpeedEnd: {x: 1.4, y: 2}
+    spacingSlackStart: {x: 1.6, y: 2.8}
+    spacingSlackEnd: {x: 1.4, y: 2.5}
+    obstructionChanceStart: 0.16
+    obstructionChanceEnd: 0.2
+    maxSolverMoves: 0
+  - label: combination-2
+    startLevel: 81
+    endLevel: 100
+    laneKindPool:
+    - road
+    - river
+    - swamp
+    - tracks
+    - bike
+    - walkway
+    - concrete
+    requiredKinds: []
+    middleRowsStartEnd: {x: 9, y: 10}
+    bayCountStartEnd: {x: 4, y: 5}
+    columnsRange: {x: 11, y: 13}
+    deadlySpeedStart: {x: 2.1, y: 2.8}
+    deadlySpeedEnd: {x: 2.3, y: 3.2}
+    waterSpeedStart: {x: 1.3, y: 1.9}
+    waterSpeedEnd: {x: 1.5, y: 2}
+    crashSpeedStart: {x: 2.4, y: 3}
+    crashSpeedEnd: {x: 2.6, y: 3.2}
+    conveyorSpeedStart: {x: 1.4, y: 1.9}
+    conveyorSpeedEnd: {x: 1.6, y: 2.2}
+    spacingSlackStart: {x: 1.5, y: 2.6}
+    spacingSlackEnd: {x: 1.2, y: 2.2}
+    obstructionChanceStart: 0.18
+    obstructionChanceEnd: 0.24
+    maxSolverMoves: 0

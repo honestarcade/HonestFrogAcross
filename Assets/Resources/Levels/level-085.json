@@ -1,0 +1,165 @@
+{
+    "id": "level-085",
+    "name": "level-085",
+    "columns": 11,
+    "medal": {
+        "gold": 44.0,
+        "silver": 63.79999923706055,
+        "bronze": 92.5
+    },
+    "startColumn": 4,
+    "bays": [
+        0,
+        5,
+        7,
+        8
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "left",
+            "speed": 3.0,
+            "objects": [
+                {
+                    "pieceId": "cyclist",
+                    "offset": 1.7200000286102296,
+                    "spacing": 3.5799999237060549,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-succulent",
+                    "column": 0
+                },
+                {
+                    "pieceId": "tree",
+                    "column": 5
+                },
+                {
+                    "pieceId": "planter-succulent",
+                    "column": 6
+                },
+                {
+                    "pieceId": "bush",
+                    "column": 7
+                },
+                {
+                    "pieceId": "bush",
+                    "column": 9
+                }
+            ]
+        },
+        {
+            "kind": "walkway",
+            "dir": "left",
+            "speed": 1.8200000524520875,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "tracks",
+            "dir": "left",
+            "speed": 2.190000057220459,
+            "objects": [
+                {
+                    "pieceId": "freight",
+                    "offset": 10.069999694824219,
+                    "spacing": 14.010000228881836,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "left",
+            "speed": 1.5,
+            "objects": [
+                {
+                    "pieceId": "log",
+                    "offset": 5.5,
+                    "spacing": 6.389999866485596,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "left",
+            "speed": 1.4299999475479127,
+            "objects": [
+                {
+                    "pieceId": "log",
+                    "offset": 3.869999885559082,
+                    "spacing": 6.659999847412109,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "tracks",
+            "dir": "right",
+            "speed": 2.7100000381469728,
+            "objects": [
+                {
+                    "pieceId": "passenger",
+                    "offset": 12.640000343322754,
+                    "spacing": 14.619999885559082,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "walkway",
+            "dir": "left",
+            "speed": 1.7200000286102296,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "right",
+            "speed": 1.6799999475479127,
+            "objects": [
+                {
+                    "pieceId": "log",
+                    "offset": 4.320000171661377,
+                    "spacing": 12.5600004196167,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "turtle-log",
+                    "offset": 11.819999694824219,
+                    "spacing": 12.539999961853028,
+                    "phase": 239
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}

@@ -1,0 +1,144 @@
+{
+    "id": "level-060",
+    "name": "level-060",
+    "columns": 11,
+    "medal": {
+        "gold": 30.799999237060548,
+        "silver": 44.599998474121097,
+        "bronze": 64.5999984741211
+    },
+    "startColumn": 9,
+    "bays": [
+        1,
+        2,
+        4,
+        5
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-succulent",
+                    "column": 6
+                },
+                {
+                    "pieceId": "bush",
+                    "column": 9
+                }
+            ]
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-daisy",
+                    "column": 7
+                }
+            ]
+        },
+        {
+            "kind": "tracks",
+            "dir": "right",
+            "speed": 2.5299999713897707,
+            "objects": [
+                {
+                    "pieceId": "freight",
+                    "offset": 3.6700000762939455,
+                    "spacing": 14.489999771118164,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "walkway",
+            "dir": "right",
+            "speed": 1.6799999475479127,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "walkway",
+            "dir": "left",
+            "speed": 1.6399999856948853,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "right",
+            "speed": 1.7699999809265137,
+            "objects": [
+                {
+                    "pieceId": "log-long",
+                    "offset": 6.349999904632568,
+                    "spacing": 8.569999694824219,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "left",
+            "speed": 1.3300000429153443,
+            "objects": [
+                {
+                    "pieceId": "turtle-log",
+                    "offset": 0.8600000143051148,
+                    "spacing": 6.980000019073486,
+                    "phase": 210
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "walkway",
+            "dir": "left",
+            "speed": 1.3700000047683716,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "left",
+            "speed": 1.4900000095367432,
+            "objects": [
+                {
+                    "pieceId": "gator",
+                    "offset": 6.090000152587891,
+                    "spacing": 13.859999656677246,
+                    "phase": 231
+                },
+                {
+                    "pieceId": "log-long",
+                    "offset": 10.569999694824219,
+                    "spacing": 17.34000015258789,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}

@@ -1,0 +1,130 @@
+{
+    "id": "level-028",
+    "name": "level-028",
+    "columns": 10,
+    "medal": {
+        "gold": 28.0,
+        "silver": 40.599998474121097,
+        "bronze": 58.79999923706055
+    },
+    "startColumn": 1,
+    "bays": [
+        1,
+        3,
+        6
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "left",
+            "speed": 1.9500000476837159,
+            "objects": [
+                {
+                    "pieceId": "bus",
+                    "offset": 5.019999980926514,
+                    "spacing": 6.670000076293945,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "left",
+            "speed": 1.4700000286102296,
+            "objects": [
+                {
+                    "pieceId": "log-long",
+                    "offset": 7.650000095367432,
+                    "spacing": 9.0600004196167,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "right",
+            "speed": 1.5700000524520875,
+            "objects": [
+                {
+                    "pieceId": "convertible",
+                    "offset": 1.6399999856948853,
+                    "spacing": 5.039999961853027,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "right",
+            "speed": 1.1799999475479127,
+            "objects": [
+                {
+                    "pieceId": "log-long",
+                    "offset": 6.920000076293945,
+                    "spacing": 9.1899995803833,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "left",
+            "speed": 1.4600000381469727,
+            "objects": [
+                {
+                    "pieceId": "turtle-log",
+                    "offset": 2.990000009536743,
+                    "spacing": 7.739999771118164,
+                    "phase": 172
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "left",
+            "speed": 1.190000057220459,
+            "objects": [
+                {
+                    "pieceId": "log-short",
+                    "offset": 1.4700000286102296,
+                    "spacing": 6.619999885559082,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "right",
+            "speed": 1.2899999618530274,
+            "objects": [
+                {
+                    "pieceId": "turtle-log",
+                    "offset": 2.009999990463257,
+                    "spacing": 7.059999942779541,
+                    "phase": 113
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}

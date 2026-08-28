@@ -1,0 +1,176 @@
+{
+    "id": "level-098",
+    "name": "level-098",
+    "columns": 11,
+    "medal": {
+        "gold": 23.0,
+        "silver": 33.29999923706055,
+        "bronze": 48.20000076293945
+    },
+    "startColumn": 9,
+    "bays": [
+        0,
+        6,
+        8,
+        9,
+        10
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "left",
+            "speed": 1.8300000429153443,
+            "objects": [
+                {
+                    "pieceId": "log",
+                    "offset": 5.960000038146973,
+                    "spacing": 12.9399995803833,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "gator",
+                    "offset": 11.829999923706055,
+                    "spacing": 12.819999694824219,
+                    "phase": 327
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "right",
+            "speed": 1.6399999856948853,
+            "objects": [
+                {
+                    "pieceId": "log-short",
+                    "offset": 4.670000076293945,
+                    "spacing": 5.800000190734863,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "right",
+            "speed": 2.990000009536743,
+            "objects": [
+                {
+                    "pieceId": "runner",
+                    "offset": 1.9600000381469727,
+                    "spacing": 3.3499999046325685,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "right",
+            "speed": 1.909999966621399,
+            "objects": [
+                {
+                    "pieceId": "log",
+                    "offset": 3.990000009536743,
+                    "spacing": 13.5600004196167,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "log-long",
+                    "offset": 11.930000305175782,
+                    "spacing": 14.779999732971192,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "walkway",
+            "dir": "left",
+            "speed": 1.7699999809265137,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "right",
+            "speed": 1.5,
+            "objects": [
+                {
+                    "pieceId": "log-short",
+                    "offset": 0.03999999910593033,
+                    "spacing": 5.059999942779541,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "left",
+            "speed": 2.740000009536743,
+            "objects": [
+                {
+                    "pieceId": "skater",
+                    "offset": 2.2699999809265138,
+                    "spacing": 6.940000057220459,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "runner",
+                    "offset": 6.889999866485596,
+                    "spacing": 7.659999847412109,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "left",
+            "speed": 1.899999976158142,
+            "objects": [
+                {
+                    "pieceId": "raft",
+                    "offset": 4.96999979019165,
+                    "spacing": 6.489999771118164,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "tree",
+                    "column": 5
+                }
+            ]
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}

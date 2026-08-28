@@ -1,0 +1,80 @@
+{
+    "id": "level-003",
+    "name": "level-003",
+    "columns": 9,
+    "medal": {
+        "gold": 15.899999618530274,
+        "silver": 23.100000381469728,
+        "bronze": 33.400001525878909
+    },
+    "startColumn": 1,
+    "bays": [
+        6,
+        7
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "right",
+            "speed": 1.2899999618530274,
+            "objects": [
+                {
+                    "pieceId": "convertible",
+                    "offset": 1.7200000286102296,
+                    "spacing": 7.170000076293945,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "left",
+            "speed": 1.149999976158142,
+            "objects": [
+                {
+                    "pieceId": "convertible",
+                    "offset": 6.289999961853027,
+                    "spacing": 6.880000114440918,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}

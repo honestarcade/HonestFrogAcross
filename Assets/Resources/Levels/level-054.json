@@ -1,0 +1,143 @@
+{
+    "id": "level-054",
+    "name": "level-054",
+    "columns": 13,
+    "medal": {
+        "gold": 12.399999618530274,
+        "silver": 18.0,
+        "bronze": 26.100000381469728
+    },
+    "startColumn": 6,
+    "bays": [
+        9,
+        10,
+        12
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "right",
+            "speed": 2.309999942779541,
+            "objects": [
+                {
+                    "pieceId": "car",
+                    "offset": 1.4500000476837159,
+                    "spacing": 11.039999961853028,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "convertible",
+                    "offset": 8.619999885559082,
+                    "spacing": 10.0,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "right",
+            "speed": 1.350000023841858,
+            "objects": [
+                {
+                    "pieceId": "gator",
+                    "offset": 6.460000038146973,
+                    "spacing": 15.5600004196167,
+                    "phase": 169
+                },
+                {
+                    "pieceId": "log",
+                    "offset": 9.899999618530274,
+                    "spacing": 14.779999732971192,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "left",
+            "speed": 1.350000023841858,
+            "objects": [
+                {
+                    "pieceId": "log-short",
+                    "offset": 1.6200000047683716,
+                    "spacing": 5.46999979019165,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "walkway",
+            "dir": "left",
+            "speed": 1.350000023841858,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "walkway",
+            "dir": "left",
+            "speed": 1.1699999570846558,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "lamp",
+                    "column": 0
+                },
+                {
+                    "pieceId": "lamp",
+                    "column": 3
+                }
+            ]
+        },
+        {
+            "kind": "road",
+            "dir": "left",
+            "speed": 1.9900000095367432,
+            "objects": [
+                {
+                    "pieceId": "bus",
+                    "offset": 4.510000228881836,
+                    "spacing": 12.039999961853028,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "car",
+                    "offset": 10.760000228881836,
+                    "spacing": 11.079999923706055,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}

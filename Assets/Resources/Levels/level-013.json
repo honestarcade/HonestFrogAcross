@@ -1,0 +1,106 @@
+{
+    "id": "level-013",
+    "name": "level-013",
+    "columns": 10,
+    "medal": {
+        "gold": 16.399999618530275,
+        "silver": 23.799999237060548,
+        "bronze": 34.5
+    },
+    "startColumn": 1,
+    "bays": [
+        2,
+        9
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "right",
+            "speed": 1.25,
+            "objects": [
+                {
+                    "pieceId": "turtle-log",
+                    "offset": 6.920000076293945,
+                    "spacing": 15.760000228881836,
+                    "phase": 261
+                },
+                {
+                    "pieceId": "log-long",
+                    "offset": 14.550000190734864,
+                    "spacing": 17.739999771118165,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "left",
+            "speed": 1.559999942779541,
+            "objects": [
+                {
+                    "pieceId": "truck",
+                    "offset": 0.019999999552965165,
+                    "spacing": 8.229999542236329,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "right",
+            "speed": 1.0099999904632569,
+            "objects": [
+                {
+                    "pieceId": "turtle-log",
+                    "offset": 2.609999895095825,
+                    "spacing": 14.520000457763672,
+                    "phase": 289
+                },
+                {
+                    "pieceId": "log-long",
+                    "offset": 11.869999885559082,
+                    "spacing": 16.920000076293947,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "left",
+            "speed": 0.9800000190734863,
+            "objects": [
+                {
+                    "pieceId": "log",
+                    "offset": 4.900000095367432,
+                    "spacing": 7.730000019073486,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}

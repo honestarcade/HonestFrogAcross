@@ -1,0 +1,160 @@
+{
+    "id": "level-070",
+    "name": "level-070",
+    "columns": 12,
+    "medal": {
+        "gold": 18.5,
+        "silver": 26.799999237060548,
+        "bronze": 38.79999923706055
+    },
+    "startColumn": 1,
+    "bays": [
+        0,
+        4,
+        8,
+        11
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-succulent",
+                    "column": 3
+                },
+                {
+                    "pieceId": "bench",
+                    "column": 6
+                },
+                {
+                    "pieceId": "planter-tulip",
+                    "column": 10
+                }
+            ]
+        },
+        {
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "bench",
+                    "column": 1
+                },
+                {
+                    "pieceId": "lamp",
+                    "column": 4
+                },
+                {
+                    "pieceId": "planter-fern",
+                    "column": 8
+                }
+            ]
+        },
+        {
+            "kind": "road",
+            "dir": "left",
+            "speed": 2.1700000762939455,
+            "objects": [
+                {
+                    "pieceId": "bus",
+                    "offset": 4.010000228881836,
+                    "spacing": 11.4399995803833,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "convertible",
+                    "offset": 8.270000457763672,
+                    "spacing": 8.899999618530274,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "right",
+            "speed": 2.859999895095825,
+            "objects": [
+                {
+                    "pieceId": "cyclist",
+                    "offset": 4.03000020980835,
+                    "spacing": 4.670000076293945,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "left",
+            "speed": 1.2999999523162842,
+            "objects": [
+                {
+                    "pieceId": "log-short",
+                    "offset": 5.429999828338623,
+                    "spacing": 6.079999923706055,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "walkway",
+            "dir": "left",
+            "speed": 1.6200000047683716,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "bush",
+                    "column": 2
+                },
+                {
+                    "pieceId": "planter-lavender",
+                    "column": 4
+                },
+                {
+                    "pieceId": "planter-succulent",
+                    "column": 7
+                }
+            ]
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-lavender",
+                    "column": 4
+                }
+            ]
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}

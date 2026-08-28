@@ -1,0 +1,184 @@
+{
+    "id": "level-096",
+    "name": "level-096",
+    "columns": 11,
+    "medal": {
+        "gold": 35.0,
+        "silver": 50.79999923706055,
+        "bronze": 73.5
+    },
+    "startColumn": 6,
+    "bays": [
+        4,
+        5,
+        7,
+        8,
+        9
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "right",
+            "speed": 1.8300000429153443,
+            "objects": [
+                {
+                    "pieceId": "gator",
+                    "offset": 3.0399999618530275,
+                    "spacing": 6.230000019073486,
+                    "phase": 211
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "walkway",
+            "dir": "left",
+            "speed": 2.069999933242798,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "walkway",
+            "dir": "right",
+            "speed": 1.7100000381469727,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "tracks",
+            "dir": "right",
+            "speed": 2.9600000381469728,
+            "objects": [
+                {
+                    "pieceId": "freight",
+                    "offset": 1.4299999475479127,
+                    "spacing": 14.359999656677246,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "left",
+            "speed": 2.7799999713897707,
+            "objects": [
+                {
+                    "pieceId": "cyclist",
+                    "offset": 1.3700000047683716,
+                    "spacing": 8.180000305175782,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "cyclist",
+                    "offset": 7.21999979019165,
+                    "spacing": 7.760000228881836,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "left",
+            "speed": 1.4800000190734864,
+            "objects": [
+                {
+                    "pieceId": "gator",
+                    "offset": 6.340000152587891,
+                    "spacing": 13.239999771118164,
+                    "phase": 267
+                },
+                {
+                    "pieceId": "log-short",
+                    "offset": 9.1899995803833,
+                    "spacing": 10.140000343322754,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-succulent",
+                    "column": 2
+                },
+                {
+                    "pieceId": "planter-lavender",
+                    "column": 8
+                },
+                {
+                    "pieceId": "planter-succulent",
+                    "column": 9
+                }
+            ]
+        },
+        {
+            "kind": "road",
+            "dir": "left",
+            "speed": 2.309999942779541,
+            "objects": [
+                {
+                    "pieceId": "convertible",
+                    "offset": 4.329999923706055,
+                    "spacing": 4.349999904632568,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "left",
+            "speed": 2.880000114440918,
+            "objects": [
+                {
+                    "pieceId": "truck",
+                    "offset": 0.6299999952316284,
+                    "spacing": 11.979999542236329,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "convertible",
+                    "offset": 9.520000457763672,
+                    "spacing": 8.479999542236329,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "right",
+            "speed": 2.990000009536743,
+            "objects": [
+                {
+                    "pieceId": "cyclist",
+                    "offset": 1.309999942779541,
+                    "spacing": 4.0,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}

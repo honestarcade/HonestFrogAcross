@@ -1,0 +1,119 @@
+{
+    "id": "level-011",
+    "name": "level-011",
+    "columns": 10,
+    "medal": {
+        "gold": 19.0,
+        "silver": 27.5,
+        "bronze": 39.900001525878909
+    },
+    "startColumn": 7,
+    "bays": [
+        5,
+        9
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "right",
+            "speed": 1.190000057220459,
+            "objects": [
+                {
+                    "pieceId": "raft",
+                    "offset": 3.2699999809265138,
+                    "spacing": 14.699999809265137,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "log",
+                    "offset": 15.050000190734864,
+                    "spacing": 17.139999389648439,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "right",
+            "speed": 1.059999942779541,
+            "objects": [
+                {
+                    "pieceId": "log-short",
+                    "offset": 5.929999828338623,
+                    "spacing": 7.380000114440918,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "right",
+            "speed": 0.9700000286102295,
+            "objects": [
+                {
+                    "pieceId": "log-short",
+                    "offset": 3.2300000190734865,
+                    "spacing": 7.110000133514404,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "left",
+            "speed": 1.7799999713897706,
+            "objects": [
+                {
+                    "pieceId": "bus",
+                    "offset": 2.1700000762939455,
+                    "spacing": 15.5,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "bus",
+                    "offset": 8.970000267028809,
+                    "spacing": 14.199999809265137,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "left",
+            "speed": 1.0099999904632569,
+            "objects": [
+                {
+                    "pieceId": "log-short",
+                    "offset": 3.380000114440918,
+                    "spacing": 14.520000457763672,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "turtle-log",
+                    "offset": 7.53000020980835,
+                    "spacing": 15.720000267028809,
+                    "phase": 289
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}

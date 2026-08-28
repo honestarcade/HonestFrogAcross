@@ -1,0 +1,154 @@
+{
+    "id": "level-038",
+    "name": "level-038",
+    "columns": 11,
+    "medal": {
+        "gold": 35.599998474121097,
+        "silver": 51.70000076293945,
+        "bronze": 74.80000305175781
+    },
+    "startColumn": 2,
+    "bays": [
+        3,
+        4,
+        6,
+        7
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-tulip",
+                    "column": 2
+                }
+            ]
+        },
+        {
+            "kind": "road",
+            "dir": "right",
+            "speed": 2.0399999618530275,
+            "objects": [
+                {
+                    "pieceId": "convertible",
+                    "offset": 2.930000066757202,
+                    "spacing": 10.239999771118164,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "car",
+                    "offset": 5.340000152587891,
+                    "spacing": 9.920000076293946,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "right",
+            "speed": 1.9500000476837159,
+            "objects": [
+                {
+                    "pieceId": "car",
+                    "offset": 1.0299999713897706,
+                    "spacing": 9.779999732971192,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "bus",
+                    "offset": 8.869999885559082,
+                    "spacing": 11.819999694824219,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "right",
+            "speed": 1.409999966621399,
+            "objects": [
+                {
+                    "pieceId": "gator",
+                    "offset": 2.930000066757202,
+                    "spacing": 6.989999771118164,
+                    "phase": 419
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "right",
+            "speed": 1.25,
+            "objects": [
+                {
+                    "pieceId": "gator",
+                    "offset": 4.349999904632568,
+                    "spacing": 6.840000152587891,
+                    "phase": 100
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "right",
+            "speed": 1.2699999809265137,
+            "objects": [
+                {
+                    "pieceId": "log-short",
+                    "offset": 0.7599999904632568,
+                    "spacing": 11.619999885559082,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "log",
+                    "offset": 7.46999979019165,
+                    "spacing": 13.819999694824219,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "tracks",
+            "dir": "left",
+            "speed": 2.2899999618530275,
+            "objects": [
+                {
+                    "pieceId": "passenger",
+                    "offset": 10.239999771118164,
+                    "spacing": 15.210000038146973,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}

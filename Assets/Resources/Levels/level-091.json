@@ -1,0 +1,216 @@
+{
+    "id": "level-091",
+    "name": "level-091",
+    "columns": 11,
+    "medal": {
+        "gold": 35.099998474121097,
+        "silver": 50.79999923706055,
+        "bronze": 73.5999984741211
+    },
+    "startColumn": 9,
+    "bays": [
+        0,
+        4,
+        7,
+        8,
+        9
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "left",
+            "speed": 1.559999942779541,
+            "objects": [
+                {
+                    "pieceId": "raft",
+                    "offset": 5.809999942779541,
+                    "spacing": 12.84000015258789,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "raft",
+                    "offset": 11.350000381469727,
+                    "spacing": 11.819999694824219,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "left",
+            "speed": 3.0899999141693117,
+            "objects": [
+                {
+                    "pieceId": "skater",
+                    "offset": 1.850000023841858,
+                    "spacing": 8.039999961853028,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "runner",
+                    "offset": 5.679999828338623,
+                    "spacing": 7.980000019073486,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "right",
+            "speed": 2.7100000381469728,
+            "objects": [
+                {
+                    "pieceId": "cyclist",
+                    "offset": 1.1200000047683716,
+                    "spacing": 8.300000190734864,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "runner",
+                    "offset": 7.309999942779541,
+                    "spacing": 8.180000305175782,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "right",
+            "speed": 2.5899999141693117,
+            "objects": [
+                {
+                    "pieceId": "runner",
+                    "offset": 3.0999999046325685,
+                    "spacing": 4.440000057220459,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "left",
+            "speed": 2.549999952316284,
+            "objects": [
+                {
+                    "pieceId": "cyclist",
+                    "offset": 0.38999998569488528,
+                    "spacing": 7.059999942779541,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "skater",
+                    "offset": 6.769999980926514,
+                    "spacing": 7.71999979019165,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "right",
+            "speed": 2.75,
+            "objects": [
+                {
+                    "pieceId": "runner",
+                    "offset": 2.5899999141693117,
+                    "spacing": 3.9100000858306886,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "right",
+            "speed": 3.069999933242798,
+            "objects": [
+                {
+                    "pieceId": "runner",
+                    "offset": 1.340000033378601,
+                    "spacing": 7.139999866485596,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "runner",
+                    "offset": 4.960000038146973,
+                    "spacing": 7.159999847412109,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "right",
+            "speed": 1.600000023841858,
+            "objects": [
+                {
+                    "pieceId": "log",
+                    "offset": 5.949999809265137,
+                    "spacing": 13.960000038146973,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "turtle-log",
+                    "offset": 9.680000305175782,
+                    "spacing": 12.279999732971192,
+                    "phase": 211
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "tracks",
+            "dir": "left",
+            "speed": 2.4000000953674318,
+            "objects": [
+                {
+                    "pieceId": "passenger",
+                    "offset": 11.970000267028809,
+                    "spacing": 14.40999984741211,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "right",
+            "speed": 2.630000114440918,
+            "objects": [
+                {
+                    "pieceId": "cyclist",
+                    "offset": 1.8200000524520875,
+                    "spacing": 7.619999885559082,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "runner",
+                    "offset": 3.819999933242798,
+                    "spacing": 8.279999732971192,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}
