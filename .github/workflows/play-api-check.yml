@@ -23,9 +23,15 @@ jobs:
         run: |
           TOKEN=$(gcloud auth print-access-token)
           PKG=com.honestarcade.frogacross
-          RESP=$(curl -sf -X POST -H "Authorization: Bearer $TOKEN" \
-            "https://androidpublisher.googleapis.com/androidpublisher/v3/applications/$PKG/edits") || {
-              echo "::error::Play API edit-create failed — check the service account's app permission for $PKG"; exit 1; }
+          HTTP=$(curl -s -o "$RUNNER_TEMP/resp.json" -w '%{http_code}' -X POST \
+            -H "Authorization: Bearer $TOKEN" \
+            "https://androidpublisher.googleapis.com/androidpublisher/v3/applications/$PKG/edits")
+          if [ "$HTTP" != "200" ]; then
+            echo "::error::Play API edit-create returned HTTP $HTTP for $PKG"
+            echo "Response body:"; cat "$RUNNER_TEMP/resp.json"
+            exit 1
+          fi
+          RESP=$(cat "$RUNNER_TEMP/resp.json")
           EDIT_ID=$(echo "$RESP" | jq -r .id)
           echo "Edit created: $EDIT_ID"
           curl -sf -X DELETE -H "Authorization: Bearer $TOKEN" \
