@@ -1,0 +1,10 @@
+{ "id": "dev-tracks", "name": "Tracks Slice", "columns": 11,
+  "medal": { "gold": 7.0, "silver": 11.0, "bronze": 16.0 }, "startColumn": 5, "bays": [5],
+  "rows": [
+    { "kind": "goal" },
+    { "kind": "grass" },
+    { "kind": "tracks", "dir": "right", "speed": 7.0, "objects": [
+      { "pieceId": "freight", "offset": 0, "spacing": 30, "phase": 0 } ]},
+    { "kind": "tracks", "dir": "left", "speed": 6.0, "objects": [
+      { "pieceId": "passenger", "offset": 10, "spacing": 34, "phase": 0 } ]},
+    { "kind": "bank" } ]}
