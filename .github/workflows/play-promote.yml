@@ -44,23 +44,38 @@ jobs:
           api="https://androidpublisher.googleapis.com/androidpublisher/v3/applications/$PKG"
           auth=(-H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json")
 
+          call() { # method url [data] — echoes the body, returns the HTTP code
+            http=$(curl -s -o /tmp/resp.json -w '%{http_code}' "${auth[@]}" -X "$1" ${3:+-d "$3"} "$2")
+            cat /tmp/resp.json; echo
+            [ "$http" -lt 300 ]
+          }
+
           edit=$(curl -sf "${auth[@]}" -X POST "$api/edits" | jq -r .id)
           src=$(curl -sf "${auth[@]}" "$api/edits/$edit/tracks/$FROM")
           echo "source track: $src"
           codes=$(echo "$src" | jq '[.releases[] | select(.status=="completed") | .versionCodes[]] | map(tonumber) | sort | reverse | .[0:1]')
           [ "$codes" != "[]" ] || { echo "no completed release on $FROM"; exit 1; }
 
-          body=$(jq -n --argjson codes "$codes" '{releases:[{versionCodes:$codes, status:"completed"}]}')
-          call() { # method url [data] — fail loudly with the API's error body
-            resp=$(curl -s -o /tmp/resp.json -w '%{http_code}' "${auth[@]}" -X "$1" ${3:+-d "$3"} "$2")
-            cat /tmp/resp.json; echo
-            [ "$resp" -lt 300 ] || { echo "HTTP $resp from $2"; exit 1; }
+          promote() { # $1 = release status; a fresh edit each attempt
+            edit=$(curl -sf "${auth[@]}" -X POST "$api/edits" | jq -r .id)
+            body=$(jq -n --argjson codes "$codes" --arg st "$1" '{releases:[{versionCodes:$codes, status:$st}]}')
+            call PUT "$api/edits/$edit/tracks/$TO" "$body" && call POST "$api/edits/$edit:commit"
           }
-          call PUT "$api/edits/$edit/tracks/$TO" "$body"
-          call POST "$api/edits/$edit:commit"
+
+          status=completed
+          if ! promote completed; then
+            # a DRAFT app (store listing not yet published) only accepts draft
+            # releases outside the internal track — Google's rule, not ours
+            echo "completed refused — retrying as a draft release"
+            status=draft
+            promote draft
+          fi
 
           {
             printf '## Promoted on Play\n\n'
             printf -- '- versionCode(s): %s\n' "$(echo "$codes" | jq -cr .)"
-            printf -- '- %s → %s\n' "$FROM" "$TO"
+            printf -- '- %s → %s (release status: %s)\n' "$FROM" "$TO" "$status"
+            if [ "$status" = draft ]; then
+              printf '\nThe app is still a draft app, so the release landed as a DRAFT on the target track. Once the store listing + declarations are done, roll it out in the Console (or re-run this workflow — completed will succeed).\n'
+            fi
           } >> "$GITHUB_STEP_SUMMARY"
