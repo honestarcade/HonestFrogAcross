@@ -78,5 +78,22 @@ namespace FrogAcross.Tests.PlayMode
             Assert.AreEqual(simA.Level.Columns + 2f, strip.size.x, 1e-3f, "tiled strip spans the board + margins");
             yield return null;
         }
+
+        [UnityTest]
+        public IEnumerator BayFill_FitsInsideItsCell()
+        {
+            // regression (#67 screenshots): raw character sprites are ~4 world
+            // units wide — an unscaled bay fill dwarfed the goal row
+            var (sim, view) = Spawn();
+            foreach (int b in sim.Level.BayColumns)
+            {
+                var fill = view.transform.Find($"bay-fill-{b}");
+                var sr = fill.GetComponent<UnityEngine.SpriteRenderer>();
+                float worldWidth = sr.sprite.bounds.size.x * fill.localScale.x;
+                Assert.LessOrEqual(worldWidth, 1f, $"bay-fill-{b} must fit its cell");
+                Assert.Greater(worldWidth, 0.3f, $"bay-fill-{b} should be visible");
+            }
+            yield return null;
+        }
     }
 }

@@ -73,7 +73,9 @@ namespace FrogAcross.View
 
                         var fill = NewSprite($"bay-fill-{b}", _character.sprites[0], -0.05f);
                         fill.transform.position = new Vector3(b, -r, 0.04f);
-                        fill.transform.localScale = Vector3.one * 0.8f;
+                        // cell-fit like the player — raw character sprites are ~4 units wide
+                        fill.transform.localScale = Vector3.one
+                            * (0.8f / Mathf.Max(0.1f, _character.sprites[0].bounds.size.x));
                         fill.enabled = false;
                         _bayFills.Add(fill);
                     }
@@ -95,12 +97,12 @@ namespace FrogAcross.View
             // hides them beyond the board edges.
             foreach (int side in new[] { -1, +1 })
             {
-                var cover = NewSprite($"cover-{side}", null, -0.55f);
-                cover.sprite = SpriteOf(level.Rows[level.BankRow].Kind, 0);
-                cover.drawMode = SpriteDrawMode.Tiled;
-                cover.size = new Vector2(14f, level.Rows.Count + 4f);
+                // flat surround (design: solid #16321F), wide enough for any
+                // phone aspect — the tiled bank texture used to band through
+                var cover = NewSprite($"cover-{side}", SolidSprite(), -0.55f);
                 cover.color = new Color(0.086f, 0.196f, 0.121f); // #16321F surround
-                float cx = side < 0 ? -0.5f - 7f : level.Columns - 0.5f + 7f;
+                cover.transform.localScale = new Vector3(40f, level.Rows.Count + 8f, 1f);
+                float cx = side < 0 ? -0.5f - 20f : level.Columns - 0.5f + 20f;
                 cover.transform.position = new Vector3(cx, -(level.Rows.Count - 1) / 2f, -0.55f);
             }
 
@@ -216,6 +218,16 @@ namespace FrogAcross.View
 
         private Sprite SpriteOf(PieceDef def, int i) =>
             def.sprites != null && def.sprites.Length > i ? def.sprites[i] : null;
+
+        private static Sprite _solid;
+
+        private static Sprite SolidSprite()
+        {
+            if (_solid == null)
+                _solid = Sprite.Create(Texture2D.whiteTexture,
+                    new Rect(0, 0, 4, 4), new Vector2(0.5f, 0.5f), 4f);
+            return _solid;
+        }
 
         private SpriteRenderer NewSprite(string name, Sprite sprite, float z)
         {

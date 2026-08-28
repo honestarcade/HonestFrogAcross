@@ -212,3 +212,12 @@ When `/n8-replan` processes an ad-hoc entry it appends `— reconciled by /n8-re
 ### M6 execution (2026-08-28)
 
 - **#66 blocked (needs-owner-action):** owner audio files not yet supplied. Concrete asset list posted on the issue (13 SFX + 1–2 music loops + license terms per file). Engine (#65) complete — swap is a file drop; gameplay-music question resolves implicitly by what the owner provides.
+
+### M7 execution (2026-08-28)
+
+- **#35 symbols API:** EditorUserBuildSettings.androidCreateSymbols is obsolete in 6000.5 — used UnityEditor.Android.UserBuildSettings.DebugSymbols (level=SymbolTable, format=Zip). SymbolTable (public) level: readable Play crash stacks at a fraction of full-debug size.
+- **#35 R8 mapping:** enabled minifyRelease (also shrinks the AAB); Unity buries mapping.txt in Library/Bee — BuildScript copies the freshest one next to the AAB post-build; release.yml resolves both artifacts and passes them to upload-google-play. Proof deferred to the v0.2.0 tag run (also seeds #69's closed track).
+- **#67 screenshots are editor captures of the real game** (real level data, shipped BoardView renderer, player state = solver proof-line replayed 2/3): the "release build" key link is satisfiable more literally by on-device captures once v0.2.0 is installed — offered to the owner at verify, not blocking the draft listing.
+- **#67 surfaced two real BoardView bugs, fixed (Rule 1 + regression test):** (a) bay-fill character sprite was unscaled — raw sprites are ~4 world units wide, so a filled bay rendered a giant frog (BayFill_FitsInsideItsCell pins the fix); (b) side covers used the tiled bank texture (banding) and were only 14 units wide — wide phones would see board internals; now flat #16321F, 40 units.
+- **#68 privacy policy hosting (delegated):** GitHub Pages from main/docs (enabled 2026-08-28) — https://honestarcade.github.io/HonestFrogAcross/privacy. The repo is public and open source is part of the store pitch, so Pages fits; no separate infrastructure.
+- **#69 promotion runs in CI, not locally:** the Play service-account key exists only as a GitHub secret (by design — no local key material). Added play-promote.yml (workflow_dispatch, internal→alpha default) using the androidpublisher REST API; the SA remains testing-tracks-only, so production promotion (#70) stays a human Console act.

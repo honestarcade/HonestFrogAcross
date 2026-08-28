@@ -42,6 +42,11 @@ namespace FrogAcross.Editor.Build
             // Invariant 1 (no network): never force the INTERNET permission.
             PlayerSettings.Android.forceInternetPermission = false;
 
+            // #35: R8 minification on release builds — produces the mapping
+            // file Play wants for readable crash reports (and shrinks the AAB).
+            PlayerSettings.Android.minifyRelease = true;
+            PlayerSettings.Android.minifyDebug = false;
+
             AssetDatabase.SaveAssets();
             Debug.Log("[BuildScript] Baseline settings applied.");
         }
@@ -202,6 +207,11 @@ namespace FrogAcross.Editor.Build
             string dir = Path.GetDirectoryName(outputPath);
             if (!string.IsNullOrEmpty(dir)) Directory.CreateDirectory(dir);
 
+            // #35: emit a symbols package (symbol tables are enough for
+            // readable Play crash/ANR stacks, at a fraction of full-debug size)
+            UnityEditor.Android.UserBuildSettings.DebugSymbols.level = Unity.Android.Types.DebugSymbolLevel.SymbolTable;
+            UnityEditor.Android.UserBuildSettings.DebugSymbols.format = Unity.Android.Types.DebugSymbolFormat.Zip;
+
             var options = new BuildPlayerOptions
             {
                 scenes = scenes,
@@ -217,8 +227,30 @@ namespace FrogAcross.Editor.Build
                 return false;
             }
 
+            CollectMappingFile(outputPath);
             Debug.Log($"[BuildScript] AAB built: {outputPath} ({report.summary.totalSize} bytes).");
             return true;
+        }
+
+        /// <summary>
+        /// #35: Unity leaves the R8 mapping.txt deep in the gradle work tree —
+        /// copy the freshest one next to the AAB so CI can upload it to Play.
+        /// </summary>
+        private static void CollectMappingFile(string outputPath)
+        {
+            const string gradleRoot = "Library/Bee";
+            if (!Directory.Exists(gradleRoot)) return;
+            var mapping = Directory.GetFiles(gradleRoot, "mapping.txt", SearchOption.AllDirectories)
+                .OrderByDescending(File.GetLastWriteTimeUtc)
+                .FirstOrDefault();
+            if (mapping == null)
+            {
+                Debug.Log("[BuildScript] No R8 mapping.txt found (minification may be off for this variant).");
+                return;
+            }
+            string dest = Path.Combine(Path.GetDirectoryName(outputPath) ?? ".", "mapping.txt");
+            File.Copy(mapping, dest, overwrite: true);
+            Debug.Log($"[BuildScript] R8 mapping collected: {dest}");
         }
 
         private static void Fail(string message)
