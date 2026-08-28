@@ -1,0 +1,80 @@
+# The single quality gate (#23): every PR runs it directly; the release
+# pipeline consumes it via workflow_call so PRs and pre-deploy run the
+# identical checks. The M0 invariant guards and analyzer errors ride along
+# automatically — they live in the test/build path.
+name: CI
+on:
+  pull_request:
+  workflow_call:
+
+permissions:
+  contents: read
+
+# Per-ref group: superseded PR builds are waste. Tag refs are unique, so a
+# release's call of this workflow can never be cancelled by a PR push.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Tests (${{ matrix.testMode }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        testMode: [EditMode, PlayMode]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - uses: actions/cache@v4
+        with:
+          path: Library
+          key: library-test-${{ hashFiles('Packages/manifest.json', 'Packages/packages-lock.json', 'ProjectSettings/ProjectVersion.txt') }}
+          restore-keys: library-test-
+      - uses: game-ci/unity-test-runner@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          testMode: ${{ matrix.testMode }}
+          # Android editor image: our editor code compiles against
+          # UnityEditor.Android, which the base image lacks.
+          customImage: unityci/editor:ubuntu-6000.5.10f1-android-3
+          artifactsPath: test-results-${{ matrix.testMode }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results-${{ matrix.testMode }}
+          path: test-results-${{ matrix.testMode }}
+          retention-days: 7
+
+  build:
+    name: Android build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - uses: actions/cache@v4
+        with:
+          path: Library
+          key: library-build-${{ hashFiles('Packages/manifest.json', 'Packages/packages-lock.json', 'ProjectSettings/ProjectVersion.txt') }}
+          restore-keys: library-build-
+      - uses: game-ci/unity-builder@v5
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          targetPlatform: Android
+          androidExportType: androidAppBundle
+      # Unsigned PR artifact — sideloadable for device testing after
+      # bundletool conversion; short retention, this is a convenience.
+      - uses: actions/upload-artifact@v4
+        with:
+          name: frogacross-aab-${{ github.sha }}
+          path: build/Android
+          retention-days: 7
