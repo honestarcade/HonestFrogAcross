@@ -37,7 +37,7 @@ namespace FrogAcross.Tests.PlayMode
             var names = Enumerable.Range(0, view.transform.childCount)
                 .Select(i => view.transform.GetChild(i).name).ToList();
             Assert.AreEqual(10, names.Count(n => n.StartsWith("row-")), "10 lane strips");
-            Assert.AreEqual(3, names.Count(n => n.StartsWith("bay-")), "3 bays");
+            Assert.AreEqual(3, names.Count(n => System.Text.RegularExpressions.Regex.IsMatch(n, @"^bay-\d+$")), "3 bays (fills excluded)");
             Assert.AreEqual(4, names.Count(n => n.StartsWith("ob-")), "4 obstructions in dev-001");
             Assert.IsTrue(names.Contains("player"));
             Assert.Greater(names.Count(n => n.StartsWith("obj-")), 10, "object instances spawned");
@@ -74,8 +74,8 @@ namespace FrogAcross.Tests.PlayMode
         public IEnumerator Board_ScalesToColumns()
         {
             var (simA, viewA) = Spawn();
-            float widthA = viewA.transform.Find("row-0-goal").localScale.x;
-            Assert.AreEqual(simA.Level.Columns, widthA, 1e-3f);
+            var strip = viewA.transform.Find("row-0-goal").GetComponent<UnityEngine.SpriteRenderer>();
+            Assert.AreEqual(simA.Level.Columns + 2f, strip.size.x, 1e-3f, "tiled strip spans the board + margins");
             yield return null;
         }
     }
