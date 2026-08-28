@@ -141,3 +141,11 @@ When `/n8-replan` processes an ad-hoc entry it appends `— reconciled by /n8-re
 - **Decision (Rule 3 — CI build blocker):** The analyzer gate failed the CI Android build on GameCI's own injected UnityBuilderAction script (error UNT0007 in vendor code). Fix: custom buildMethod `BuildScript.BuildCi` — our own gate-compliant entry point parsing the action's standard CLI args (verified against build.sh @ v5.0.0: -customBuildPath, -buildVersion, -androidVersionCode, androidKeystore* are passed regardless of buildMethod; with buildMethod set, no script injection occurs). Vendoring a fixed copy at their path was rejected: build.sh cp -R overwrites same-path files. Parser pinned by BuildCiArgsTests.
   **Why:** Weakening the gate (suppressing UNT0007 globally) was the only alternative and is explicitly forbidden by the no-weakened-gates rule.
   **Issue:** #23, #25
+- **Decision (Rule 1 — own bug):** play-api-check's first 403 was our token missing the androidpublisher scope (gcloud default scopes); fixed in PR #34. The SECOND 403 (upload path) was a real permission gap — 'Release apps to testing tracks' unchecked — diagnosed from the owner's Console screenshot and fixed by the owner.
+  **Issue:** #24
+- **Decision:** #23's ruleset merge-block AC proven live on PR #33: deliberate red test → GitHub refused the merge ('base branch policy prohibits') → reverted → green → merged.
+  **Issue:** #23
+- **Decision:** First Play upload done manually by the owner through the Console UI (locally-built signed AAB, versionCode 1) after API uploads kept returning 'caller does not have permission' post-permission-fix — new apps gate their first bundle upload behind Play App Signing terms only a human can accept. All subsequent uploads are API-driven (proven: run 33174089981, versionCode 102).
+  **Issue:** #25, #20
+- **Decision:** Discovered work filed as #35 (IL2CPP symbols + R8 mapping uploads with releases) instead of fixed inline — quality-of-life, not ship-critical.
+  **Issue:** #25
