@@ -56,6 +56,13 @@ jobs:
           androidKeystorePass: ${{ secrets.FROG_KEYSTORE_PASS }}
           androidKeyaliasName: ${{ secrets.FROG_KEY_ALIAS }}
           androidKeyaliasPass: ${{ secrets.FROG_KEY_PASS }}
+      # #35: locate the symbols package + R8 mapping the build emitted
+      - name: Locate debug artifacts
+        id: dbg
+        run: |
+          ls -la build/Android/ || true
+          echo "symbols=$(ls build/Android/*.symbols.zip 2>/dev/null | head -1)" >> "$GITHUB_OUTPUT"
+          echo "mapping=$(ls build/Android/mapping.txt 2>/dev/null | head -1)" >> "$GITHUB_OUTPUT"
       - name: Upload to Play internal track
         uses: r0adkll/upload-google-play@v1
         with:
@@ -64,6 +71,8 @@ jobs:
           releaseFiles: build/Android/*.aab
           track: internal
           status: completed
+          debugSymbols: ${{ steps.dbg.outputs.symbols }}
+          mappingFile: ${{ steps.dbg.outputs.mapping }}
       - name: Summary
         run: |
           {
@@ -71,4 +80,5 @@ jobs:
             printf -- '- Version: **%s** (versionCode %s)\n' "${{ steps.ver.outputs.name }}" "${{ steps.ver.outputs.code }}"
             printf -- '- Package: com.honestarcade.frogacross\n'
             printf -- '- Console: https://play.google.com/console → Frog Across → Internal testing\n'
+            printf -- '- Symbols: %s · Mapping: %s\n' "${{ steps.dbg.outputs.symbols }}" "${{ steps.dbg.outputs.mapping }}"
           } >> "$GITHUB_STEP_SUMMARY"
