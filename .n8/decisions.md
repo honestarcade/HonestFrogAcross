@@ -180,3 +180,7 @@ When `/n8-replan` processes an ad-hoc entry it appends `— reconciled by /n8-re
   **Issue:** #44
 - **Decision:** Solver decision cadence: act-or-wait-6-ticks at cooldown-free states, dedupe on quantized (tick/6, row, x·4, riding, bays, stun) — dev board solves diagonal-free in 0.39s, making the 100-level CI batch cheap.
   **Issue:** #43
+## Ad-hoc — 2026-08-28
+- **Change:** Tap-region control scheme added as a settings option (#74, new M2 story): four zones (left/right thirds, middle-column top/bottom) move the character; no diagonals in this mode; Settings (#59) gains the scheme selector + a "Show regions" one-tap-dismiss preview; regions raycast BEHIND all UI. Consequences worked through the plan: gameplay HUD gains Restart + Main-menu buttons with confirm dialogs (#60), **all confirm dialogs freeze the sim/clock** ("no pause" now means "no dedicated pause screen" — freezing is consistent with OS-suspend), restart = fresh attempt (bays cleared, clock rearmed), solver gains a diagonal-free mode (#43) and medal calibration uses diagonal-free min-times (#63) so tap-region players can earn gold.
+  **Why:** Owner scope additions during planning review (accessibility/ergonomics + quick restart).
+  **Affects:** #74 (new), #43 #55 #58 #59 #60 #63 (amended via comments, pre-execution). Reconciled at source — reconciled by /n8-plan 2026-08-28.
