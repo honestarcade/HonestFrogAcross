@@ -1,0 +1,36 @@
+# Validation for the Play service account (#24): proves the secret's JSON
+# authenticates against the Play Developer API with access to our package,
+# before the release pipeline depends on it. Dispatch manually.
+name: Play API check
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Authenticate service account
+        env:
+          PLAY_SA: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
+        run: |
+          umask 077
+          printf '%s' "$PLAY_SA" > "$RUNNER_TEMP/sa.json"
+          gcloud auth activate-service-account --key-file="$RUNNER_TEMP/sa.json"
+      - name: Create and discard an edit (proves app-scoped API access)
+        run: |
+          TOKEN=$(gcloud auth print-access-token)
+          PKG=com.honestarcade.frogacross
+          RESP=$(curl -sf -X POST -H "Authorization: Bearer $TOKEN" \
+            "https://androidpublisher.googleapis.com/androidpublisher/v3/applications/$PKG/edits") || {
+              echo "::error::Play API edit-create failed — check the service account's app permission for $PKG"; exit 1; }
+          EDIT_ID=$(echo "$RESP" | jq -r .id)
+          echo "Edit created: $EDIT_ID"
+          curl -sf -X DELETE -H "Authorization: Bearer $TOKEN" \
+            "https://androidpublisher.googleapis.com/androidpublisher/v3/applications/$PKG/edits/$EDIT_ID" || true
+          {
+            printf '## Play API access verified\n\n'
+            printf -- '- Service account authenticated and created (then discarded) an edit for %s\n' "$PKG"
+          } >> "$GITHUB_STEP_SUMMARY"

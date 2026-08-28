@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEditor;
@@ -111,7 +112,82 @@ namespace FrogAcross.Editor.Build
             else if (!ok) throw new BuildFailedException("[BuildScript] Build failed — see log.");
         }
 
-        private static bool BuildAabInner()
+        /// <summary>
+        /// CI entry point for game-ci/unity-builder's custom buildMethod. The
+        /// action passes its standard values as CLI args regardless of build
+        /// method (-customBuildPath, -buildVersion, -androidVersionCode, and
+        /// the androidKeystore* quartet); we parse them ourselves instead of
+        /// letting the action inject its UnityBuilderAction script — which our
+        /// analyzer gate rejects (vendor code with UNT violations) and which
+        /// cp -R would overwrite if we vendored a fixed copy at its path.
+        /// </summary>
+        public static void BuildCi()
+        {
+            var args = ParseArgs(Environment.GetCommandLineArgs());
+            EditorUserBuildSettings.buildAppBundle = true;
+
+            if (args.TryGetValue("buildVersion", out string v) && !string.IsNullOrEmpty(v))
+                PlayerSettings.bundleVersion = v;
+            if (args.TryGetValue("androidVersionCode", out string vc)
+                && int.TryParse(vc, out int code) && code > 0)
+                PlayerSettings.Android.bundleVersionCode = code;
+
+            string ks = args.GetValueOrDefault("androidKeystoreName", "");
+            string ksPass = args.GetValueOrDefault("androidKeystorePass", "");
+            string alias = args.GetValueOrDefault("androidKeyaliasName", "");
+            string aliasPass = args.GetValueOrDefault("androidKeyaliasPass", "");
+            bool signed = !string.IsNullOrEmpty(ks) && !string.IsNullOrEmpty(ksPass)
+                && !string.IsNullOrEmpty(alias) && !string.IsNullOrEmpty(aliasPass);
+            if (signed)
+            {
+                PlayerSettings.Android.useCustomKeystore = true;
+                PlayerSettings.Android.keystoreName = ks;
+                PlayerSettings.Android.keystorePass = ksPass;
+                PlayerSettings.Android.keyaliasName = alias;
+                PlayerSettings.Android.keyaliasPass = aliasPass;
+                Debug.Log($"[BuildScript] CI signing with key alias '{alias}'.");
+            }
+            else
+            {
+                PlayerSettings.Android.useCustomKeystore = false;
+                Debug.Log("[BuildScript] CI build unsigned (no keystore args).");
+            }
+
+            string outPath = args.GetValueOrDefault("customBuildPath", "");
+            if (string.IsNullOrEmpty(outPath)) outPath = OutputPath;
+
+            bool ok;
+            try
+            {
+                ok = BuildAabInner(outPath);
+            }
+            finally
+            {
+                ClearSigning();
+            }
+            if (Application.isBatchMode) EditorApplication.Exit(ok ? 0 : 1);
+            else if (!ok) throw new BuildFailedException("[BuildScript] CI build failed — see log.");
+        }
+
+        /// <summary>-key value pairs from a Unity command line (testable core).</summary>
+        public static Dictionary<string, string> ParseArgs(string[] argv)
+        {
+            var result = new Dictionary<string, string>();
+            for (int i = 0; i < argv.Length; i++)
+            {
+                if (!argv[i].StartsWith("-", StringComparison.Ordinal)) continue;
+                string key = argv[i].TrimStart('-');
+                string value = i + 1 < argv.Length && !argv[i + 1].StartsWith("-", StringComparison.Ordinal)
+                    ? argv[i + 1]
+                    : string.Empty;
+                result[key] = value;
+            }
+            return result;
+        }
+
+        private static bool BuildAabInner() => BuildAabInner(OutputPath);
+
+        private static bool BuildAabInner(string outputPath)
         {
             string[] scenes = EditorBuildSettings.scenes
                 .Where(s => s.enabled)
@@ -123,12 +199,13 @@ namespace FrogAcross.Editor.Build
                 return false;
             }
 
-            Directory.CreateDirectory(Path.GetDirectoryName(OutputPath)!);
+            string dir = Path.GetDirectoryName(outputPath);
+            if (!string.IsNullOrEmpty(dir)) Directory.CreateDirectory(dir);
 
             var options = new BuildPlayerOptions
             {
                 scenes = scenes,
-                locationPathName = OutputPath,
+                locationPathName = outputPath,
                 target = BuildTarget.Android,
                 options = BuildOptions.None,
             };
@@ -140,7 +217,7 @@ namespace FrogAcross.Editor.Build
                 return false;
             }
 
-            Debug.Log($"[BuildScript] AAB built: {OutputPath} ({report.summary.totalSize} bytes).");
+            Debug.Log($"[BuildScript] AAB built: {outputPath} ({report.summary.totalSize} bytes).");
             return true;
         }
 

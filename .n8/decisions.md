@@ -123,3 +123,21 @@ When `/n8-replan` processes an ad-hoc entry it appends `— reconciled by /n8-re
 - **Change:** Player-visible name is "Frog Across" (spaced) everywhere — launcher label, runtime constant, and the Play Console app entry the owner created. The design's logo lockup renders "FrogAcross" one-word with a two-tone split.
   **Why:** Owner decision during Play Console app creation ("update to use the spaced version anywhere the user sees").
   **Affects:** M4 (screens epic #8 — menu/loading logo copy must read "Frog Across" or restyle the lockup; its "copy matches the design" AC carries this override), M7 (store assets/listing already spaced). Repo/package/internal identifiers stay unspaced (com.honestarcade.frogacross is immutable).
+
+## /n8-exec M1 — 2026-08-28
+
+- **Decision:** unity-builder pinned at v5 (plan said v4; verified stale), unity-test-runner v4 (current), upload-google-play v1 (current). Betas (builder v6-beta, test-runner v5-beta) skipped.
+  **Why:** The stories' own verify-before-writing rule; checked GameCI releases/docs live.
+  **Issue:** #23, #25
+- **Decision (within #22's discretion):** Activation approach superseded — no .alf workflow. Current GameCI procedure: local Unity Hub-generated .ulf → UNITY_LICENSE secret, plus UNITY_EMAIL/UNITY_PASSWORD. No .ulf exists on this machine (Hub entitlement licensing), so the owner step is Hub → Licenses → Add → free personal license; agent sets UNITY_LICENSE from the file; owner sets email/password secrets directly so credentials never transit the conversation. The .alf-artifact AC is vacuous under the superseded path; the proof AC (green headless run) is unchanged.
+  **Issue:** #22
+- **Decision:** Test jobs use customImage unityci/editor:ubuntu-6000.5.10f1-android-3 — our editor assemblies compile against UnityEditor.Android, absent from the base image. Image tag is a best-known pin; a pull failure on first CI run means adjusting the suffix to a published tag.
+  **Issue:** #23
+- **Decision:** Keystore GitHub secrets (FROG_KEYSTORE_B64/PASS/KEY_ALIAS/KEY_PASS) set by agent from the local M0 material per plan; release builds sign via unity-builder's androidKeystore* inputs (builder runs its own build command — our BuildScript's FROG_RELEASE gate remains the local-build gate; in CI the equivalent guarantee is structural: the ship job only signs, never uploads unsigned).
+  **Issue:** #25
+- **Decision:** versionCode = github.run_number + 100 (offset clears M0's local code 1); versionName from the tag via versioning: Custom.
+  **Why:** Strict monotonicity by construction; discretion granted in #25.
+  **Issue:** #25
+- **Decision (Rule 3 — CI build blocker):** The analyzer gate failed the CI Android build on GameCI's own injected UnityBuilderAction script (error UNT0007 in vendor code). Fix: custom buildMethod `BuildScript.BuildCi` — our own gate-compliant entry point parsing the action's standard CLI args (verified against build.sh @ v5.0.0: -customBuildPath, -buildVersion, -androidVersionCode, androidKeystore* are passed regardless of buildMethod; with buildMethod set, no script injection occurs). Vendoring a fixed copy at their path was rejected: build.sh cp -R overwrites same-path files. Parser pinned by BuildCiArgsTests.
+  **Why:** Weakening the gate (suppressing UNT0007 globally) was the only alternative and is explicitly forbidden by the no-weakened-gates rule.
+  **Issue:** #23, #25

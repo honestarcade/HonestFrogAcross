@@ -1,0 +1,74 @@
+# Tag → signed AAB → Google Play internal track (#25).
+# The CI gate is structurally upstream: the upload job cannot run unless the
+# identical PR checks pass on the tagged commit.
+name: Release
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+# Never kill a deploy mid-flight.
+concurrency:
+  group: play-release
+  cancel-in-progress: false
+
+jobs:
+  gate:
+    uses: ./.github/workflows/ci.yml
+    secrets: inherit
+
+  ship:
+    name: Signed AAB → Play internal track
+    needs: gate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - uses: actions/cache@v4
+        with:
+          path: Library
+          key: library-build-${{ hashFiles('Packages/manifest.json', 'Packages/packages-lock.json', 'ProjectSettings/ProjectVersion.txt') }}
+          restore-keys: library-build-
+      # androidVersionCode from run_number (+100 offset clears M0's local
+      # versionCode 1) — strictly monotonic across tag runs by construction.
+      - name: Compute versions
+        id: ver
+        run: |
+          echo "name=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+          echo "code=$(( ${{ github.run_number }} + 100 ))" >> "$GITHUB_OUTPUT"
+      - uses: game-ci/unity-builder@v5
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          targetPlatform: Android
+          androidExportType: androidAppBundle
+          buildMethod: FrogAcross.Editor.Build.BuildScript.BuildCi
+          versioning: Custom
+          version: ${{ steps.ver.outputs.name }}
+          androidVersionCode: ${{ steps.ver.outputs.code }}
+          androidKeystoreName: frogacross-upload.keystore
+          androidKeystoreBase64: ${{ secrets.FROG_KEYSTORE_B64 }}
+          androidKeystorePass: ${{ secrets.FROG_KEYSTORE_PASS }}
+          androidKeyaliasName: ${{ secrets.FROG_KEY_ALIAS }}
+          androidKeyaliasPass: ${{ secrets.FROG_KEY_PASS }}
+      - name: Upload to Play internal track
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
+          packageName: com.honestarcade.frogacross
+          releaseFiles: build/Android/*.aab
+          track: internal
+          status: completed
+      - name: Summary
+        run: |
+          {
+            printf '## Shipped to Play internal track\n\n'
+            printf -- '- Version: **%s** (versionCode %s)\n' "${{ steps.ver.outputs.name }}" "${{ steps.ver.outputs.code }}"
+            printf -- '- Package: com.honestarcade.frogacross\n'
+            printf -- '- Console: https://play.google.com/console → Frog Across → Internal testing\n'
+          } >> "$GITHUB_STEP_SUMMARY"
