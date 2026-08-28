@@ -117,3 +117,9 @@ When `/n8-replan` processes an ad-hoc entry it appends `— reconciled by /n8-re
 - **Decision:** FROG_KEY_PASS set equal to FROG_KEYSTORE_PASS in the credentials file (with an explanatory note), keystore kept as PKCS12.
   **Why:** keytool's default PKCS12 format uses a single password for store and key — the separately-generated key password was silently ignored at creation and Gradle signing failed with "final block not properly padded". PKCS12 is the modern format; JKS (which supports split passwords) is deprecated.
   **Issue:** #19
+
+## Ad-hoc — 2026-08-28
+
+- **Change:** Player-visible name is "Frog Across" (spaced) everywhere — launcher label, runtime constant, and the Play Console app entry the owner created. The design's logo lockup renders "FrogAcross" one-word with a two-tone split.
+  **Why:** Owner decision during Play Console app creation ("update to use the spaced version anywhere the user sees").
+  **Affects:** M4 (screens epic #8 — menu/loading logo copy must read "Frog Across" or restyle the lockup; its "copy matches the design" AC carries this override), M7 (store assets/listing already spaced). Repo/package/internal identifiers stay unspaced (com.honestarcade.frogacross is immutable).

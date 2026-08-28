@@ -20,7 +20,7 @@ namespace FrogAcross.Editor.Build
         [MenuItem("FrogAcross/Build/Apply Baseline Settings")]
         public static void ApplyBaselineSettings()
         {
-            PlayerSettings.productName = "FrogAcross";
+            PlayerSettings.productName = "Frog Across"; // spaced everywhere player-visible (owner decision 2026-08-28)
             PlayerSettings.companyName = "Honest Arcade";
             PlayerSettings.SetApplicationIdentifier(NamedBuildTarget.Android, PackageId);
             PlayerSettings.bundleVersion = "0.1.0";
