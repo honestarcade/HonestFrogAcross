@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: FrogAcross.Runtime::FrogAcross.Pieces.ObstructionDef
   id: lamp
   displayName: lamp
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: 97c61460984ae470abc10c11628ad0b7, type: 3}
   blocksTile: 1

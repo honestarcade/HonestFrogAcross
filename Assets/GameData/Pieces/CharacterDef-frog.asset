@@ -14,5 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: FrogAcross.Runtime::FrogAcross.Pieces.CharacterDef
   id: frog
   displayName: frog
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: b9c59174e18c2421795114c5217f3115, type: 3}
+  - {fileID: 21300000, guid: 637239d4363db4882ad405d39d39719a, type: 3}
+  - {fileID: 21300000, guid: ae819e391d56245cabe607b6973fe85b, type: 3}
+  - {fileID: 21300000, guid: 5277178ec570e4ad1b3ed962365253d8, type: 3}
   moveStyle: 0

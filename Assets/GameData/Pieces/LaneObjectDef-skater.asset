@@ -14,7 +14,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: FrogAcross.Runtime::FrogAcross.Pieces.LaneObjectDef
   id: skater
   displayName: skater
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: 82667934720f14725960179ec8d2bf83, type: 3}
+  - {fileID: 21300000, guid: 2bf7b0b3b456e40e594128b7da277d56, type: 3}
+  - {fileID: 21300000, guid: 90f9cd02c48524eb5a6bf6b593bdf497, type: 3}
+  - {fileID: 21300000, guid: d5da94106fdc44c578ed98e00064a871, type: 3}
+  - {fileID: 21300000, guid: ecc372b143a2d468f99b3ea5843d9e26, type: 3}
+  - {fileID: 21300000, guid: a7af342e091c74badb510d5be2bab681, type: 3}
+  - {fileID: 21300000, guid: 0cba7aa0fd542473e9008a26f4c4dc96, type: 3}
+  - {fileID: 21300000, guid: ee30e81651a664c669fb2ee5addce7c2, type: 3}
+  - {fileID: 21300000, guid: 70ef8e6f4543849d4ae11a72f45431dd, type: 3}
+  - {fileID: 21300000, guid: e1fa9b39232ac4c4282df14cecac593c, type: 3}
+  - {fileID: 21300000, guid: d775f08a4264b423c91e6ea47861a5e2, type: 3}
+  - {fileID: 21300000, guid: a9c437902f4114f939ffc91a534f0ab1, type: 3}
+  - {fileID: 21300000, guid: 4da8e3de493a342469454bec008666df, type: 3}
+  - {fileID: 21300000, guid: e2ccf6cae53d64ed09a07466d2769c1e, type: 3}
+  - {fileID: 21300000, guid: c6daf7401dba34992a01ba9a8386f670, type: 3}
+  - {fileID: 21300000, guid: cacd44336efd84b3da8303ae1bb9e19a, type: 3}
+  - {fileID: 21300000, guid: 7ddfe8538e7344d11a6fec4051806de8, type: 3}
+  - {fileID: 21300000, guid: 6c35cf110dda54b88bbf249689df483b, type: 3}
+  - {fileID: 21300000, guid: 388001ef5b0554cb7bd951f96a8b2dca, type: 3}
+  - {fileID: 21300000, guid: 60077bccac6884700bfc504520b8b928, type: 3}
+  - {fileID: 21300000, guid: 18755635346394d9491350f800e9e04d, type: 3}
+  - {fileID: 21300000, guid: 450e0b1b1b18c45a6b95e46f67ce7d5f, type: 3}
+  - {fileID: 21300000, guid: 67a815d8e3fe943dba11590f6d43d35c, type: 3}
+  - {fileID: 21300000, guid: 9b8681a2149d64772b8528371be01137, type: 3}
   role: 2
   sizeCells: 0.9
   rideableZoneStart: 0

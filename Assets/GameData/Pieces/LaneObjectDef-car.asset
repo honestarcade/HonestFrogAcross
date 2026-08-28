@@ -14,7 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: FrogAcross.Runtime::FrogAcross.Pieces.LaneObjectDef
   id: car
   displayName: car
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: 864a3904c0fc049648cf1998a3ce3039, type: 3}
+  - {fileID: 21300000, guid: a421613f5ccfe4593b6851b9c97c15e2, type: 3}
+  - {fileID: 21300000, guid: 1b69218b9f1c645949f16c9c120b6ea4, type: 3}
+  - {fileID: 21300000, guid: 9c0289729ff6d41e69b29a32e07ac7fb, type: 3}
+  - {fileID: 21300000, guid: bff9658ff0c324c098e5f67bf920a62a, type: 3}
+  - {fileID: 21300000, guid: aee434a14fa6841f1ab4c6861eb19212, type: 3}
+  - {fileID: 21300000, guid: c71951f90e53941b3ad16688957c2ff4, type: 3}
+  - {fileID: 21300000, guid: 8ea8e33880f2c461fa6afc7638d37d05, type: 3}
   role: 0
   sizeCells: 1.6
   rideableZoneStart: 0

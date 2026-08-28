@@ -2,6 +2,7 @@ using System.Linq;
 using FrogAcross.Pieces;
 using NUnit.Framework;
 using UnityEditor;
+using UnityEditor.U2D;
 using UnityEngine.U2D;
 
 namespace FrogAcross.Tests.EditMode.Art

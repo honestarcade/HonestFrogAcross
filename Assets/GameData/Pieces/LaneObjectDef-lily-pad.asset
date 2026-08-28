@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: FrogAcross.Runtime::FrogAcross.Pieces.LaneObjectDef
   id: lily-pad
   displayName: lily-pad
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: 22266ce5eb77d4c9d8671f4199064ee2, type: 3}
   role: 3
   sizeCells: 1
   rideableZoneStart: 0

@@ -14,7 +14,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: FrogAcross.Runtime::FrogAcross.Pieces.LaneObjectDef
   id: runner
   displayName: runner
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: 882360d06549f4db4a028aa787af1603, type: 3}
+  - {fileID: 21300000, guid: 4230d74a22458421192432be4cff0b67, type: 3}
+  - {fileID: 21300000, guid: 41627b111168f4e868530c16a875a1ba, type: 3}
+  - {fileID: 21300000, guid: 751d0b6c6d24742c1a587c6e0210f0a8, type: 3}
+  - {fileID: 21300000, guid: c5610bd274aee4153a4c6c2c3d881613, type: 3}
+  - {fileID: 21300000, guid: 35197574366e04ac2ac0764b7d25252d, type: 3}
+  - {fileID: 21300000, guid: 050d716b0f3d4436785dd84a4392be57, type: 3}
+  - {fileID: 21300000, guid: 3ee0eeb0647474c619d4ca33b15a5d56, type: 3}
+  - {fileID: 21300000, guid: 39fb90c863ea748559c9386698bc0ad4, type: 3}
+  - {fileID: 21300000, guid: 305ff52f1f47e4d9488094f81cda24ba, type: 3}
+  - {fileID: 21300000, guid: e1e60a79f9d1243b4b74ea255c74e612, type: 3}
+  - {fileID: 21300000, guid: 3461a732df80d462ea34602a159e61f5, type: 3}
+  - {fileID: 21300000, guid: 5b09a399d11984786a04d8659870554a, type: 3}
+  - {fileID: 21300000, guid: 98848b551cdd54d01af18f38d9455152, type: 3}
+  - {fileID: 21300000, guid: 60db516a7cb64490a8b25e094bbbb4e1, type: 3}
+  - {fileID: 21300000, guid: 6c87035ca239a4f53b0264a2aaf2c234, type: 3}
+  - {fileID: 21300000, guid: 3fb1ec4d2ec184151bd6ac07c62ffa14, type: 3}
+  - {fileID: 21300000, guid: 9dc800446ab804682a8e519f64a438e8, type: 3}
+  - {fileID: 21300000, guid: 81d601160aec44b3793c011927cbba3b, type: 3}
+  - {fileID: 21300000, guid: be8e51c79952244fca1abc3340656556, type: 3}
+  - {fileID: 21300000, guid: 7f639d696b4bd41a788dc51e083a46a3, type: 3}
+  - {fileID: 21300000, guid: 6217d11cca31946e2942191b3f815dab, type: 3}
+  - {fileID: 21300000, guid: f4149b769647f4b65bacb2a9c91d2b14, type: 3}
+  - {fileID: 21300000, guid: 9c48b053623014faaafeaaf749ac76b8, type: 3}
   role: 2
   sizeCells: 0.9
   rideableZoneStart: 0

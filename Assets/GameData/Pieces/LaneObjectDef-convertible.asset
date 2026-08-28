@@ -14,7 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: FrogAcross.Runtime::FrogAcross.Pieces.LaneObjectDef
   id: convertible
   displayName: convertible
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: c0fa1db88d07640fd9a9dd8b23e341d1, type: 3}
+  - {fileID: 21300000, guid: 8f770a40df0c344f792130890a039267, type: 3}
+  - {fileID: 21300000, guid: c624674aca4d3422f81465b4f9371a71, type: 3}
+  - {fileID: 21300000, guid: 27b7c1d4d4de545bf96c483e217bb0b4, type: 3}
+  - {fileID: 21300000, guid: 057c3b90d9d034b5eb58cd66269a636f, type: 3}
+  - {fileID: 21300000, guid: 0aabb9d6c91d845e1acf990a28c5c037, type: 3}
+  - {fileID: 21300000, guid: 30fd15c703f004234ba556dc43aa90c2, type: 3}
+  - {fileID: 21300000, guid: 6550d62616c924bc2a2559574218d4a5, type: 3}
+  - {fileID: 21300000, guid: bf5ff9168eebb4060a22de3da0c68a21, type: 3}
+  - {fileID: 21300000, guid: c535aaa9b35cc4a85830f48361dfa185, type: 3}
   role: 0
   sizeCells: 1.6
   rideableZoneStart: 0

@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: FrogAcross.Runtime::FrogAcross.Pieces.ObstructionDef
   id: planter-daisy
   displayName: planter-daisy
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: 78ed39b028a8a4a47bbd2fb28b015869, type: 3}
   blocksTile: 1

@@ -14,7 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: FrogAcross.Runtime::FrogAcross.Pieces.LaneObjectDef
   id: bus
   displayName: bus
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: 04ac53e8cad6f48ef8073bebff516d45, type: 3}
+  - {fileID: 21300000, guid: fdf40d8da4f824ee5a0603c204e4014c, type: 3}
+  - {fileID: 21300000, guid: d5683e3d272d840d7943569d1a1de2be, type: 3}
+  - {fileID: 21300000, guid: ad3d2661261034c5ab24be722b68f570, type: 3}
+  - {fileID: 21300000, guid: 3d30e7a5a3e6142f3a37e715453cb122, type: 3}
+  - {fileID: 21300000, guid: 4e9248e9274fe46ecae3ab0372220f71, type: 3}
+  - {fileID: 21300000, guid: e2942f3fccf154f25b324d2aca4e284f, type: 3}
+  - {fileID: 21300000, guid: eae782851d2344e7e92077dd4bf3dc5c, type: 3}
   role: 0
   sizeCells: 2.8
   rideableZoneStart: 0

@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: FrogAcross.Runtime::FrogAcross.Pieces.LaneKindDef
   id: grass
   displayName: grass
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: bbbe3e7c156ef46ab97e9d11bcf5dd0c, type: 3}
   semantics: 0

@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: FrogAcross.Runtime::FrogAcross.Pieces.LaneObjectDef
   id: gator
   displayName: gator
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: 32e4816a9514f4ea38d9ac242bbc3cdb, type: 3}
+  - {fileID: 21300000, guid: f8a9b83cf4d4149ddb00603b6de6480d, type: 3}
+  - {fileID: 21300000, guid: aedcd1dd59d294a2aa0f97d42f19ef5c, type: 3}
+  - {fileID: 21300000, guid: 4fe6c282773ed4b29857c4479a5f0065, type: 3}
   role: 1
   sizeCells: 3.7
   rideableZoneStart: 0.05

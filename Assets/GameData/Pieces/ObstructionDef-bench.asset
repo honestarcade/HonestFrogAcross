@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: FrogAcross.Runtime::FrogAcross.Pieces.ObstructionDef
   id: bench
   displayName: bench
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: d1a4b8a9663934076b756c6ff7d8096f, type: 3}
   blocksTile: 1

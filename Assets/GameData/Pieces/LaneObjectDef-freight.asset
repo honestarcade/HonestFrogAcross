@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: FrogAcross.Runtime::FrogAcross.Pieces.LaneObjectDef
   id: freight
   displayName: freight
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: dd1eb327e9dde4efeacdbb1c7c46cffc, type: 3}
+  - {fileID: 21300000, guid: e6f9e353003164652b17bd4fbaa4cbfd, type: 3}
   role: 0
   sizeCells: 11
   rideableZoneStart: 0

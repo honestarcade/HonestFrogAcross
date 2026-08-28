@@ -48,8 +48,18 @@ namespace FrogAcross.Editor.Art
                 }
                 y -= rowMax + 1.6f;
             }
+            // Fit the camera to the full layout.
+            var renderers = Object.FindObjectsByType<SpriteRenderer>();
+            if (renderers.Length > 0)
+            {
+                var b = renderers[0].bounds;
+                foreach (var r in renderers) b.Encapsulate(r.bounds);
+                cam.orthographicSize = Mathf.Max(b.extents.y + 1f, (b.extents.x + 1f) * 0.875f);
+                camGo.transform.position = new Vector3(b.center.x, b.center.y, -10f);
+            }
+
             EditorSceneManager.SaveScene(scene, ScenePath);
-            Debug.Log($"[AuditSceneBuilder] rebuilt {ScenePath}");
+            Debug.Log($"[AuditSceneBuilder] rebuilt {ScenePath} with {renderers.Length} sprites");
         }
     }
 }

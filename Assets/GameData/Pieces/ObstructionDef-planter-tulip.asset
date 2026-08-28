@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: FrogAcross.Runtime::FrogAcross.Pieces.ObstructionDef
   id: planter-tulip
   displayName: planter-tulip
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: 1d32f97a383c64e45a60e9c6e913c1a4, type: 3}
   blocksTile: 1
