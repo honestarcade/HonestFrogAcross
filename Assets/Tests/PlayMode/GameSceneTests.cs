@@ -1,0 +1,97 @@
+using System.Collections;
+using System.IO;
+using FrogAcross.Pieces;
+using FrogAcross.Services;
+using FrogAcross.Sim;
+using FrogAcross.UI;
+using FrogAcross.View;
+using NUnit.Framework;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.TestTools;
+
+namespace FrogAcross.Tests.PlayMode
+{
+    /// <summary>#57: the selected character drives gameplay. #60: the clock is
+    /// game-time — a frozen sim (dialogs, suspension) adds zero.</summary>
+    public class GameSceneTests
+    {
+        private static readonly WaitForSeconds Wait0_3 = new WaitForSeconds(0.3f);
+        private static readonly WaitForSeconds Wait0_4 = new WaitForSeconds(0.4f);
+        private static readonly WaitForSeconds Wait0_5 = new WaitForSeconds(0.5f);
+        private string _prevCharacter;
+        private byte[] _saveBackup;
+
+
+        [UnityTearDown]
+        public IEnumerator UnloadScenes() { yield return SceneCleanup.UnloadAll(); }
+
+        [SetUp]
+        public void SetUp()
+        {
+            _prevCharacter = PlayerPrefs.GetString(CharacterSelection.PrefKey, "");
+            _saveBackup = File.Exists(Progression.SavePath) ? File.ReadAllBytes(Progression.SavePath) : null;
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            PlayerPrefs.SetString(CharacterSelection.PrefKey, _prevCharacter);
+            PlayerPrefs.Save();
+            if (File.Exists(Progression.SavePath)) File.Delete(Progression.SavePath);
+            if (_saveBackup != null) File.WriteAllBytes(Progression.SavePath, _saveBackup);
+            Progression.ReloadFromDisk();
+        }
+
+        private static IEnumerator LoadGame(string levelId)
+        {
+            AppShell.PendingLevelId = levelId;
+            SceneManager.LoadScene("Game");
+            yield return null; // Start runs
+            yield return null;
+        }
+
+        [UnityTest]
+        public IEnumerator SelectedCharacter_IsTheOneOnTheBoard()
+        {
+            CharacterSelection.SelectedId = "cat";
+            yield return LoadGame("dev-road");
+            var board = Object.FindAnyObjectByType<BoardView>();
+            Assert.That(board, Is.Not.Null);
+            Assert.That(board.Character.id, Is.EqualTo("cat"));
+            Assert.That(board.Character.moveStyle, Is.EqualTo(MoveStyle.Step));
+        }
+
+        [UnityTest]
+        public IEnumerator FreshInstall_DefaultsToFrog()
+        {
+            CharacterSelection.Reset();
+            yield return LoadGame("dev-road");
+            var board = Object.FindAnyObjectByType<BoardView>();
+            Assert.That(board.Character.id, Is.EqualTo("frog"));
+        }
+
+        [UnityTest]
+        public IEnumerator FrozenSim_AddsZeroToTheClock()
+        {
+            yield return LoadGame("dev-road");
+            var bootstrap = Object.FindAnyObjectByType<GameBootstrap>();
+            Assert.That(bootstrap, Is.Not.Null);
+
+            bootstrap.Sim.EnqueueMove(Move.Forward); // clock starts on first move
+            yield return Wait0_4;
+            long before = bootstrap.Sim.State.ClockTicks;
+            Assert.That(before, Is.GreaterThan(0), "clock must be running after the first move");
+
+            bootstrap.Frozen = true; // what dialogs and OS suspension amount to
+            yield return Wait0_5;
+            Assert.That(bootstrap.Sim.State.ClockTicks, Is.EqualTo(before),
+                "a frozen sim adds nothing to the game-time clock");
+
+            bootstrap.Frozen = false;
+            yield return Wait0_3;
+            Assert.That(bootstrap.Sim.State.ClockTicks, Is.GreaterThan(before),
+                "clock resumes after unfreezing");
+        }
+    }
+}
