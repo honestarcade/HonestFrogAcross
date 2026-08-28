@@ -88,6 +88,7 @@ namespace FrogAcross.UI
             var img = go.AddComponent<Image>();
             img.color = primary ? Mint : new Color(1f, 1f, 1f, 0.06f);
             var btn = go.AddComponent<Button>();
+            btn.onClick.AddListener(() => FrogAcross.Audio.AudioDirector.Instance.Play(FrogAcross.Audio.GameSound.UiTap));
             if (onClick != null) btn.onClick.AddListener(() => onClick());
             var rt = img.rectTransform;
             rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.5f);

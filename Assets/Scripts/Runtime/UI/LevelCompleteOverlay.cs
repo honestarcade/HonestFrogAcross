@@ -44,6 +44,8 @@ namespace FrogAcross.UI
                 ? (prevBest >= 0f ? $"NEW BEST — was {prevBest:0.0}s" : "NEW BEST")
                 : (prevBest >= 0f ? $"Best {prevBest:0.0}s" : "");
             _best.color = newBest ? new Color(0f, 0.839f, 0.706f) : new Color(0.44f, 0.57f, 0.69f);
+            if (name != "COMPLETE")
+                FrogAcross.Audio.AudioDirector.Instance.Play(FrogAcross.Audio.GameSound.Medal);
             _root.SetActive(true);
         }
 
