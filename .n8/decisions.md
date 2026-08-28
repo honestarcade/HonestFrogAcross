@@ -169,3 +169,14 @@ When `/n8-replan` processes an ad-hoc entry it appends `— reconciled by /n8-re
 - **Change:** Tap-to-advance added: a clear tap counts as a forward swipe (one forward hop, same queue/legality rules); dead zone between tap ceiling and swipe threshold does nothing.
   **Why:** Owner scope decision during planning review — faster forward movement ergonomics.
   **Affects:** M2 #41 (amended directly — body/AC/tests updated pre-execution) and M4 #58 (controls copy rider commented). No other stories assume tap-does-nothing. Reconciled at source — reconciled by /n8-plan 2026-08-28.
+
+## /n8-exec * — 2026-08-28
+
+- **Decision (Rule 1):** Split the four PieceDef ScriptableObject classes into per-class files — Unity binds .asset files to scripts by filename, and the single-file layout produced assets with missing scripts (caught by the registry tests on first run).
+  **Issue:** #37
+- **Decision:** Levels live in Assets/Resources/Levels/*.json (TextAssets), not StreamingAssets as the plan wrote — reading StreamingAssets on Android requires UnityWebRequest, whose modules were removed under invariant 1. Levels remain pure JSON files; all M3/M5 story references to StreamingAssets/Levels read as Resources/Levels.
+  **Issue:** #38 (affects #47-#54, #61-#64 path references)
+- **Decision:** Generator emits provisional medals (2.0×/2.9×/4.2× the diagonal-free solver floor) so schema validity holds before #63's calibration; generation is validate-and-solve gated inline (no unproven level touches disk) and byte-deterministic per seed.
+  **Issue:** #44
+- **Decision:** Solver decision cadence: act-or-wait-6-ticks at cooldown-free states, dedupe on quantized (tick/6, row, x·4, riding, bays, stun) — dev board solves diagonal-free in 0.39s, making the 100-level CI batch cheap.
+  **Issue:** #43
