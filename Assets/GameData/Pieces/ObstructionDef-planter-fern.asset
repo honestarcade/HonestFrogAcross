@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: FrogAcross.Runtime::FrogAcross.Pieces.ObstructionDef
   id: planter-fern
   displayName: planter-fern
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: af9c5a81a9d344729b4916352064f25c, type: 3}
   blocksTile: 1

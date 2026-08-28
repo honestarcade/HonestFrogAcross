@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: FrogAcross.Runtime::FrogAcross.Pieces.LaneObjectDef
   id: passenger
   displayName: passenger
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: 758bf75b7cd02483eb72d6843bf0c4b4, type: 3}
+  - {fileID: 21300000, guid: 56f6ddc7ad75f44a7aeb1a3a5c796153, type: 3}
   role: 0
   sizeCells: 11
   rideableZoneStart: 0
@@ -24,4 +26,6 @@ MonoBehaviour:
   inactiveKills: 0
   stunTicks: 0
   crashSequenceTicks: 0
+  crashingSprites: []
+  crashedSprites: []
   warnLeadTicks: 90

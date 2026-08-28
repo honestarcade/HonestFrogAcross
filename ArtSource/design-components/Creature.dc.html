@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div style="position:relative;width:100%;height:100%">
+
+<sc-if value="{{ isUp }}" hint-placeholder-val="{{ true }}">
+  <div style="position:absolute;left:0;top:0;width:120px;height:120px">
+    <div style="position:absolute;left:16px;top:92px;width:88px;height:22px;border-radius:50%;background:rgba(0,0,0,.34);filter:blur(4px)"></div>
+    <sc-if value="{{ hopper }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;left:0;top:0;width:120px;height:120px">
+        <div style="position:absolute;left:0;top:44px;width:38px;height:24px;border-radius:14px 6px 10px 12px;background:#6FAF37;transform:rotate(-24deg)"></div>
+        <div style="position:absolute;left:-2px;top:62px;width:9px;height:34px;border-radius:5px;background:#55882A;transform:rotate(14deg)"></div>
+        <div style="position:absolute;left:-8px;top:92px;width:22px;height:8px;border-radius:4px;background:#4E8526;transform:rotate(-18deg)"></div>
+        <div style="position:absolute;left:82px;top:44px;width:38px;height:24px;border-radius:6px 14px 12px 10px;background:#6FAF37;transform:rotate(24deg)"></div>
+        <div style="position:absolute;left:113px;top:62px;width:9px;height:34px;border-radius:5px;background:#55882A;transform:rotate(-14deg)"></div>
+        <div style="position:absolute;left:106px;top:92px;width:22px;height:8px;border-radius:4px;background:#4E8526;transform:rotate(18deg)"></div>
+        <div style="position:absolute;left:26px;top:52px;width:8px;height:30px;border-radius:4px;background:#63A032;transform:rotate(18deg)"></div>
+        <div style="position:absolute;left:86px;top:52px;width:8px;height:30px;border-radius:4px;background:#63A032;transform:rotate(-18deg)"></div>
+        <div style="position:absolute;left:44px;top:42px;width:32px;height:60px;border-radius:16px 16px 22px 22px;background:#7CBF41"></div>
+        <div style="position:absolute;left:46px;top:60px;width:28px;height:4px;border-radius:2px;background:rgba(50,90,25,.5)"></div>
+        <div style="position:absolute;left:47px;top:72px;width:26px;height:4px;border-radius:2px;background:rgba(50,90,25,.5)"></div>
+        <div style="position:absolute;left:30px;top:34px;width:24px;height:58px;border-radius:12px;background:#A7E265;transform:rotate(5deg);opacity:.92"></div>
+        <div style="position:absolute;left:66px;top:34px;width:24px;height:58px;border-radius:12px;background:#96D253;transform:rotate(-5deg);opacity:.92"></div>
+        <div style="position:absolute;left:38px;top:22px;width:44px;height:30px;border-radius:14px;background:#8FD44E"></div>
+        <div style="position:absolute;left:38px;top:22px;width:44px;height:30px;border-radius:14px;background:linear-gradient(158deg,rgba(255,255,255,.34),transparent 60%)"></div>
+        <div style="position:absolute;left:46px;top:8px;width:28px;height:24px;border-radius:12px 12px 10px 10px;background:#B8ED7A"></div>
+        <div style="position:absolute;left:38px;top:10px;width:15px;height:20px;border-radius:50%;background:#4E8526"></div>
+        <div style="position:absolute;left:67px;top:10px;width:15px;height:20px;border-radius:50%;background:#4E8526"></div>
+        <div style="position:absolute;left:41px;top:14px;width:7px;height:11px;border-radius:50%;background:#101C2B;opacity:.75"></div>
+        <div style="position:absolute;left:72px;top:14px;width:7px;height:11px;border-radius:50%;background:#101C2B;opacity:.75"></div>
+        <div style="position:absolute;left:50px;top:-18px;width:4px;height:30px;border-radius:2px;background:#63A032;transform:rotate(-14deg)"></div>
+        <div style="position:absolute;left:66px;top:-18px;width:4px;height:30px;border-radius:2px;background:#63A032;transform:rotate(14deg)"></div>
+      </div>
+    </sc-if>
+    <sc-if value="{{ generic }}" hint-placeholder-val="{{ true }}">
+      <div style="position:absolute;left:0;top:0;width:120px;height:120px">
+        <div style="position:absolute;width:{{ c.tailW }}px;height:{{ c.tailH }}px;left:{{ c.fwdTailLX }}px;top:{{ c.fwdTailTop }}px;border-radius:{{ c.tailRad }};background:{{ c.deep }}"></div>
+        <div style="position:absolute;left:2px;top:50px;width:40px;height:32px;border-radius:18px;background:{{ c.deep }};transform:rotate(-16deg)"></div>
+        <div style="position:absolute;left:-2px;top:72px;width:28px;height:18px;border-radius:9px;background:{{ c.foot }};transform:rotate(-28deg)"></div>
+        <div style="position:absolute;left:-6px;top:82px;width:32px;height:16px;border-radius:{{ c.footRad }};clip-path:{{ c.footClip }};background:{{ c.foot }}"></div>
+        <div style="position:absolute;left:78px;top:50px;width:40px;height:32px;border-radius:18px;background:{{ c.deep }};transform:rotate(16deg)"></div>
+        <div style="position:absolute;left:94px;top:72px;width:28px;height:18px;border-radius:9px;background:{{ c.foot }};transform:rotate(28deg)"></div>
+        <div style="position:absolute;left:94px;top:82px;width:32px;height:16px;border-radius:{{ c.footRad }};clip-path:{{ c.footClip }};background:{{ c.foot }}"></div>
+        <div style="position:absolute;left:20px;top:74px;width:80px;height:22px;border-radius:0 0 34px 34px;background:{{ c.side }}"></div>
+        <div style="position:absolute;left:20px;top:28px;width:80px;height:62px;border-radius:36px;background:{{ c.mid }}"></div>
+        <div style="position:absolute;left:20px;top:28px;width:80px;height:62px;border-radius:36px;background:linear-gradient(158deg,rgba(255,255,255,.34) 0%,transparent 46%,rgba(0,0,0,.16) 100%)"></div>
+        <div style="position:absolute;left:30px;top:33px;width:44px;height:22px;border-radius:22px;background:rgba(255,255,255,.2)"></div>
+        <div style="position:absolute;left:30px;top:46px;width:20px;height:13px;border-radius:50%;background:{{ c.spot }};transform:rotate(-14deg)"></div>
+        <div style="position:absolute;left:66px;top:42px;width:15px;height:11px;border-radius:50%;background:{{ c.spot }};transform:rotate(10deg)"></div>
+        <div style="position:absolute;left:44px;top:66px;width:22px;height:12px;border-radius:50%;background:{{ c.spot }}"></div>
+        <div style="position:absolute;width:{{ c.earW }}px;height:{{ c.earH }}px;left:{{ c.fwdEarLX }}px;top:{{ c.fwdEarTop }}px;border-radius:{{ c.earRad }};clip-path:{{ c.earClip }};background:{{ c.side }}"></div>
+        <div style="position:absolute;width:{{ c.earW }}px;height:{{ c.earH }}px;left:{{ c.fwdEarRX }}px;top:{{ c.fwdEarTop }}px;border-radius:{{ c.earRad }};clip-path:{{ c.earClip }};background:{{ c.mid }}"></div>
+        <div style="position:absolute;left:30px;top:8px;width:60px;height:42px;border-radius:28px;background:{{ c.top }}"></div>
+        <div style="position:absolute;left:30px;top:8px;width:60px;height:42px;border-radius:28px;background:linear-gradient(158deg,rgba(255,255,255,.26),transparent 60%)"></div>
+        <div style="position:absolute;left:32px;top:42px;width:56px;height:9px;border-radius:6px;background:rgba(0,0,0,.16)"></div>
+        <div style="position:absolute;width:{{ c.bulgeS }}px;height:{{ c.bulgeS }}px;left:{{ c.fwdBulgeLX }}px;top:{{ c.fwdBulgeTop }}px;border-radius:50%;background:{{ c.top }}"></div>
+        <div style="position:absolute;width:{{ c.bulgeS }}px;height:{{ c.bulgeS }}px;left:{{ c.fwdBulgeRX }}px;top:{{ c.fwdBulgeTop }}px;border-radius:50%;background:{{ c.top }}"></div>
+        <div style="position:absolute;width:{{ c.peekS }}px;height:11px;left:{{ c.fwdPeekLX }}px;top:{{ c.fwdPeekTop }}px;border-radius:50%;background:#0B1A2E;opacity:.75"></div>
+        <div style="position:absolute;width:{{ c.peekS }}px;height:11px;left:{{ c.fwdPeekRX }}px;top:{{ c.fwdPeekTop }}px;border-radius:50%;background:#0B1A2E;opacity:.75"></div>
+      </div>
+    </sc-if>
+    <sc-if value="{{ rooUpright }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;left:0;top:0;width:120px;height:120px">
+        <div style="position:absolute;left:51px;top:72px;width:18px;height:38px;border-radius:9px;background:#9E6935"></div>
+        <div style="position:absolute;left:48px;top:98px;width:24px;height:12px;border-radius:6px;background:#7E5327;transform:rotate(-8deg)"></div>
+        <div style="position:absolute;left:26px;top:86px;width:26px;height:12px;border-radius:6px;background:#7E5327;transform:rotate(-4deg)"></div>
+        <div style="position:absolute;left:68px;top:86px;width:26px;height:12px;border-radius:6px;background:#7E5327;transform:rotate(4deg)"></div>
+        <div style="position:absolute;left:32px;top:64px;width:16px;height:26px;border-radius:8px;background:#9E6935"></div>
+        <div style="position:absolute;left:72px;top:64px;width:16px;height:26px;border-radius:8px;background:#9E6935"></div>
+        <div style="position:absolute;left:26px;top:44px;width:26px;height:32px;border-radius:13px;background:#AE7439;transform:rotate(-6deg)"></div>
+        <div style="position:absolute;left:68px;top:44px;width:26px;height:32px;border-radius:13px;background:#AE7439;transform:rotate(6deg)"></div>
+        <div style="position:absolute;left:24px;top:40px;width:11px;height:20px;border-radius:6px;background:#9E6935;transform:rotate(12deg)"></div>
+        <div style="position:absolute;left:85px;top:40px;width:11px;height:20px;border-radius:6px;background:#9E6935;transform:rotate(-12deg)"></div>
+        <div style="position:absolute;left:32px;top:28px;width:56px;height:46px;border-radius:24px;background:#AE7439"></div>
+        <div style="position:absolute;left:32px;top:28px;width:56px;height:46px;border-radius:24px;background:linear-gradient(158deg,rgba(255,255,255,.24) 0%,transparent 46%,rgba(0,0,0,.16) 100%)"></div>
+        <div style="position:absolute;left:32px;top:-8px;width:14px;height:26px;border-radius:7px;background:#AE7439;transform:rotate(-14deg)"></div>
+        <div style="position:absolute;left:74px;top:-8px;width:14px;height:26px;border-radius:7px;background:#AE7439;transform:rotate(14deg)"></div>
+        <div style="position:absolute;left:36px;top:6px;width:48px;height:38px;border-radius:22px;background:#C98A4B"></div>
+        <div style="position:absolute;left:36px;top:6px;width:48px;height:38px;border-radius:22px;background:linear-gradient(158deg,rgba(255,255,255,.24),transparent 62%)"></div>
+        <div style="position:absolute;left:38px;top:38px;width:44px;height:8px;border-radius:5px;background:rgba(0,0,0,.16)"></div>
+      </div>
+    </sc-if>
+  </div>
+</sc-if>
+
+<sc-if value="{{ isSide }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;left:0;top:0;width:120px;height:120px">
+    <div style="position:absolute;left:14px;top:92px;width:92px;height:22px;border-radius:50%;background:rgba(0,0,0,.34);filter:blur(4px)"></div>
+    <div style="position:absolute;left:0;top:0;width:120px;height:120px;transform:{{ flip }}">
+      <sc-if value="{{ hopper }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;left:0;top:0;width:120px;height:120px">
+          <div style="position:absolute;left:18px;top:48px;width:48px;height:28px;border-radius:16px 8px 12px 14px;background:#6FAF37;transform:rotate(-14deg)"></div>
+          <div style="position:absolute;left:8px;top:64px;width:42px;height:9px;border-radius:5px;background:#55882A;transform:rotate(24deg)"></div>
+          <div style="position:absolute;left:0px;top:84px;width:24px;height:8px;border-radius:4px;background:#4E8526;transform:rotate(8deg)"></div>
+          <div style="position:absolute;left:6px;top:52px;width:64px;height:30px;border-radius:15px;background:#7CBF41"></div>
+          <div style="position:absolute;left:16px;top:54px;width:4px;height:26px;border-radius:2px;background:rgba(50,90,25,.45)"></div>
+          <div style="position:absolute;left:28px;top:53px;width:4px;height:28px;border-radius:2px;background:rgba(50,90,25,.45)"></div>
+          <div style="position:absolute;left:40px;top:53px;width:4px;height:28px;border-radius:2px;background:rgba(50,90,25,.4)"></div>
+          <div style="position:absolute;left:12px;top:44px;width:68px;height:24px;border-radius:12px;background:#A7E265;transform:rotate(-4deg);opacity:.94"></div>
+          <div style="position:absolute;left:18px;top:52px;width:56px;height:3px;border-radius:2px;background:rgba(255,255,255,.38);transform:rotate(-4deg)"></div>
+          <div style="position:absolute;left:54px;top:40px;width:34px;height:32px;border-radius:14px;background:#8FD44E"></div>
+          <div style="position:absolute;left:54px;top:40px;width:34px;height:32px;border-radius:14px;background:linear-gradient(150deg,rgba(255,255,255,.3),transparent 62%)"></div>
+          <div style="position:absolute;left:62px;top:66px;width:8px;height:24px;border-radius:4px;background:#63A032;transform:rotate(12deg)"></div>
+          <div style="position:absolute;left:76px;top:68px;width:8px;height:22px;border-radius:4px;background:#55882A;transform:rotate(-10deg)"></div>
+          <div style="position:absolute;left:58px;top:88px;width:20px;height:7px;border-radius:4px;background:#4E8526"></div>
+          <div style="position:absolute;left:80px;top:34px;width:32px;height:30px;border-radius:12px 15px 13px 11px;background:#B8ED7A"></div>
+          <div style="position:absolute;left:104px;top:52px;width:13px;height:9px;border-radius:5px;background:#4E8526"></div>
+          <div style="position:absolute;left:86px;top:38px;width:17px;height:22px;border-radius:50%;background:#4E8526"></div>
+          <div style="position:absolute;left:90px;top:43px;width:9px;height:11px;border-radius:50%;background:#101C2B"></div>
+          <div style="position:absolute;left:92px;top:45px;width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.9)"></div>
+          <div style="position:absolute;left:100px;top:8px;width:4px;height:32px;border-radius:2px;background:#63A032;transform:rotate(22deg)"></div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ roo }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;left:0;top:0;width:120px;height:120px">
+          <div style="position:absolute;left:0px;top:76px;width:60px;height:18px;border-radius:9px;background:#9E6935;transform:rotate(-6deg)"></div>
+          <div style="position:absolute;left:40px;top:66px;width:32px;height:17px;border-radius:9px;background:#AE7439;transform:rotate(-14deg)"></div>
+          <div style="position:absolute;left:44px;top:88px;width:48px;height:13px;border-radius:6px 8px 8px 6px;background:#7E5327"></div>
+          <div style="position:absolute;left:52px;top:70px;width:20px;height:24px;border-radius:10px;background:#9E6935"></div>
+          <div style="position:absolute;left:38px;top:50px;width:36px;height:42px;border-radius:18px;background:#AE7439"></div>
+          <div style="position:absolute;left:42px;top:24px;width:36px;height:46px;border-radius:18px;background:#C98A4B"></div>
+          <div style="position:absolute;left:42px;top:24px;width:36px;height:46px;border-radius:18px;background:linear-gradient(150deg,rgba(255,255,255,.3),transparent 58%)"></div>
+          <div style="position:absolute;left:56px;top:38px;width:22px;height:30px;border-radius:11px;background:#F0D6AE;opacity:.85"></div>
+          <div style="position:absolute;left:64px;top:42px;width:18px;height:9px;border-radius:5px;background:#9E6935;transform:rotate(20deg)"></div>
+          <div style="position:absolute;left:60px;top:36px;width:16px;height:8px;border-radius:4px;background:#AE7439;transform:rotate(16deg)"></div>
+          <div style="position:absolute;left:62px;top:-12px;width:11px;height:26px;border-radius:6px;background:#AE7439;transform:rotate(-12deg)"></div>
+          <div style="position:absolute;left:74px;top:-14px;width:12px;height:28px;border-radius:6px;background:#C98A4B;transform:rotate(6deg)"></div>
+          <div style="position:absolute;left:76px;top:-9px;width:6px;height:16px;border-radius:3px;background:#D9A06A"></div>
+          <div style="position:absolute;left:62px;top:6px;width:38px;height:28px;border-radius:14px 16px 14px 12px;background:#E0A263"></div>
+          <div style="position:absolute;left:62px;top:6px;width:38px;height:28px;border-radius:14px 16px 14px 12px;background:linear-gradient(150deg,rgba(255,255,255,.26),transparent 62%)"></div>
+          <div style="position:absolute;left:92px;top:18px;width:20px;height:13px;border-radius:7px;background:#D9A06A"></div>
+          <div style="position:absolute;left:106px;top:20px;width:8px;height:8px;border-radius:50%;background:#4A2E16"></div>
+          <div style="position:absolute;left:94px;top:30px;width:14px;height:3px;border-radius:2px;background:#6B4526;transform:rotate(6deg)"></div>
+          <div style="position:absolute;left:78px;top:12px;width:16px;height:15px;border-radius:50%;background:#FFFFFF"></div>
+          <div style="position:absolute;left:82px;top:15px;width:10px;height:10px;border-radius:50%;background:#0B1A2E"></div>
+          <div style="position:absolute;left:84px;top:17px;width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.92)"></div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ sideGeneric }}" hint-placeholder-val="{{ true }}">
+        <div style="position:absolute;left:0;top:0;width:120px;height:120px">
+          <div style="position:absolute;width:{{ c.tailW }}px;height:{{ c.tailH }}px;left:{{ c.sdTailLX }}px;top:{{ c.sdTailTop }}px;border-radius:{{ c.tailRad }};background:{{ c.deep }};transform:rotate({{ c.tailRot }}deg)"></div>
+          <div style="position:absolute;left:26px;top:46px;width:34px;height:26px;border-radius:15px;background:{{ c.foot }};transform:rotate(-8deg)"></div>
+          <div style="position:absolute;left:60px;top:60px;width:22px;height:16px;border-radius:8px;background:{{ c.side }}"></div>
+          <div style="position:absolute;left:74px;top:66px;width:26px;height:14px;border-radius:{{ c.footRad }};clip-path:{{ c.footClip }};background:{{ c.foot }}"></div>
+          <div style="position:absolute;left:12px;top:44px;width:76px;height:48px;border-radius:28px;background:{{ c.mid }}"></div>
+          <div style="position:absolute;left:12px;top:44px;width:76px;height:48px;border-radius:28px;background:linear-gradient(158deg,rgba(255,255,255,.32) 0%,transparent 48%,rgba(0,0,0,.16) 100%)"></div>
+          <div style="position:absolute;left:26px;top:58px;width:19px;height:12px;border-radius:50%;background:{{ c.spot }};transform:rotate(-8deg)"></div>
+          <div style="position:absolute;left:52px;top:54px;width:14px;height:10px;border-radius:50%;background:{{ c.spot }}"></div>
+          <div style="position:absolute;left:16px;top:48px;width:44px;height:36px;border-radius:20px;background:{{ c.side }}"></div>
+          <div style="position:absolute;left:20px;top:52px;width:36px;height:28px;border-radius:16px;background:{{ c.deep }}"></div>
+          <div style="position:absolute;left:30px;top:74px;width:22px;height:14px;border-radius:8px;background:{{ c.foot }};transform:rotate(10deg)"></div>
+          <div style="position:absolute;left:24px;top:82px;width:30px;height:15px;border-radius:{{ c.footRad }};clip-path:{{ c.footClip }};background:{{ c.foot }}"></div>
+          <div style="position:absolute;width:{{ c.sdEarW }}px;height:{{ c.sdEarH }}px;left:{{ c.sdEarLX }}px;top:{{ c.sdEarTop }}px;border-radius:{{ c.earRad }};clip-path:{{ c.earClip }};background:{{ c.side }}"></div>
+          <div style="position:absolute;left:64px;top:30px;width:48px;height:40px;border-radius:22px 26px 22px 20px;background:{{ c.top }}"></div>
+          <div style="position:absolute;left:64px;top:30px;width:48px;height:40px;border-radius:22px 26px 22px 20px;background:linear-gradient(150deg,rgba(255,255,255,.26),transparent 60%)"></div>
+          <div style="position:absolute;width:{{ c.snoutW }}px;height:{{ c.snoutH }}px;left:{{ c.sdSnoutLX }}px;top:{{ c.sdSnoutTop }}px;border-radius:{{ c.snoutRad }};background:{{ c.snoutC }}"></div>
+          <div style="position:absolute;left:84px;top:56px;width:{{ c.sdMouthW }}px;height:4px;border-radius:2px;background:{{ c.line }};transform:rotate(7deg)"></div>
+          <div style="position:absolute;width:{{ c.noseS }}px;height:{{ c.noseS }}px;left:{{ c.sdNoseLX }}px;top:{{ c.sdNoseTop }}px;border-radius:50%;background:{{ c.nose }}"></div>
+          <div style="position:absolute;width:{{ c.bulgeS }}px;height:{{ c.bulgeS }}px;left:72px;top:18px;border-radius:50%;background:{{ c.top }}"></div>
+          <div style="position:absolute;width:{{ c.sdEyeW }}px;height:{{ c.sdEyeH }}px;left:{{ c.sdEyeLX }}px;top:{{ c.sdEyeTop }}px;border-radius:50%;background:{{ c.sclera }}"></div>
+          <div style="position:absolute;width:{{ c.sdPupilS }}px;height:{{ c.sdPupilS }}px;left:{{ c.sdPupilLX }}px;top:{{ c.sdPupilTop }}px;border-radius:50%;background:#0B1A2E"></div>
+          <div style="position:absolute;width:5px;height:5px;left:{{ c.sdGlintLX }}px;top:{{ c.sdGlintTop }}px;border-radius:50%;background:rgba(255,255,255,.92)"></div>
+          <div style="position:absolute;left:86px;top:66px;width:20px;height:16px;border-radius:9px;background:{{ c.side }}"></div>
+          <div style="position:absolute;left:92px;top:78px;width:26px;height:13px;border-radius:{{ c.footRad }};clip-path:{{ c.footClip }};background:{{ c.foot }}"></div>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ isDown }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;left:0;top:0;width:120px;height:120px">
+    <div style="position:absolute;left:14px;top:92px;width:92px;height:22px;border-radius:50%;background:rgba(0,0,0,.34);filter:blur(4px)"></div>
+    <sc-if value="{{ hopper }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;left:0;top:0;width:120px;height:120px">
+        <div style="position:absolute;left:-2px;top:40px;width:40px;height:26px;border-radius:16px 8px 10px 14px;background:#6FAF37;transform:rotate(-26deg)"></div>
+        <div style="position:absolute;left:-4px;top:60px;width:10px;height:36px;border-radius:5px;background:#55882A;transform:rotate(12deg)"></div>
+        <div style="position:absolute;left:82px;top:40px;width:40px;height:26px;border-radius:8px 16px 14px 10px;background:#6FAF37;transform:rotate(26deg)"></div>
+        <div style="position:absolute;left:114px;top:60px;width:10px;height:36px;border-radius:5px;background:#55882A;transform:rotate(-12deg)"></div>
+        <div style="position:absolute;left:24px;top:38px;width:22px;height:52px;border-radius:11px;background:#96D253;transform:rotate(8deg);opacity:.94"></div>
+        <div style="position:absolute;left:74px;top:38px;width:22px;height:52px;border-radius:11px;background:#A7E265;transform:rotate(-8deg);opacity:.94"></div>
+        <div style="position:absolute;left:44px;top:56px;width:32px;height:46px;border-radius:15px 15px 20px 20px;background:#7CBF41"></div>
+        <div style="position:absolute;left:46px;top:70px;width:28px;height:4px;border-radius:2px;background:rgba(50,90,25,.45)"></div>
+        <div style="position:absolute;left:48px;top:82px;width:24px;height:4px;border-radius:2px;background:rgba(50,90,25,.4)"></div>
+        <div style="position:absolute;left:34px;top:36px;width:52px;height:30px;border-radius:15px;background:#8FD44E"></div>
+        <div style="position:absolute;left:34px;top:36px;width:52px;height:30px;border-radius:15px;background:linear-gradient(158deg,rgba(255,255,255,.32),transparent 62%)"></div>
+        <div style="position:absolute;left:30px;top:4px;width:60px;height:40px;border-radius:20px 20px 16px 16px;background:#B8ED7A"></div>
+        <div style="position:absolute;left:24px;top:6px;width:24px;height:30px;border-radius:50%;background:#4E8526"></div>
+        <div style="position:absolute;left:72px;top:6px;width:24px;height:30px;border-radius:50%;background:#4E8526"></div>
+        <div style="position:absolute;left:29px;top:13px;width:13px;height:16px;border-radius:50%;background:#101C2B"></div>
+        <div style="position:absolute;left:77px;top:13px;width:13px;height:16px;border-radius:50%;background:#101C2B"></div>
+        <div style="position:absolute;left:33px;top:16px;width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.95)"></div>
+        <div style="position:absolute;left:81px;top:16px;width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.95)"></div>
+        <div style="position:absolute;left:50px;top:34px;width:9px;height:11px;border-radius:4px;background:#63A032"></div>
+        <div style="position:absolute;left:61px;top:34px;width:9px;height:11px;border-radius:4px;background:#63A032"></div>
+        <div style="position:absolute;left:44px;top:-22px;width:4px;height:34px;border-radius:2px;background:#63A032;transform:rotate(-16deg)"></div>
+        <div style="position:absolute;left:72px;top:-22px;width:4px;height:34px;border-radius:2px;background:#63A032;transform:rotate(16deg)"></div>
+      </div>
+    </sc-if>
+    <sc-if value="{{ generic }}" hint-placeholder-val="{{ true }}">
+      <div style="position:absolute;left:0;top:0;width:120px;height:120px">
+        <div style="position:absolute;left:0;top:44px;width:36px;height:34px;border-radius:18px;background:{{ c.side }};transform:rotate(-12deg)"></div>
+        <div style="position:absolute;left:84px;top:44px;width:36px;height:34px;border-radius:18px;background:{{ c.side }};transform:rotate(12deg)"></div>
+        <div style="position:absolute;left:14px;top:34px;width:92px;height:58px;border-radius:34px;background:{{ c.mid }}"></div>
+        <div style="position:absolute;left:14px;top:34px;width:92px;height:58px;border-radius:34px;background:linear-gradient(158deg,rgba(255,255,255,.32) 0%,transparent 46%,rgba(0,0,0,.16) 100%)"></div>
+        <div style="position:absolute;left:30px;top:56px;width:60px;height:38px;border-radius:30px;background:{{ c.belly }}"></div>
+        <div style="position:absolute;left:38px;top:60px;width:44px;height:16px;border-radius:12px;background:rgba(255,255,255,.42)"></div>
+        <div style="position:absolute;left:18px;top:48px;width:22px;height:16px;border-radius:50%;background:{{ c.spot }};transform:rotate(-16deg)"></div>
+        <div style="position:absolute;left:82px;top:46px;width:20px;height:15px;border-radius:50%;background:{{ c.spot }};transform:rotate(14deg)"></div>
+        <div style="position:absolute;width:{{ c.bkEarW }}px;height:{{ c.bkEarH }}px;left:{{ c.bkEarLX }}px;top:{{ c.bkEarTop }}px;border-radius:{{ c.earRad }};clip-path:{{ c.earClip }};background:{{ c.side }}"></div>
+        <div style="position:absolute;width:{{ c.bkEarW }}px;height:{{ c.bkEarH }}px;left:{{ c.bkEarRX }}px;top:{{ c.bkEarTop }}px;border-radius:{{ c.earRad }};clip-path:{{ c.earClip }};background:{{ c.mid }}"></div>
+        <div style="position:absolute;left:18px;top:10px;width:84px;height:48px;border-radius:30px;background:{{ c.top }}"></div>
+        <div style="position:absolute;left:18px;top:10px;width:84px;height:48px;border-radius:30px;background:linear-gradient(158deg,rgba(255,255,255,.26),transparent 62%)"></div>
+        <div style="position:absolute;width:{{ c.snoutW }}px;height:{{ c.snoutH }}px;left:{{ c.bkSnoutLX }}px;top:{{ c.bkSnoutTop }}px;border-radius:{{ c.snoutRad }};background:{{ c.snoutC }}"></div>
+        <div style="position:absolute;left:{{ c.mouthLX }}px;top:{{ c.mouthTop }}px;width:{{ c.mouthW }}px;height:20px;border-radius:0 0 26px 26px;border-bottom:4px solid {{ c.line }};box-sizing:border-box"></div>
+        <div style="position:absolute;width:{{ c.noseS }}px;height:{{ c.noseS }}px;left:{{ c.bkNoseLX }}px;top:{{ c.bkNoseTop }}px;border-radius:50%;background:{{ c.nose }}"></div>
+        <div style="position:absolute;width:{{ c.bulgeS }}px;height:{{ c.bulgeS }}px;left:16px;top:0;border-radius:50%;background:{{ c.top }}"></div>
+        <div style="position:absolute;width:{{ c.bulgeS }}px;height:{{ c.bulgeS }}px;left:{{ c.bkBulgeRX }}px;top:0;border-radius:50%;background:{{ c.top }}"></div>
+        <div style="position:absolute;width:{{ c.bkEyeW }}px;height:{{ c.bkEyeH }}px;left:{{ c.bkEyeLX }}px;top:{{ c.bkEyeTop }}px;border-radius:50%;background:{{ c.sclera }}"></div>
+        <div style="position:absolute;width:{{ c.bkEyeW }}px;height:{{ c.bkEyeH }}px;left:{{ c.bkEyeRX }}px;top:{{ c.bkEyeTop }}px;border-radius:50%;background:{{ c.sclera }}"></div>
+        <div style="position:absolute;width:{{ c.pupilS }}px;height:{{ c.pupilS }}px;left:{{ c.pupilLX }}px;top:{{ c.pupilTop }}px;border-radius:50%;background:#0B1A2E"></div>
+        <div style="position:absolute;width:{{ c.pupilS }}px;height:{{ c.pupilS }}px;left:{{ c.pupilRX }}px;top:{{ c.pupilTop }}px;border-radius:50%;background:#0B1A2E"></div>
+        <div style="position:absolute;width:6px;height:6px;left:{{ c.glintLX }}px;top:{{ c.glintTop }}px;border-radius:50%;background:rgba(255,255,255,.95)"></div>
+        <div style="position:absolute;width:6px;height:6px;left:{{ c.glintRX }}px;top:{{ c.glintTop }}px;border-radius:50%;background:rgba(255,255,255,.95)"></div>
+        <div style="position:absolute;left:20px;top:82px;width:30px;height:15px;border-radius:{{ c.footRad }};clip-path:{{ c.footClip }};background:{{ c.foot }}"></div>
+        <div style="position:absolute;left:70px;top:82px;width:30px;height:15px;border-radius:{{ c.footRad }};clip-path:{{ c.footClip }};background:{{ c.foot }}"></div>
+      </div>
+    </sc-if>
+    <sc-if value="{{ rooUpright }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;left:0;top:0;width:120px;height:120px">
+        <div style="position:absolute;left:46px;top:82px;width:28px;height:14px;border-radius:7px;background:#7E5327"></div>
+        <div style="position:absolute;left:22px;top:88px;width:30px;height:14px;border-radius:7px;background:#7E5327;transform:rotate(-6deg)"></div>
+        <div style="position:absolute;left:68px;top:88px;width:30px;height:14px;border-radius:7px;background:#7E5327;transform:rotate(6deg)"></div>
+        <div style="position:absolute;left:32px;top:66px;width:16px;height:26px;border-radius:8px;background:#9E6935"></div>
+        <div style="position:absolute;left:72px;top:66px;width:16px;height:26px;border-radius:8px;background:#9E6935"></div>
+        <div style="position:absolute;left:26px;top:46px;width:26px;height:32px;border-radius:13px;background:#AE7439;transform:rotate(-6deg)"></div>
+        <div style="position:absolute;left:68px;top:46px;width:26px;height:32px;border-radius:13px;background:#AE7439;transform:rotate(6deg)"></div>
+        <div style="position:absolute;left:26px;top:40px;width:12px;height:22px;border-radius:6px;background:#AE7439;transform:rotate(14deg)"></div>
+        <div style="position:absolute;left:82px;top:40px;width:12px;height:22px;border-radius:6px;background:#AE7439;transform:rotate(-14deg)"></div>
+        <div style="position:absolute;left:34px;top:30px;width:52px;height:44px;border-radius:22px;background:#C98A4B"></div>
+        <div style="position:absolute;left:34px;top:30px;width:52px;height:44px;border-radius:22px;background:linear-gradient(158deg,rgba(255,255,255,.3) 0%,transparent 48%,rgba(0,0,0,.14) 100%)"></div>
+        <div style="position:absolute;left:44px;top:40px;width:32px;height:32px;border-radius:16px;background:#F0D6AE;opacity:.88"></div>
+        <div style="position:absolute;left:27px;top:58px;width:13px;height:11px;border-radius:6px;background:#7E5327"></div>
+        <div style="position:absolute;left:80px;top:58px;width:13px;height:11px;border-radius:6px;background:#7E5327"></div>
+        <div style="position:absolute;left:34px;top:-6px;width:14px;height:26px;border-radius:7px;background:#AE7439;transform:rotate(-10deg)"></div>
+        <div style="position:absolute;left:72px;top:-6px;width:14px;height:26px;border-radius:7px;background:#C98A4B;transform:rotate(10deg)"></div>
+        <div style="position:absolute;left:36px;top:8px;width:48px;height:38px;border-radius:22px;background:#E0A263"></div>
+        <div style="position:absolute;left:36px;top:8px;width:48px;height:38px;border-radius:22px;background:linear-gradient(158deg,rgba(255,255,255,.26),transparent 62%)"></div>
+        <div style="position:absolute;left:48px;top:28px;width:24px;height:16px;border-radius:9px;background:#D9A06A"></div>
+        <div style="position:absolute;left:52px;top:34px;width:16px;height:14px;border-radius:0 0 10px 10px;border-bottom:3px solid #6B4526;box-sizing:border-box"></div>
+        <div style="position:absolute;left:56px;top:30px;width:8px;height:8px;border-radius:50%;background:#4A2E16"></div>
+        <div style="position:absolute;left:40px;top:16px;width:17px;height:16px;border-radius:50%;background:#FFFFFF"></div>
+        <div style="position:absolute;left:63px;top:16px;width:17px;height:16px;border-radius:50%;background:#FFFFFF"></div>
+        <div style="position:absolute;left:45px;top:19px;width:10px;height:10px;border-radius:50%;background:#0B1A2E"></div>
+        <div style="position:absolute;left:68px;top:19px;width:10px;height:10px;border-radius:50%;background:#0B1A2E"></div>
+        <div style="position:absolute;left:48px;top:21px;width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.92)"></div>
+        <div style="position:absolute;left:71px;top:21px;width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.92)"></div>
+      </div>
+    </sc-if>
+  </div>
+</sc-if>
+
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:120,&quot;height&quot;:120},&quot;char&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;frog&quot;,&quot;bunny&quot;,&quot;hopper&quot;,&quot;roo&quot;,&quot;dog&quot;,&quot;cat&quot;],&quot;default&quot;:&quot;frog&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;facing&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;up&quot;,&quot;right&quot;,&quot;left&quot;,&quot;down&quot;],&quot;default&quot;:&quot;up&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const WEB = 'polygon(0 55%,22% 0,36% 58%,52% 2%,66% 58%,80% 6%,100% 60%,84% 100%,14% 100%)';
+const PAW = 'polygon(0 30%,14% 6%,32% 30%,40% 4%,60% 4%,68% 30%,86% 6%,100% 30%,100% 100%,0 100%)';
+const TRI = 'polygon(50% 0,100% 100%,0 100%)';
+
+const CHARS = {
+  frog: {top:'#4FEACE', mid:'#12D5B6', side:'#00B39A', deep:'#00A98F', foot:'#016B5D',
+   belly:'#EAF6D2', spot:'#0B9E88', nose:'#04635A', snoutC:'transparent', line:'#04635A', sclera:'#FBFFF4',
+   earW:0, earH:0, earRad:'50%', earClip:'none', fwdEarTop:0, fwdEarLX:0, fwdEarRX:0,
+   bkEarW:0, bkEarH:0, bkEarTop:0, bkEarLX:0, bkEarRX:0, sdEarW:0, sdEarH:0, sdEarTop:0, sdEarLX:0,
+   bulgeS:32, fwdBulgeTop:0, fwdBulgeLX:22, fwdBulgeRX:66, bkBulgeRX:68,
+   peekS:7, fwdPeekTop:12, fwdPeekLX:22, fwdPeekRX:91,
+   bkEyeW:24, bkEyeH:22, bkEyeTop:8, bkEyeLX:22, bkEyeRX:74,
+   pupilS:15, pupilTop:11, pupilLX:27, pupilRX:79, glintTop:13, glintLX:31, glintRX:83,
+   sdEyeW:0, sdEyeH:0, sdEyeTop:0, sdEyeLX:0, sdPupilS:15, sdPupilTop:26, sdPupilLX:82, sdGlintTop:29, sdGlintLX:86,
+   snoutW:0, snoutH:0, snoutRad:'50%', bkSnoutTop:0, bkSnoutLX:0, sdSnoutTop:0, sdSnoutLX:0,
+   noseS:0, bkNoseTop:0, bkNoseLX:0, sdNoseTop:0, sdNoseLX:0,
+   mouthW:68, mouthLX:26, mouthTop:38, sdMouthW:30,
+   tailW:0, tailH:0, tailRad:'0', tailRot:0, fwdTailTop:0, fwdTailLX:0, sdTailTop:0, sdTailLX:0,
+   footClip:WEB, footRad:'0'},
+
+  bunny: {top:'#FBF6EC', mid:'#EFE7DA', side:'#D8CCB9', deep:'#C4B69F', foot:'#AC9C84',
+   belly:'#FFFDF7', spot:'transparent', nose:'#D3899A', snoutC:'#F7E4E6', line:'#8A7A66', sclera:'#FFFFFF',
+   earW:15, earH:38, earRad:'8px', earClip:'none', fwdEarTop:-28, fwdEarLX:36, fwdEarRX:69,
+   bkEarW:16, bkEarH:40, bkEarTop:-30, bkEarLX:34, bkEarRX:70, sdEarW:13, sdEarH:34, sdEarTop:-2, sdEarLX:74,
+   bulgeS:0, fwdBulgeTop:0, fwdBulgeLX:0, fwdBulgeRX:0, bkBulgeRX:0,
+   peekS:0, fwdPeekTop:0, fwdPeekLX:0, fwdPeekRX:0,
+   bkEyeW:20, bkEyeH:18, bkEyeTop:22, bkEyeLX:28, bkEyeRX:72,
+   pupilS:12, pupilTop:25, pupilLX:32, pupilRX:76, glintTop:27, glintLX:35, glintRX:79,
+   sdEyeW:18, sdEyeH:17, sdEyeTop:38, sdEyeLX:78, sdPupilS:11, sdPupilTop:41, sdPupilLX:82, sdGlintTop:43, sdGlintLX:85,
+   snoutW:16, snoutH:12, snoutRad:'8px', bkSnoutTop:40, bkSnoutLX:52, sdSnoutTop:50, sdSnoutLX:98,
+   noseS:7, bkNoseTop:43, bkNoseLX:57, sdNoseTop:52, sdNoseLX:108,
+   mouthW:26, mouthLX:47, mouthTop:46, sdMouthW:18,
+   tailW:20, tailH:18, tailRad:'50%', tailRot:0, fwdTailTop:78, fwdTailLX:50, sdTailTop:56, sdTailLX:2,
+   footClip:PAW, footRad:'6px'},
+
+  hopper: {top:'#B8ED7A', mid:'#8FD44E', side:'#74B63B', deep:'#63A032', foot:'#4E8526',
+   belly:'#E4F6C4', spot:'#6BAA33', nose:'#3E6B1E', snoutC:'transparent', line:'#3E6B1E', sclera:'#FBFFF4',
+   earW:5, earH:32, earRad:'3px', earClip:'none', fwdEarTop:-26, fwdEarLX:44, fwdEarRX:71,
+   bkEarW:5, bkEarH:32, bkEarTop:-26, bkEarLX:42, bkEarRX:73, sdEarW:5, sdEarH:28, sdEarTop:0, sdEarLX:80,
+   bulgeS:28, fwdBulgeTop:2, fwdBulgeLX:24, fwdBulgeRX:68, bkBulgeRX:70,
+   peekS:6, fwdPeekTop:13, fwdPeekLX:25, fwdPeekRX:90,
+   bkEyeW:22, bkEyeH:20, bkEyeTop:9, bkEyeLX:23, bkEyeRX:75,
+   pupilS:13, pupilTop:12, pupilLX:28, pupilRX:80, glintTop:14, glintLX:32, glintRX:84,
+   sdEyeW:0, sdEyeH:0, sdEyeTop:0, sdEyeLX:0, sdPupilS:13, sdPupilTop:27, sdPupilLX:83, sdGlintTop:30, sdGlintLX:87,
+   snoutW:0, snoutH:0, snoutRad:'50%', bkSnoutTop:0, bkSnoutLX:0, sdSnoutTop:0, sdSnoutLX:0,
+   noseS:0, bkNoseTop:0, bkNoseLX:0, sdNoseTop:0, sdNoseLX:0,
+   mouthW:34, mouthLX:43, mouthTop:40, sdMouthW:24,
+   tailW:0, tailH:0, tailRad:'0', tailRot:0, fwdTailTop:0, fwdTailLX:0, sdTailTop:0, sdTailLX:0,
+   footClip:PAW, footRad:'5px'},
+
+  roo: {top:'#E0A263', mid:'#C98A4B', side:'#AE7439', deep:'#9E6935', foot:'#7E5327',
+   belly:'#F0D6AE', spot:'transparent', nose:'#4A2E16', snoutC:'#D9A06A', line:'#6B4526', sclera:'#FFFFFF',
+   earW:15, earH:26, earRad:'8px', earClip:'none', fwdEarTop:-16, fwdEarLX:34, fwdEarRX:71,
+   bkEarW:16, bkEarH:28, bkEarTop:-18, bkEarLX:30, bkEarRX:74, sdEarW:13, sdEarH:24, sdEarTop:6, sdEarLX:72,
+   bulgeS:0, fwdBulgeTop:0, fwdBulgeLX:0, fwdBulgeRX:0, bkBulgeRX:0,
+   peekS:0, fwdPeekTop:0, fwdPeekLX:0, fwdPeekRX:0,
+   bkEyeW:19, bkEyeH:17, bkEyeTop:22, bkEyeLX:28, bkEyeRX:73,
+   pupilS:11, pupilTop:25, pupilLX:32, pupilRX:77, glintTop:27, glintLX:35, glintRX:80,
+   sdEyeW:17, sdEyeH:16, sdEyeTop:38, sdEyeLX:78, sdPupilS:10, sdPupilTop:41, sdPupilLX:82, sdGlintTop:43, sdGlintLX:85,
+   snoutW:20, snoutH:13, snoutRad:'9px', bkSnoutTop:40, bkSnoutLX:50, sdSnoutTop:50, sdSnoutLX:98,
+   noseS:8, bkNoseTop:42, bkNoseLX:56, sdNoseTop:52, sdNoseLX:110,
+   mouthW:24, mouthLX:48, mouthTop:47, sdMouthW:16,
+   tailW:22, tailH:40, tailRad:'11px', tailRot:-18, fwdTailTop:72, fwdTailLX:49, sdTailTop:58, sdTailLX:-8,
+   footClip:PAW, footRad:'6px'},
+
+  dog: {top:'#F5B95A', mid:'#E8A33D', side:'#CC8B2B', deep:'#BC7F24', foot:'#8E5F16',
+   belly:'#FBE0B4', spot:'transparent', nose:'#2E2117', snoutC:'#F8DCAC', line:'#7A5418', sclera:'#FFFFFF',
+   earW:18, earH:30, earRad:'10px', earClip:'none', fwdEarTop:6, fwdEarLX:16, fwdEarRX:86,
+   bkEarW:20, bkEarH:32, bkEarTop:10, bkEarLX:4, bkEarRX:96, sdEarW:17, sdEarH:26, sdEarTop:28, sdEarLX:62,
+   bulgeS:0, fwdBulgeTop:0, fwdBulgeLX:0, fwdBulgeRX:0, bkBulgeRX:0,
+   peekS:0, fwdPeekTop:0, fwdPeekLX:0, fwdPeekRX:0,
+   bkEyeW:19, bkEyeH:17, bkEyeTop:20, bkEyeLX:28, bkEyeRX:73,
+   pupilS:11, pupilTop:23, pupilLX:32, pupilRX:77, glintTop:25, glintLX:35, glintRX:80,
+   sdEyeW:17, sdEyeH:16, sdEyeTop:36, sdEyeLX:78, sdPupilS:10, sdPupilTop:39, sdPupilLX:82, sdGlintTop:41, sdGlintLX:85,
+   snoutW:26, snoutH:17, snoutRad:'11px', bkSnoutTop:38, bkSnoutLX:47, sdSnoutTop:46, sdSnoutLX:94,
+   noseS:10, bkNoseTop:40, bkNoseLX:55, sdNoseTop:48, sdNoseLX:110,
+   mouthW:22, mouthLX:49, mouthTop:48, sdMouthW:14,
+   tailW:14, tailH:26, tailRad:'7px', tailRot:16, fwdTailTop:74, fwdTailLX:53, sdTailTop:44, sdTailLX:0,
+   footClip:PAW, footRad:'6px'},
+
+  cat: {top:'#B4BFCC', mid:'#9AA6B4', side:'#838F9D', deep:'#78838F', foot:'#5F6975',
+   belly:'#E4EAF1', spot:'transparent', nose:'#EFA3B0', snoutC:'#C7CFDA', line:'#5A6470', sclera:'#FFFFFF',
+   earW:22, earH:20, earRad:'0', earClip:TRI, fwdEarTop:-8, fwdEarLX:30, fwdEarRX:68,
+   bkEarW:24, bkEarH:22, bkEarTop:-10, bkEarLX:20, bkEarRX:76, sdEarW:20, sdEarH:18, sdEarTop:14, sdEarLX:70,
+   bulgeS:0, fwdBulgeTop:0, fwdBulgeLX:0, fwdBulgeRX:0, bkBulgeRX:0,
+   peekS:0, fwdPeekTop:0, fwdPeekLX:0, fwdPeekRX:0,
+   bkEyeW:20, bkEyeH:18, bkEyeTop:20, bkEyeLX:27, bkEyeRX:73,
+   pupilS:9, pupilTop:23, pupilLX:33, pupilRX:79, glintTop:25, glintLX:36, glintRX:82,
+   sdEyeW:18, sdEyeH:16, sdEyeTop:36, sdEyeLX:78, sdPupilS:9, sdPupilTop:39, sdPupilLX:83, sdGlintTop:41, sdGlintLX:86,
+   snoutW:22, snoutH:14, snoutRad:'10px', bkSnoutTop:40, bkSnoutLX:49, sdSnoutTop:48, sdSnoutLX:96,
+   noseS:8, bkNoseTop:42, bkNoseLX:56, sdNoseTop:50, sdNoseLX:110,
+   mouthW:20, mouthLX:50, mouthTop:48, sdMouthW:14,
+   tailW:12, tailH:40, tailRad:'6px', tailRot:-26, fwdTailTop:70, fwdTailLX:54, sdTailTop:46, sdTailLX:-4,
+   footClip:PAW, footRad:'6px'}
+};
+
+class Component extends DCLogic {
+  renderVals(){
+    const id = this.props.char || 'frog';
+    const facing = this.props.facing || 'up';
+    return {
+      c: CHARS[id] || CHARS.frog,
+      isUp: facing === 'up',
+      isDown: facing === 'down',
+      isSide: facing === 'left' || facing === 'right',
+      flip: facing === 'left' ? 'scaleX(-1)' : 'none',
+      hopper: id === 'hopper',
+      roo: id === 'roo',
+      generic: id !== 'hopper' && id !== 'roo',
+      rooUpright: id === 'roo',
+      sideGeneric: id !== 'hopper' && id !== 'roo'
+    };
+  }
+}
+</script>
+</body>
+</html>

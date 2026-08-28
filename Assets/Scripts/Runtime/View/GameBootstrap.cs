@@ -1,6 +1,8 @@
 using FrogAcross.Levels;
 using FrogAcross.Pieces;
+using FrogAcross.Input;
 using FrogAcross.Sim;
+using FrogAcross.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,11 +23,50 @@ namespace FrogAcross.View
 
         private float _accumulator;
 
+        private DeathFeedback _deathFx;
+        private LevelCompleteOverlay _overlay;
+        private TouchInputDriver _driver;
+
         private void Start()
         {
             Sim = new GameSim(LevelLoader.LoadFromResources(levelId, PieceRegistry.Load()));
             if (board == null) board = gameObject.AddComponent<BoardView>();
             board.Bind(Sim);
+
+            _driver = gameObject.AddComponent<TouchInputDriver>();
+            _driver.bootstrap = this;
+            _deathFx = gameObject.AddComponent<DeathFeedback>();
+            _overlay = gameObject.AddComponent<LevelCompleteOverlay>();
+
+            Sim.OnDeath += cause =>
+            {
+                var reg = PieceRegistry.Load();
+                var ch = reg.defaultCharacter;
+                _deathFx.Play(cause,
+                    new Vector3(Sim.State.PlayerX, -Sim.State.PlayerRow, 0f),
+                    ch.sprites[0]);
+            };
+            Sim.OnCompleted += () =>
+            {
+                Frozen = true;
+                _overlay.Show(Sim.Level, Sim.State.ClockTicks);
+            };
+            _overlay.OnReplay += Restart;
+            _overlay.OnNext += Restart;      // M4's shell rewires to real progression
+            _overlay.OnLevels += Restart;    // M4's shell rewires to the levels screen
+        }
+
+        public void Restart()
+        {
+            _overlay.Hide();
+            Frozen = false;
+            Sim = new GameSim(LevelLoader.LoadFromResources(levelId, PieceRegistry.Load()));
+            board.Bind(Sim);
+            if (_driver != null) _driver.bootstrap = this;
+            Sim.OnDeath += cause => _deathFx.Play(cause,
+                new Vector3(Sim.State.PlayerX, -Sim.State.PlayerRow, 0f),
+                PieceRegistry.Load().defaultCharacter.sprites[0]);
+            Sim.OnCompleted += () => { Frozen = true; _overlay.Show(Sim.Level, Sim.State.ClockTicks); };
         }
 
         private void Update()

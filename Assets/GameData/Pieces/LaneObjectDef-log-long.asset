@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: FrogAcross.Runtime::FrogAcross.Pieces.LaneObjectDef
   id: log-long
   displayName: log-long
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: ba647788bafa741a3b0b4a2860184025, type: 3}
+  - {fileID: 21300000, guid: 66caee12619ce469cbd8c1cea438b08f, type: 3}
   role: 1
   sizeCells: 4.9
   rideableZoneStart: 0
@@ -24,4 +26,6 @@ MonoBehaviour:
   inactiveKills: 0
   stunTicks: 0
   crashSequenceTicks: 0
+  crashingSprites: []
+  crashedSprites: []
   warnLeadTicks: 0

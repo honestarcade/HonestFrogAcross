@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: FrogAcross.Runtime::FrogAcross.Pieces.LaneKindDef
   id: river
   displayName: river
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: 0a15b149f521a444d89ff8689a74050b, type: 3}
   semantics: 2

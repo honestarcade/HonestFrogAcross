@@ -103,6 +103,7 @@ namespace FrogAcross.Editor.Pieces
             foreach (var id in new[] { "tree", "bush", "bench", "lamp", "planter-daisy", "planter-tulip", "planter-fern", "planter-lavender", "planter-succulent" })
                 reg.pieces.Add(Upsert<ObstructionDef>(id, d => d.blocksTile = true));
 
+            reg.defaultCharacter = (CharacterDef)reg.pieces.Find(x => x is CharacterDef);
             reg.InvalidateCache();
             EditorUtility.SetDirty(reg);
             AssetDatabase.SaveAssets();

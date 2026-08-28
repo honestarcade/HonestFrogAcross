@@ -28,8 +28,9 @@ namespace FrogAcross.Editor.Scenes
             cam.orthographicSize = 6.2f;
             cam.clearFlags = CameraClearFlags.SolidColor;
             cam.backgroundColor = new Color(0.086f, 0.196f, 0.121f); // #16321F board surround
-            // top-down, slightly in front, design roll; URP camera data auto-attaches
-            camGo.transform.SetPositionAndRotation(new Vector3(5f, 10f, -4.5f), Quaternion.Euler(75f, 0f, 8f));
+            // Sprites live on the X/Y plane (art is pre-drawn from the design's
+            // tilted top-down perspective); the -8° design roll is a camera Z-roll.
+            camGo.transform.SetPositionAndRotation(new Vector3(5f, -4.5f, -10f), Quaternion.Euler(0f, 0f, -8f));
 
             var boot = new GameObject("Game");
             boot.AddComponent<GameBootstrap>();

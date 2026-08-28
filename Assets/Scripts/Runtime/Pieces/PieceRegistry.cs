@@ -12,6 +12,7 @@ namespace FrogAcross.Pieces
     public sealed class PieceRegistry : ScriptableObject
     {
         public List<PieceDef> pieces = new();
+        public CharacterDef defaultCharacter;
 
         private Dictionary<string, PieceDef> _byId;
 

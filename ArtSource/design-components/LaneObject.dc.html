@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><style>
+@keyframes lo-spin{to{transform:rotate(360deg)}}
+@keyframes lo-pedal{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(-1.5px) rotate(1.5deg)}}
+@keyframes lo-leg{0%{transform:rotate(20deg) translateY(0)}20%{transform:rotate(0deg) translateY(0)}40%{transform:rotate(-26deg) translateY(-3px)}60%{transform:rotate(-10deg) translateY(-10px)}80%{transform:rotate(24deg) translateY(-5px)}100%{transform:rotate(20deg) translateY(0)}}
+@keyframes lo-shin{0%{transform:rotate(-6deg)}40%{transform:rotate(-16deg)}60%{transform:rotate(-54deg)}80%{transform:rotate(-28deg)}100%{transform:rotate(-6deg)}}
+@keyframes lo-legf{0%{transform:rotate(-22deg) translateY(-7px)}25%{transform:rotate(22deg) translateY(-4px)}45%{transform:rotate(16deg) translateY(0)}65%{transform:rotate(-6deg) translateY(0)}85%{transform:rotate(-30deg) translateY(-3px)}100%{transform:rotate(-22deg) translateY(-7px)}}
+@keyframes lo-shinf{0%{transform:rotate(-48deg)}25%{transform:rotate(-18deg)}45%{transform:rotate(-6deg)}85%{transform:rotate(-22deg)}100%{transform:rotate(-48deg)}}
+@keyframes lo-arm{0%{transform:rotate(-50deg)}30%{transform:rotate(-18deg)}55%{transform:rotate(10deg)}80%{transform:rotate(-24deg)}100%{transform:rotate(-50deg)}}
+@keyframes lo-fore{0%{transform:rotate(-56deg)}50%{transform:rotate(-24deg)}100%{transform:rotate(-56deg)}}
+@keyframes lo-armf{0%{transform:rotate(26deg)}28%{transform:rotate(46deg)}60%{transform:rotate(14deg)}84%{transform:rotate(38deg)}100%{transform:rotate(26deg)}}
+@keyframes lo-foref{0%{transform:rotate(-30deg)}45%{transform:rotate(-52deg)}75%{transform:rotate(-20deg)}100%{transform:rotate(-30deg)}}
+@keyframes lo-bob{0%{transform:translateY(-1px)}20%{transform:translateY(1px)}45%{transform:translateY(-3px)}65%{transform:translateY(1px)}90%{transform:translateY(-3px)}100%{transform:translateY(-1px)}}
+@keyframes lo-fall{0%{transform:translate(-18px,0) rotate(0deg);opacity:1}22%{transform:translate(4px,0) rotate(0deg);opacity:1}27%{transform:translate(-2px,-4px) rotate(-16deg);opacity:1}34%{transform:translate(-16px,-9px) rotate(-38deg);opacity:1}44%{transform:translate(-34px,-11px) rotate(-64deg);opacity:1}54%{transform:translate(-48px,-9px) rotate(-88deg);opacity:0}100%{transform:translate(-48px,-9px) rotate(-88deg);opacity:0}}
+@keyframes lo-fall2{0%{transform:translate(-18px,0) rotate(0deg);opacity:1}22%{transform:translate(4px,0) rotate(0deg);opacity:1}27%{transform:translate(-2px,-7px) rotate(-16deg);opacity:1}34%{transform:translate(-16px,-15px) rotate(-38deg);opacity:1}44%{transform:translate(-34px,-18px) rotate(-64deg);opacity:1}54%{transform:translate(-48px,-16px) rotate(-88deg);opacity:0}100%{transform:translate(-48px,-16px) rotate(-88deg);opacity:0}}
+@keyframes lo-land{0%,52%{opacity:0;transform:translate(-34px,-9px) rotate(-16deg)}60%{opacity:1;transform:translate(-30px,0) rotate(0deg)}66%{transform:translate(-32px,-2.5px) rotate(2deg)}74%{transform:translate(-30px,0) rotate(0deg)}100%{opacity:1;transform:translate(-30px,0) rotate(0deg)}}
+@keyframes lo-dust{0%,21%{opacity:0;transform:scale(.2)}26%{opacity:.75;transform:scale(1)}40%{opacity:.3;transform:scale(1.5)}58%{opacity:0;transform:scale(1.8)}100%{opacity:0;transform:scale(1.8)}}
+@keyframes lo-grit{0%,50%{opacity:0;transform:scale(.4)}60%{opacity:.45;transform:scale(1)}86%{opacity:0;transform:scale(1.6)}100%{opacity:0;transform:scale(1.6)}}
+@keyframes lo-wobble{0%,100%{transform:rotate(0deg)}25%{transform:rotate(-4deg)}75%{transform:rotate(4deg)}}
+@keyframes lo-shadow{0%,100%{transform:scaleX(1);opacity:.32}25%{transform:scaleX(.82);opacity:.2}50%{transform:scaleX(1);opacity:.32}75%{transform:scaleX(.82);opacity:.2}}
+</style></helmet>
+<div style="position:relative;width:100%;height:100%">
+
+<sc-if value="{{ isFreight }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:0;top:0;width:600px;height:56px;transform:translateY(-3px) {{ flip }}">
+  <div style="position:absolute;left:14px;top:44px;width:572px;height:12px;border-radius:50%;background:rgba(0,0,0,.42);filter:blur(3px)"></div>
+
+  <div style="position:absolute;left:0;top:14px;width:78px;height:26px;border-radius:3px;background:linear-gradient(180deg,#D4483C 0%,#B23A30 55%,#8B2A22 100%)"></div>
+  <div style="position:absolute;left:0;top:14px;width:78px;height:4px;background:#E8695C"></div>
+  <div style="position:absolute;left:22px;top:4px;width:34px;height:14px;border-radius:3px;background:linear-gradient(180deg,#C64236,#933027)"></div>
+  <div style="position:absolute;left:28px;top:7px;width:9px;height:7px;background:#D8ECFF"></div>
+  <div style="position:absolute;left:41px;top:7px;width:9px;height:7px;background:#A9CDEA"></div>
+  <div style="position:absolute;left:10px;top:22px;width:16px;height:9px;background:#F1EFE7"></div>
+  <div style="position:absolute;left:52px;top:22px;width:16px;height:9px;background:#F1EFE7"></div>
+  <div style="position:absolute;left:0;top:36px;width:78px;height:5px;background:#6E211A"></div>
+  <div style="position:absolute;left:22px;top:0;width:34px;height:5px;border-radius:2px 2px 0 0;background:#7E251D"></div>
+  <div style="position:absolute;left:36px;top:-6px;width:6px;height:8px;border-radius:2px;background:#3A3F47"></div>
+  <div style="position:absolute;left:4px;top:18px;width:3px;height:20px;background:#8B2A22"></div>
+  <div style="position:absolute;left:71px;top:18px;width:3px;height:20px;background:#8B2A22"></div>
+  <div style="position:absolute;left:30px;top:24px;width:18px;height:6px;border-radius:1px;background:rgba(255,255,255,.75)"></div>
+  <div style="position:absolute;left:0;top:26px;width:6px;height:6px;border-radius:2px;background:#E85A2E"></div>
+  <div style="position:absolute;left:10px;top:38px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+  <div style="position:absolute;left:22px;top:38px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+  <div style="position:absolute;left:52px;top:38px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+  <div style="position:absolute;left:64px;top:38px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+
+  <div style="position:absolute;left:82px;top:20px;width:10px;height:5px;border-radius:2px;background:#2A3340"></div>
+  <div style="position:absolute;left:92px;top:26px;width:104px;height:12px;border-radius:2px;background:#5B4A38"></div>
+  <div style="position:absolute;left:92px;top:24px;width:104px;height:4px;background:#7A6448"></div>
+  <div style="position:absolute;left:96px;top:14px;width:96px;height:11px;border-radius:6px;background:#7F5535"></div>
+  <div style="position:absolute;left:100px;top:8px;width:88px;height:10px;border-radius:5px;background:#96693F"></div>
+  <div style="position:absolute;left:106px;top:3px;width:76px;height:9px;border-radius:5px;background:#A67A4C"></div>
+  <div style="position:absolute;left:100px;top:9px;width:8px;height:8px;border-radius:50%;background:#C79B69;box-shadow:0 0 0 2px #6E4A2E inset"></div>
+  <div style="position:absolute;left:180px;top:9px;width:8px;height:8px;border-radius:50%;background:#C79B69;box-shadow:0 0 0 2px #6E4A2E inset"></div>
+  <div style="position:absolute;left:124px;top:12px;width:8px;height:8px;border-radius:50%;background:#B98D5C;box-shadow:0 0 0 2px #6E4A2E inset"></div>
+  <div style="position:absolute;left:156px;top:12px;width:8px;height:8px;border-radius:50%;background:#B98D5C;box-shadow:0 0 0 2px #6E4A2E inset"></div>
+  <div style="position:absolute;left:130px;top:2px;width:4px;height:26px;background:repeating-linear-gradient(180deg,#8A929C 0 3px,#5A6068 3px 6px)"></div>
+  <div style="position:absolute;left:158px;top:2px;width:4px;height:26px;background:repeating-linear-gradient(180deg,#8A929C 0 3px,#5A6068 3px 6px)"></div>
+  <div style="position:absolute;left:92px;top:37px;width:104px;height:4px;background:#3A2A1C"></div>
+  <div style="position:absolute;left:112px;top:2px;width:6px;height:20px;background:#4A5058"></div>
+  <div style="position:absolute;left:172px;top:2px;width:6px;height:20px;background:#4A5058"></div>
+  <div style="position:absolute;left:100px;top:38px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+  <div style="position:absolute;left:112px;top:38px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+  <div style="position:absolute;left:166px;top:38px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+  <div style="position:absolute;left:178px;top:38px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+
+  <div style="position:absolute;left:198px;top:20px;width:10px;height:5px;border-radius:2px;background:#2A3340"></div>
+  <div style="position:absolute;left:208px;top:26px;width:112px;height:12px;border-radius:2px;background:#4A5058"></div>
+  <div style="position:absolute;left:212px;top:10px;width:104px;height:20px;border-radius:10px;background:linear-gradient(180deg,#E4E9EF 0%,#BFC7D0 55%,#8E959E 100%)"></div>
+  <div style="position:absolute;left:212px;top:12px;width:104px;height:4px;background:rgba(255,255,255,.6)"></div>
+  <div style="position:absolute;left:252px;top:4px;width:22px;height:9px;border-radius:4px 4px 0 0;background:#9AA6B4"></div>
+  <div style="position:absolute;left:258px;top:1px;width:10px;height:5px;border-radius:3px;background:#6D757F"></div>
+  <div style="position:absolute;left:212px;top:20px;width:104px;height:3px;background:rgba(0,0,0,.18)"></div>
+  <div style="position:absolute;left:228px;top:16px;width:26px;height:8px;border-radius:2px;background:#C2452F"></div>
+  <div style="position:absolute;left:208px;top:12px;width:12px;height:18px;border-radius:6px;background:#AAB2BC"></div>
+  <div style="position:absolute;left:308px;top:12px;width:12px;height:18px;border-radius:6px;background:#AAB2BC"></div>
+  <div style="position:absolute;left:212px;top:26px;width:104px;height:3px;background:rgba(0,0,0,.28)"></div>
+  <div style="position:absolute;left:284px;top:15px;width:14px;height:10px;background:#E8B54A;box-shadow:0 0 0 1.5px #7A5418 inset"></div>
+  <div style="position:absolute;left:224px;top:8px;width:6px;height:5px;border-radius:2px;background:#8E959E"></div>
+  <div style="position:absolute;left:296px;top:8px;width:6px;height:5px;border-radius:2px;background:#8E959E"></div>
+  <div style="position:absolute;left:208px;top:37px;width:112px;height:4px;background:#2E333A"></div>
+  <div style="position:absolute;left:216px;top:38px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+  <div style="position:absolute;left:228px;top:38px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+  <div style="position:absolute;left:292px;top:38px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+  <div style="position:absolute;left:304px;top:38px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+
+  <div style="position:absolute;left:322px;top:20px;width:10px;height:5px;border-radius:2px;background:#2A3340"></div>
+  <div style="position:absolute;left:332px;top:26px;width:112px;height:12px;border-radius:2px;background:#3E2F22"></div>
+  <div style="position:absolute;left:332px;top:6px;width:112px;height:24px;border-radius:3px;background:linear-gradient(180deg,#B0764A 0%,#8A5A34 55%,#6B4527 100%)"></div>
+  <div style="position:absolute;left:332px;top:6px;width:112px;height:4px;background:#C68A5A"></div>
+  <div style="position:absolute;left:344px;top:10px;width:24px;height:18px;background:#7A4E2C;box-shadow:0 0 0 2px #5E3B20 inset"></div>
+  <div style="position:absolute;left:372px;top:10px;width:24px;height:18px;background:#7A4E2C;box-shadow:0 0 0 2px #5E3B20 inset"></div>
+  <div style="position:absolute;left:404px;top:14px;width:30px;height:6px;border-radius:2px;background:rgba(255,255,255,.45)"></div>
+  <div style="position:absolute;left:332px;top:2px;width:112px;height:5px;border-radius:2px;background:#C68A5A"></div>
+  <div style="position:absolute;left:336px;top:3px;width:104px;height:2px;background:repeating-linear-gradient(90deg,#8A5A34 0 4px,transparent 4px 11px)"></div>
+  <div style="position:absolute;left:334px;top:9px;width:108px;height:2px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.3) 0 2px,transparent 2px 9px)"></div>
+  <div style="position:absolute;left:334px;top:27px;width:108px;height:2px;background:repeating-linear-gradient(90deg,rgba(0,0,0,.25) 0 2px,transparent 2px 9px)"></div>
+  <div style="position:absolute;left:366px;top:14px;width:4px;height:10px;border-radius:2px;background:#3E2A16"></div>
+  <div style="position:absolute;left:394px;top:14px;width:4px;height:10px;border-radius:2px;background:#3E2A16"></div>
+  <div style="position:absolute;left:404px;top:22px;width:22px;height:4px;border-radius:1px;background:rgba(255,255,255,.28)"></div>
+  <div style="position:absolute;left:332px;top:37px;width:112px;height:4px;background:#2A1E13"></div>
+  <div style="position:absolute;left:340px;top:38px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+  <div style="position:absolute;left:352px;top:38px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+  <div style="position:absolute;left:414px;top:38px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+  <div style="position:absolute;left:426px;top:38px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+
+  <div style="position:absolute;left:590px;top:20px;width:10px;height:5px;border-radius:2px;background:#2A3340"></div>
+  <div style="position:absolute;left:458px;top:26px;width:132px;height:14px;border-radius:3px;background:#22262B"></div>
+  <div style="position:absolute;left:498px;top:10px;width:86px;height:22px;border-radius:6px 11px 11px 4px;background:linear-gradient(180deg,#3E444C 0%,#23272D 55%,#15181C 100%)"></div>
+  <div style="position:absolute;left:502px;top:12px;width:78px;height:4px;background:rgba(255,255,255,.14)"></div>
+  <div style="position:absolute;left:470px;top:0;width:14px;height:14px;border-radius:3px 3px 0 0;background:#2A2E34"></div>
+  <div style="position:absolute;left:559px;top:-3px;width:20px;height:6px;border-radius:3px;background:#3A3F47"></div>
+  <div style="position:absolute;left:540px;top:4px;width:10px;height:8px;border-radius:2px;background:#2A2E34"></div>
+  <div style="position:absolute;left:458px;top:4px;width:40px;height:28px;border-radius:8px 4px 4px 4px;background:linear-gradient(180deg,#4A5058 0%,#2B2F36 55%,#191C21 100%)"></div>
+  <div style="position:absolute;left:478px;top:8px;width:12px;height:9px;background:#D8ECFF"></div>
+  <div style="position:absolute;left:464px;top:8px;width:10px;height:9px;background:#A9CDEA"></div>
+  <div style="position:absolute;left:458px;top:4px;width:40px;height:4px;background:#C2452F"></div>
+  <div style="position:absolute;left:582px;top:14px;width:8px;height:10px;border-radius:3px;background:#FFF0B8;box-shadow:0 0 10px rgba(255,240,184,.7)"></div>
+  <div style="position:absolute;left:584px;top:24px;width:12px;height:16px;background:#3A3F47;clip-path:polygon(0 0,100% 100%,0 100%)"></div>
+  <div style="position:absolute;left:498px;top:22px;width:86px;height:4px;background:#C2452F"></div>
+  <div style="position:absolute;left:504px;top:16px;width:34px;height:5px;background:repeating-linear-gradient(90deg,#5C636C 0 2px,#22262B 2px 5px)"></div>
+  <div style="position:absolute;left:548px;top:16px;width:26px;height:5px;background:repeating-linear-gradient(90deg,#5C636C 0 2px,#22262B 2px 5px)"></div>
+  <div style="position:absolute;left:512px;top:6px;width:14px;height:5px;border-radius:3px;background:#3A3F47"></div>
+  <div style="position:absolute;left:530px;top:6px;width:14px;height:5px;border-radius:3px;background:#3A3F47"></div>
+  <div style="position:absolute;left:498px;top:10px;width:86px;height:3px;background:rgba(255,255,255,.2)"></div>
+  <div style="position:absolute;left:456px;top:2px;width:44px;height:4px;border-radius:3px 3px 0 0;background:#5C636C"></div>
+  <div style="position:absolute;left:462px;top:19px;width:34px;height:8px;background:#C2452F"></div>
+  <div style="position:absolute;left:466px;top:20px;width:26px;height:6px;background:repeating-linear-gradient(90deg,#F1EFE7 0 3px,transparent 3px 7px)"></div>
+  <div style="position:absolute;left:498px;top:30px;width:86px;height:3px;background:#15181C"></div>
+  <div style="position:absolute;left:576px;top:6px;width:8px;height:9px;border-radius:2px;background:#2A2E34"></div>
+  <div style="position:absolute;left:454px;top:8px;width:5px;height:26px;background:#6D757F"></div>
+  <div style="position:absolute;left:496px;top:26px;width:90px;height:2px;background:rgba(255,255,255,.16)"></div>
+  <div style="position:absolute;left:562px;top:34px;width:14px;height:14px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+  <div style="position:absolute;left:540px;top:34px;width:14px;height:14px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+  <div style="position:absolute;left:518px;top:34px;width:14px;height:14px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+  <div style="position:absolute;left:510px;top:40px;width:66px;height:4px;border-radius:2px;background:#8A5A2A"></div>
+  <div style="position:absolute;left:481px;top:38px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+  <div style="position:absolute;left:469px;top:38px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isPassenger }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:0;top:0;width:600px;height:52px;transform:{{ flip }}">
+  <div style="position:absolute;left:14px;top:40px;width:572px;height:12px;border-radius:50%;background:rgba(0,0,0,.42);filter:blur(3px)"></div>
+
+  <div style="position:absolute;left:0;top:24px;width:126px;height:12px;border-radius:2px;background:#4A5058"></div>
+  <div style="position:absolute;left:0;top:8px;width:126px;height:20px;border-radius:5px;background:linear-gradient(180deg,#F2F5F8 0%,#D3DAE1 52%,#A8B1BB 100%)"></div>
+  <div style="position:absolute;left:0;top:8px;width:126px;height:4px;background:#FFFFFF"></div>
+  <div style="position:absolute;left:8px;top:14px;width:110px;height:8px;border-radius:2px;background:#16233A"></div>
+  <div style="position:absolute;left:8px;top:14px;width:110px;height:8px;background:repeating-linear-gradient(90deg,transparent 0 16px,#D3DAE1 16px 19px)"></div>
+  <div style="position:absolute;left:0;top:23px;width:126px;height:3px;background:#0B4FA0"></div>
+  <div style="position:absolute;left:0;top:26px;width:126px;height:2px;background:#C2452F"></div>
+  <div style="position:absolute;left:12px;top:34px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+  <div style="position:absolute;left:24px;top:34px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+  <div style="position:absolute;left:96px;top:34px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+  <div style="position:absolute;left:108px;top:34px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+
+  <div style="position:absolute;left:130px;top:24px;width:126px;height:12px;border-radius:2px;background:#4A5058"></div>
+  <div style="position:absolute;left:130px;top:8px;width:126px;height:20px;border-radius:5px;background:linear-gradient(180deg,#F2F5F8 0%,#D3DAE1 52%,#A8B1BB 100%)"></div>
+  <div style="position:absolute;left:130px;top:8px;width:126px;height:4px;background:#FFFFFF"></div>
+  <div style="position:absolute;left:138px;top:14px;width:110px;height:8px;border-radius:2px;background:#16233A"></div>
+  <div style="position:absolute;left:138px;top:14px;width:110px;height:8px;background:repeating-linear-gradient(90deg,transparent 0 16px,#D3DAE1 16px 19px)"></div>
+  <div style="position:absolute;left:130px;top:23px;width:126px;height:3px;background:#0B4FA0"></div>
+  <div style="position:absolute;left:130px;top:26px;width:126px;height:2px;background:#C2452F"></div>
+  <div style="position:absolute;left:142px;top:34px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+  <div style="position:absolute;left:154px;top:34px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+  <div style="position:absolute;left:226px;top:34px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+  <div style="position:absolute;left:238px;top:34px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+
+  <div style="position:absolute;left:260px;top:24px;width:126px;height:12px;border-radius:2px;background:#4A5058"></div>
+  <div style="position:absolute;left:260px;top:8px;width:126px;height:20px;border-radius:5px;background:linear-gradient(180deg,#F2F5F8 0%,#D3DAE1 52%,#A8B1BB 100%)"></div>
+  <div style="position:absolute;left:260px;top:8px;width:126px;height:4px;background:#FFFFFF"></div>
+  <div style="position:absolute;left:268px;top:14px;width:110px;height:8px;border-radius:2px;background:#16233A"></div>
+  <div style="position:absolute;left:268px;top:14px;width:110px;height:8px;background:repeating-linear-gradient(90deg,transparent 0 16px,#D3DAE1 16px 19px)"></div>
+  <div style="position:absolute;left:260px;top:23px;width:126px;height:3px;background:#0B4FA0"></div>
+  <div style="position:absolute;left:260px;top:26px;width:126px;height:2px;background:#C2452F"></div>
+  <div style="position:absolute;left:272px;top:34px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+  <div style="position:absolute;left:284px;top:34px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+  <div style="position:absolute;left:356px;top:34px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+  <div style="position:absolute;left:368px;top:34px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+
+  <div style="position:absolute;left:390px;top:24px;width:126px;height:12px;border-radius:2px;background:#4A5058"></div>
+  <div style="position:absolute;left:390px;top:8px;width:126px;height:20px;border-radius:5px;background:linear-gradient(180deg,#F2F5F8 0%,#D3DAE1 52%,#A8B1BB 100%)"></div>
+  <div style="position:absolute;left:390px;top:8px;width:126px;height:4px;background:#FFFFFF"></div>
+  <div style="position:absolute;left:398px;top:14px;width:110px;height:8px;border-radius:2px;background:#16233A"></div>
+  <div style="position:absolute;left:398px;top:14px;width:110px;height:8px;background:repeating-linear-gradient(90deg,transparent 0 16px,#D3DAE1 16px 19px)"></div>
+  <div style="position:absolute;left:390px;top:23px;width:126px;height:3px;background:#0B4FA0"></div>
+  <div style="position:absolute;left:390px;top:26px;width:126px;height:2px;background:#C2452F"></div>
+  <div style="position:absolute;left:402px;top:34px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+  <div style="position:absolute;left:414px;top:34px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+  <div style="position:absolute;left:486px;top:34px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+  <div style="position:absolute;left:498px;top:34px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+
+  <div style="position:absolute;left:520px;top:24px;width:80px;height:12px;border-radius:2px;background:#3A3F47"></div>
+  <div style="position:absolute;left:520px;top:4px;width:80px;height:24px;border-radius:5px 16px 8px 5px;background:linear-gradient(180deg,#F2F5F8 0%,#CFD7DF 52%,#9BA4AE 100%);clip-path:polygon(0 0,86% 0,100% 46%,100% 100%,0 100%)"></div>
+  <div style="position:absolute;left:520px;top:4px;width:70px;height:4px;background:#FFFFFF"></div>
+  <div style="position:absolute;left:528px;top:9px;width:34px;height:9px;border-radius:2px;background:#16233A"></div>
+  <div style="position:absolute;left:566px;top:10px;width:20px;height:8px;border-radius:2px 6px 2px 2px;background:#16233A"></div>
+  <div style="position:absolute;left:520px;top:20px;width:80px;height:4px;background:#0B4FA0"></div>
+  <div style="position:absolute;left:520px;top:24px;width:80px;height:2px;background:#C2452F"></div>
+  <div style="position:absolute;left:592px;top:12px;width:8px;height:6px;border-radius:3px;background:#FFF0B8;box-shadow:0 0 10px rgba(255,240,184,.7)"></div>
+  <div style="position:absolute;left:530px;top:34px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+  <div style="position:absolute;left:542px;top:34px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+  <div style="position:absolute;left:572px;top:34px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+  <div style="position:absolute;left:584px;top:34px;width:9px;height:9px;border-radius:50%;background:#15181C;box-shadow:0 0 0 2px #3A3F47 inset"></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isConvertible }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:0;top:0;width:88px;height:38px;transform:{{ flip }}">
+  <div style="position:absolute;left:5px;top:24px;width:78px;height:11px;border-radius:50%;background:rgba(0,0,0,.36);filter:blur(3px)"></div>
+  <div style="position:absolute;left:11px;top:21px;width:18px;height:9px;border-radius:3px;background:#15181C"></div>
+  <div style="position:absolute;left:60px;top:21px;width:18px;height:9px;border-radius:3px;background:#15181C"></div>
+  <div style="position:absolute;left:15px;top:23px;width:9px;height:5px;border-radius:50%;background:#D5DBE2"></div>
+  <div style="position:absolute;left:64px;top:23px;width:9px;height:5px;border-radius:50%;background:#D5DBE2"></div>
+  <div style="position:absolute;left:18px;top:24px;width:4px;height:3px;border-radius:50%;background:#7E868F"></div>
+  <div style="position:absolute;left:67px;top:24px;width:4px;height:3px;border-radius:50%;background:#7E868F"></div>
+  <div style="position:absolute;left:2px;top:16px;width:84px;height:9px;border-radius:0 0 9px 9px;background:{{ cabDark }}"></div>
+  <div style="position:absolute;left:0;top:9px;width:88px;height:12px;border-radius:7px 9px 9px 7px;background:{{ cab }};clip-path:polygon(7px 0,100% 0,calc(100% - 7px) 100%,0 100%)"></div>
+  <div style="position:absolute;left:46px;top:4px;width:40px;height:10px;border-radius:5px 9px 4px 4px;background:{{ fairing }};clip-path:polygon(4px 0,calc(100% - 2px) 0,100% 100%,0 100%)"></div>
+  <div style="position:absolute;left:52px;top:6px;width:30px;height:3px;border-radius:2px;background:rgba(255,255,255,.4)"></div>
+  <div style="position:absolute;left:60px;top:7px;width:14px;height:5px;border-radius:3px;background:rgba(0,0,0,.22)"></div>
+  <div style="position:absolute;left:8px;top:5px;width:32px;height:10px;border-radius:8px 4px 4px 8px;background:{{ fairing }}"></div>
+  <div style="position:absolute;left:12px;top:6px;width:24px;height:4px;border-radius:2px;background:rgba(0,0,0,.2)"></div>
+  <div style="position:absolute;left:18px;top:3px;width:11px;height:12px;border-radius:5px;background:#2A2E34"></div>
+  <div style="position:absolute;left:30px;top:3px;width:11px;height:12px;border-radius:5px;background:#22262B"></div>
+  <div style="position:absolute;left:19px;top:1px;width:9px;height:6px;border-radius:4px;background:#3A3F47"></div>
+  <div style="position:absolute;left:31px;top:1px;width:9px;height:6px;border-radius:4px;background:#3A3F47"></div>
+  <div style="position:absolute;left:40px;top:1px;width:9px;height:14px;background:linear-gradient(180deg,rgba(226,242,255,.9),rgba(169,205,234,.7));clip-path:polygon(100% 0,100% 100%,0 100%,42% 0)"></div>
+  <div style="position:absolute;left:40px;top:1px;width:9px;height:14px;background:transparent;box-shadow:inset -1.5px 0 0 #C9CFD8"></div>
+  <div style="position:absolute;left:6px;top:12px;width:76px;height:2px;background:rgba(255,255,255,.3)"></div>
+  <div style="position:absolute;left:52px;top:15px;width:20px;height:3px;border-radius:2px;background:rgba(0,0,0,.3)"></div>
+  <div style="position:absolute;left:78px;top:11px;width:8px;height:5px;border-radius:3px;background:#FFF0B8;box-shadow:0 0 6px rgba(255,240,184,.5)"></div>
+  <div style="position:absolute;left:80px;top:17px;width:6px;height:3px;border-radius:2px;background:#C9CFD8"></div>
+  <div style="position:absolute;left:1px;top:11px;width:4px;height:4px;border-radius:50%;background:#E05A4E"></div>
+  <div style="position:absolute;left:1px;top:16px;width:4px;height:4px;border-radius:50%;background:#C7302B"></div>
+  <div style="position:absolute;left:6px;top:11px;width:4px;height:4px;border-radius:50%;background:#E05A4E"></div>
+  <div style="position:absolute;left:6px;top:16px;width:4px;height:4px;border-radius:50%;background:#C7302B"></div>
+  <div style="position:absolute;left:0;top:21px;width:9px;height:3px;border-radius:2px;background:#C9CFD8"></div>
+  <div style="position:absolute;left:56px;top:12px;width:10px;height:4px;border-radius:2px;background:rgba(0,0,0,.35)"></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isCar }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:0;top:0;width:88px;height:38px;transform:{{ flip }}">
+  <div style="position:absolute;left:5px;top:23px;width:78px;height:11px;border-radius:50%;background:rgba(0,0,0,.36);filter:blur(3px)"></div>
+  <div style="position:absolute;left:12px;top:20px;width:17px;height:9px;border-radius:3px;background:#15181C"></div>
+  <div style="position:absolute;left:59px;top:20px;width:17px;height:9px;border-radius:3px;background:#15181C"></div>
+  <div style="position:absolute;left:16px;top:22px;width:8px;height:5px;border-radius:50%;background:#B4BCC6"></div>
+  <div style="position:absolute;left:63px;top:22px;width:8px;height:5px;border-radius:50%;background:#B4BCC6"></div>
+  <div style="position:absolute;left:18px;top:23px;width:4px;height:3px;border-radius:50%;background:#6D757F"></div>
+  <div style="position:absolute;left:65px;top:23px;width:4px;height:3px;border-radius:50%;background:#6D757F"></div>
+  <div style="position:absolute;left:3px;top:14px;width:82px;height:10px;border-radius:0 0 7px 7px;background:{{ cabDark }}"></div>
+  <div style="position:absolute;left:10px;top:17px;width:20px;height:5px;border-radius:3px;background:rgba(0,0,0,.35)"></div>
+  <div style="position:absolute;left:58px;top:17px;width:20px;height:5px;border-radius:3px;background:rgba(0,0,0,.35)"></div>
+  <div style="position:absolute;left:0;top:6px;width:88px;height:14px;border-radius:8px;background:{{ cab }};clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%)"></div>
+  <div style="position:absolute;left:20px;top:-1px;width:46px;height:11px;border-radius:7px 7px 3px 3px;background:{{ fairing }};clip-path:polygon(8px 0,calc(100% - 3px) 0,100% 100%,0 100%)"></div>
+  <div style="position:absolute;left:25px;top:1px;width:17px;height:7px;border-radius:4px 1px 1px 4px;background:#E4F2FF"></div>
+  <div style="position:absolute;left:44px;top:1px;width:9px;height:7px;border-radius:1px;background:#BBD9F2"></div>
+  <div style="position:absolute;left:55px;top:1px;width:8px;height:7px;border-radius:1px 4px 4px 1px;background:#A9CDEA"></div>
+  <div style="position:absolute;left:42px;top:1px;width:1.5px;height:7px;background:{{ cabDark }}"></div>
+  <div style="position:absolute;left:53px;top:1px;width:1.5px;height:7px;background:{{ cabDark }}"></div>
+  <div style="position:absolute;left:6px;top:9px;width:76px;height:2px;background:rgba(255,255,255,.32)"></div>
+  <div style="position:absolute;left:44px;top:10px;width:1.5px;height:9px;background:rgba(0,0,0,.28)"></div>
+  <div style="position:absolute;left:48px;top:13px;width:6px;height:2px;border-radius:1px;background:rgba(255,255,255,.6)"></div>
+  <div style="position:absolute;left:34px;top:13px;width:6px;height:2px;border-radius:1px;background:rgba(255,255,255,.45)"></div>
+  <div style="position:absolute;left:78px;top:9px;width:8px;height:5px;border-radius:3px;background:#FFF0B8;box-shadow:0 0 6px rgba(255,240,184,.5)"></div>
+  <div style="position:absolute;left:80px;top:15px;width:6px;height:3px;border-radius:2px;background:#C9CFD8"></div>
+  <div style="position:absolute;left:70px;top:14px;width:14px;height:4px;border-radius:2px;background:rgba(0,0,0,.22)"></div>
+  <div style="position:absolute;left:1px;top:9px;width:5px;height:5px;border-radius:2px;background:#E05A4E"></div>
+  <div style="position:absolute;left:1px;top:15px;width:7px;height:3px;border-radius:2px;background:#C9CFD8"></div>
+  <div style="position:absolute;left:30px;top:11px;width:28px;height:3px;border-radius:2px;background:rgba(255,255,255,.14)"></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isBus }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:0;top:0;width:150px;height:46px;transform:{{ flip }}">
+  <div style="position:absolute;left:8px;top:31px;width:134px;height:11px;border-radius:50%;background:rgba(0,0,0,.4);filter:blur(3px)"></div>
+  <div style="position:absolute;left:24px;top:28px;width:20px;height:9px;border-radius:3px;background:#15181C"></div>
+  <div style="position:absolute;left:110px;top:28px;width:20px;height:9px;border-radius:3px;background:#15181C"></div>
+  <div style="position:absolute;left:29px;top:30px;width:9px;height:5px;border-radius:50%;background:#B4BCC6"></div>
+  <div style="position:absolute;left:115px;top:30px;width:9px;height:5px;border-radius:50%;background:#B4BCC6"></div>
+  <div style="position:absolute;left:31px;top:31px;width:4px;height:3px;border-radius:50%;background:#6D757F"></div>
+  <div style="position:absolute;left:117px;top:31px;width:4px;height:3px;border-radius:50%;background:#6D757F"></div>
+
+  <div style="position:absolute;left:8px;top:23px;width:134px;height:9px;border-radius:0 0 4px 5px;background:{{ cabDark }}"></div>
+  <div style="position:absolute;left:4px;top:4px;width:144px;height:23px;border-radius:5px 9px 5px 5px;background:{{ cab }};clip-path:polygon(4px 0,100% 0,calc(100% - 3px) 100%,0 100%)"></div>
+  <div style="position:absolute;left:23px;top:23px;width:22px;height:9px;border-radius:11px 11px 0 0;background:rgba(0,0,0,.34)"></div>
+  <div style="position:absolute;left:109px;top:23px;width:22px;height:9px;border-radius:11px 11px 0 0;background:rgba(0,0,0,.34)"></div>
+
+  <div style="position:absolute;left:11px;top:8px;width:82px;height:11px;border-radius:2px;background:#D8ECFF"></div>
+  <div style="position:absolute;left:11px;top:8px;width:82px;height:11px;background:repeating-linear-gradient(90deg,transparent 0 19px,rgba(0,0,0,.22) 19px 21px)"></div>
+  <div style="position:absolute;left:11px;top:8px;width:82px;height:3px;background:rgba(255,255,255,.4)"></div>
+  <div style="position:absolute;left:96px;top:7px;width:13px;height:20px;border-radius:2px;background:#BBD9F2"></div>
+  <div style="position:absolute;left:102px;top:7px;width:1.5px;height:20px;background:{{ cabDark }}"></div>
+  <div style="position:absolute;left:47px;top:7px;width:13px;height:20px;border-radius:2px;background:#BBD9F2"></div>
+  <div style="position:absolute;left:53px;top:7px;width:1.5px;height:20px;background:{{ cabDark }}"></div>
+
+  <div style="position:absolute;left:113px;top:6px;width:31px;height:14px;border-radius:2px 7px 3px 2px;background:#E4F2FF"></div>
+  <div style="position:absolute;left:113px;top:6px;width:31px;height:4px;border-radius:2px 6px 0 0;background:rgba(255,255,255,.45)"></div>
+  <div style="position:absolute;left:110px;top:8px;width:4px;height:11px;border-radius:2px;background:#A9CDEA"></div>
+
+  <div style="position:absolute;left:8px;top:20.5px;width:134px;height:3px;border-radius:2px;background:rgba(255,255,255,.78)"></div>
+  <div style="position:absolute;left:6px;top:3px;width:140px;height:2.5px;border-radius:2px;background:rgba(255,255,255,.5)"></div>
+  <div style="position:absolute;left:58px;top:0;width:26px;height:5px;border-radius:2px;background:#AEB5BE"></div>
+  <div style="position:absolute;left:118px;top:1px;width:22px;height:5px;border-radius:1px;background:#15181C"></div>
+  <div style="position:absolute;left:121px;top:2.5px;width:16px;height:2px;border-radius:1px;background:#F7C85C"></div>
+
+  <div style="position:absolute;left:139px;top:19px;width:8px;height:5px;border-radius:2px;background:#FFF0B8;box-shadow:0 0 6px rgba(255,240,184,.5)"></div>
+  <div style="position:absolute;left:138px;top:24px;width:10px;height:4px;border-radius:2px;background:#C9CFD8"></div>
+  <div style="position:absolute;left:2px;top:19px;width:5px;height:5px;border-radius:2px;background:#E05A4E"></div>
+  <div style="position:absolute;left:2px;top:24px;width:9px;height:4px;border-radius:2px;background:#C9CFD8"></div>
+  <div style="position:absolute;left:143px;top:5px;width:5px;height:8px;border-radius:2px;background:{{ cabDark }}"></div>
+  <div style="position:absolute;left:14px;top:14px;width:74px;height:2px;background:rgba(255,255,255,.14)"></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isTruck }}" hint-placeholder-val="{{ true }}">
+<div style="position:absolute;left:0;top:0;width:186px;height:48px;transform:{{ flip }}">
+  <div style="position:absolute;left:12px;top:32px;width:168px;height:12px;border-radius:50%;background:rgba(0,0,0,.42);filter:blur(3px)"></div>
+  <div style="position:absolute;left:20px;top:30px;width:20px;height:9px;border-radius:3px;background:#15181C"></div>
+  <div style="position:absolute;left:118px;top:30px;width:20px;height:9px;border-radius:3px;background:#15181C"></div>
+  <div style="position:absolute;left:142px;top:30px;width:20px;height:9px;border-radius:3px;background:#15181C"></div>
+  <div style="position:absolute;left:4px;top:24px;width:132px;height:10px;border-radius:0 0 4px 4px;background:#C9C5B8"></div>
+  <div style="position:absolute;left:0;top:4px;width:140px;height:24px;border-radius:5px;background:linear-gradient(180deg,#FFFFFF 0%,#F1EFE7 55%,#DAD6C9 100%);clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%)"></div>
+  <div style="position:absolute;left:16px;top:9px;width:52px;height:12px;border-radius:2px;background:{{ livery }};opacity:.8"></div>
+  <div style="position:absolute;left:8px;top:6px;width:124px;height:20px;background:repeating-linear-gradient(90deg,transparent 0 22px,rgba(0,0,0,.1) 22px 24px)"></div>
+  <div style="position:absolute;left:4px;top:4px;width:132px;height:3px;background:#FFFFFF"></div>
+  <div style="position:absolute;left:0;top:6px;width:15px;height:20px;border-radius:3px;background:#E7E3D7"></div>
+  <div style="position:absolute;left:2px;top:8px;width:11px;height:16px;background:repeating-linear-gradient(180deg,rgba(0,0,0,.08) 0 3px,transparent 3px 5px)"></div>
+  <div style="position:absolute;left:5px;top:13px;width:3px;height:9px;border-radius:2px;background:#9A9584"></div>
+  <div style="position:absolute;left:18px;top:18px;width:100px;height:5px;border-radius:2px;background:{{ livery }};opacity:.85"></div>
+  <div style="position:absolute;left:94px;top:0;width:24px;height:7px;border-radius:3px;background:#DAD6C9"></div>
+  <div style="position:absolute;left:102px;top:2px;width:4px;height:3px;border-radius:1px;background:#F7C85C"></div>
+  <div style="position:absolute;left:112px;top:2px;width:4px;height:3px;border-radius:1px;background:#F7C85C"></div>
+  <div style="position:absolute;left:122px;top:2px;width:4px;height:3px;border-radius:1px;background:#F7C85C"></div>
+  <div style="position:absolute;left:4px;top:34px;width:128px;height:4px;border-radius:2px;background:#6E6A5E"></div>
+  <div style="position:absolute;left:30px;top:37px;width:10px;height:7px;border-radius:2px;background:#2A2A2A"></div>
+  <div style="position:absolute;left:126px;top:37px;width:10px;height:7px;border-radius:2px;background:#2A2A2A"></div>
+  <div style="position:absolute;left:130px;top:-3px;width:5px;height:13px;border-radius:2px;background:#4C4C4C"></div>
+  <div style="position:absolute;left:136px;top:22px;width:44px;height:12px;border-radius:0 0 6px 4px;background:{{ cabDark }}"></div>
+  <div style="position:absolute;left:134px;top:4px;width:46px;height:22px;border-radius:4px 9px 5px 4px;background:{{ cab }};clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%)"></div>
+  <div style="position:absolute;left:142px;top:7px;width:28px;height:9px;border-radius:2px 5px 3px 2px;background:#D8ECFF"></div>
+  <div style="position:absolute;left:136px;top:8px;width:5px;height:8px;border-radius:2px;background:#A9CDEA"></div>
+  <div style="position:absolute;left:150px;top:2px;width:7px;height:2px;border-radius:1px;background:#15181C"></div>
+  <div style="position:absolute;left:154px;top:0;width:4px;height:8px;border-radius:2px;background:#15181C"></div>
+  <div style="position:absolute;left:172px;top:25px;width:12px;height:5px;border-radius:2px;background:#C9CFD8"></div>
+  <div style="position:absolute;left:176px;top:17px;width:6px;height:8px;border-radius:2px;background:{{ cabDark }}"></div>
+  <div style="position:absolute;left:138px;top:-1px;width:32px;height:6px;border-radius:3px 4px 2px 2px;background:{{ fairing }}"></div>
+  <div style="position:absolute;left:148px;top:15px;width:2px;height:11px;background:rgba(0,0,0,.32)"></div>
+  <div style="position:absolute;left:152px;top:20px;width:7px;height:2px;border-radius:1px;background:#D8ECFF"></div>
+  <div style="position:absolute;left:140px;top:33px;width:26px;height:3px;border-radius:2px;background:#15181C"></div>
+  <div style="position:absolute;left:106px;top:29px;width:24px;height:8px;border-radius:4px;background:#9AA6B4"></div>
+  <div style="position:absolute;left:106px;top:31px;width:24px;height:2px;background:rgba(255,255,255,.45)"></div>
+  <div style="position:absolute;left:22px;top:30px;width:82px;height:5px;border-radius:2px;background:#E7E3D7"></div>
+  <div style="position:absolute;left:26px;top:32px;width:7px;height:5px;border-radius:50%;background:#9AA6B4"></div>
+  <div style="position:absolute;left:124px;top:32px;width:7px;height:5px;border-radius:50%;background:#9AA6B4"></div>
+  <div style="position:absolute;left:148px;top:32px;width:7px;height:5px;border-radius:50%;background:#9AA6B4"></div>
+  <div style="position:absolute;left:166px;top:27px;width:13px;height:4px;border-radius:1px;background:#F1EFE7"></div>
+  <div style="position:absolute;left:0;top:22px;width:15px;height:4px;background:repeating-linear-gradient(45deg,#E05A4E 0 3px,#F6F0E6 3px 6px)"></div>
+  <div style="position:absolute;left:0;top:9px;width:4px;height:6px;border-radius:1px;background:#E05A4E"></div>
+  <div style="position:absolute;left:24px;top:19px;width:22px;height:3px;border-radius:1px;background:rgba(255,255,255,.65)"></div>
+  <div style="position:absolute;left:118px;top:5px;width:18px;height:22px;background:rgba(0,0,0,.06)"></div>
+  <div style="position:absolute;left:174px;top:16px;width:8px;height:8px;border-radius:3px;background:#FFF0B8"></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isGator }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:0;top:0;width:206px;height:44px;transform:{{ flip }}">
+  <div style="position:absolute;left:6px;top:22px;width:190px;height:16px;border-radius:50%;background:rgba(16,40,15,.45);filter:blur(4px)"></div>
+
+  <div style="position:absolute;left:2px;top:20px;width:64px;height:12px;clip-path:polygon(0 62%,100% 0,100% 100%);background:linear-gradient(90deg,#3B6429,#5C8E45)"></div>
+  <div style="position:absolute;left:2px;top:20px;width:42px;height:12px;clip-path:polygon(0 62%,100% 0,100% 100%);background:linear-gradient(90deg,rgba(18,52,60,.55),rgba(18,52,60,0))"></div>
+  <div style="position:absolute;left:20px;top:21.5px;width:7px;height:4px;clip-path:polygon(50% 0,100% 100%,0 100%);background:#3D6B2C"></div>
+  <div style="position:absolute;left:34px;top:20px;width:7px;height:4px;clip-path:polygon(50% 0,100% 100%,0 100%);background:#3D6B2C"></div>
+  <div style="position:absolute;left:48px;top:18.5px;width:8px;height:4.5px;clip-path:polygon(50% 0,100% 100%,0 100%);background:#42722F"></div>
+
+  <div style="position:absolute;left:70px;top:27px;width:17px;height:8px;border-radius:5px;background:#3B6529;transform:rotate(18deg)"></div>
+  <div style="position:absolute;left:81px;top:31px;width:8px;height:6px;border-radius:3px;background:#345A25;transform:rotate(18deg)"></div>
+  <div style="position:absolute;left:120px;top:27px;width:17px;height:8px;border-radius:5px;background:#3F6A2E;transform:rotate(16deg)"></div>
+  <div style="position:absolute;left:131px;top:31px;width:8px;height:6px;border-radius:3px;background:#365D28;transform:rotate(16deg)"></div>
+
+  <div style="position:absolute;left:58px;top:22px;width:96px;height:9px;border-radius:0 0 20px 26px / 0 0 9px 9px;background:linear-gradient(180deg,#4E7C3A,#375F26)"></div>
+  <div style="position:absolute;left:56px;top:9px;width:100px;height:17px;border-radius:46% 30% 30% 46% / 50%;background:linear-gradient(180deg,#87B968 0%,#719F53 52%,#5A8B44 100%)"></div>
+  <div style="position:absolute;left:64px;top:14.5px;width:88px;height:4px;border-radius:2px;background:rgba(164,202,128,.22)"></div>
+  <div style="position:absolute;left:68px;top:10.5px;width:6px;height:3.5px;clip-path:polygon(50% 0,100% 100%,0 100%);background:#44732F"></div>
+  <div style="position:absolute;left:82px;top:10px;width:6px;height:3.5px;clip-path:polygon(50% 0,100% 100%,0 100%);background:#44732F"></div>
+  <div style="position:absolute;left:96px;top:10px;width:6px;height:3.5px;clip-path:polygon(50% 0,100% 100%,0 100%);background:#44732F"></div>
+  <div style="position:absolute;left:110px;top:10.5px;width:6px;height:3.5px;clip-path:polygon(50% 0,100% 100%,0 100%);background:#44732F"></div>
+  <div style="position:absolute;left:124px;top:11.5px;width:5px;height:3px;clip-path:polygon(50% 0,100% 100%,0 100%);background:#44732F"></div>
+  <div style="position:absolute;left:66px;top:18px;width:8px;height:4.5px;clip-path:polygon(50% 0,100% 100%,0 100%);background:#3C6A2C"></div>
+  <div style="position:absolute;left:80px;top:17.5px;width:8px;height:4.5px;clip-path:polygon(50% 0,100% 100%,0 100%);background:#3C6A2C"></div>
+  <div style="position:absolute;left:94px;top:17.5px;width:8px;height:4.5px;clip-path:polygon(50% 0,100% 100%,0 100%);background:#3C6A2C"></div>
+  <div style="position:absolute;left:108px;top:18px;width:8px;height:4.5px;clip-path:polygon(50% 0,100% 100%,0 100%);background:#3C6A2C"></div>
+  <div style="position:absolute;left:122px;top:18.5px;width:7px;height:4px;clip-path:polygon(50% 0,100% 100%,0 100%);background:#3C6A2C"></div>
+
+  <div style="position:absolute;left:142px;top:22px;width:42px;height:8px;border-radius:0 0 10px 16px / 0 0 8px 8px;background:linear-gradient(180deg,#4C7A38,#375F26)"></div>
+  <div style="position:absolute;left:140px;top:10px;width:46px;height:15px;border-radius:40% 22% 18% 40% / 50%;background:linear-gradient(180deg,#87B968,#5E9047)"></div>
+  <div style="position:absolute;left:168px;top:13px;width:38px;height:13px;clip-path:polygon(0 0,70% 14%,100% 38%,100% 72%,72% 92%,0 100%);background:linear-gradient(180deg,#7FAF61,#55833F)"></div>
+  <div style="position:absolute;left:172px;top:21.5px;width:30px;height:1.5px;border-radius:1px;background:rgba(34,58,24,.6);transform:rotate(-4deg);transform-origin:0 50%"></div>
+  <div style="position:absolute;left:174px;top:23px;width:27px;height:2px;background:repeating-linear-gradient(90deg,#EFE4CE 0 3px,rgba(239,228,206,0) 3px 8px);transform:rotate(-4deg);transform-origin:0 50%"></div>
+  <div style="position:absolute;left:197px;top:17.5px;width:3px;height:2px;border-radius:50%;background:#28421C"></div>
+
+  <div style="position:absolute;left:153px;top:4.5px;width:11px;height:8px;border-radius:50%;background:#8CC06E"></div>
+  <div style="position:absolute;left:155.5px;top:5.5px;width:6.5px;height:5.5px;border-radius:50%;background:#DEBA3B;box-shadow:0 0 0 1px #2B4C20"></div>
+  <div style="position:absolute;left:158px;top:6.5px;width:1.5px;height:3.5px;border-radius:1px;background:#141F0E"></div>
+  <div style="position:absolute;left:152px;top:13px;width:14px;height:11px;border-radius:50%;background:#87B968"></div>
+  <div style="position:absolute;left:155px;top:15px;width:8px;height:7px;border-radius:50%;background:#DEBA3B;box-shadow:0 0 0 1px #2B4C20"></div>
+  <div style="position:absolute;left:158px;top:16px;width:1.8px;height:4.5px;border-radius:1px;background:#141F0E"></div>
+
+  <div style="position:absolute;left:10px;top:29.5px;width:180px;height:1.5px;background:linear-gradient(90deg,rgba(232,244,212,0),rgba(232,244,212,.26) 24%,rgba(232,244,212,.26) 76%,rgba(232,244,212,0))"></div>
+  <div style="position:absolute;left:148px;top:26px;width:56px;height:9px;border-radius:50%;border-top:1px solid rgba(240,255,220,.2)"></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isGatorOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:0;top:0;width:206px;height:44px;transform:{{ flip }}">
+  <div style="position:absolute;left:6px;top:22px;width:190px;height:16px;border-radius:50%;background:rgba(16,40,15,.45);filter:blur(4px)"></div>
+
+  <div style="position:absolute;left:2px;top:20px;width:64px;height:12px;clip-path:polygon(0 62%,100% 0,100% 100%);background:linear-gradient(90deg,#3B6429,#5C8E45)"></div>
+  <div style="position:absolute;left:2px;top:20px;width:42px;height:12px;clip-path:polygon(0 62%,100% 0,100% 100%);background:linear-gradient(90deg,rgba(18,52,60,.55),rgba(18,52,60,0))"></div>
+  <div style="position:absolute;left:20px;top:21.5px;width:7px;height:4px;clip-path:polygon(50% 0,100% 100%,0 100%);background:#3D6B2C"></div>
+  <div style="position:absolute;left:34px;top:20px;width:7px;height:4px;clip-path:polygon(50% 0,100% 100%,0 100%);background:#3D6B2C"></div>
+  <div style="position:absolute;left:48px;top:18.5px;width:8px;height:4.5px;clip-path:polygon(50% 0,100% 100%,0 100%);background:#42722F"></div>
+
+  <div style="position:absolute;left:70px;top:27px;width:17px;height:8px;border-radius:5px;background:#3B6529;transform:rotate(18deg)"></div>
+  <div style="position:absolute;left:81px;top:31px;width:8px;height:6px;border-radius:3px;background:#345A25;transform:rotate(18deg)"></div>
+  <div style="position:absolute;left:120px;top:27px;width:17px;height:8px;border-radius:5px;background:#3F6A2E;transform:rotate(16deg)"></div>
+  <div style="position:absolute;left:131px;top:31px;width:8px;height:6px;border-radius:3px;background:#365D28;transform:rotate(16deg)"></div>
+
+  <div style="position:absolute;left:58px;top:22px;width:96px;height:9px;border-radius:0 0 20px 26px / 0 0 9px 9px;background:linear-gradient(180deg,#4E7C3A,#375F26)"></div>
+  <div style="position:absolute;left:56px;top:9px;width:100px;height:17px;border-radius:46% 30% 30% 46% / 50%;background:linear-gradient(180deg,#87B968 0%,#719F53 52%,#5A8B44 100%)"></div>
+  <div style="position:absolute;left:64px;top:14.5px;width:88px;height:4px;border-radius:2px;background:rgba(164,202,128,.22)"></div>
+  <div style="position:absolute;left:68px;top:10.5px;width:6px;height:3.5px;clip-path:polygon(50% 0,100% 100%,0 100%);background:#44732F"></div>
+  <div style="position:absolute;left:82px;top:10px;width:6px;height:3.5px;clip-path:polygon(50% 0,100% 100%,0 100%);background:#44732F"></div>
+  <div style="position:absolute;left:96px;top:10px;width:6px;height:3.5px;clip-path:polygon(50% 0,100% 100%,0 100%);background:#44732F"></div>
+  <div style="position:absolute;left:110px;top:10.5px;width:6px;height:3.5px;clip-path:polygon(50% 0,100% 100%,0 100%);background:#44732F"></div>
+  <div style="position:absolute;left:124px;top:11.5px;width:5px;height:3px;clip-path:polygon(50% 0,100% 100%,0 100%);background:#44732F"></div>
+  <div style="position:absolute;left:66px;top:18px;width:8px;height:4.5px;clip-path:polygon(50% 0,100% 100%,0 100%);background:#3C6A2C"></div>
+  <div style="position:absolute;left:80px;top:17.5px;width:8px;height:4.5px;clip-path:polygon(50% 0,100% 100%,0 100%);background:#3C6A2C"></div>
+  <div style="position:absolute;left:94px;top:17.5px;width:8px;height:4.5px;clip-path:polygon(50% 0,100% 100%,0 100%);background:#3C6A2C"></div>
+  <div style="position:absolute;left:108px;top:18px;width:8px;height:4.5px;clip-path:polygon(50% 0,100% 100%,0 100%);background:#3C6A2C"></div>
+  <div style="position:absolute;left:122px;top:18.5px;width:7px;height:4px;clip-path:polygon(50% 0,100% 100%,0 100%);background:#3C6A2C"></div>
+
+  <div style="position:absolute;left:142px;top:22px;width:32px;height:8px;border-radius:0 0 10px 16px / 0 0 8px 8px;background:linear-gradient(180deg,#4C7A38,#375F26)"></div>
+  <div style="position:absolute;left:140px;top:10px;width:36px;height:15px;border-radius:40% 22% 18% 40% / 50%;background:linear-gradient(180deg,#87B968,#5E9047)"></div>
+
+  <div style="position:absolute;left:170px;top:14px;width:32px;height:13px;clip-path:polygon(0 8%,100% 28%,100% 76%,0 92%);background:linear-gradient(90deg,#7E3436,#4E1D1C)"></div>
+
+  <div style="position:absolute;left:168px;top:9px;width:38px;height:11px;transform:rotate(-14deg);transform-origin:0 100%">
+    <div style="position:absolute;left:0;top:0;width:36px;height:11px;clip-path:polygon(0 0,70% 26%,100% 50%,100% 76%,78% 100%,0 100%);background:linear-gradient(180deg,#7FAF61,#55833F)"></div>
+    <div style="position:absolute;left:30px;top:5px;width:3px;height:2px;border-radius:50%;background:#28421C"></div>
+    <div style="position:absolute;left:8px;top:8px;width:3.5px;height:3.5px;clip-path:polygon(50% 100%,0 0,100% 0);background:#EFE4CE"></div>
+    <div style="position:absolute;left:17px;top:7.5px;width:3.5px;height:3.5px;clip-path:polygon(50% 100%,0 0,100% 0);background:#EFE4CE"></div>
+    <div style="position:absolute;left:26px;top:6.5px;width:3px;height:3px;clip-path:polygon(50% 100%,0 0,100% 0);background:#EFE4CE"></div>
+  </div>
+
+  <div style="position:absolute;left:168px;top:23px;width:36px;height:9px;transform:rotate(9deg);transform-origin:0 0">
+    <div style="position:absolute;left:0;top:0;width:34px;height:9px;clip-path:polygon(0 0,78% 4%,100% 26%,100% 52%,70% 74%,0 100%);background:linear-gradient(180deg,#5C8D46,#3E6A2C)"></div>
+    <div style="position:absolute;left:8px;top:-3px;width:3.5px;height:3.5px;clip-path:polygon(50% 0,0 100%,100% 100%);background:#EFE4CE"></div>
+    <div style="position:absolute;left:17px;top:-2.5px;width:3.5px;height:3.5px;clip-path:polygon(50% 0,0 100%,100% 100%);background:#EFE4CE"></div>
+    <div style="position:absolute;left:25px;top:-2px;width:3px;height:3px;clip-path:polygon(50% 0,0 100%,100% 100%);background:#EFE4CE"></div>
+  </div>
+
+  <div style="position:absolute;left:153px;top:4.5px;width:11px;height:8px;border-radius:50%;background:#8CC06E"></div>
+  <div style="position:absolute;left:155.5px;top:5.5px;width:6.5px;height:5.5px;border-radius:50%;background:#DEBA3B;box-shadow:0 0 0 1px #2B4C20"></div>
+  <div style="position:absolute;left:158px;top:6.5px;width:1.5px;height:3.5px;border-radius:1px;background:#141F0E"></div>
+  <div style="position:absolute;left:152px;top:13px;width:14px;height:11px;border-radius:50%;background:#87B968"></div>
+  <div style="position:absolute;left:155px;top:15px;width:8px;height:7px;border-radius:50%;background:#DEBA3B;box-shadow:0 0 0 1px #2B4C20"></div>
+  <div style="position:absolute;left:158px;top:16px;width:1.8px;height:4.5px;border-radius:1px;background:#141F0E"></div>
+
+  <div style="position:absolute;left:10px;top:29.5px;width:180px;height:1.5px;background:linear-gradient(90deg,rgba(232,244,212,0),rgba(232,244,212,.26) 24%,rgba(232,244,212,.26) 76%,rgba(232,244,212,0))"></div>
+  <div style="position:absolute;left:148px;top:26px;width:56px;height:9px;border-radius:50%;border-top:1px solid rgba(240,255,220,.2)"></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isLog }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:0;top:0;width:200px;height:42px;transform:{{ flip }}">
+  <div style="position:absolute;left:8px;top:26px;width:190px;height:14px;border-radius:50%;background:rgba(3,30,52,.5);filter:blur(3px)"></div>
+  <div style="position:absolute;left:0;top:14px;width:200px;height:16px;border-radius:0 0 12px 12px;background:#4E3220"></div>
+  <div style="position:absolute;left:0;top:0;width:200px;height:22px;border-radius:12px;background:linear-gradient(180deg,#A67A4C 0%,#7F5535 60%,#6A4529 100%)"></div>
+  <div style="position:absolute;left:20px;top:4px;width:158px;height:3px;border-radius:2px;background:rgba(255,225,185,.3)"></div>
+  <div style="position:absolute;left:36px;top:11px;width:40px;height:3px;border-radius:2px;background:rgba(52,30,14,.5)"></div>
+  <div style="position:absolute;left:96px;top:15px;width:58px;height:3px;border-radius:2px;background:rgba(52,30,14,.45)"></div>
+  <div style="position:absolute;left:124px;top:7px;width:26px;height:3px;border-radius:2px;background:rgba(52,30,14,.35)"></div>
+  <div style="position:absolute;left:-6px;top:0;width:18px;height:26px;border-radius:50%;background:#C79B69;box-shadow:0 0 0 2.5px #6E4A2E inset"></div>
+  <div style="position:absolute;left:-1px;top:7px;width:8px;height:12px;border-radius:50%;background:#AA7E50"></div>
+  <div style="position:absolute;left:188px;top:0;width:16px;height:26px;border-radius:50%;background:#8A5F38;box-shadow:0 0 0 2.5px #5C3D22 inset"></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isLogShort }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:0;top:0;width:130px;height:42px;transform:{{ flip }}">
+  <div style="position:absolute;left:8px;top:26px;width:120px;height:14px;border-radius:50%;background:rgba(3,30,52,.5);filter:blur(3px)"></div>
+  <div style="position:absolute;left:0;top:14px;width:130px;height:16px;border-radius:0 0 12px 12px;background:#4E3220"></div>
+  <div style="position:absolute;left:0;top:0;width:130px;height:22px;border-radius:12px;background:linear-gradient(180deg,#A67A4C 0%,#7F5535 60%,#6A4529 100%)"></div>
+  <div style="position:absolute;left:20px;top:4px;width:88px;height:3px;border-radius:2px;background:rgba(255,225,185,.3)"></div>
+  <div style="position:absolute;left:36px;top:11px;width:40px;height:3px;border-radius:2px;background:rgba(52,30,14,.5)"></div>
+  <div style="position:absolute;left:62px;top:15px;width:38px;height:3px;border-radius:2px;background:rgba(52,30,14,.45)"></div>
+  <div style="position:absolute;left:81px;top:7px;width:26px;height:3px;border-radius:2px;background:rgba(52,30,14,.35)"></div>
+  <div style="position:absolute;left:-6px;top:0;width:18px;height:26px;border-radius:50%;background:#C79B69;box-shadow:0 0 0 2.5px #6E4A2E inset"></div>
+  <div style="position:absolute;left:-1px;top:7px;width:8px;height:12px;border-radius:50%;background:#AA7E50"></div>
+  <div style="position:absolute;left:118px;top:0;width:16px;height:26px;border-radius:50%;background:#8A5F38;box-shadow:0 0 0 2.5px #5C3D22 inset"></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isLogLong }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:0;top:0;width:270px;height:42px;transform:{{ flip }}">
+  <div style="position:absolute;left:8px;top:26px;width:260px;height:14px;border-radius:50%;background:rgba(3,30,52,.5);filter:blur(3px)"></div>
+  <div style="position:absolute;left:0;top:14px;width:270px;height:16px;border-radius:0 0 12px 12px;background:#4E3220"></div>
+  <div style="position:absolute;left:0;top:0;width:270px;height:22px;border-radius:12px;background:linear-gradient(180deg,#A67A4C 0%,#7F5535 60%,#6A4529 100%)"></div>
+  <div style="position:absolute;left:20px;top:4px;width:228px;height:3px;border-radius:2px;background:rgba(255,225,185,.3)"></div>
+  <div style="position:absolute;left:36px;top:11px;width:40px;height:3px;border-radius:2px;background:rgba(52,30,14,.5)"></div>
+  <div style="position:absolute;left:130px;top:15px;width:78px;height:3px;border-radius:2px;background:rgba(52,30,14,.45)"></div>
+  <div style="position:absolute;left:167px;top:7px;width:26px;height:3px;border-radius:2px;background:rgba(52,30,14,.35)"></div>
+  <div style="position:absolute;left:-6px;top:0;width:18px;height:26px;border-radius:50%;background:#C79B69;box-shadow:0 0 0 2.5px #6E4A2E inset"></div>
+  <div style="position:absolute;left:-1px;top:7px;width:8px;height:12px;border-radius:50%;background:#AA7E50"></div>
+  <div style="position:absolute;left:258px;top:0;width:16px;height:26px;border-radius:50%;background:#8A5F38;box-shadow:0 0 0 2.5px #5C3D22 inset"></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isCrashed }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:0;top:0;width:72px;height:56px;transform:{{ flip }}">
+  <div style="position:absolute;left:0;top:0;width:72px;height:56px;transform:scaleX(-1)">
+  <div style="position:absolute;left:3px;top:41px;width:66px;height:10px;border-radius:50%;background:rgba(0,0,0,.4);filter:blur(3px)"></div>
+
+  <div style="position:absolute;left:0px;top:34px;width:24px;height:12px;border-radius:50%;background:#2E343C"></div>
+  <div style="position:absolute;left:0px;top:34px;width:24px;height:12px;border-radius:50%;border:2.5px solid #454C56;box-sizing:border-box"></div>
+  <div style="position:absolute;left:3px;top:36px;width:18px;height:8px;border-radius:50%;border:1.5px solid #C6CED8;box-sizing:border-box"></div>
+  <div style="position:absolute;left:10px;top:38px;width:5px;height:4px;border-radius:50%;background:#D2D9E2"></div>
+
+  <div style="position:absolute;left:26px;top:30px;width:24px;height:12px;border-radius:50%;background:#2E343C;transform:rotate(-9deg)"></div>
+  <div style="position:absolute;left:26px;top:30px;width:24px;height:12px;border-radius:50%;border:2.5px solid #454C56;box-sizing:border-box;transform:rotate(-9deg)"></div>
+  <div style="position:absolute;left:29px;top:32px;width:18px;height:8px;border-radius:50%;border:1.5px solid #C6CED8;box-sizing:border-box;transform:rotate(-9deg)"></div>
+  <div style="position:absolute;left:36px;top:34px;width:5px;height:4px;border-radius:50%;background:#D2D9E2"></div>
+
+  <svg width="72" height="56" viewBox="0 0 72 56" style="position:absolute;left:0;top:0;overflow:visible">
+    <g fill="none" stroke-linecap="round">
+      <path d="M12 40 L26 42" stroke="#8E98A6" stroke-width="2.4"></path>
+      <path d="M12 40 L22 33" stroke="#B9C2CE" stroke-width="2.4"></path>
+      <path d="M26 42 L22 33" stroke="#C6CED8" stroke-width="2.6"></path>
+      <path d="M26 42 L38 34" stroke="#D7DEE7" stroke-width="2.6"></path>
+      <path d="M22 33 L38 34" stroke="#D7DEE7" stroke-width="2.4"></path>
+      <path d="M38 34 L38 36" stroke="#C6CED8" stroke-width="2.6"></path>
+      <path d="M40 32 L47 29" stroke="#3A4048" stroke-width="3"></path>
+    </g>
+  </svg>
+  <div style="position:absolute;left:20px;top:30px;width:9px;height:3.5px;border-radius:2px;background:#22262C;transform:rotate(-24deg)"></div>
+  <div style="position:absolute;left:24px;top:41px;width:7px;height:3px;border-radius:2px;background:#5C6570;transform:rotate(28deg)"></div>
+
+  <div style="position:absolute;left:34px;top:44px;width:16px;height:6px;border-radius:3px;background:#2E333A;transform:rotate(-8deg)"></div>
+  <div style="position:absolute;left:32px;top:47px;width:11px;height:5px;border-radius:2px;background:#16191C;transform:rotate(-4deg)"></div>
+  <div style="position:absolute;left:38px;top:38px;width:17px;height:6px;border-radius:3px;background:#3A4048;transform:rotate(6deg)"></div>
+  <div style="position:absolute;left:36px;top:37px;width:11px;height:5px;border-radius:2px;background:#16191C;transform:rotate(10deg)"></div>
+
+  <div style="position:absolute;left:47px;top:39px;width:22px;height:13px;border-radius:6px 8px 8px 6px;background:{{ liveryDark }};transform:rotate(-5deg)"></div>
+  <div style="position:absolute;left:47px;top:39px;width:22px;height:5px;border-radius:6px 8px 2px 2px;background:{{ livery }};transform:rotate(-5deg)"></div>
+  <div style="position:absolute;left:51px;top:43px;width:15px;height:2.5px;background:#F1EFE7;transform:rotate(-5deg)"></div>
+
+  <div style="position:absolute;left:50px;top:34px;width:15px;height:4.5px;border-radius:2px;background:{{ livery }};transform:rotate(-28deg)"></div>
+  <div style="position:absolute;left:60px;top:29px;width:8px;height:4px;border-radius:2px;background:#F2C99A;transform:rotate(-30deg)"></div>
+  <div style="position:absolute;left:52px;top:49px;width:15px;height:4.5px;border-radius:2px;background:{{ livery }};transform:rotate(14deg)"></div>
+  <div style="position:absolute;left:64px;top:50px;width:8px;height:4px;border-radius:2px;background:#F2C99A;transform:rotate(18deg)"></div>
+
+  <div style="position:absolute;left:64px;top:40px;width:11px;height:10px;border-radius:5px 4px 6px 5px;background:#F2C99A;transform:rotate(-8deg)"></div>
+  <div style="position:absolute;left:70px;top:44px;width:3px;height:3px;border-radius:50%;background:#14202E"></div>
+  <div style="position:absolute;left:63px;top:36px;width:15px;height:8px;border-radius:7px 7px 3px 3px;background:#F6F2E8;transform:rotate(-24deg)"></div>
+  <div style="position:absolute;left:64px;top:35px;width:13px;height:3px;border-radius:6px 6px 0 0;background:{{ livery }};transform:rotate(-24deg)"></div>
+  <div style="position:absolute;left:67px;top:37px;width:2px;height:5px;border-radius:1px;background:rgba(30,36,44,.35);transform:rotate(-24deg)"></div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isCrashing }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:0;top:0;width:72px;height:56px;transform:{{ flip }}">
+  <div style="position:absolute;left:60px;top:14px;width:10px;height:40px;border-radius:2px;background:linear-gradient(90deg,#8E8779,#645D52)"></div>
+  <div style="position:absolute;left:60px;top:14px;width:10px;height:4px;background:#A79E8D"></div>
+  <div style="position:absolute;left:0;top:0;width:60px;height:56px;transform-origin:44px 48px;animation:lo-fall2 2.4s ease-in forwards infinite">
+
+  <div style="position:absolute;left:5px;top:44px;width:50px;height:9px;border-radius:50%;background:rgba(0,0,0,.4);filter:blur(3px)"></div>
+
+  <div style="position:absolute;left:2px;top:28px;width:20px;height:20px;border-radius:50%;background:#2E343C"></div>
+  <div style="position:absolute;left:2px;top:28px;width:20px;height:20px;border-radius:50%;border:3px solid #454C56;box-sizing:border-box"></div>
+  <div style="position:absolute;left:4px;top:30px;width:16px;height:16px;border-radius:50%;border:1.5px solid #C6CED8;box-sizing:border-box;animation:lo-spin .3s linear infinite">
+    <div style="position:absolute;left:6px;top:0;width:1.5px;height:13px;background:#9AA5B2"></div>
+    <div style="position:absolute;left:0;top:6px;width:13px;height:1.5px;background:#9AA5B2"></div>
+    <div style="position:absolute;left:3px;top:3px;width:7px;height:7px;border-radius:50%;background:#5C6570;transform:rotate(45deg)"></div>
+  </div>
+  <div style="position:absolute;left:9px;top:35px;width:6px;height:6px;border-radius:50%;background:#D2D9E2"></div>
+
+  <div style="position:absolute;left:38px;top:28px;width:20px;height:20px;border-radius:50%;background:#2E343C"></div>
+  <div style="position:absolute;left:38px;top:28px;width:20px;height:20px;border-radius:50%;border:3px solid #454C56;box-sizing:border-box"></div>
+  <div style="position:absolute;left:40px;top:30px;width:16px;height:16px;border-radius:50%;border:1.5px solid #C6CED8;box-sizing:border-box;animation:lo-spin .3s linear infinite">
+    <div style="position:absolute;left:6px;top:0;width:1.5px;height:13px;background:#9AA5B2"></div>
+    <div style="position:absolute;left:0;top:6px;width:13px;height:1.5px;background:#9AA5B2"></div>
+    <div style="position:absolute;left:3px;top:3px;width:7px;height:7px;border-radius:50%;background:#5C6570;transform:rotate(45deg)"></div>
+  </div>
+  <div style="position:absolute;left:45px;top:35px;width:6px;height:6px;border-radius:50%;background:#D2D9E2"></div>
+
+  <svg width="60" height="56" viewBox="0 0 60 56" style="position:absolute;left:0;top:0;overflow:visible">
+    <g fill="none" stroke-linecap="round">
+      <path d="M12 38 L27 40" stroke="#8E98A6" stroke-width="2.6"></path>
+      <path d="M12 38 L22 22" stroke="#B9C2CE" stroke-width="2.6"></path>
+      <path d="M27 40 L22 22" stroke="#C6CED8" stroke-width="2.8"></path>
+      <path d="M27 40 L45 19" stroke="#D7DEE7" stroke-width="2.8"></path>
+      <path d="M22 22 L45 19" stroke="#D7DEE7" stroke-width="2.6"></path>
+      <path d="M45 19 L48 38" stroke="#C6CED8" stroke-width="2.8"></path>
+      <path d="M22 22 L21 18" stroke="#8E98A6" stroke-width="2.4"></path>
+    </g>
+  </svg>
+  <div style="position:absolute;left:16px;top:14px;width:12px;height:4.5px;border-radius:2px 4px 4px 2px;background:#22262C;transform:rotate(-6deg)"></div>
+
+  <div style="position:absolute;left:23px;top:36px;width:8px;height:8px;border-radius:50%;background:#2B3038"></div>
+  <div style="position:absolute;left:25px;top:38px;width:4px;height:4px;border-radius:50%;background:#C6CED8"></div>
+  <div style="position:absolute;left:19px;top:40px;width:11px;height:3.5px;border-radius:2px;background:#5C6570;animation:lo-pedal .5s ease-in-out infinite"></div>
+
+  <div style="position:absolute;left:41px;top:14px;width:13px;height:3.5px;border-radius:2px;background:#3A4048"></div>
+  <div style="position:absolute;left:51px;top:15px;width:4.5px;height:8px;border-radius:2px;background:#3A4048;transform:rotate(16deg)"></div>
+
+  <div style="position:absolute;left:20px;top:32px;width:11px;height:10px;border-radius:5px;background:#2E333A;transform:rotate(-8deg)"></div>
+  <div style="position:absolute;left:26px;top:35px;width:12px;height:5px;border-radius:3px;background:#3A4048;transform:rotate(22deg)"></div>
+  <div style="position:absolute;left:33px;top:39px;width:9px;height:5px;border-radius:2px;background:#16191C"></div>
+
+  <div style="position:absolute;left:25px;top:20px;width:19px;height:14px;border-radius:7px 9px 5px 7px;background:{{ liveryDark }};transform:rotate(-16deg);animation:lo-pedal .5s ease-in-out infinite"></div>
+  <div style="position:absolute;left:26px;top:20px;width:18px;height:6px;border-radius:7px 9px 3px 3px;background:{{ livery }};transform:rotate(-16deg)"></div>
+  <div style="position:absolute;left:28px;top:24px;width:14px;height:2.5px;background:#F1EFE7;transform:rotate(-16deg)"></div>
+  <div style="position:absolute;left:27px;top:28px;width:13px;height:2.5px;background:rgba(255,255,255,.3);transform:rotate(-16deg)"></div>
+
+  <div style="position:absolute;left:38px;top:21px;width:12px;height:4px;border-radius:2px;background:{{ livery }};transform:rotate(22deg)"></div>
+  <div style="position:absolute;left:44px;top:19px;width:10px;height:3.5px;border-radius:2px;background:#F2C99A;transform:rotate(-14deg)"></div>
+  <div style="position:absolute;left:52px;top:15px;width:5px;height:4px;border-radius:2px;background:#2B3038"></div>
+
+  <div style="position:absolute;left:40px;top:11px;width:11px;height:9px;border-radius:5px 6px 5px 3px;background:#F2C99A"></div>
+  <div style="position:absolute;left:49px;top:14px;width:3.5px;height:3.5px;border-radius:2px;background:#F2C99A"></div>
+  <div style="position:absolute;left:47px;top:14px;width:2.5px;height:3px;border-radius:50%;background:#14202E"></div>
+  <div style="position:absolute;left:41px;top:17px;width:6px;height:3px;border-radius:2px;background:#C99C6C"></div>
+  <div style="position:absolute;left:39px;top:7px;width:14px;height:7px;border-radius:7px 7px 2px 2px;background:#F6F2E8"></div>
+  <div style="position:absolute;left:44px;top:8px;width:2px;height:5px;border-radius:1px;background:rgba(30,36,44,.4);transform:rotate(-10deg)"></div>
+  <div style="position:absolute;left:47.5px;top:8px;width:2px;height:5px;border-radius:1px;background:rgba(30,36,44,.4);transform:rotate(-10deg)"></div>
+  <div style="position:absolute;left:40px;top:6px;width:12px;height:3px;border-radius:6px 6px 0 0;background:{{ livery }}"></div>
+  <div style="position:absolute;left:50px;top:11px;width:4px;height:2.5px;border-radius:0 2px 2px 0;background:#F6F2E8"></div>
+
+  </div>
+  <div style="position:absolute;left:44px;top:18px;width:26px;height:26px;border-radius:50%;background:#F6E7C8;filter:blur(3px);animation:lo-dust 2.4s ease-out infinite"></div>
+  <div style="position:absolute;left:-6px;top:38px;width:34px;height:18px;border-radius:50%;background:#C9BFA8;filter:blur(3px);animation:lo-grit 2.4s ease-out infinite"></div>
+  <div style="position:absolute;left:0;top:0;width:72px;height:56px;opacity:0;animation:lo-land 2.4s ease-out infinite">
+  <div style="position:absolute;left:0;top:0;width:72px;height:56px;transform:scaleX(-1)">
+  <div style="position:absolute;left:3px;top:41px;width:66px;height:10px;border-radius:50%;background:rgba(0,0,0,.4);filter:blur(3px)"></div>
+
+  <div style="position:absolute;left:0px;top:34px;width:24px;height:12px;border-radius:50%;background:#2E343C"></div>
+  <div style="position:absolute;left:0px;top:34px;width:24px;height:12px;border-radius:50%;border:2.5px solid #454C56;box-sizing:border-box"></div>
+  <div style="position:absolute;left:3px;top:36px;width:18px;height:8px;border-radius:50%;border:1.5px solid #C6CED8;box-sizing:border-box"></div>
+  <div style="position:absolute;left:10px;top:38px;width:5px;height:4px;border-radius:50%;background:#D2D9E2"></div>
+
+  <div style="position:absolute;left:26px;top:30px;width:24px;height:12px;border-radius:50%;background:#2E343C;transform:rotate(-9deg)"></div>
+  <div style="position:absolute;left:26px;top:30px;width:24px;height:12px;border-radius:50%;border:2.5px solid #454C56;box-sizing:border-box;transform:rotate(-9deg)"></div>
+  <div style="position:absolute;left:29px;top:32px;width:18px;height:8px;border-radius:50%;border:1.5px solid #C6CED8;box-sizing:border-box;transform:rotate(-9deg)"></div>
+  <div style="position:absolute;left:36px;top:34px;width:5px;height:4px;border-radius:50%;background:#D2D9E2"></div>
+
+  <svg width="72" height="56" viewBox="0 0 72 56" style="position:absolute;left:0;top:0;overflow:visible">
+    <g fill="none" stroke-linecap="round">
+      <path d="M12 40 L26 42" stroke="#8E98A6" stroke-width="2.4"></path>
+      <path d="M12 40 L22 33" stroke="#B9C2CE" stroke-width="2.4"></path>
+      <path d="M26 42 L22 33" stroke="#C6CED8" stroke-width="2.6"></path>
+      <path d="M26 42 L38 34" stroke="#D7DEE7" stroke-width="2.6"></path>
+      <path d="M22 33 L38 34" stroke="#D7DEE7" stroke-width="2.4"></path>
+      <path d="M38 34 L38 36" stroke="#C6CED8" stroke-width="2.6"></path>
+      <path d="M40 32 L47 29" stroke="#3A4048" stroke-width="3"></path>
+    </g>
+  </svg>
+  <div style="position:absolute;left:20px;top:30px;width:9px;height:3.5px;border-radius:2px;background:#22262C;transform:rotate(-24deg)"></div>
+  <div style="position:absolute;left:24px;top:41px;width:7px;height:3px;border-radius:2px;background:#5C6570;transform:rotate(28deg)"></div>
+
+  <div style="position:absolute;left:34px;top:44px;width:16px;height:6px;border-radius:3px;background:#2E333A;transform:rotate(-8deg)"></div>
+  <div style="position:absolute;left:32px;top:47px;width:11px;height:5px;border-radius:2px;background:#16191C;transform:rotate(-4deg)"></div>
+  <div style="position:absolute;left:38px;top:38px;width:17px;height:6px;border-radius:3px;background:#3A4048;transform:rotate(6deg)"></div>
+  <div style="position:absolute;left:36px;top:37px;width:11px;height:5px;border-radius:2px;background:#16191C;transform:rotate(10deg)"></div>
+
+  <div style="position:absolute;left:47px;top:39px;width:22px;height:13px;border-radius:6px 8px 8px 6px;background:{{ liveryDark }};transform:rotate(-5deg)"></div>
+  <div style="position:absolute;left:47px;top:39px;width:22px;height:5px;border-radius:6px 8px 2px 2px;background:{{ livery }};transform:rotate(-5deg)"></div>
+  <div style="position:absolute;left:51px;top:43px;width:15px;height:2.5px;background:#F1EFE7;transform:rotate(-5deg)"></div>
+
+  <div style="position:absolute;left:50px;top:34px;width:15px;height:4.5px;border-radius:2px;background:{{ livery }};transform:rotate(-28deg)"></div>
+  <div style="position:absolute;left:60px;top:29px;width:8px;height:4px;border-radius:2px;background:#F2C99A;transform:rotate(-30deg)"></div>
+  <div style="position:absolute;left:52px;top:49px;width:15px;height:4.5px;border-radius:2px;background:{{ livery }};transform:rotate(14deg)"></div>
+  <div style="position:absolute;left:64px;top:50px;width:8px;height:4px;border-radius:2px;background:#F2C99A;transform:rotate(18deg)"></div>
+
+  <div style="position:absolute;left:64px;top:40px;width:11px;height:10px;border-radius:5px 4px 6px 5px;background:#F2C99A;transform:rotate(-8deg)"></div>
+  <div style="position:absolute;left:70px;top:44px;width:3px;height:3px;border-radius:50%;background:#14202E"></div>
+  <div style="position:absolute;left:63px;top:36px;width:15px;height:8px;border-radius:7px 7px 3px 3px;background:#F6F2E8;transform:rotate(-24deg)"></div>
+  <div style="position:absolute;left:64px;top:35px;width:13px;height:3px;border-radius:6px 6px 0 0;background:{{ livery }};transform:rotate(-24deg)"></div>
+  <div style="position:absolute;left:67px;top:37px;width:2px;height:5px;border-radius:1px;background:rgba(30,36,44,.35);transform:rotate(-24deg)"></div>
+  </div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isCyclist }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:0;top:0;width:60px;height:56px;transform:{{ flip }}">
+  <div style="position:absolute;left:5px;top:44px;width:50px;height:9px;border-radius:50%;background:rgba(0,0,0,.4);filter:blur(3px)"></div>
+
+  <div style="position:absolute;left:2px;top:28px;width:20px;height:20px;border-radius:50%;background:#2E343C"></div>
+  <div style="position:absolute;left:2px;top:28px;width:20px;height:20px;border-radius:50%;border:3px solid #454C56;box-sizing:border-box"></div>
+  <div style="position:absolute;left:4px;top:30px;width:16px;height:16px;border-radius:50%;border:1.5px solid #C6CED8;box-sizing:border-box;animation:lo-spin .3s linear infinite">
+    <div style="position:absolute;left:6px;top:0;width:1.5px;height:13px;background:#9AA5B2"></div>
+    <div style="position:absolute;left:0;top:6px;width:13px;height:1.5px;background:#9AA5B2"></div>
+    <div style="position:absolute;left:3px;top:3px;width:7px;height:7px;border-radius:50%;background:#5C6570;transform:rotate(45deg)"></div>
+  </div>
+  <div style="position:absolute;left:9px;top:35px;width:6px;height:6px;border-radius:50%;background:#D2D9E2"></div>
+
+  <div style="position:absolute;left:38px;top:28px;width:20px;height:20px;border-radius:50%;background:#2E343C"></div>
+  <div style="position:absolute;left:38px;top:28px;width:20px;height:20px;border-radius:50%;border:3px solid #454C56;box-sizing:border-box"></div>
+  <div style="position:absolute;left:40px;top:30px;width:16px;height:16px;border-radius:50%;border:1.5px solid #C6CED8;box-sizing:border-box;animation:lo-spin .3s linear infinite">
+    <div style="position:absolute;left:6px;top:0;width:1.5px;height:13px;background:#9AA5B2"></div>
+    <div style="position:absolute;left:0;top:6px;width:13px;height:1.5px;background:#9AA5B2"></div>
+    <div style="position:absolute;left:3px;top:3px;width:7px;height:7px;border-radius:50%;background:#5C6570;transform:rotate(45deg)"></div>
+  </div>
+  <div style="position:absolute;left:45px;top:35px;width:6px;height:6px;border-radius:50%;background:#D2D9E2"></div>
+
+  <svg width="60" height="56" viewBox="0 0 60 56" style="position:absolute;left:0;top:0;overflow:visible">
+    <g fill="none" stroke-linecap="round">
+      <path d="M12 38 L27 40" stroke="#8E98A6" stroke-width="2.6"></path>
+      <path d="M12 38 L22 22" stroke="#B9C2CE" stroke-width="2.6"></path>
+      <path d="M27 40 L22 22" stroke="#C6CED8" stroke-width="2.8"></path>
+      <path d="M27 40 L45 19" stroke="#D7DEE7" stroke-width="2.8"></path>
+      <path d="M22 22 L45 19" stroke="#D7DEE7" stroke-width="2.6"></path>
+      <path d="M45 19 L48 38" stroke="#C6CED8" stroke-width="2.8"></path>
+      <path d="M22 22 L21 18" stroke="#8E98A6" stroke-width="2.4"></path>
+    </g>
+  </svg>
+  <div style="position:absolute;left:16px;top:14px;width:12px;height:4.5px;border-radius:2px 4px 4px 2px;background:#22262C;transform:rotate(-6deg)"></div>
+
+  <div style="position:absolute;left:23px;top:36px;width:8px;height:8px;border-radius:50%;background:#2B3038"></div>
+  <div style="position:absolute;left:25px;top:38px;width:4px;height:4px;border-radius:50%;background:#C6CED8"></div>
+  <div style="position:absolute;left:19px;top:40px;width:11px;height:3.5px;border-radius:2px;background:#5C6570;animation:lo-pedal .5s ease-in-out infinite"></div>
+
+  <div style="position:absolute;left:41px;top:14px;width:13px;height:3.5px;border-radius:2px;background:#3A4048"></div>
+  <div style="position:absolute;left:51px;top:15px;width:4.5px;height:8px;border-radius:2px;background:#3A4048;transform:rotate(16deg)"></div>
+
+  <div style="position:absolute;left:20px;top:32px;width:11px;height:10px;border-radius:5px;background:#2E333A;transform:rotate(-8deg)"></div>
+  <div style="position:absolute;left:26px;top:35px;width:12px;height:5px;border-radius:3px;background:#3A4048;transform:rotate(22deg)"></div>
+  <div style="position:absolute;left:33px;top:39px;width:9px;height:5px;border-radius:2px;background:#16191C"></div>
+
+  <div style="position:absolute;left:25px;top:20px;width:19px;height:14px;border-radius:7px 9px 5px 7px;background:{{ liveryDark }};transform:rotate(-16deg);animation:lo-pedal .5s ease-in-out infinite"></div>
+  <div style="position:absolute;left:26px;top:20px;width:18px;height:6px;border-radius:7px 9px 3px 3px;background:{{ livery }};transform:rotate(-16deg)"></div>
+  <div style="position:absolute;left:28px;top:24px;width:14px;height:2.5px;background:#F1EFE7;transform:rotate(-16deg)"></div>
+  <div style="position:absolute;left:27px;top:28px;width:13px;height:2.5px;background:rgba(255,255,255,.3);transform:rotate(-16deg)"></div>
+
+  <div style="position:absolute;left:38px;top:21px;width:12px;height:4px;border-radius:2px;background:{{ livery }};transform:rotate(22deg)"></div>
+  <div style="position:absolute;left:44px;top:19px;width:10px;height:3.5px;border-radius:2px;background:#F2C99A;transform:rotate(-14deg)"></div>
+  <div style="position:absolute;left:52px;top:15px;width:5px;height:4px;border-radius:2px;background:#2B3038"></div>
+
+  <div style="position:absolute;left:40px;top:11px;width:11px;height:9px;border-radius:5px 6px 5px 3px;background:#F2C99A"></div>
+  <div style="position:absolute;left:49px;top:14px;width:3.5px;height:3.5px;border-radius:2px;background:#F2C99A"></div>
+  <div style="position:absolute;left:47px;top:14px;width:2.5px;height:3px;border-radius:50%;background:#14202E"></div>
+  <div style="position:absolute;left:41px;top:17px;width:6px;height:3px;border-radius:2px;background:#C99C6C"></div>
+  <div style="position:absolute;left:39px;top:7px;width:14px;height:7px;border-radius:7px 7px 2px 2px;background:#F6F2E8"></div>
+  <div style="position:absolute;left:44px;top:8px;width:2px;height:5px;border-radius:1px;background:rgba(30,36,44,.4);transform:rotate(-10deg)"></div>
+  <div style="position:absolute;left:47.5px;top:8px;width:2px;height:5px;border-radius:1px;background:rgba(30,36,44,.4);transform:rotate(-10deg)"></div>
+  <div style="position:absolute;left:40px;top:6px;width:12px;height:3px;border-radius:6px 6px 0 0;background:{{ livery }}"></div>
+  <div style="position:absolute;left:50px;top:11px;width:4px;height:2.5px;border-radius:0 2px 2px 0;background:#F6F2E8"></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isSkaterCrashed }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:0;top:0;width:72px;height:56px;transform:{{ flip }}">
+  <div style="position:absolute;left:3px;top:42px;width:62px;height:9px;border-radius:50%;background:rgba(0,0,0,.4);filter:blur(3px)"></div>
+
+  <div style="position:absolute;left:38px;top:39px;width:30px;height:7px;border-radius:5px;background:{{ liveryDark }};transform:rotate(-12deg)"></div>
+  <div style="position:absolute;left:38px;top:39px;width:30px;height:3px;border-radius:5px 5px 0 0;background:{{ livery }};transform:rotate(-12deg)"></div>
+  <div style="position:absolute;left:42px;top:35px;width:6px;height:5px;border-radius:2px;background:#8A93A0;transform:rotate(-12deg)"></div>
+  <div style="position:absolute;left:59px;top:31px;width:6px;height:5px;border-radius:2px;background:#8A93A0;transform:rotate(-12deg)"></div>
+  <div style="position:absolute;left:41px;top:31px;width:8px;height:6px;border-radius:3px;background:#E8CE5C"></div>
+  <div style="position:absolute;left:58px;top:27px;width:8px;height:6px;border-radius:3px;background:#E8CE5C"></div>
+
+  <div style="position:absolute;left:6px;top:44px;width:16px;height:7px;border-radius:3px;background:#0B0B0D;transform:rotate(14deg)"></div>
+  <div style="position:absolute;left:2px;top:47px;width:12px;height:6px;border-radius:3px;background:#111114;transform:rotate(6deg)"></div>
+  <div style="position:absolute;left:9px;top:31px;width:16px;height:7px;border-radius:3px;background:#111114;transform:rotate(-18deg)"></div>
+  <div style="position:absolute;left:4px;top:27px;width:12px;height:6px;border-radius:3px;background:#0B0B0D;transform:rotate(-10deg)"></div>
+
+  <div style="position:absolute;left:16px;top:33px;width:24px;height:19px;border-radius:11px 9px 9px 11px;background:#1A1A20"></div>
+  <div style="position:absolute;left:17px;top:32px;width:22px;height:8px;border-radius:11px 9px 4px 4px;background:#2E2E38"></div>
+  <div style="position:absolute;left:21px;top:38px;width:15px;height:11px;border-radius:7px;background:#383843;opacity:.55"></div>
+
+  <div style="position:absolute;left:26px;top:26px;width:17px;height:6px;border-radius:3px;background:#26262E;transform:rotate(-32deg)"></div>
+  <div style="position:absolute;left:38px;top:21px;width:8px;height:7px;border-radius:4px;background:#0E0E11"></div>
+  <div style="position:absolute;left:27px;top:49px;width:17px;height:6px;border-radius:3px;background:#1C1C23;transform:rotate(20deg)"></div>
+  <div style="position:absolute;left:40px;top:52px;width:8px;height:7px;border-radius:4px;background:#0B0B0D"></div>
+
+  <div style="position:absolute;left:6px;top:34px;width:16px;height:15px;border-radius:7px 6px 8px 7px;background:#2B2B34;transform:rotate(-14deg)"></div>
+  <div style="position:absolute;left:7px;top:33px;width:15px;height:5px;border-radius:7px 6px 2px 2px;background:#3E3E4A;transform:rotate(-14deg)"></div>
+  <div style="position:absolute;left:2px;top:39px;width:9px;height:8px;border-radius:5px 3px 3px 5px;background:#4A4A56;transform:rotate(-14deg)"></div>
+  <div style="position:absolute;left:1px;top:41px;width:4.5px;height:4px;border-radius:2px;background:#0A0A0C"></div>
+  <div style="position:absolute;left:11px;top:36px;width:4.5px;height:5px;border-radius:50%;background:#F4F4F8"></div>
+  <div style="position:absolute;left:12px;top:37.5px;width:3px;height:3.5px;border-radius:50%;background:#0A0A0C"></div>
+  <div style="position:absolute;left:14px;top:30px;width:9px;height:9px;border-radius:50%;background:#1A1A20"></div>
+  <div style="position:absolute;left:15.5px;top:31.5px;width:6px;height:6px;border-radius:50%;background:#383843"></div>
+  <div style="position:absolute;left:5px;top:29px;width:8px;height:8px;border-radius:50%;background:#1A1A20"></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isSkaterCrashing }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:0;top:0;width:72px;height:56px;transform:{{ flip }}">
+  <div style="position:absolute;left:60px;top:14px;width:10px;height:40px;border-radius:2px;background:linear-gradient(90deg,#8E8779,#645D52)"></div>
+  <div style="position:absolute;left:60px;top:14px;width:10px;height:4px;background:#A79E8D"></div>
+  <div style="position:absolute;left:0;top:0;width:56px;height:56px;transform-origin:44px 48px;animation:lo-fall2 2.4s ease-in forwards infinite">
+
+  <div style="position:absolute;left:4px;top:45px;width:48px;height:8px;border-radius:50%;background:rgba(0,0,0,.4);filter:blur(3px)"></div>
+
+  <div style="position:absolute;left:7px;top:41px;width:8px;height:6px;border-radius:3px;background:#E8CE5C;animation:lo-spin .28s linear infinite"></div>
+  <div style="position:absolute;left:39px;top:41px;width:8px;height:6px;border-radius:3px;background:#E8CE5C;animation:lo-spin .28s linear infinite"></div>
+  <div style="position:absolute;left:10px;top:38px;width:6px;height:5px;border-radius:2px;background:#8A93A0"></div>
+  <div style="position:absolute;left:38px;top:38px;width:6px;height:5px;border-radius:2px;background:#8A93A0"></div>
+  <div style="position:absolute;left:3px;top:34px;width:50px;height:6px;border-radius:5px;background:{{ livery }}"></div>
+  <div style="position:absolute;left:3px;top:34px;width:50px;height:2.5px;border-radius:5px 5px 0 0;background:rgba(255,255,255,.34)"></div>
+  <div style="position:absolute;left:0px;top:31px;width:9px;height:6px;border-radius:5px 2px 2px 5px;background:{{ liveryDark }};transform:rotate(-14deg)"></div>
+  <div style="position:absolute;left:47px;top:31px;width:9px;height:6px;border-radius:2px 5px 5px 2px;background:{{ liveryDark }};transform:rotate(14deg)"></div>
+
+  <div style="position:absolute;left:14px;top:30px;width:12px;height:6px;border-radius:3px;background:#0B0B0D"></div>
+  <div style="position:absolute;left:31px;top:30px;width:12px;height:6px;border-radius:3px;background:#111114"></div>
+  <div style="position:absolute;left:16px;top:22px;width:11px;height:11px;border-radius:5px;background:#22222A;transform:rotate(-6deg)"></div>
+  <div style="position:absolute;left:30px;top:22px;width:11px;height:11px;border-radius:5px;background:#2B2B34;transform:rotate(6deg)"></div>
+
+  <div style="position:absolute;left:15px;top:10px;width:27px;height:20px;border-radius:13px 13px 11px 11px;background:#1A1A20"></div>
+  <div style="position:absolute;left:16px;top:9px;width:25px;height:9px;border-radius:13px 13px 5px 5px;background:#2E2E38"></div>
+  <div style="position:absolute;left:21px;top:16px;width:18px;height:13px;border-radius:8px;background:#3A3A45;opacity:.5"></div>
+  <div style="position:absolute;left:17px;top:8px;width:23px;height:2.5px;border-radius:11px 11px 0 0;background:#45454F"></div>
+
+  <div style="position:absolute;left:7px;top:13px;width:13px;height:6px;border-radius:3px;background:#26262E;transform:rotate(22deg)"></div>
+  <div style="position:absolute;left:4px;top:14px;width:8px;height:7px;border-radius:4px;background:#0E0E11"></div>
+  <div style="position:absolute;left:37px;top:12px;width:13px;height:6px;border-radius:3px;background:#1C1C23;transform:rotate(-20deg)"></div>
+  <div style="position:absolute;left:45px;top:9px;width:8px;height:7px;border-radius:4px;background:#0B0B0D"></div>
+
+  <div style="position:absolute;left:22px;top:-3px;width:17px;height:15px;border-radius:8px 9px 6px 6px;background:#2B2B34"></div>
+  <div style="position:absolute;left:22px;top:-3px;width:17px;height:5px;border-radius:8px 9px 2px 2px;background:#3E3E4A"></div>
+  <div style="position:absolute;left:35px;top:2px;width:9px;height:8px;border-radius:3px 5px 5px 3px;background:#4A4A56"></div>
+  <div style="position:absolute;left:39px;top:3px;width:4.5px;height:4px;border-radius:2px;background:#0A0A0C"></div>
+  <div style="position:absolute;left:31px;top:1px;width:4.5px;height:5px;border-radius:50%;background:#F4F4F8"></div>
+  <div style="position:absolute;left:32px;top:2.5px;width:3px;height:3.5px;border-radius:50%;background:#0A0A0C"></div>
+  <div style="position:absolute;left:20px;top:-7px;width:9px;height:9px;border-radius:50%;background:#1A1A20"></div>
+  <div style="position:absolute;left:21.5px;top:-5.5px;width:6px;height:6px;border-radius:50%;background:#3E3E4A"></div>
+  <div style="position:absolute;left:33px;top:-8px;width:8px;height:8px;border-radius:50%;background:#1A1A20"></div>
+  <div style="position:absolute;left:34.5px;top:-6.5px;width:5px;height:5px;border-radius:50%;background:#383843"></div>
+  <div style="position:absolute;left:34.5px;top:-6.5px;width:5px;height:5px;border-radius:50%;background:#383843"></div>
+
+  </div>
+  <div style="position:absolute;left:44px;top:18px;width:26px;height:26px;border-radius:50%;background:#F6E7C8;filter:blur(3px);animation:lo-dust 2.4s ease-out infinite"></div>
+  <div style="position:absolute;left:-6px;top:38px;width:34px;height:18px;border-radius:50%;background:#C9BFA8;filter:blur(3px);animation:lo-grit 2.4s ease-out infinite"></div>
+  <div style="position:absolute;left:0;top:0;width:72px;height:56px;opacity:0;animation:lo-land 2.4s ease-out infinite">
+  <div style="position:absolute;left:3px;top:42px;width:62px;height:9px;border-radius:50%;background:rgba(0,0,0,.4);filter:blur(3px)"></div>
+
+  <div style="position:absolute;left:38px;top:39px;width:30px;height:7px;border-radius:5px;background:{{ liveryDark }};transform:rotate(-12deg)"></div>
+  <div style="position:absolute;left:38px;top:39px;width:30px;height:3px;border-radius:5px 5px 0 0;background:{{ livery }};transform:rotate(-12deg)"></div>
+  <div style="position:absolute;left:42px;top:35px;width:6px;height:5px;border-radius:2px;background:#8A93A0;transform:rotate(-12deg)"></div>
+  <div style="position:absolute;left:59px;top:31px;width:6px;height:5px;border-radius:2px;background:#8A93A0;transform:rotate(-12deg)"></div>
+  <div style="position:absolute;left:41px;top:31px;width:8px;height:6px;border-radius:3px;background:#E8CE5C"></div>
+  <div style="position:absolute;left:58px;top:27px;width:8px;height:6px;border-radius:3px;background:#E8CE5C"></div>
+
+  <div style="position:absolute;left:6px;top:44px;width:16px;height:7px;border-radius:3px;background:#0B0B0D;transform:rotate(14deg)"></div>
+  <div style="position:absolute;left:2px;top:47px;width:12px;height:6px;border-radius:3px;background:#111114;transform:rotate(6deg)"></div>
+  <div style="position:absolute;left:9px;top:31px;width:16px;height:7px;border-radius:3px;background:#111114;transform:rotate(-18deg)"></div>
+  <div style="position:absolute;left:4px;top:27px;width:12px;height:6px;border-radius:3px;background:#0B0B0D;transform:rotate(-10deg)"></div>
+
+  <div style="position:absolute;left:16px;top:33px;width:24px;height:19px;border-radius:11px 9px 9px 11px;background:#1A1A20"></div>
+  <div style="position:absolute;left:17px;top:32px;width:22px;height:8px;border-radius:11px 9px 4px 4px;background:#2E2E38"></div>
+  <div style="position:absolute;left:21px;top:38px;width:15px;height:11px;border-radius:7px;background:#383843;opacity:.55"></div>
+
+  <div style="position:absolute;left:26px;top:26px;width:17px;height:6px;border-radius:3px;background:#26262E;transform:rotate(-32deg)"></div>
+  <div style="position:absolute;left:38px;top:21px;width:8px;height:7px;border-radius:4px;background:#0E0E11"></div>
+  <div style="position:absolute;left:27px;top:49px;width:17px;height:6px;border-radius:3px;background:#1C1C23;transform:rotate(20deg)"></div>
+  <div style="position:absolute;left:40px;top:52px;width:8px;height:7px;border-radius:4px;background:#0B0B0D"></div>
+
+  <div style="position:absolute;left:6px;top:34px;width:16px;height:15px;border-radius:7px 6px 8px 7px;background:#2B2B34;transform:rotate(-14deg)"></div>
+  <div style="position:absolute;left:7px;top:33px;width:15px;height:5px;border-radius:7px 6px 2px 2px;background:#3E3E4A;transform:rotate(-14deg)"></div>
+  <div style="position:absolute;left:2px;top:39px;width:9px;height:8px;border-radius:5px 3px 3px 5px;background:#4A4A56;transform:rotate(-14deg)"></div>
+  <div style="position:absolute;left:1px;top:41px;width:4.5px;height:4px;border-radius:2px;background:#0A0A0C"></div>
+  <div style="position:absolute;left:11px;top:36px;width:4.5px;height:5px;border-radius:50%;background:#F4F4F8"></div>
+  <div style="position:absolute;left:12px;top:37.5px;width:3px;height:3.5px;border-radius:50%;background:#0A0A0C"></div>
+  <div style="position:absolute;left:14px;top:30px;width:9px;height:9px;border-radius:50%;background:#1A1A20"></div>
+  <div style="position:absolute;left:15.5px;top:31.5px;width:6px;height:6px;border-radius:50%;background:#383843"></div>
+  <div style="position:absolute;left:5px;top:29px;width:8px;height:8px;border-radius:50%;background:#1A1A20"></div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isSkater }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:0;top:0;width:56px;height:56px;transform:{{ flip }}">
+  <div style="position:absolute;left:4px;top:45px;width:48px;height:8px;border-radius:50%;background:rgba(0,0,0,.4);filter:blur(3px)"></div>
+
+  <div style="position:absolute;left:7px;top:41px;width:8px;height:6px;border-radius:3px;background:#E8CE5C;animation:lo-spin .28s linear infinite"></div>
+  <div style="position:absolute;left:39px;top:41px;width:8px;height:6px;border-radius:3px;background:#E8CE5C;animation:lo-spin .28s linear infinite"></div>
+  <div style="position:absolute;left:10px;top:38px;width:6px;height:5px;border-radius:2px;background:#8A93A0"></div>
+  <div style="position:absolute;left:38px;top:38px;width:6px;height:5px;border-radius:2px;background:#8A93A0"></div>
+  <div style="position:absolute;left:3px;top:34px;width:50px;height:6px;border-radius:5px;background:{{ livery }}"></div>
+  <div style="position:absolute;left:3px;top:34px;width:50px;height:2.5px;border-radius:5px 5px 0 0;background:rgba(255,255,255,.34)"></div>
+  <div style="position:absolute;left:0px;top:31px;width:9px;height:6px;border-radius:5px 2px 2px 5px;background:{{ liveryDark }};transform:rotate(-14deg)"></div>
+  <div style="position:absolute;left:47px;top:31px;width:9px;height:6px;border-radius:2px 5px 5px 2px;background:{{ liveryDark }};transform:rotate(14deg)"></div>
+
+  <div style="position:absolute;left:14px;top:30px;width:12px;height:6px;border-radius:3px;background:#0B0B0D"></div>
+  <div style="position:absolute;left:31px;top:30px;width:12px;height:6px;border-radius:3px;background:#111114"></div>
+  <div style="position:absolute;left:16px;top:22px;width:11px;height:11px;border-radius:5px;background:#22222A;transform:rotate(-6deg)"></div>
+  <div style="position:absolute;left:30px;top:22px;width:11px;height:11px;border-radius:5px;background:#2B2B34;transform:rotate(6deg)"></div>
+
+  <div style="position:absolute;left:15px;top:10px;width:27px;height:20px;border-radius:13px 13px 11px 11px;background:#1A1A20"></div>
+  <div style="position:absolute;left:16px;top:9px;width:25px;height:9px;border-radius:13px 13px 5px 5px;background:#2E2E38"></div>
+  <div style="position:absolute;left:21px;top:16px;width:18px;height:13px;border-radius:8px;background:#3A3A45;opacity:.5"></div>
+  <div style="position:absolute;left:17px;top:8px;width:23px;height:2.5px;border-radius:11px 11px 0 0;background:#45454F"></div>
+
+  <div style="position:absolute;left:7px;top:13px;width:13px;height:6px;border-radius:3px;background:#26262E;transform:rotate(22deg)"></div>
+  <div style="position:absolute;left:4px;top:14px;width:8px;height:7px;border-radius:4px;background:#0E0E11"></div>
+  <div style="position:absolute;left:37px;top:12px;width:13px;height:6px;border-radius:3px;background:#1C1C23;transform:rotate(-20deg)"></div>
+  <div style="position:absolute;left:45px;top:9px;width:8px;height:7px;border-radius:4px;background:#0B0B0D"></div>
+
+  <div style="position:absolute;left:22px;top:-3px;width:17px;height:15px;border-radius:8px 9px 6px 6px;background:#2B2B34"></div>
+  <div style="position:absolute;left:22px;top:-3px;width:17px;height:5px;border-radius:8px 9px 2px 2px;background:#3E3E4A"></div>
+  <div style="position:absolute;left:35px;top:2px;width:9px;height:8px;border-radius:3px 5px 5px 3px;background:#4A4A56"></div>
+  <div style="position:absolute;left:39px;top:3px;width:4.5px;height:4px;border-radius:2px;background:#0A0A0C"></div>
+  <div style="position:absolute;left:31px;top:1px;width:4.5px;height:5px;border-radius:50%;background:#F4F4F8"></div>
+  <div style="position:absolute;left:32px;top:2.5px;width:3px;height:3.5px;border-radius:50%;background:#0A0A0C"></div>
+  <div style="position:absolute;left:20px;top:-7px;width:9px;height:9px;border-radius:50%;background:#1A1A20"></div>
+  <div style="position:absolute;left:21.5px;top:-5.5px;width:6px;height:6px;border-radius:50%;background:#3E3E4A"></div>
+  <div style="position:absolute;left:33px;top:-8px;width:8px;height:8px;border-radius:50%;background:#1A1A20"></div>
+  <div style="position:absolute;left:34.5px;top:-6.5px;width:5px;height:5px;border-radius:50%;background:#383843"></div>
+  <div style="position:absolute;left:34.5px;top:-6.5px;width:5px;height:5px;border-radius:50%;background:#383843"></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isRunnerCrashed }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:0;top:0;width:72px;height:56px;transform:{{ flip }}">
+  <div style="position:absolute;left:0;top:0;width:72px;height:56px;transform:scaleX(-1)">
+  <div style="position:absolute;left:3px;top:42px;width:62px;height:9px;border-radius:50%;background:rgba(0,0,0,.4);filter:blur(3px)"></div>
+
+  <div style="position:absolute;left:6px;top:44px;width:18px;height:8px;border-radius:4px;background:#241A11;transform:rotate(10deg)"></div>
+  <div style="position:absolute;left:2px;top:47px;width:15px;height:7px;border-radius:5px 6px 2px 2px;background:#141519;transform:rotate(6deg)"></div>
+  <div style="position:absolute;left:2px;top:52px;width:15px;height:2px;border-radius:0 0 2px 2px;background:#4A515C;transform:rotate(6deg)"></div>
+  <div style="position:absolute;left:9px;top:30px;width:18px;height:8px;border-radius:4px;background:#8A6E4A;transform:rotate(-16deg)"></div>
+  <div style="position:absolute;left:3px;top:26px;width:15px;height:7px;border-radius:5px 6px 2px 2px;background:#141519;transform:rotate(-12deg)"></div>
+  <div style="position:absolute;left:3px;top:31px;width:15px;height:2px;border-radius:0 0 2px 2px;background:#4A515C;transform:rotate(-12deg)"></div>
+
+  <div style="position:absolute;left:20px;top:34px;width:22px;height:10px;border-radius:5px 6px 4px 4px;background:{{ liveryDark }};transform:rotate(-6deg)"></div>
+  <div style="position:absolute;left:20px;top:34px;width:22px;height:4px;border-radius:5px 6px 1px 1px;background:{{ livery }};transform:rotate(-6deg)"></div>
+
+  <div style="position:absolute;left:30px;top:31px;width:26px;height:19px;border-radius:9px 11px 11px 9px;background:#4A3626;transform:rotate(-4deg)"></div>
+  <div style="position:absolute;left:31px;top:30px;width:24px;height:8px;border-radius:10px 11px 4px 4px;background:#6B5238;transform:rotate(-4deg)"></div>
+  <div style="position:absolute;left:35px;top:37px;width:16px;height:10px;border-radius:6px;background:#7C6242;opacity:.4"></div>
+
+  <div style="position:absolute;left:38px;top:24px;width:18px;height:7px;border-radius:3.5px;background:#8A6E4A;transform:rotate(-30deg)"></div>
+  <div style="position:absolute;left:51px;top:19px;width:9px;height:8px;border-radius:4px;background:#B08F62;transform:rotate(-30deg)"></div>
+  <div style="position:absolute;left:40px;top:48px;width:18px;height:7px;border-radius:3.5px;background:#241A11;transform:rotate(18deg)"></div>
+  <div style="position:absolute;left:53px;top:52px;width:9px;height:8px;border-radius:4px;background:#3A2A1C;transform:rotate(18deg)"></div>
+
+  <div style="position:absolute;left:52px;top:32px;width:11px;height:6px;border-radius:4px;background:#4A3626;transform:rotate(-8deg)"></div>
+  <div style="position:absolute;left:56px;top:28px;width:19px;height:17px;border-radius:9px 10px 6px 6px;background:#5C4632;transform:rotate(-14deg)"></div>
+  <div style="position:absolute;left:57px;top:27px;width:17px;height:9px;border-radius:9px 10px 3px 3px;background:#7C6242;transform:rotate(-14deg)"></div>
+  <div style="position:absolute;left:66px;top:38px;width:9px;height:9px;border-radius:4px 3px 6px 6px;background:#9B7B54;transform:rotate(-14deg)"></div>
+  <div style="position:absolute;left:64px;top:33px;width:12px;height:3.5px;border-radius:2px;background:#3A2A1C;transform:rotate(-14deg)"></div>
+  <div style="position:absolute;left:67px;top:34px;width:4.5px;height:4px;border-radius:50%;background:#F4EFE6"></div>
+  <div style="position:absolute;left:68px;top:35px;width:3px;height:2.5px;border-radius:50%;background:#1A1310"></div>
+  <div style="position:absolute;left:54px;top:24px;width:9px;height:9px;border-radius:50%;background:#4A3626"></div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isRunnerCrashing }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:0;top:0;width:72px;height:56px;transform:{{ flip }}">
+  <div style="position:absolute;left:60px;top:14px;width:10px;height:40px;border-radius:2px;background:linear-gradient(90deg,#8E8779,#645D52)"></div>
+  <div style="position:absolute;left:60px;top:14px;width:10px;height:4px;background:#A79E8D"></div>
+  <div style="position:absolute;left:0;top:0;width:52px;height:56px;transform-origin:44px 48px;animation:lo-fall 2.4s ease-in forwards infinite">
+
+  <div style="position:absolute;left:11px;top:50px;width:30px;height:5px;border-radius:50%;background:#000;filter:blur(3px);animation:lo-shadow .48s ease-in-out infinite"></div>
+
+  <div style="position:absolute;left:0;top:0;width:52px;height:56px;animation:lo-bob .48s ease-in-out infinite">
+    <div style="position:absolute;left:17px;top:29px;width:9px;height:28px;z-index:1;transform-origin:4.5px 2px;animation:lo-legf .48s ease-in-out infinite reverse">
+      <div style="position:absolute;left:0;top:0;width:9px;height:11px;border-radius:4.5px;background:#241A11"></div>
+      <div style="position:absolute;left:0;top:9px;width:9px;height:18px;transform-origin:4.5px 2px;animation:lo-shinf .48s ease-in-out infinite reverse">
+        <div style="position:absolute;left:0.5px;top:0;width:8px;height:10px;border-radius:4px;background:#2E2116"></div>
+        <div style="position:absolute;left:-3px;top:8px;width:15px;height:7px;border-radius:5px 6px 2px 2px;background:#141519"></div>
+        <div style="position:absolute;left:-3px;top:13px;width:15px;height:2px;border-radius:0 0 2px 2px;background:#4A515C"></div>
+      </div>
+    </div>
+    <div style="position:absolute;left:14px;top:14px;width:8px;height:24px;z-index:2;transform-origin:4px 2px;animation:lo-armf .48s ease-in-out infinite">
+      <div style="position:absolute;left:0;top:0;width:8px;height:10px;border-radius:4px;background:#241A11"></div>
+      <div style="position:absolute;left:0;top:8px;width:8px;height:15px;transform-origin:4px 2px;animation:lo-foref .48s ease-in-out infinite">
+        <div style="position:absolute;left:0.5px;top:0;width:7px;height:9px;border-radius:3.5px;background:#2E2116"></div>
+        <div style="position:absolute;left:-0.5px;top:7px;width:9px;height:8px;border-radius:4px;background:#3A2A1C"></div>
+      </div>
+    </div>
+
+    <div style="position:absolute;left:13px;top:8px;width:27px;height:19px;z-index:3;border-radius:11px 13px 6px 6px;background:#4A3626;transform:rotate(-10deg)"></div>
+    <div style="position:absolute;left:14px;top:6px;width:26px;height:9px;z-index:3;border-radius:12px 13px 4px 4px;background:#6B5238;transform:rotate(-10deg)"></div>
+    <div style="position:absolute;left:19px;top:14px;width:16px;height:10px;z-index:3;border-radius:6px;background:#7C6242;opacity:.4;transform:rotate(-10deg)"></div>
+
+    <div style="position:absolute;left:15px;top:23px;width:23px;height:9px;z-index:4;border-radius:5px 6px 4px 4px;background:{{ liveryDark }};transform:rotate(-6deg)"></div>
+    <div style="position:absolute;left:15px;top:23px;width:23px;height:4px;z-index:4;border-radius:5px 6px 1px 1px;background:{{ livery }};transform:rotate(-6deg)"></div>
+
+    <div style="position:absolute;left:23px;top:3px;width:11px;height:6px;z-index:4;border-radius:4px;background:#4A3626"></div>
+    <div style="position:absolute;left:20px;top:-9px;width:20px;height:17px;z-index:4;border-radius:10px 11px 6px 6px;background:#5C4632"></div>
+    <div style="position:absolute;left:21px;top:-10px;width:18px;height:9px;z-index:4;border-radius:10px 11px 3px 3px;background:#7C6242"></div>
+    <div style="position:absolute;left:34px;top:-2px;width:9px;height:9px;z-index:4;border-radius:3px 6px 6px 4px;background:#9B7B54"></div>
+    <div style="position:absolute;left:35px;top:4px;width:8px;height:2px;z-index:4;border-radius:1px;background:#5C4028"></div>
+    <div style="position:absolute;left:29px;top:-3px;width:13px;height:3.5px;z-index:4;border-radius:2px;background:#3A2A1C"></div>
+    <div style="position:absolute;left:32px;top:0.5px;width:4.5px;height:5px;z-index:4;border-radius:50%;background:#F4EFE6"></div>
+    <div style="position:absolute;left:33px;top:2px;width:3px;height:3.5px;z-index:4;border-radius:50%;background:#1A1310"></div>
+    <div style="position:absolute;left:18px;top:-4px;width:9px;height:9px;z-index:4;border-radius:50%;background:#4A3626"></div>
+
+    <div style="position:absolute;left:24px;top:29px;width:9px;height:28px;z-index:5;transform-origin:4.5px 2px;animation:lo-leg .48s ease-in-out infinite reverse">
+      <div style="position:absolute;left:0;top:0;width:9px;height:11px;border-radius:4.5px;background:#8A6E4A"></div>
+      <div style="position:absolute;left:0;top:9px;width:9px;height:18px;transform-origin:4.5px 2px;animation:lo-shin .48s ease-in-out infinite reverse">
+        <div style="position:absolute;left:0.5px;top:0;width:8px;height:10px;border-radius:4px;background:#9B7B54"></div>
+        <div style="position:absolute;left:-3px;top:8px;width:15px;height:7px;border-radius:5px 6px 2px 2px;background:#141519"></div>
+        <div style="position:absolute;left:-3px;top:13px;width:15px;height:2px;border-radius:0 0 2px 2px;background:#4A515C"></div>
+      </div>
+    </div>
+    <div style="position:absolute;left:28px;top:14px;width:8px;height:24px;z-index:6;transform-origin:4px 2px;animation:lo-arm .48s ease-in-out infinite">
+      <div style="position:absolute;left:0;top:0;width:8px;height:10px;border-radius:4px;background:#8A6E4A"></div>
+      <div style="position:absolute;left:0;top:8px;width:8px;height:15px;transform-origin:4px 2px;animation:lo-fore .48s ease-in-out infinite">
+        <div style="position:absolute;left:0.5px;top:0;width:7px;height:9px;border-radius:3.5px;background:#9B7B54"></div>
+        <div style="position:absolute;left:-0.5px;top:7px;width:9px;height:8px;border-radius:4px;background:#B08F62"></div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+  <div style="position:absolute;left:44px;top:18px;width:26px;height:26px;border-radius:50%;background:#F6E7C8;filter:blur(3px);animation:lo-dust 2.4s ease-out infinite"></div>
+  <div style="position:absolute;left:-6px;top:38px;width:34px;height:18px;border-radius:50%;background:#C9BFA8;filter:blur(3px);animation:lo-grit 2.4s ease-out infinite"></div>
+  <div style="position:absolute;left:0;top:0;width:72px;height:56px;opacity:0;animation:lo-land 2.4s ease-out infinite">
+  <div style="position:absolute;left:0;top:0;width:72px;height:56px;transform:scaleX(-1)">
+  <div style="position:absolute;left:3px;top:42px;width:62px;height:9px;border-radius:50%;background:rgba(0,0,0,.4);filter:blur(3px)"></div>
+
+  <div style="position:absolute;left:6px;top:44px;width:18px;height:8px;border-radius:4px;background:#241A11;transform:rotate(10deg)"></div>
+  <div style="position:absolute;left:2px;top:47px;width:15px;height:7px;border-radius:5px 6px 2px 2px;background:#141519;transform:rotate(6deg)"></div>
+  <div style="position:absolute;left:2px;top:52px;width:15px;height:2px;border-radius:0 0 2px 2px;background:#4A515C;transform:rotate(6deg)"></div>
+  <div style="position:absolute;left:9px;top:30px;width:18px;height:8px;border-radius:4px;background:#8A6E4A;transform:rotate(-16deg)"></div>
+  <div style="position:absolute;left:3px;top:26px;width:15px;height:7px;border-radius:5px 6px 2px 2px;background:#141519;transform:rotate(-12deg)"></div>
+  <div style="position:absolute;left:3px;top:31px;width:15px;height:2px;border-radius:0 0 2px 2px;background:#4A515C;transform:rotate(-12deg)"></div>
+
+  <div style="position:absolute;left:20px;top:34px;width:22px;height:10px;border-radius:5px 6px 4px 4px;background:{{ liveryDark }};transform:rotate(-6deg)"></div>
+  <div style="position:absolute;left:20px;top:34px;width:22px;height:4px;border-radius:5px 6px 1px 1px;background:{{ livery }};transform:rotate(-6deg)"></div>
+
+  <div style="position:absolute;left:30px;top:31px;width:26px;height:19px;border-radius:9px 11px 11px 9px;background:#4A3626;transform:rotate(-4deg)"></div>
+  <div style="position:absolute;left:31px;top:30px;width:24px;height:8px;border-radius:10px 11px 4px 4px;background:#6B5238;transform:rotate(-4deg)"></div>
+  <div style="position:absolute;left:35px;top:37px;width:16px;height:10px;border-radius:6px;background:#7C6242;opacity:.4"></div>
+
+  <div style="position:absolute;left:38px;top:24px;width:18px;height:7px;border-radius:3.5px;background:#8A6E4A;transform:rotate(-30deg)"></div>
+  <div style="position:absolute;left:51px;top:19px;width:9px;height:8px;border-radius:4px;background:#B08F62;transform:rotate(-30deg)"></div>
+  <div style="position:absolute;left:40px;top:48px;width:18px;height:7px;border-radius:3.5px;background:#241A11;transform:rotate(18deg)"></div>
+  <div style="position:absolute;left:53px;top:52px;width:9px;height:8px;border-radius:4px;background:#3A2A1C;transform:rotate(18deg)"></div>
+
+  <div style="position:absolute;left:52px;top:32px;width:11px;height:6px;border-radius:4px;background:#4A3626;transform:rotate(-8deg)"></div>
+  <div style="position:absolute;left:56px;top:28px;width:19px;height:17px;border-radius:9px 10px 6px 6px;background:#5C4632;transform:rotate(-14deg)"></div>
+  <div style="position:absolute;left:57px;top:27px;width:17px;height:9px;border-radius:9px 10px 3px 3px;background:#7C6242;transform:rotate(-14deg)"></div>
+  <div style="position:absolute;left:66px;top:38px;width:9px;height:9px;border-radius:4px 3px 6px 6px;background:#9B7B54;transform:rotate(-14deg)"></div>
+  <div style="position:absolute;left:64px;top:33px;width:12px;height:3.5px;border-radius:2px;background:#3A2A1C;transform:rotate(-14deg)"></div>
+  <div style="position:absolute;left:67px;top:34px;width:4.5px;height:4px;border-radius:50%;background:#F4EFE6"></div>
+  <div style="position:absolute;left:68px;top:35px;width:3px;height:2.5px;border-radius:50%;background:#1A1310"></div>
+  <div style="position:absolute;left:54px;top:24px;width:9px;height:9px;border-radius:50%;background:#4A3626"></div>
+  </div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isRunner }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:0;top:-4px;width:52px;height:56px;transform:{{ flip }}">
+  <div style="position:absolute;left:11px;top:50px;width:30px;height:5px;border-radius:50%;background:#000;filter:blur(3px);animation:lo-shadow .48s ease-in-out infinite"></div>
+
+  <div style="position:absolute;left:0;top:0;width:52px;height:56px;animation:lo-bob .48s ease-in-out infinite">
+    <div style="position:absolute;left:17px;top:29px;width:9px;height:28px;z-index:1;transform-origin:4.5px 2px;animation:lo-legf .48s ease-in-out infinite reverse">
+      <div style="position:absolute;left:0;top:0;width:9px;height:11px;border-radius:4.5px;background:#241A11"></div>
+      <div style="position:absolute;left:0;top:9px;width:9px;height:18px;transform-origin:4.5px 2px;animation:lo-shinf .48s ease-in-out infinite reverse">
+        <div style="position:absolute;left:0.5px;top:0;width:8px;height:10px;border-radius:4px;background:#2E2116"></div>
+        <div style="position:absolute;left:-3px;top:8px;width:15px;height:7px;border-radius:5px 6px 2px 2px;background:#141519"></div>
+        <div style="position:absolute;left:-3px;top:13px;width:15px;height:2px;border-radius:0 0 2px 2px;background:#4A515C"></div>
+      </div>
+    </div>
+    <div style="position:absolute;left:14px;top:14px;width:8px;height:24px;z-index:2;transform-origin:4px 2px;animation:lo-armf .48s ease-in-out infinite">
+      <div style="position:absolute;left:0;top:0;width:8px;height:10px;border-radius:4px;background:#241A11"></div>
+      <div style="position:absolute;left:0;top:8px;width:8px;height:15px;transform-origin:4px 2px;animation:lo-foref .48s ease-in-out infinite">
+        <div style="position:absolute;left:0.5px;top:0;width:7px;height:9px;border-radius:3.5px;background:#2E2116"></div>
+        <div style="position:absolute;left:-0.5px;top:7px;width:9px;height:8px;border-radius:4px;background:#3A2A1C"></div>
+      </div>
+    </div>
+
+    <div style="position:absolute;left:13px;top:8px;width:27px;height:19px;z-index:3;border-radius:11px 13px 6px 6px;background:#4A3626;transform:rotate(-10deg)"></div>
+    <div style="position:absolute;left:14px;top:6px;width:26px;height:9px;z-index:3;border-radius:12px 13px 4px 4px;background:#6B5238;transform:rotate(-10deg)"></div>
+    <div style="position:absolute;left:19px;top:14px;width:16px;height:10px;z-index:3;border-radius:6px;background:#7C6242;opacity:.4;transform:rotate(-10deg)"></div>
+
+    <div style="position:absolute;left:15px;top:23px;width:23px;height:9px;z-index:4;border-radius:5px 6px 4px 4px;background:{{ liveryDark }};transform:rotate(-6deg)"></div>
+    <div style="position:absolute;left:15px;top:23px;width:23px;height:4px;z-index:4;border-radius:5px 6px 1px 1px;background:{{ livery }};transform:rotate(-6deg)"></div>
+
+    <div style="position:absolute;left:23px;top:3px;width:11px;height:6px;z-index:4;border-radius:4px;background:#4A3626"></div>
+    <div style="position:absolute;left:20px;top:-9px;width:20px;height:17px;z-index:4;border-radius:10px 11px 6px 6px;background:#5C4632"></div>
+    <div style="position:absolute;left:21px;top:-10px;width:18px;height:9px;z-index:4;border-radius:10px 11px 3px 3px;background:#7C6242"></div>
+    <div style="position:absolute;left:34px;top:-2px;width:9px;height:9px;z-index:4;border-radius:3px 6px 6px 4px;background:#9B7B54"></div>
+    <div style="position:absolute;left:35px;top:4px;width:8px;height:2px;z-index:4;border-radius:1px;background:#5C4028"></div>
+    <div style="position:absolute;left:29px;top:-3px;width:13px;height:3.5px;z-index:4;border-radius:2px;background:#3A2A1C"></div>
+    <div style="position:absolute;left:32px;top:0.5px;width:4.5px;height:5px;z-index:4;border-radius:50%;background:#F4EFE6"></div>
+    <div style="position:absolute;left:33px;top:2px;width:3px;height:3.5px;z-index:4;border-radius:50%;background:#1A1310"></div>
+    <div style="position:absolute;left:18px;top:-4px;width:9px;height:9px;z-index:4;border-radius:50%;background:#4A3626"></div>
+
+    <div style="position:absolute;left:24px;top:29px;width:9px;height:28px;z-index:5;transform-origin:4.5px 2px;animation:lo-leg .48s ease-in-out infinite reverse">
+      <div style="position:absolute;left:0;top:0;width:9px;height:11px;border-radius:4.5px;background:#8A6E4A"></div>
+      <div style="position:absolute;left:0;top:9px;width:9px;height:18px;transform-origin:4.5px 2px;animation:lo-shin .48s ease-in-out infinite reverse">
+        <div style="position:absolute;left:0.5px;top:0;width:8px;height:10px;border-radius:4px;background:#9B7B54"></div>
+        <div style="position:absolute;left:-3px;top:8px;width:15px;height:7px;border-radius:5px 6px 2px 2px;background:#141519"></div>
+        <div style="position:absolute;left:-3px;top:13px;width:15px;height:2px;border-radius:0 0 2px 2px;background:#4A515C"></div>
+      </div>
+    </div>
+    <div style="position:absolute;left:28px;top:14px;width:8px;height:24px;z-index:6;transform-origin:4px 2px;animation:lo-arm .48s ease-in-out infinite">
+      <div style="position:absolute;left:0;top:0;width:8px;height:10px;border-radius:4px;background:#8A6E4A"></div>
+      <div style="position:absolute;left:0;top:8px;width:8px;height:15px;transform-origin:4px 2px;animation:lo-fore .48s ease-in-out infinite">
+        <div style="position:absolute;left:0.5px;top:0;width:7px;height:9px;border-radius:3.5px;background:#9B7B54"></div>
+        <div style="position:absolute;left:-0.5px;top:7px;width:9px;height:8px;border-radius:4px;background:#B08F62"></div>
+      </div>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:620,&quot;height&quot;:70},&quot;kind&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;truck&quot;,&quot;car&quot;,&quot;convertible&quot;,&quot;bus&quot;,&quot;freight&quot;,&quot;passenger&quot;,&quot;cyclist&quot;,&quot;skater&quot;,&quot;runner&quot;,&quot;crashed&quot;,&quot;crashing&quot;,&quot;skater-crashed&quot;,&quot;skater-crashing&quot;,&quot;runner-crashed&quot;,&quot;runner-crashing&quot;,&quot;log&quot;,&quot;log-short&quot;,&quot;log-long&quot;,&quot;gator&quot;,&quot;gator-open&quot;],&quot;default&quot;:&quot;truck&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;dir&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;right&quot;,&quot;left&quot;],&quot;default&quot;:&quot;right&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;livery&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;blue&quot;,&quot;red&quot;,&quot;green&quot;,&quot;purple&quot;,&quot;black&quot;],&quot;default&quot;:&quot;blue&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const LIVERY = {
+  blue:  {livery:'#1479EC', cab:'linear-gradient(180deg,#3A97FF 0%,#1479EC 55%,#0B5FC4 100%)', cabDark:'#0B4FA0', fairing:'#6BB6FF'},
+  red:   {livery:'#C6483D', cab:'linear-gradient(180deg,#F0705F 0%,#E05A4E 55%,#C6483D 100%)', cabDark:'#A83229', fairing:'#F58C7C'},
+  green: {livery:'#2F7A3E', cab:'linear-gradient(180deg,#49A057 0%,#2F7A3E 55%,#215A2E 100%)', cabDark:'#1C4E2C', fairing:'#63BF72'},
+  black: {livery:'#2B2F36', cab:'linear-gradient(180deg,#4A5058 0%,#2B2F36 55%,#191C21 100%)', cabDark:'#141719', fairing:'linear-gradient(180deg,#5B626B,#343A42)'},
+  purple:{livery:'#6636D2', cab:'linear-gradient(180deg,#B294FF 0%,#8B54FC 55%,#6636D2 100%)', cabDark:'#4A2596', fairing:'#C4ACFF'}
+};
+class Component extends DCLogic {
+  renderVals(){
+    const p = LIVERY[this.props.livery] || LIVERY.blue;
+    const kind = String(this.props.kind || 'truck');
+    return {
+      flip: this.props.dir === 'left' ? 'scaleX(-1)' : 'scaleX(1)',
+      isTruck: kind === 'truck', isCar: kind === 'car', isConvertible: kind === 'convertible', isBus: kind === 'bus',
+      isFreight: kind === 'freight', isPassenger: kind === 'passenger', isCyclist: kind === 'cyclist', isSkater: kind === 'skater', isRunner: kind === 'runner',
+      isCrashed: kind === 'crashed', isCrashing: kind === 'crashing',
+      isSkaterCrashed: kind === 'skater-crashed', isSkaterCrashing: kind === 'skater-crashing',
+      isRunnerCrashed: kind === 'runner-crashed', isRunnerCrashing: kind === 'runner-crashing',
+      isGator: kind === 'gator', isGatorOpen: kind === 'gator-open',
+      isLog: kind === 'log', isLogShort: kind === 'log-short', isLogLong: kind === 'log-long',
+      livery: p.livery, liveryDark: p.cabDark,
+      livery: p.livery, cab: p.cab, cabDark: p.cabDark, fairing: p.fairing
+    };
+  }
+}
+</script>
+</body>
+</html>
+

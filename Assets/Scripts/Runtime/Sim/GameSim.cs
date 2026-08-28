@@ -97,6 +97,31 @@ namespace FrogAcross.Sim
 
         public int InstanceCount(int row, int train) => _instanceCounts[row][train];
 
+        /// <summary>
+        /// Train-warning query (#50): true when any warn-lead object in the row
+        /// is on the board now or will be within its warnLeadTicks. Pure tick
+        /// math — the view's crossing signal derives from the same schedule
+        /// that runs the train.
+        /// </summary>
+        public bool WarningActive(int row)
+        {
+            var rowDef = Level.Rows[row];
+            for (int t = 0; t < rowDef.Trains.Count; t++)
+            {
+                var def = rowDef.Trains[t].Def;
+                if (def.warnLeadTicks <= 0) continue;
+                for (int k = 0; k < _instanceCounts[row][t]; k++)
+                {
+                    float future = ObjectLeftX(row, t, k, State.Tick + def.warnLeadTicks);
+                    if (future + def.sizeCells > 0f && future < Level.Columns) return true;
+                    float now = ObjectLeftX(row, t, k, State.Tick);
+                    if (now + def.sizeCells > 0f && now < Level.Columns) return true;
+                }
+            }
+            return false;
+        }
+
+
         public void Tick()
         {
             if (State.Completed) return;

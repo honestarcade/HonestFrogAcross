@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: FrogAcross.Runtime::FrogAcross.Pieces.LaneKindDef
   id: walkway
   displayName: walkway
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: 637999e787e4642478fc55e8e2fbd48d, type: 3}
   semantics: 4

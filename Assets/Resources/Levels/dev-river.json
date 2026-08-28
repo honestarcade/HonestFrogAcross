@@ -1,0 +1,67 @@
+{
+  "id": "dev-river",
+  "name": "River Slice",
+  "columns": 11,
+  "medal": {
+    "gold": 10.0,
+    "silver": 15.0,
+    "bronze": 22.0
+  },
+  "startColumn": 5,
+  "bays": [
+    5
+  ],
+  "rows": [
+    {
+      "kind": "goal"
+    },
+    {
+      "kind": "river",
+      "dir": "right",
+      "speed": 1.2,
+      "objects": [
+        {
+          "pieceId": "log-long",
+          "offset": 0,
+          "spacing": 8.0,
+          "phase": 0
+        }
+      ]
+    },
+    {
+      "kind": "river",
+      "dir": "left",
+      "speed": 1.5,
+      "objects": [
+        {
+          "pieceId": "turtle-log",
+          "offset": 0,
+          "spacing": 8.2,
+          "phase": 0
+        },
+        {
+          "pieceId": "raft",
+          "offset": 3.9,
+          "spacing": 8.2,
+          "phase": 0
+        }
+      ]
+    },
+    {
+      "kind": "river",
+      "dir": "right",
+      "speed": 1.0,
+      "objects": [
+        {
+          "pieceId": "log",
+          "offset": 2.0,
+          "spacing": 7.0,
+          "phase": 0
+        }
+      ]
+    },
+    {
+      "kind": "bank"
+    }
+  ]
+}

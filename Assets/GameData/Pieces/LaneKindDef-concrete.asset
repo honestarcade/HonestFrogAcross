@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: FrogAcross.Runtime::FrogAcross.Pieces.LaneKindDef
   id: concrete
   displayName: concrete
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: cb9d9561448114169859cee97b25643d, type: 3}
   semantics: 0

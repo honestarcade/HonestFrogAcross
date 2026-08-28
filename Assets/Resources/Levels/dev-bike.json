@@ -1,0 +1,9 @@
+{ "id": "dev-bike", "name": "Bike Slice", "columns": 11,
+  "medal": { "gold": 7.0, "silver": 11.0, "bronze": 16.0 }, "startColumn": 5, "bays": [5],
+  "rows": [
+    { "kind": "goal" },
+    { "kind": "bike", "dir": "left", "speed": 2.4, "objects": [
+      { "pieceId": "cyclist", "offset": 0, "spacing": 4.5, "phase": 0 },
+      { "pieceId": "skater", "offset": 1.6, "spacing": 4.5, "phase": 0 },
+      { "pieceId": "runner", "offset": 3.1, "spacing": 4.5, "phase": 0 } ]},
+    { "kind": "bank" } ]}

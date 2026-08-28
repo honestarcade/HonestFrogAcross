@@ -14,5 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: FrogAcross.Runtime::FrogAcross.Pieces.CharacterDef
   id: hopper
   displayName: hopper
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: 4268c60b96ef840bebf648321655d787, type: 3}
+  - {fileID: 21300000, guid: 12b0f018df0fc4e85a63f355530c6b99, type: 3}
+  - {fileID: 21300000, guid: fd1a774b2c6514f4381a3213d3f69d5a, type: 3}
+  - {fileID: 21300000, guid: 8448ae69e734c488381a92f839962e75, type: 3}
   moveStyle: 0

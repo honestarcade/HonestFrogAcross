@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: FrogAcross.Runtime::FrogAcross.Pieces.LaneKindDef
   id: swamp
   displayName: swamp
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: 0cc32b6e3a406432a8ececd3ac9eb595, type: 3}
   semantics: 2

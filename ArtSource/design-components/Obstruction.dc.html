@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div style="position:relative;width:100%;height:100%">
+
+<sc-if value="{{ isTree }}" hint-placeholder-val="{{ true }}">
+  <div style="position:absolute;left:0;top:0;width:52px;height:62px">
+    <div style="position:absolute;left:10px;top:44px;width:44px;height:11px;border-radius:50%;background:rgba(0,0,0,.32);filter:blur(3px)"></div>
+    <div style="position:absolute;left:20px;top:30px;width:12px;height:22px;border-radius:3px;background:#5A3D24"></div>
+    <div style="position:absolute;left:22px;top:30px;width:6px;height:22px;background:#77502F"></div>
+    <div style="position:absolute;left:2px;top:12px;width:46px;height:28px;border-radius:50%;background:#215A2E"></div>
+    <div style="position:absolute;left:6px;top:2px;width:38px;height:26px;border-radius:50%;background:#2F7A3E"></div>
+    <div style="position:absolute;left:13px;top:0;width:22px;height:15px;border-radius:50%;background:#43A153"></div>
+  </div>
+</sc-if>
+
+
+<sc-if value="{{ isBush }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;left:0;top:0;width:46px;height:44px">
+    <div style="position:absolute;left:4px;top:28px;width:38px;height:10px;border-radius:50%;background:rgba(0,0,0,.3);filter:blur(3px)"></div>
+    <div style="position:absolute;left:0;top:14px;width:30px;height:22px;border-radius:50%;background:#215A2E"></div>
+    <div style="position:absolute;left:16px;top:16px;width:30px;height:20px;border-radius:50%;background:#1E5329"></div>
+    <div style="position:absolute;left:4px;top:6px;width:26px;height:20px;border-radius:50%;background:#2F7A3E"></div>
+    <div style="position:absolute;left:20px;top:9px;width:22px;height:17px;border-radius:50%;background:#2A6E3D"></div>
+    <div style="position:absolute;left:10px;top:4px;width:15px;height:11px;border-radius:50%;background:#43A153"></div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ isBench }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;left:0;top:0;width:78px;height:50px">
+    <div style="position:absolute;left:6px;top:34px;width:66px;height:10px;border-radius:50%;background:rgba(0,0,0,.3);filter:blur(3px)"></div>
+    <div style="position:absolute;left:8px;top:20px;width:7px;height:18px;background:#4A5058"></div>
+    <div style="position:absolute;left:64px;top:20px;width:7px;height:18px;background:#4A5058"></div>
+    <div style="position:absolute;left:0;top:16px;width:78px;height:9px;border-radius:3px;background:#6E4A2C"></div>
+    <div style="position:absolute;left:0;top:6px;width:78px;height:8px;border-radius:3px;background:linear-gradient(180deg,#B08055,#8A5F38)"></div>
+    <div style="position:absolute;left:0;top:0;width:78px;height:7px;border-radius:3px;background:linear-gradient(180deg,#C79062,#9C6C42)"></div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ isLamp }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;left:0;top:0;width:22px;height:70px">
+    <div style="position:absolute;left:-4px;top:52px;width:30px;height:9px;border-radius:50%;background:rgba(0,0,0,.3);filter:blur(3px)"></div>
+    <div style="position:absolute;left:7px;top:14px;width:8px;height:42px;background:linear-gradient(90deg,#8E959E,#5F656D)"></div>
+    <div style="position:absolute;left:3px;top:52px;width:16px;height:7px;border-radius:3px;background:#5F656D"></div>
+    <div style="position:absolute;left:0;top:4px;width:22px;height:10px;border-radius:5px;background:linear-gradient(180deg,#DDE3EA,#A7AEB7)"></div>
+    <div style="position:absolute;left:3px;top:12px;width:16px;height:4px;border-radius:2px;background:rgba(255,240,184,.55)"></div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ isPlanter }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;left:0;top:0;width:64px;height:52px">
+    <div style="position:absolute;left:3px;top:40px;width:58px;height:12px;border-radius:50%;background:rgba(0,0,0,.3);filter:blur(3px)"></div>
+    <div style="position:absolute;left:8px;top:26px;width:48px;height:20px;background:linear-gradient(180deg,#BFC6CE 0%,#A2AAB4 55%,#7B828B 100%);clip-path:polygon(0 0,100% 0,84% 100%,16% 100%)"></div>
+    <div style="position:absolute;left:15px;top:42px;width:34px;height:9px;border-radius:50%;background:#767D86"></div>
+    <div style="position:absolute;left:12px;top:30px;width:40px;height:4px;background:repeating-linear-gradient(90deg,rgba(0,0,0,.1) 0 4px,transparent 4px 13px)"></div>
+    <div style="position:absolute;left:2px;top:16px;width:60px;height:22px;border-radius:50%;background:linear-gradient(180deg,#E4E9EF 0%,#C7CED6 55%,#9DA5AF 100%)"></div>
+    <div style="position:absolute;left:7px;top:19px;width:50px;height:16px;border-radius:50%;background:#4C3521"></div>
+    <div style="position:absolute;left:7px;top:19px;width:50px;height:16px;border-radius:50%;background:radial-gradient(70% 80% at 40% 26%,#6B4B2C 0%,#4C3521 60%,#3A2718 100%)"></div>
+    <div style="position:absolute;left:16px;top:22px;width:9px;height:5px;border-radius:50%;background:rgba(120,88,54,.7)"></div>
+    <div style="position:absolute;left:38px;top:27px;width:8px;height:4px;border-radius:50%;background:rgba(120,88,54,.55)"></div>
+    <sc-if value="{{ isDaisy }}" hint-placeholder-val="{{ true }}">
+      <div style="position:absolute;left:30px;top:8px;width:4px;height:16px;border-radius:2px;background:#2F7A3E"></div>
+      <div style="position:absolute;left:22px;top:14px;width:12px;height:5px;border-radius:5px;background:#3B8C4A;transform:rotate(-20deg)"></div>
+      <div style="position:absolute;left:32px;top:17px;width:12px;height:5px;border-radius:5px;background:#43A153;transform:rotate(18deg)"></div>
+      <div style="position:absolute;left:26px;top:2px;width:12px;height:11px;border-radius:50%;background:#F7F3E6"></div>
+      <div style="position:absolute;left:21px;top:4px;width:10px;height:9px;border-radius:50%;background:#FFFFFF"></div>
+      <div style="position:absolute;left:34px;top:4px;width:10px;height:9px;border-radius:50%;background:#FFFFFF"></div>
+      <div style="position:absolute;left:27px;top:0;width:10px;height:9px;border-radius:50%;background:#FFFDF6"></div>
+      <div style="position:absolute;left:29px;top:5px;width:7px;height:6px;border-radius:50%;background:#F0A93F"></div>
+    </sc-if>
+    <sc-if value="{{ isTulip }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;left:24px;top:10px;width:3.5px;height:14px;border-radius:2px;background:#2F7A3E"></div>
+      <div style="position:absolute;left:38px;top:12px;width:3.5px;height:12px;border-radius:2px;background:#2F7A3E"></div>
+      <div style="position:absolute;left:16px;top:16px;width:14px;height:5px;border-radius:5px;background:#3B8C4A;transform:rotate(-22deg)"></div>
+      <div style="position:absolute;left:36px;top:18px;width:14px;height:5px;border-radius:5px;background:#43A153;transform:rotate(20deg)"></div>
+      <div style="position:absolute;left:19px;top:2px;width:14px;height:12px;border-radius:7px 7px 6px 6px;background:#D6483F"></div>
+      <div style="position:absolute;left:22px;top:1px;width:8px;height:7px;border-radius:4px;background:#EE6A5C"></div>
+      <div style="position:absolute;left:34px;top:5px;width:13px;height:11px;border-radius:6px 6px 5px 5px;background:#C43C34"></div>
+      <div style="position:absolute;left:37px;top:4px;width:7px;height:6px;border-radius:4px;background:#E4574C"></div>
+    </sc-if>
+    <sc-if value="{{ isFern }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;left:12px;top:14px;width:20px;height:7px;border-radius:6px;background:#2F7A3E;transform:rotate(-32deg)"></div>
+      <div style="position:absolute;left:20px;top:8px;width:18px;height:7px;border-radius:6px;background:#3B8C4A;transform:rotate(-12deg)"></div>
+      <div style="position:absolute;left:26px;top:4px;width:16px;height:7px;border-radius:6px;background:#43A153;transform:rotate(6deg)"></div>
+      <div style="position:absolute;left:32px;top:10px;width:19px;height:7px;border-radius:6px;background:#2F7A3E;transform:rotate(26deg)"></div>
+      <div style="position:absolute;left:22px;top:16px;width:16px;height:6px;border-radius:5px;background:#256A34;transform:rotate(4deg)"></div>
+      <div style="position:absolute;left:28px;top:12px;width:5px;height:12px;border-radius:3px;background:#256A34"></div>
+    </sc-if>
+    <sc-if value="{{ isLavender }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;left:22px;top:10px;width:3px;height:14px;border-radius:2px;background:#4F8A45"></div>
+      <div style="position:absolute;left:30px;top:6px;width:3px;height:18px;border-radius:2px;background:#4F8A45"></div>
+      <div style="position:absolute;left:39px;top:11px;width:3px;height:13px;border-radius:2px;background:#4F8A45"></div>
+      <div style="position:absolute;left:19px;top:4px;width:9px;height:12px;border-radius:5px;background:#8B6BD6"></div>
+      <div style="position:absolute;left:27px;top:0;width:9px;height:13px;border-radius:5px;background:#A183E8"></div>
+      <div style="position:absolute;left:36px;top:5px;width:9px;height:12px;border-radius:5px;background:#7C5CC7"></div>
+      <div style="position:absolute;left:16px;top:18px;width:12px;height:4px;border-radius:4px;background:#4F8A45;transform:rotate(-18deg)"></div>
+      <div style="position:absolute;left:37px;top:19px;width:12px;height:4px;border-radius:4px;background:#5C9A52;transform:rotate(18deg)"></div>
+    </sc-if>
+    <sc-if value="{{ isSucculent }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;left:14px;top:14px;width:16px;height:9px;border-radius:6px;background:#4E9E7A;transform:rotate(-24deg)"></div>
+      <div style="position:absolute;left:34px;top:14px;width:16px;height:9px;border-radius:6px;background:#3F8A69;transform:rotate(24deg)"></div>
+      <div style="position:absolute;left:18px;top:8px;width:14px;height:9px;border-radius:6px;background:#5CB08A;transform:rotate(-10deg)"></div>
+      <div style="position:absolute;left:32px;top:8px;width:14px;height:9px;border-radius:6px;background:#4E9E7A;transform:rotate(10deg)"></div>
+      <div style="position:absolute;left:25px;top:5px;width:14px;height:11px;border-radius:6px;background:#6ABF97"></div>
+      <div style="position:absolute;left:28px;top:8px;width:8px;height:7px;border-radius:4px;background:#8FD6B4"></div>
+    </sc-if>
+  </div>
+</sc-if>
+
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:120,&quot;height&quot;:80},&quot;kind&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;tree&quot;,&quot;bush&quot;,&quot;bench&quot;,&quot;lamp&quot;,&quot;planter&quot;,&quot;car&quot;],&quot;default&quot;:&quot;tree&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;plant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;daisy&quot;,&quot;tulip&quot;,&quot;fern&quot;,&quot;lavender&quot;,&quot;succulent&quot;],&quot;default&quot;:&quot;daisy&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Planter&quot;},&quot;livery&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;blue&quot;,&quot;red&quot;,&quot;green&quot;,&quot;purple&quot;],&quot;default&quot;:&quot;blue&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Car&quot;}}">
+class Component extends DCLogic {
+  renderVals(){
+    const k = this.props.kind || 'tree';
+    const p = this.props.plant || 'daisy';
+        return Object.assign({}, {isTree: k === 'tree', isBush: k === 'bush', isBench: k === 'bench', isLamp: k === 'lamp', isPlanter: k === 'planter',
+      isDaisy: p === 'daisy', isTulip: p === 'tulip', isFern: p === 'fern', isLavender: p === 'lavender', isSucculent: p === 'succulent'});
+  }
+}
+</script>
+</body>
+</html>
