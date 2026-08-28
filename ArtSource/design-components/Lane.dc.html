@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div style="position:absolute;left:0;top:0;width:{{ w }}px;height:50px;overflow:{{ clip }}">
+
+  <sc-if value="{{ isRoad }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;left:0;top:0;width:{{ w }}px;height:50px;background:linear-gradient(180deg,#3E434A 0%,#34383E 25%,#2E3238 75%,#282C31 100%)">
+      <div style="position:absolute;left:0;top:0;width:{{ w }}px;height:4px;background:#C9CFD8"></div>
+      <div style="position:absolute;left:0;bottom:0;width:{{ w }}px;height:4px;background:#C9CFD8"></div>
+      <div style="position:absolute;left:0;top:24px;width:{{ w }}px;height:3px;background:repeating-linear-gradient(90deg,rgba(233,238,245,.75) 0 26px,transparent 26px 74px)"></div>
+      <div style="position:absolute;inset:0;opacity:.5;background:repeating-linear-gradient(97deg,rgba(255,255,255,.035) 0 1px,transparent 1px 9px)"></div>
+      <sc-for list="{{ vehicles }}" as="v" hint-placeholder-count="3">
+        <div style="position:absolute;left:0;top:0;height:50px;width:{{ v.wpx }};animation:{{ v.anim }}">
+          <div style="position:absolute;left:0;top:50%;width:{{ v.wpx }};height:{{ v.hpx }};transform:translateY(-50%) scale({{ v.scale }});transform-origin:50% 100%">
+            <dc-import name="LaneObject" kind="{{ v.kind }}" dir="{{ dir }}" livery="{{ v.livery }}" hint-size="186px,48px" style="position:absolute;left:0;top:0;width:{{ v.wpx }};height:{{ v.hpx }}"></dc-import>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isRiver }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;left:0;top:0;width:{{ w }}px;height:50px;background:linear-gradient(180deg,#154E77 0%,#1E6DA3 35%,#1B5E8F 75%,#154E77 100%)">
+      <div style="position:absolute;left:0;top:0;width:{{ w }}px;height:7px;background:linear-gradient(180deg,rgba(0,0,0,.32),transparent)"></div>
+      <div style="position:absolute;inset:0;opacity:.55;background:repeating-linear-gradient(88deg,rgba(255,255,255,.1) 0 2px,transparent 2px 7px,rgba(255,255,255,.05) 7px 8px,transparent 8px 26px);animation:ln-ripple 5s ease-in-out infinite"></div>
+      <sc-for list="{{ logs }}" as="lg" hint-placeholder-count="3">
+        <div style="position:absolute;left:0;top:0;height:50px;width:{{ lg.wpx }};animation:{{ lg.anim }}">
+          <div style="position:absolute;left:0;top:50%;width:{{ lg.wpx }};height:42px;transform:translateY(-50%) scale(1.1);transform-origin:50% 100%">
+            <dc-import name="LaneObject" kind="{{ lg.kind }}" dir="{{ dir }}" hint-size="200px,42px" style="position:absolute;left:0;top:0;width:{{ lg.wpx }};height:42px"></dc-import>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isSwamp }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;left:0;top:0;width:{{ w }}px;height:50px;background:linear-gradient(180deg,#24311B 0%,#314327 45%,#26331D 100%)">
+      <div style="position:absolute;left:0;top:0;width:{{ w }}px;height:6px;background:linear-gradient(180deg,rgba(0,0,0,.4),transparent)"></div>
+      <div style="position:absolute;inset:0;opacity:.6;background:repeating-linear-gradient(84deg,rgba(130,170,95,.13) 0 2px,transparent 2px 11px);animation:ln-ripple 8s ease-in-out infinite"></div>
+      <sc-for list="{{ pads }}" as="p" hint-placeholder-count="6">
+        <div style="position:absolute;top:8px;width:48px;height:34px;left:{{ p.x }}px">
+          <div style="position:absolute;left:2px;top:5px;width:46px;height:30px;border-radius:50%;background:rgba(0,0,0,.3);filter:blur(3px)"></div>
+          <div style="position:absolute;left:0;top:0;width:48px;height:30px;border-radius:50%;background:radial-gradient(60% 70% at 36% 28%,#74B851 0%,#549540 55%,#3E7A2E 100%);clip-path:polygon(0 0,44% 0,50% 52%,56% 0,100% 0,100% 100%,0 100%)"></div>
+          <div style="position:absolute;left:23px;top:13px;width:17px;height:1.5px;background:rgba(30,60,20,.35);transform:rotate(24deg)"></div>
+          <div style="position:absolute;left:8px;top:13px;width:17px;height:1.5px;background:rgba(30,60,20,.35);transform:rotate(-24deg)"></div>
+        </div>
+      </sc-for>
+      <sc-for list="{{ gators }}" as="g" hint-placeholder-count="2">
+        <div style="position:absolute;left:0;top:0;width:206px;height:50px;animation:{{ g.anim }}">
+          <div style="position:absolute;left:0;top:50%;width:206px;height:44px;transform:translateY(-50%) scale(1.05);transform-origin:50% 100%">
+            <dc-import name="LaneObject" kind="{{ g.kind }}" dir="{{ dir }}" hint-size="206px,44px" style="position:absolute;left:0;top:0;width:206px;height:44px"></dc-import>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isTracks }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;left:0;top:0;width:{{ w }}px;height:50px;background:linear-gradient(180deg,#3F3931 0%,#4A4239 42%,#332E28 100%)">
+      <div style="position:absolute;left:0;top:8px;width:{{ w }}px;height:34px;background:repeating-linear-gradient(90deg,#655C50 0 12px,transparent 12px 38px)"></div>
+      <div style="position:absolute;left:0;top:8px;width:{{ w }}px;height:34px;background:repeating-linear-gradient(90deg,rgba(0,0,0,.4) 0 2px,transparent 2px 12px,transparent 12px 38px)"></div>
+      <div style="position:absolute;left:0;top:12px;width:{{ w }}px;height:5px;background:linear-gradient(180deg,#CFC8B8 0 2px,#7E766A 2px)"></div>
+      <div style="position:absolute;left:0;top:34px;width:{{ w }}px;height:5px;background:linear-gradient(180deg,#CFC8B8 0 2px,#7E766A 2px)"></div>
+      <div style="position:absolute;left:0;top:0;width:600px;height:50px;animation:{{ trainAnim }}">
+        <div style="position:absolute;left:0;top:50%;width:600px;height:56px;transform:translateY(-50%) scale(1.44);transform-origin:50% 100%">
+          <dc-import name="LaneObject" kind="{{ trainKind }}" dir="{{ dir }}" hint-size="600px,56px" style="position:absolute;left:0;top:0;width:600px;height:56px"></dc-import>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isBike }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;left:0;top:0;width:{{ w }}px;height:50px;background:linear-gradient(180deg,#5D6356 0%,#4E5449 45%,#41463C 100%)">
+      <div style="position:absolute;left:0;top:24px;width:{{ w }}px;height:2px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.42) 0 20px,transparent 20px 40px)"></div>
+      <div style="position:absolute;inset:0;opacity:.35;background:repeating-linear-gradient(72deg,rgba(0,0,0,.07) 0 1px,transparent 1px 8px)"></div>
+      <sc-for list="{{ riders }}" as="r" hint-placeholder-count="3">
+        <div style="position:absolute;left:0;top:0;height:50px;width:{{ r.wpx }};animation:{{ r.anim }}">
+          <div style="position:absolute;left:0;top:50%;width:{{ r.wpx }};height:56px;transform:translateY(-50%) scale(1.05);transform-origin:50% 100%">
+            <dc-import name="LaneObject" kind="{{ r.kind }}" dir="{{ dir }}" livery="{{ r.livery }}" hint-size="60px,56px" style="position:absolute;left:0;top:0;width:{{ r.wpx }};height:56px"></dc-import>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isGrass }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;left:0;top:0;width:{{ w }}px;height:50px;background:linear-gradient(180deg,#2A6E3D 0%,#348349 60%,#3B9152 100%)">
+      <div style="position:absolute;inset:0;opacity:.5;background:repeating-linear-gradient(78deg,rgba(255,255,255,.07) 0 2px,transparent 2px 9px)"></div>
+      <div style="position:absolute;left:0;bottom:0;width:{{ w }}px;height:6px;background:#1C4E2C"></div>
+      <sc-for list="{{ trees }}" as="t" hint-placeholder-count="2">
+        <div style="position:absolute;top:-24px;width:52px;height:62px;left:{{ t.x }}px">
+          <dc-import name="Obstruction" kind="tree" hint-size="52px,62px" style="position:absolute;left:0;top:0;width:52px;height:62px"></dc-import>
+        </div>
+      </sc-for>
+      <sc-for list="{{ bushes }}" as="bu" hint-placeholder-count="2">
+        <div style="position:absolute;top:-8px;width:46px;height:44px;left:{{ bu.x }}px">
+          <dc-import name="Obstruction" kind="bush" hint-size="46px,44px" style="position:absolute;left:0;top:0;width:46px;height:44px"></dc-import>
+        </div>
+      </sc-for>
+      <sc-for list="{{ benches }}" as="b" hint-placeholder-count="1">
+        <div style="position:absolute;top:-14px;width:78px;height:50px;left:{{ b.x }}px">
+          <dc-import name="Obstruction" kind="bench" hint-size="78px,50px" style="position:absolute;left:0;top:0;width:78px;height:50px"></dc-import>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isConcrete }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;left:0;top:0;width:{{ w }}px;height:50px;background:linear-gradient(180deg,#9BA2AB 0%,#868D96 55%,#6E747C 100%)">
+      <div style="position:absolute;inset:0;opacity:.5;background:repeating-linear-gradient(90deg,transparent 0 92px,rgba(0,0,0,.18) 92px 94px)"></div>
+      <div style="position:absolute;left:0;bottom:0;width:{{ w }}px;height:7px;background:#5A6068"></div>
+      <sc-for list="{{ planters }}" as="pl" hint-placeholder-count="2">
+        <div style="position:absolute;top:-21px;width:64px;height:52px;left:{{ pl.x }}px">
+          <dc-import name="Obstruction" kind="planter" plant="{{ pl.plant }}" hint-size="64px,52px" style="position:absolute;left:0;top:0;width:64px;height:52px"></dc-import>
+        </div>
+      </sc-for>
+      <sc-for list="{{ lamps }}" as="l" hint-placeholder-count="2">
+        <div style="position:absolute;top:-31px;width:22px;height:70px;left:{{ l.x }}px">
+          <dc-import name="Obstruction" kind="lamp" hint-size="22px,70px" style="position:absolute;left:0;top:0;width:22px;height:70px"></dc-import>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isGoal }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;left:0;top:0;width:{{ w }}px;height:50px;background:linear-gradient(180deg,#2A6E3D 0%,#348349 60%,#3B9152 100%)">
+      <div style="position:absolute;inset:0;opacity:.5;background:repeating-linear-gradient(78deg,rgba(255,255,255,.07) 0 2px,transparent 2px 9px)"></div>
+      <sc-for list="{{ bays }}" as="b" hint-placeholder-count="7">
+        <div style="position:absolute;top:8px;width:86px;height:34px;border-radius:10px;background:linear-gradient(180deg,#1E5230,#174425);box-shadow:0 0 0 2px rgba(255,255,255,.07) inset;left:{{ b.x }}px"></div>
+      </sc-for>
+      <div style="position:absolute;left:0;bottom:0;width:{{ w }}px;height:6px;background:#1C4E2C"></div>
+    </div>
+  </sc-if>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:660,&quot;height&quot;:50},&quot;kind&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;road&quot;,&quot;river&quot;,&quot;swamp&quot;,&quot;tracks&quot;,&quot;bike&quot;,&quot;grass&quot;,&quot;concrete&quot;,&quot;goal&quot;],&quot;default&quot;:&quot;road&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;dir&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;right&quot;,&quot;left&quot;],&quot;default&quot;:&quot;right&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;w&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:1260,&quot;tsType&quot;:&quot;number&quot;},&quot;speed&quot;:{&quot;editor&quot;:&quot;float&quot;,&quot;default&quot;:6.4,&quot;tsType&quot;:&quot;number&quot;},&quot;preview&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;bare&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;livery&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;blue&quot;,&quot;red&quot;,&quot;green&quot;,&quot;purple&quot;],&quot;default&quot;:&quot;blue&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const PLANTS = ['daisy', 'tulip', 'lavender', 'fern', 'succulent'];
+
+class Component extends DCLogic {
+  renderVals(){
+    const kind = this.props.kind || 'road';
+    const w = this.props.w || 1260;
+    const preview = !!this.props.preview;
+    const R = preview ? 'lnp-r' : 'ln-r';
+    const L = preview ? 'lnp-l' : 'ln-l';
+    const dir = this.props.dir === 'left' ? 'left' : 'right';
+    const base = dir === 'left' ? L : R;
+    const speed = this.props.speed || (preview ? 4.4 : 6.4);
+    const a = (d) => `${base} ${speed}s linear infinite ${d}s`;
+    const spread = (n, gap, x0) => Array.from({length: n}, (_, i) => ({x: x0 + i * gap}));
+    return {
+      w, dir,
+      clip: 'visible',
+      isRoad: kind === 'road', isRiver: kind === 'river', isSwamp: kind === 'swamp',
+      isTracks: kind === 'tracks', isBike: kind === 'bike',
+      isGrass: kind === 'grass', isConcrete: kind === 'concrete', isGoal: kind === 'goal',
+      vehicles: [
+        {kind: 'truck', wpx: '186px', hpx: '48px', scale: 1.457, livery: this.props.livery || 'blue', anim: `${base} ${speed}s linear infinite -0.6s`},
+        {kind: 'car', wpx: '88px', hpx: '38px', scale: 1.2, livery: dir === 'left' ? 'green' : 'red', anim: `${base} ${speed * 0.85}s linear infinite -${(speed * 0.85) / 2 + 0.3}s`},
+        {kind: 'bus', wpx: '150px', hpx: '46px', scale: 1.4, livery: dir === 'left' ? 'blue' : 'green', anim: `${base} ${speed * 1.3}s linear infinite -${speed * 1.3 * 0.72}s`},
+        {kind: 'convertible', wpx: '88px', hpx: '38px', scale: 1.2, livery: dir === 'left' ? 'black' : 'purple', anim: `${base} ${speed * 0.72}s linear infinite -${speed * 0.72 * 0.35}s`}
+      ],
+      logs: [
+        {kind: 'log-long', wpx: '270px', anim: `${base} ${speed + 3}s linear infinite -0.4s`},
+        {kind: 'log', wpx: '200px', anim: `${base} ${speed + 2}s linear infinite -${(speed + 2) / 2.4}s`},
+        {kind: 'log-short', wpx: '130px', anim: `${base} ${speed + 1.4}s linear infinite -${(speed + 1.4) * 0.74}s`}
+      ],
+      gators: [
+        {kind: 'gator', anim: `${base} ${speed + 3}s linear infinite -1.2s`},
+        {kind: 'gator-open', anim: `${base} ${speed + 3.6}s linear infinite -${(speed + 3.6) / 2}s`}
+      ],
+      riders: [
+        {kind: 'cyclist', wpx: '60px', livery: 'red', anim: `${base} ${speed - 1.6}s linear infinite -0.2s`},
+        {kind: 'skater', wpx: '56px', livery: 'purple', anim: `${base} ${speed - 1.2}s linear infinite -${(speed - 1.2) / 2.6}s`},
+        {kind: 'runner', wpx: '52px', livery: 'green', anim: `${base} ${speed - 0.6}s linear infinite -${(speed - 0.6) * 0.7}s`}
+      ],
+      trainAnim: `${dir === 'left' ? L : R} ${speed - 1}s linear infinite -1s`,
+      trainKind: this.props.train === 'passenger' ? 'passenger' : 'freight',
+      pads: spread(Math.ceil(w / 210), 210, 30),
+      bays: spread(Math.max(3, Math.round(w / 176)), 176, 40),
+      trees: this.props.bare ? [] : spread(Math.max(1, Math.round(w / 520)), 520, 110),
+      benches: this.props.bare ? [] : spread(Math.max(1, Math.round(w / 520)), 520, 370),
+      bushes: this.props.bare ? [] : spread(Math.max(1, Math.round(w / 520)), 520, 240),
+      planters: spread(Math.max(2, Math.round(w / 480)), 480, 420).map((p, i) => ({...p, plant: PLANTS[i % PLANTS.length]})),
+      lamps: spread(Math.max(2, Math.round(w / 480)), 480, 180)
+    };
+  }
+}
+</script>
+</body>
+</html>
