@@ -149,3 +149,23 @@ When `/n8-replan` processes an ad-hoc entry it appends `— reconciled by /n8-re
   **Issue:** #25, #20
 - **Decision:** Discovered work filed as #35 (IL2CPP symbols + R8 mapping uploads with releases) instead of fixed inline — quality-of-life, not ship-critical.
   **Issue:** #25
+
+## /n8-plan * (M2–M7) — 2026-08-28
+
+- **Decision (owner):** Riding = classic continuous drift; swipe-from-drift lands nearest column; edge drift kills.
+  **Issue:** #42
+- **Decision (owner, design override):** Gators — rideable surface is the BACK only, mouth-CLOSED only; open-mouth back kills; head/snout never rideable. Overrides the design canvases' "ride the eyes / snout kills" copy. Agent interpretation (ledgered in #49): the open-back rule applies continuously — mouth opening mid-ride kills at the open tick, mirroring turtle submerge.
+  **Issue:** #49
+- **Decision (owner):** Death is classic — bays persist, clock never pauses, infinite retries. Bike collision = 2s in-place stun (queued swipes dropped). Walkway = conveyor whose edge KILLS. Diagonal legality = landing square only. Swipe queue capped at 2. NO pause screen (Crossy-style; Android back = confirm-quit). Logo = spaced two-tone ("Frog" white + "Across" mint).
+  **Issue:** #39 #41 #51 #52 #55
+- **Assumptions (builder, logged not asked):** infinite lives (no lives UI exists in the design); board columns are per-level schema data; crashed rider wrecks are passable and safe; the clock is game-time (OS suspension adds nothing — a phone call must not cost a medal).
+  **Issue:** #37 #38 #51 #60
+- **Decision:** Invariant guards placed — invariant 2 → #38, invariant 4 → #39 (CLAUDE.md annotated as planned).
+- **Decision:** #35 (symbols/mapping) triaged into M7 under epic #12. M7's closed test (#69) is flagged to start during M5/M6 so Google's 14-day clock runs in parallel with content work.
+- **Decision:** One spike total (#45, sprite pipeline). Whole-project analysis: audit emphases recorded in M8 (performance primary; stability; sim-boundary coverage; cleanup; 508-lite incl. not-color-only medals; security posture). Skill candidates deferred: "sprite-pipeline" (after #45) and "level-author" (after #43/#44) via /n8-skill. Gap check: cross-milestone key links each have a named owning story (#59↔#65; #54↔#60).
+
+## Ad-hoc — 2026-08-28
+
+- **Change:** Tap-to-advance added: a clear tap counts as a forward swipe (one forward hop, same queue/legality rules); dead zone between tap ceiling and swipe threshold does nothing.
+  **Why:** Owner scope decision during planning review — faster forward movement ergonomics.
+  **Affects:** M2 #41 (amended directly — body/AC/tests updated pre-execution) and M4 #58 (controls copy rider commented). No other stories assume tap-does-nothing. Reconciled at source — reconciled by /n8-plan 2026-08-28.
