@@ -62,3 +62,14 @@ no network access, contact support@honestarcade.app)
   (calendar reminder recommended); log here:
   - Start date (first day ≥12 opted in): ☐
   - Daily count log: ☐
+
+## Closed-track status (2026-08-28)
+
+- v0.2.0 (versionCode 102) promoted internal → alpha (closed testing) via
+  play-promote.yml run 33219293891 — as a **draft** release: Play refuses
+  completed releases outside internal while the app is a draft app (listing
+  unpublished). After #67/#68 publish the listing, re-run the workflow (or
+  roll out in Console) to make it a live closed-test release.
+- Promote workflow learnings: google-github-actions/auth needs the IAM
+  Credentials API (SA gets 403) — mint tokens with gcloud locally instead;
+  the API track id for Closed testing is `alpha`.
