@@ -2,7 +2,8 @@
     "name": "FrogAcross.Editor",
     "rootNamespace": "FrogAcross.Editor",
     "references": [
-        "FrogAcross.Runtime"
+        "FrogAcross.Runtime",
+        "Unity.InputSystem"
     ],
     "includePlatforms": [
         "Editor"
