@@ -8,7 +8,7 @@ namespace FrogAcross.Tests.EditMode
         [Test]
         public void RuntimeAssembly_IsReachable()
         {
-            Assert.AreEqual("FrogAcross", AppInfo.ProductName);
+            Assert.AreEqual("Frog Across", AppInfo.ProductName);
         }
     }
 }

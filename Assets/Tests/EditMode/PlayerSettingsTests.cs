@@ -18,7 +18,7 @@ namespace FrogAcross.Tests.EditMode
         [Test]
         public void ProductAndCompany_MatchBrand()
         {
-            Assert.AreEqual("FrogAcross", PlayerSettings.productName);
+            Assert.AreEqual("Frog Across", PlayerSettings.productName);
             Assert.AreEqual("Honest Arcade", PlayerSettings.companyName);
         }
 
