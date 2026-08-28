@@ -1,0 +1,147 @@
+{
+    "id": "level-061",
+    "name": "level-061",
+    "columns": 13,
+    "medal": {
+        "gold": 13.600000381469727,
+        "silver": 19.799999237060548,
+        "bronze": 28.600000381469728
+    },
+    "startColumn": 11,
+    "bays": [
+        4,
+        6,
+        12
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-daisy",
+                    "column": 11
+                }
+            ]
+        },
+        {
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "lamp",
+                    "column": 3
+                },
+                {
+                    "pieceId": "planter-lavender",
+                    "column": 5
+                }
+            ]
+        },
+        {
+            "kind": "walkway",
+            "dir": "left",
+            "speed": 1.2400000095367432,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "left",
+            "speed": 2.5799999237060549,
+            "objects": [
+                {
+                    "pieceId": "car",
+                    "offset": 3.609999895095825,
+                    "spacing": 9.020000457763672,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "bus",
+                    "offset": 4.699999809265137,
+                    "spacing": 12.359999656677246,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "bush",
+                    "column": 9
+                }
+            ]
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-fern",
+                    "column": 0
+                },
+                {
+                    "pieceId": "planter-succulent",
+                    "column": 3
+                },
+                {
+                    "pieceId": "lamp",
+                    "column": 5
+                }
+            ]
+        },
+        {
+            "kind": "tracks",
+            "dir": "left",
+            "speed": 2.359999895095825,
+            "objects": [
+                {
+                    "pieceId": "freight",
+                    "offset": 3.0399999618530275,
+                    "spacing": 14.859999656677246,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "right",
+            "speed": 2.609999895095825,
+            "objects": [
+                {
+                    "pieceId": "cyclist",
+                    "offset": 4.320000171661377,
+                    "spacing": 4.550000190734863,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}

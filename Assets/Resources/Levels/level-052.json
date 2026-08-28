@@ -1,0 +1,128 @@
+{
+    "id": "level-052",
+    "name": "level-052",
+    "columns": 13,
+    "medal": {
+        "gold": 27.299999237060548,
+        "silver": 39.599998474121097,
+        "bronze": 57.400001525878909
+    },
+    "startColumn": 9,
+    "bays": [
+        1,
+        6,
+        10
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "right",
+            "speed": 2.2699999809265138,
+            "objects": [
+                {
+                    "pieceId": "bus",
+                    "offset": 5.239999771118164,
+                    "spacing": 12.640000343322754,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "bus",
+                    "offset": 7.639999866485596,
+                    "spacing": 13.800000190734864,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "left",
+            "speed": 1.350000023841858,
+            "objects": [
+                {
+                    "pieceId": "log",
+                    "offset": 5.329999923706055,
+                    "spacing": 15.460000038146973,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "turtle-log",
+                    "offset": 8.0,
+                    "spacing": 13.600000381469727,
+                    "phase": 91
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "walkway",
+            "dir": "left",
+            "speed": 1.4299999475479127,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "tracks",
+            "dir": "left",
+            "speed": 2.140000104904175,
+            "objects": [
+                {
+                    "pieceId": "passenger",
+                    "offset": 9.220000267028809,
+                    "spacing": 14.359999656677246,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "left",
+            "speed": 1.6100000143051148,
+            "objects": [
+                {
+                    "pieceId": "turtle-log",
+                    "offset": 5.090000152587891,
+                    "spacing": 7.25,
+                    "phase": 241
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "right",
+            "speed": 1.3600000143051148,
+            "objects": [
+                {
+                    "pieceId": "raft",
+                    "offset": 1.440000057220459,
+                    "spacing": 7.300000190734863,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}

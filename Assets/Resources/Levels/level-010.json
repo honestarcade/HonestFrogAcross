@@ -1,0 +1,115 @@
+{
+    "id": "level-010",
+    "name": "level-010",
+    "columns": 9,
+    "medal": {
+        "gold": 30.5,
+        "silver": 44.29999923706055,
+        "bronze": 64.0999984741211
+    },
+    "startColumn": 2,
+    "bays": [
+        1,
+        2,
+        5
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "left",
+            "speed": 1.600000023841858,
+            "objects": [
+                {
+                    "pieceId": "truck",
+                    "offset": 5.670000076293945,
+                    "spacing": 7.789999961853027,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "left",
+            "speed": 1.4700000286102296,
+            "objects": [
+                {
+                    "pieceId": "car",
+                    "offset": 4.880000114440918,
+                    "spacing": 5.78000020980835,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "right",
+            "speed": 1.690000057220459,
+            "objects": [
+                {
+                    "pieceId": "truck",
+                    "offset": 0.5400000214576721,
+                    "spacing": 8.0600004196167,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "right",
+            "speed": 1.5099999904632569,
+            "objects": [
+                {
+                    "pieceId": "truck",
+                    "offset": 3.7200000286102297,
+                    "spacing": 7.840000152587891,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "lamp",
+                    "column": 2
+                },
+                {
+                    "pieceId": "tree",
+                    "column": 7
+                },
+                {
+                    "pieceId": "lamp",
+                    "column": 8
+                }
+            ]
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}

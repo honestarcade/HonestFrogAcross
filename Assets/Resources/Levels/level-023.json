@@ -1,0 +1,117 @@
+{
+    "id": "level-023",
+    "name": "level-023",
+    "columns": 11,
+    "medal": {
+        "gold": 10.699999809265137,
+        "silver": 15.600000381469727,
+        "bronze": 22.5
+    },
+    "startColumn": 7,
+    "bays": [
+        1,
+        3
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "right",
+            "speed": 1.3600000143051148,
+            "objects": [
+                {
+                    "pieceId": "log-long",
+                    "offset": 0.4099999964237213,
+                    "spacing": 18.139999389648439,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "log",
+                    "offset": 12.829999923706055,
+                    "spacing": 15.920000076293946,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "bush",
+                    "column": 6
+                }
+            ]
+        },
+        {
+            "kind": "swamp",
+            "dir": "left",
+            "speed": 1.3200000524520875,
+            "objects": [
+                {
+                    "pieceId": "gator",
+                    "offset": 6.130000114440918,
+                    "spacing": 14.520000457763672,
+                    "phase": 322
+                },
+                {
+                    "pieceId": "turtle-log",
+                    "offset": 8.970000267028809,
+                    "spacing": 15.039999961853028,
+                    "phase": 267
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "left",
+            "speed": 1.159999966621399,
+            "objects": [
+                {
+                    "pieceId": "turtle-log",
+                    "offset": 2.700000047683716,
+                    "spacing": 15.0,
+                    "phase": 134
+                },
+                {
+                    "pieceId": "raft",
+                    "offset": 8.539999961853028,
+                    "spacing": 13.34000015258789,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}

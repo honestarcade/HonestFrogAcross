@@ -1,0 +1,164 @@
+{
+    "id": "level-072",
+    "name": "level-072",
+    "columns": 13,
+    "medal": {
+        "gold": 18.299999237060548,
+        "silver": 26.5,
+        "bronze": 38.400001525878909
+    },
+    "startColumn": 9,
+    "bays": [
+        0,
+        5,
+        8,
+        11
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "right",
+            "speed": 2.3499999046325685,
+            "objects": [
+                {
+                    "pieceId": "skater",
+                    "offset": 1.2400000095367432,
+                    "spacing": 8.640000343322754,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "runner",
+                    "offset": 5.340000152587891,
+                    "spacing": 7.800000190734863,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "right",
+            "speed": 2.4100000858306886,
+            "objects": [
+                {
+                    "pieceId": "truck",
+                    "offset": 0.8299999833106995,
+                    "spacing": 13.460000038146973,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "car",
+                    "offset": 6.829999923706055,
+                    "spacing": 10.800000190734864,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "left",
+            "speed": 2.4600000381469728,
+            "objects": [
+                {
+                    "pieceId": "skater",
+                    "offset": 0.8299999833106995,
+                    "spacing": 3.7200000286102297,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "left",
+            "speed": 2.3399999141693117,
+            "objects": [
+                {
+                    "pieceId": "runner",
+                    "offset": 3.700000047683716,
+                    "spacing": 4.440000057220459,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-lavender",
+                    "column": 6
+                }
+            ]
+        },
+        {
+            "kind": "road",
+            "dir": "right",
+            "speed": 2.5199999809265138,
+            "objects": [
+                {
+                    "pieceId": "truck",
+                    "offset": 3.690000057220459,
+                    "spacing": 7.0,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "walkway",
+            "dir": "right",
+            "speed": 1.7999999523162842,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "left",
+            "speed": 2.740000009536743,
+            "objects": [
+                {
+                    "pieceId": "cyclist",
+                    "offset": 2.1600000858306886,
+                    "spacing": 3.5999999046325685,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-fern",
+                    "column": 1
+                },
+                {
+                    "pieceId": "planter-fern",
+                    "column": 6
+                }
+            ]
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}

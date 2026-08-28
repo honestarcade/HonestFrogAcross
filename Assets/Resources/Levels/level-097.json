@@ -1,0 +1,179 @@
+{
+    "id": "level-097",
+    "name": "level-097",
+    "columns": 13,
+    "medal": {
+        "gold": 31.100000381469728,
+        "silver": 45.099998474121097,
+        "bronze": 65.30000305175781
+    },
+    "startColumn": 10,
+    "bays": [
+        1,
+        2,
+        5,
+        10,
+        12
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "right",
+            "speed": 2.2799999713897707,
+            "objects": [
+                {
+                    "pieceId": "truck",
+                    "offset": 4.630000114440918,
+                    "spacing": 13.239999771118164,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "convertible",
+                    "offset": 7.730000019073486,
+                    "spacing": 9.079999923706055,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "left",
+            "speed": 2.799999952316284,
+            "objects": [
+                {
+                    "pieceId": "convertible",
+                    "offset": 4.039999961853027,
+                    "spacing": 4.070000171661377,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "left",
+            "speed": 1.6799999475479127,
+            "objects": [
+                {
+                    "pieceId": "gator",
+                    "offset": 2.8399999141693117,
+                    "spacing": 6.929999828338623,
+                    "phase": 108
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "walkway",
+            "dir": "right",
+            "speed": 2.0299999713897707,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "left",
+            "speed": 1.9600000381469727,
+            "objects": [
+                {
+                    "pieceId": "log-short",
+                    "offset": 4.260000228881836,
+                    "spacing": 5.309999942779541,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "right",
+            "speed": 2.990000009536743,
+            "objects": [
+                {
+                    "pieceId": "cyclist",
+                    "offset": 2.450000047683716,
+                    "spacing": 4.309999942779541,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "left",
+            "speed": 2.940000057220459,
+            "objects": [
+                {
+                    "pieceId": "runner",
+                    "offset": 1.0099999904632569,
+                    "spacing": 3.509999990463257,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "right",
+            "speed": 1.7999999523162842,
+            "objects": [
+                {
+                    "pieceId": "log",
+                    "offset": 6.550000190734863,
+                    "spacing": 13.380000114440918,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "gator",
+                    "offset": 8.350000381469727,
+                    "spacing": 13.520000457763672,
+                    "phase": 55
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "right",
+            "speed": 2.759999990463257,
+            "objects": [
+                {
+                    "pieceId": "car",
+                    "offset": 2.4100000858306886,
+                    "spacing": 4.820000171661377,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "left",
+            "speed": 1.940000057220459,
+            "objects": [
+                {
+                    "pieceId": "log",
+                    "offset": 0.9599999785423279,
+                    "spacing": 6.880000114440918,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}

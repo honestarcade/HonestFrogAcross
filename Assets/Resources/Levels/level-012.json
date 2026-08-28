@@ -1,0 +1,106 @@
+{
+    "id": "level-012",
+    "name": "level-012",
+    "columns": 11,
+    "medal": {
+        "gold": 12.899999618530274,
+        "silver": 18.700000762939454,
+        "bronze": 27.100000381469728
+    },
+    "startColumn": 9,
+    "bays": [
+        3,
+        7
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "left",
+            "speed": 1.059999942779541,
+            "objects": [
+                {
+                    "pieceId": "turtle-log",
+                    "offset": 1.1200000047683716,
+                    "spacing": 13.920000076293946,
+                    "phase": 13
+                },
+                {
+                    "pieceId": "raft",
+                    "offset": 9.25,
+                    "spacing": 15.220000267028809,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "right",
+            "speed": 1.2000000476837159,
+            "objects": [
+                {
+                    "pieceId": "turtle-log",
+                    "offset": 6.440000057220459,
+                    "spacing": 16.15999984741211,
+                    "phase": 203
+                },
+                {
+                    "pieceId": "log-short",
+                    "offset": 13.609999656677246,
+                    "spacing": 12.119999885559082,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "right",
+            "speed": 1.2100000381469727,
+            "objects": [
+                {
+                    "pieceId": "log",
+                    "offset": 1.5499999523162842,
+                    "spacing": 7.429999828338623,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "right",
+            "speed": 1.6699999570846558,
+            "objects": [
+                {
+                    "pieceId": "truck",
+                    "offset": 0.8299999833106995,
+                    "spacing": 8.270000457763672,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}

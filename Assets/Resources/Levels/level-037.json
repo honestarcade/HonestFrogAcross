@@ -1,0 +1,138 @@
+{
+    "id": "level-037",
+    "name": "level-037",
+    "columns": 11,
+    "medal": {
+        "gold": 20.299999237060548,
+        "silver": 29.5,
+        "bronze": 42.70000076293945
+    },
+    "startColumn": 6,
+    "bays": [
+        3,
+        6,
+        8
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-tulip",
+                    "column": 5
+                }
+            ]
+        },
+        {
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "bush",
+                    "column": 10
+                }
+            ]
+        },
+        {
+            "kind": "river",
+            "dir": "left",
+            "speed": 1.4600000381469727,
+            "objects": [
+                {
+                    "pieceId": "log-short",
+                    "offset": 0.9700000286102295,
+                    "spacing": 13.359999656677246,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "turtle-log",
+                    "offset": 9.079999923706055,
+                    "spacing": 14.5,
+                    "phase": 304
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "tracks",
+            "dir": "right",
+            "speed": 1.8300000429153443,
+            "objects": [
+                {
+                    "pieceId": "freight",
+                    "offset": 11.680000305175782,
+                    "spacing": 14.270000457763672,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "tracks",
+            "dir": "right",
+            "speed": 1.899999976158142,
+            "objects": [
+                {
+                    "pieceId": "freight",
+                    "offset": 13.670000076293946,
+                    "spacing": 14.489999771118164,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "left",
+            "speed": 1.6399999856948853,
+            "objects": [
+                {
+                    "pieceId": "convertible",
+                    "offset": 3.4600000381469728,
+                    "spacing": 9.84000015258789,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "bus",
+                    "offset": 6.21999979019165,
+                    "spacing": 12.739999771118164,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "right",
+            "speed": 2.200000047683716,
+            "objects": [
+                {
+                    "pieceId": "car",
+                    "offset": 3.6700000762939455,
+                    "spacing": 5.900000095367432,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}

@@ -1,0 +1,137 @@
+{
+    "id": "level-015",
+    "name": "level-015",
+    "columns": 9,
+    "medal": {
+        "gold": 17.200000762939454,
+        "silver": 25.0,
+        "bronze": 36.20000076293945
+    },
+    "startColumn": 7,
+    "bays": [
+        2,
+        8
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "left",
+            "speed": 1.2999999523162842,
+            "objects": [
+                {
+                    "pieceId": "gator",
+                    "offset": 2.2699999809265138,
+                    "spacing": 14.600000381469727,
+                    "phase": 124
+                },
+                {
+                    "pieceId": "turtle-log",
+                    "offset": 12.390000343322754,
+                    "spacing": 15.5600004196167,
+                    "phase": 189
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "tree",
+                    "column": 1
+                }
+            ]
+        },
+        {
+            "kind": "road",
+            "dir": "left",
+            "speed": 1.850000023841858,
+            "objects": [
+                {
+                    "pieceId": "car",
+                    "offset": 3.569999933242798,
+                    "spacing": 12.119999885559082,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "truck",
+                    "offset": 7.650000095367432,
+                    "spacing": 14.760000228881836,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "left",
+            "speed": 1.0800000429153443,
+            "objects": [
+                {
+                    "pieceId": "gator",
+                    "offset": 1.4900000095367432,
+                    "spacing": 7.71999979019165,
+                    "phase": 22
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "right",
+            "speed": 1.1799999475479127,
+            "objects": [
+                {
+                    "pieceId": "raft",
+                    "offset": 4.050000190734863,
+                    "spacing": 13.300000190734864,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "turtle-log",
+                    "offset": 12.609999656677246,
+                    "spacing": 15.479999542236329,
+                    "phase": 8
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "right",
+            "speed": 0.9800000190734863,
+            "objects": [
+                {
+                    "pieceId": "log-short",
+                    "offset": 1.9299999475479127,
+                    "spacing": 13.699999809265137,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "log",
+                    "offset": 7.139999866485596,
+                    "spacing": 14.960000038146973,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}

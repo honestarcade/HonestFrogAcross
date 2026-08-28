@@ -1,0 +1,139 @@
+{
+    "id": "level-065",
+    "name": "level-065",
+    "columns": 11,
+    "medal": {
+        "gold": 28.100000381469728,
+        "silver": 40.70000076293945,
+        "bronze": 59.0
+    },
+    "startColumn": 8,
+    "bays": [
+        0,
+        1,
+        8
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "walkway",
+            "dir": "right",
+            "speed": 1.590000033378601,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "left",
+            "speed": 1.7400000095367432,
+            "objects": [
+                {
+                    "pieceId": "log",
+                    "offset": 1.7000000476837159,
+                    "spacing": 6.550000190734863,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-daisy",
+                    "column": 2
+                },
+                {
+                    "pieceId": "planter-tulip",
+                    "column": 5
+                }
+            ]
+        },
+        {
+            "kind": "swamp",
+            "dir": "right",
+            "speed": 1.6699999570846558,
+            "objects": [
+                {
+                    "pieceId": "turtle-log",
+                    "offset": 2.369999885559082,
+                    "spacing": 6.289999961853027,
+                    "phase": 315
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "tracks",
+            "dir": "left",
+            "speed": 2.1700000762939455,
+            "objects": [
+                {
+                    "pieceId": "passenger",
+                    "offset": 10.319999694824219,
+                    "spacing": 13.930000305175782,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-tulip",
+                    "column": 6
+                },
+                {
+                    "pieceId": "bush",
+                    "column": 8
+                }
+            ]
+        },
+        {
+            "kind": "tracks",
+            "dir": "left",
+            "speed": 2.5899999141693117,
+            "objects": [
+                {
+                    "pieceId": "freight",
+                    "offset": 9.8100004196167,
+                    "spacing": 14.4399995803833,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "bush",
+                    "column": 1
+                }
+            ]
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}

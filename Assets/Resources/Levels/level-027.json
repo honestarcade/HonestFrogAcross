@@ -1,0 +1,127 @@
+{
+    "id": "level-027",
+    "name": "level-027",
+    "columns": 10,
+    "medal": {
+        "gold": 15.899999618530274,
+        "silver": 23.0,
+        "bronze": 33.29999923706055
+    },
+    "startColumn": 1,
+    "bays": [
+        1,
+        2,
+        7
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-lavender",
+                    "column": 9
+                }
+            ]
+        },
+        {
+            "kind": "road",
+            "dir": "right",
+            "speed": 1.7300000190734864,
+            "objects": [
+                {
+                    "pieceId": "truck",
+                    "offset": 5.230000019073486,
+                    "spacing": 15.520000457763672,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "convertible",
+                    "offset": 8.260000228881836,
+                    "spacing": 10.0,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "left",
+            "speed": 1.2599999904632569,
+            "objects": [
+                {
+                    "pieceId": "log-long",
+                    "offset": 7.769999980926514,
+                    "spacing": 8.880000114440918,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "left",
+            "speed": 1.1799999475479127,
+            "objects": [
+                {
+                    "pieceId": "log-short",
+                    "offset": 2.0199999809265138,
+                    "spacing": 5.880000114440918,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "right",
+            "speed": 1.4299999475479127,
+            "objects": [
+                {
+                    "pieceId": "raft",
+                    "offset": 3.25,
+                    "spacing": 7.099999904632568,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "left",
+            "speed": 2.009999990463257,
+            "objects": [
+                {
+                    "pieceId": "truck",
+                    "offset": 7.230000019073486,
+                    "spacing": 7.369999885559082,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}

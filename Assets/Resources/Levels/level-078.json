@@ -1,0 +1,173 @@
+{
+    "id": "level-078",
+    "name": "level-078",
+    "columns": 11,
+    "medal": {
+        "gold": 57.400001525878909,
+        "silver": 83.30000305175781,
+        "bronze": 120.5999984741211
+    },
+    "startColumn": 2,
+    "bays": [
+        4,
+        5,
+        6,
+        7,
+        8
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "right",
+            "speed": 1.600000023841858,
+            "objects": [
+                {
+                    "pieceId": "log-short",
+                    "offset": 3.7699999809265138,
+                    "spacing": 10.600000381469727,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "log-long",
+                    "offset": 7.909999847412109,
+                    "spacing": 15.920000076293946,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "tracks",
+            "dir": "right",
+            "speed": 2.119999885559082,
+            "objects": [
+                {
+                    "pieceId": "passenger",
+                    "offset": 2.549999952316284,
+                    "spacing": 14.180000305175782,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "left",
+            "speed": 2.5799999237060549,
+            "objects": [
+                {
+                    "pieceId": "skater",
+                    "offset": 1.4800000190734864,
+                    "spacing": 4.010000228881836,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "left",
+            "speed": 2.380000114440918,
+            "objects": [
+                {
+                    "pieceId": "convertible",
+                    "offset": 3.7100000381469728,
+                    "spacing": 9.9399995803833,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "car",
+                    "offset": 5.840000152587891,
+                    "spacing": 10.4399995803833,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-lavender",
+                    "column": 1
+                },
+                {
+                    "pieceId": "planter-fern",
+                    "column": 6
+                }
+            ]
+        },
+        {
+            "kind": "bike",
+            "dir": "right",
+            "speed": 2.8299999237060549,
+            "objects": [
+                {
+                    "pieceId": "cyclist",
+                    "offset": 3.3499999046325685,
+                    "spacing": 8.5,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "runner",
+                    "offset": 5.889999866485596,
+                    "spacing": 8.65999984741211,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "tracks",
+            "dir": "right",
+            "speed": 2.1700000762939455,
+            "objects": [
+                {
+                    "pieceId": "freight",
+                    "offset": 9.3100004196167,
+                    "spacing": 13.8100004196167,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "walkway",
+            "dir": "right",
+            "speed": 1.7000000476837159,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "left",
+            "speed": 2.880000114440918,
+            "objects": [
+                {
+                    "pieceId": "runner",
+                    "offset": 1.2899999618530274,
+                    "spacing": 4.440000057220459,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}

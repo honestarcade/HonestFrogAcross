@@ -1,0 +1,142 @@
+{
+    "id": "level-059",
+    "name": "level-059",
+    "columns": 11,
+    "medal": {
+        "gold": 16.100000381469728,
+        "silver": 23.399999618530275,
+        "bronze": 33.900001525878909
+    },
+    "startColumn": 6,
+    "bays": [
+        2,
+        5,
+        9,
+        10
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "walkway",
+            "dir": "left",
+            "speed": 1.6100000143051148,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "left",
+            "speed": 2.740000009536743,
+            "objects": [
+                {
+                    "pieceId": "runner",
+                    "offset": 2.2300000190734865,
+                    "spacing": 8.600000381469727,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "cyclist",
+                    "offset": 7.889999866485596,
+                    "spacing": 9.5600004196167,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-tulip",
+                    "column": 2
+                },
+                {
+                    "pieceId": "planter-lavender",
+                    "column": 6
+                },
+                {
+                    "pieceId": "tree",
+                    "column": 8
+                }
+            ]
+        },
+        {
+            "kind": "road",
+            "dir": "right",
+            "speed": 2.1700000762939455,
+            "objects": [
+                {
+                    "pieceId": "truck",
+                    "offset": 1.0199999809265137,
+                    "spacing": 7.260000228881836,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "walkway",
+            "dir": "left",
+            "speed": 1.2200000286102296,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "walkway",
+            "dir": "left",
+            "speed": 1.3700000047683716,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "right",
+            "speed": 2.4800000190734865,
+            "objects": [
+                {
+                    "pieceId": "cyclist",
+                    "offset": 1.3899999856948853,
+                    "spacing": 9.699999809265137,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "cyclist",
+                    "offset": 7.579999923706055,
+                    "spacing": 9.720000267028809,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}

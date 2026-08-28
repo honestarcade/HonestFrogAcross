@@ -1,0 +1,144 @@
+{
+    "id": "level-055",
+    "name": "level-055",
+    "columns": 10,
+    "medal": {
+        "gold": 11.600000381469727,
+        "silver": 16.799999237060548,
+        "bronze": 24.299999237060548
+    },
+    "startColumn": 7,
+    "bays": [
+        2,
+        6,
+        8
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "left",
+            "speed": 2.009999990463257,
+            "objects": [
+                {
+                    "pieceId": "car",
+                    "offset": 5.019999980926514,
+                    "spacing": 5.119999885559082,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "left",
+            "speed": 1.3700000047683716,
+            "objects": [
+                {
+                    "pieceId": "raft",
+                    "offset": 1.840000033378601,
+                    "spacing": 12.920000076293946,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "log-long",
+                    "offset": 14.529999732971192,
+                    "spacing": 17.920000076293947,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "left",
+            "speed": 2.119999885559082,
+            "objects": [
+                {
+                    "pieceId": "skater",
+                    "offset": 1.9600000381469727,
+                    "spacing": 3.859999895095825,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "walkway",
+            "dir": "left",
+            "speed": 1.25,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "right",
+            "speed": 2.640000104904175,
+            "objects": [
+                {
+                    "pieceId": "cyclist",
+                    "offset": 0.1899999976158142,
+                    "spacing": 8.479999542236329,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "skater",
+                    "offset": 6.150000095367432,
+                    "spacing": 8.359999656677246,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "tree",
+                    "column": 1
+                },
+                {
+                    "pieceId": "bench",
+                    "column": 2
+                }
+            ]
+        },
+        {
+            "kind": "road",
+            "dir": "left",
+            "speed": 2.4200000762939455,
+            "objects": [
+                {
+                    "pieceId": "convertible",
+                    "offset": 0.4399999976158142,
+                    "spacing": 4.829999923706055,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "walkway",
+            "dir": "right",
+            "speed": 1.159999966621399,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}

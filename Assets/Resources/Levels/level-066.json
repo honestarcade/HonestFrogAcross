@@ -1,0 +1,155 @@
+{
+    "id": "level-066",
+    "name": "level-066",
+    "columns": 12,
+    "medal": {
+        "gold": 38.70000076293945,
+        "silver": 56.099998474121097,
+        "bronze": 81.30000305175781
+    },
+    "startColumn": 9,
+    "bays": [
+        0,
+        1,
+        2,
+        11
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "left",
+            "speed": 2.3399999141693117,
+            "objects": [
+                {
+                    "pieceId": "runner",
+                    "offset": 4.21999979019165,
+                    "spacing": 4.28000020980835,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-succulent",
+                    "column": 3
+                }
+            ]
+        },
+        {
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "bench",
+                    "column": 1
+                },
+                {
+                    "pieceId": "planter-succulent",
+                    "column": 8
+                }
+            ]
+        },
+        {
+            "kind": "tracks",
+            "dir": "right",
+            "speed": 2.450000047683716,
+            "objects": [
+                {
+                    "pieceId": "freight",
+                    "offset": 0.4300000071525574,
+                    "spacing": 13.869999885559082,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "left",
+            "speed": 1.4800000190734864,
+            "objects": [
+                {
+                    "pieceId": "log-long",
+                    "offset": 2.109999895095825,
+                    "spacing": 16.18000030517578,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "turtle-log",
+                    "offset": 9.970000267028809,
+                    "spacing": 12.399999618530274,
+                    "phase": 231
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "tracks",
+            "dir": "left",
+            "speed": 2.440000057220459,
+            "objects": [
+                {
+                    "pieceId": "freight",
+                    "offset": 1.059999942779541,
+                    "spacing": 14.899999618530274,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "bush",
+                    "column": 10
+                }
+            ]
+        },
+        {
+            "kind": "swamp",
+            "dir": "right",
+            "speed": 1.5299999713897706,
+            "objects": [
+                {
+                    "pieceId": "gator",
+                    "offset": 2.609999895095825,
+                    "spacing": 14.699999809265137,
+                    "phase": 409
+                },
+                {
+                    "pieceId": "log-short",
+                    "offset": 8.8100004196167,
+                    "spacing": 10.65999984741211,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}

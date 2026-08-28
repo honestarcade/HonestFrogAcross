@@ -1,0 +1,138 @@
+{
+    "id": "level-036",
+    "name": "level-036",
+    "columns": 10,
+    "medal": {
+        "gold": 48.20000076293945,
+        "silver": 69.9000015258789,
+        "bronze": 101.19999694824219
+    },
+    "startColumn": 6,
+    "bays": [
+        0,
+        5,
+        6
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "tracks",
+            "dir": "left",
+            "speed": 1.6299999952316285,
+            "objects": [
+                {
+                    "pieceId": "freight",
+                    "offset": 7.210000038146973,
+                    "spacing": 14.25,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "right",
+            "speed": 1.4700000286102296,
+            "objects": [
+                {
+                    "pieceId": "log-short",
+                    "offset": 1.5399999618530274,
+                    "spacing": 6.75,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "left",
+            "speed": 1.2100000381469727,
+            "objects": [
+                {
+                    "pieceId": "log-long",
+                    "offset": 1.2899999618530274,
+                    "spacing": 17.979999542236329,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "log-short",
+                    "offset": 9.859999656677246,
+                    "spacing": 13.319999694824219,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-tulip",
+                    "column": 0
+                },
+                {
+                    "pieceId": "bush",
+                    "column": 9
+                }
+            ]
+        },
+        {
+            "kind": "road",
+            "dir": "left",
+            "speed": 1.9600000381469727,
+            "objects": [
+                {
+                    "pieceId": "car",
+                    "offset": 3.1700000762939455,
+                    "spacing": 4.980000019073486,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "tracks",
+            "dir": "left",
+            "speed": 2.0899999141693117,
+            "objects": [
+                {
+                    "pieceId": "passenger",
+                    "offset": 14.59000015258789,
+                    "spacing": 14.640000343322754,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "left",
+            "speed": 1.4600000381469727,
+            "objects": [
+                {
+                    "pieceId": "gator",
+                    "offset": 5.199999809265137,
+                    "spacing": 6.829999923706055,
+                    "phase": 6
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}

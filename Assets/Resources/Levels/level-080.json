@@ -1,0 +1,169 @@
+{
+    "id": "level-080",
+    "name": "level-080",
+    "columns": 13,
+    "medal": {
+        "gold": 23.700000762939454,
+        "silver": 34.400001525878909,
+        "bronze": 49.79999923706055
+    },
+    "startColumn": 8,
+    "bays": [
+        5,
+        7,
+        8,
+        9,
+        10
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "walkway",
+            "dir": "left",
+            "speed": 1.7000000476837159,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-daisy",
+                    "column": 3
+                },
+                {
+                    "pieceId": "tree",
+                    "column": 4
+                },
+                {
+                    "pieceId": "planter-lavender",
+                    "column": 5
+                }
+            ]
+        },
+        {
+            "kind": "tracks",
+            "dir": "left",
+            "speed": 2.25,
+            "objects": [
+                {
+                    "pieceId": "freight",
+                    "offset": 5.340000152587891,
+                    "spacing": 14.649999618530274,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "walkway",
+            "dir": "right",
+            "speed": 1.5800000429153443,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "right",
+            "speed": 2.890000104904175,
+            "objects": [
+                {
+                    "pieceId": "car",
+                    "offset": 3.890000104904175,
+                    "spacing": 9.979999542236329,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "truck",
+                    "offset": 9.109999656677246,
+                    "spacing": 12.479999542236329,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "walkway",
+            "dir": "right",
+            "speed": 1.5299999713897706,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "bush",
+                    "column": 0
+                },
+                {
+                    "pieceId": "bush",
+                    "column": 1
+                },
+                {
+                    "pieceId": "lamp",
+                    "column": 5
+                },
+                {
+                    "pieceId": "planter-daisy",
+                    "column": 10
+                }
+            ]
+        },
+        {
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-lavender",
+                    "column": 6
+                },
+                {
+                    "pieceId": "planter-daisy",
+                    "column": 8
+                },
+                {
+                    "pieceId": "bench",
+                    "column": 9
+                }
+            ]
+        },
+        {
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "tree",
+                    "column": 3
+                },
+                {
+                    "pieceId": "bench",
+                    "column": 4
+                }
+            ]
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}

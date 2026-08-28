@@ -1,0 +1,175 @@
+{
+    "id": "level-090",
+    "name": "level-090",
+    "columns": 12,
+    "medal": {
+        "gold": 97.0,
+        "silver": 140.60000610351563,
+        "bronze": 203.60000610351563
+    },
+    "startColumn": 2,
+    "bays": [
+        3,
+        5,
+        7,
+        8
+    ],
+    "rows": [
+        {
+            "kind": "goal",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "right",
+            "speed": 1.840000033378601,
+            "objects": [
+                {
+                    "pieceId": "raft",
+                    "offset": 1.2699999809265137,
+                    "spacing": 13.539999961853028,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "turtle-log",
+                    "offset": 7.53000020980835,
+                    "spacing": 12.619999885559082,
+                    "phase": 56
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "left",
+            "speed": 1.4700000286102296,
+            "objects": [
+                {
+                    "pieceId": "log-short",
+                    "offset": 0.8899999856948853,
+                    "spacing": 5.369999885559082,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "left",
+            "speed": 2.880000114440918,
+            "objects": [
+                {
+                    "pieceId": "runner",
+                    "offset": 1.8799999952316285,
+                    "spacing": 4.039999961853027,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "left",
+            "speed": 2.2300000190734865,
+            "objects": [
+                {
+                    "pieceId": "car",
+                    "offset": 3.369999885559082,
+                    "spacing": 4.659999847412109,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-fern",
+                    "column": 1
+                }
+            ]
+        },
+        {
+            "kind": "river",
+            "dir": "left",
+            "speed": 1.7100000381469727,
+            "objects": [
+                {
+                    "pieceId": "log",
+                    "offset": 1.4800000190734864,
+                    "spacing": 13.899999618530274,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "log-short",
+                    "offset": 7.400000095367432,
+                    "spacing": 10.420000076293946,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "tracks",
+            "dir": "left",
+            "speed": 2.4000000953674318,
+            "objects": [
+                {
+                    "pieceId": "passenger",
+                    "offset": 2.0299999713897707,
+                    "spacing": 14.510000228881836,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "tracks",
+            "dir": "left",
+            "speed": 2.7100000381469728,
+            "objects": [
+                {
+                    "pieceId": "freight",
+                    "offset": 1.2699999809265137,
+                    "spacing": 13.850000381469727,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "right",
+            "speed": 2.2799999713897707,
+            "objects": [
+                {
+                    "pieceId": "truck",
+                    "offset": 2.880000114440918,
+                    "spacing": 12.739999771118164,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "convertible",
+                    "offset": 10.350000381469727,
+                    "spacing": 9.140000343322754,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bank",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        }
+    ]
+}
