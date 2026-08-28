@@ -208,3 +208,7 @@ When `/n8-replan` processes an ad-hoc entry it appends `— reconciled by /n8-re
 - **#64 tracks weight halved in its intro band:** double-weighted tracks made decade 4 min-times spike 60% above decade 5 (train warn-cycles are the dominant wait cost).
 - **#62 RefreshHashes (sim-invisible edits only):** medal calibration changes bytes but not sim behavior; re-hashing without re-solving keeps the pipeline at one solve pass. Any sim-visible edit path goes through RegenerateFixture.
 - **ContentLock hash:** BitConverter over SHA256 (Convert.ToHexString absent from Unity's .NET profile).
+
+### M6 execution (2026-08-28)
+
+- **#66 blocked (needs-owner-action):** owner audio files not yet supplied. Concrete asset list posted on the issue (13 SFX + 1–2 music loops + license terms per file). Engine (#65) complete — swap is a file drop; gameplay-music question resolves implicitly by what the owner provides.

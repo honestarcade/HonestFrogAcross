@@ -33,6 +33,8 @@ namespace FrogAcross.Sim
         public event Action<int> OnBayFilled;
         public event Action OnCompleted;
         public event Action<int, int, int> OnRiderCrashed; // row, train, instance
+        public event Action<Move> OnHop;            // a move actually executed
+        public event Action OnStunned;              // rider collision stun began
 
         public GameSim(LevelDefinition level)
         {
@@ -225,6 +227,7 @@ namespace FrogAcross.Sim
 
             State.PlayerRow = targetRow;
             State.HopCooldown = SimConfig.HopCooldownTicks;
+            OnHop?.Invoke(move);
             ResolveLanding(targetRow, targetCol);
         }
 
@@ -307,6 +310,7 @@ namespace FrogAcross.Sim
                     {
                         State.CrashedAt[SimState.CrashKey(State.PlayerRow, t, k)] = State.Tick;
                         State.StunTicksLeft = def2.stunTicks;
+                        OnStunned?.Invoke();
                         State.MoveQueue.Clear();
                         OnRiderCrashed?.Invoke(State.PlayerRow, t, k);
                     }

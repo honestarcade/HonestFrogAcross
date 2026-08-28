@@ -70,6 +70,8 @@ namespace FrogAcross.View
             Frozen = false;
             Sim = new GameSim(LevelLoader.LoadFromResources(levelId, PieceRegistry.Load()));
             board.Bind(Sim, _character);
+            FrogAcross.Audio.AudioDirector.Instance.Bind(Sim, Sim.Level);
+            FrogAcross.Audio.AudioDirector.Instance.PlayMusic(FrogAcross.Audio.MusicSlot.Gameplay);
             Sim.OnDeath += cause => _deathFx.Play(cause,
                 new Vector3(Sim.State.PlayerX, -Sim.State.PlayerRow, 0f), _character.sprites[0]);
             Sim.OnCompleted += HandleCompleted;

@@ -38,6 +38,7 @@ namespace FrogAcross.UI
             Register("studio", StaticScreens.BuildStudio(_canvas.transform, this));
             Register("settings", SettingsScreen.Build(_canvas.transform, this));
 
+            FrogAcross.Audio.AudioDirector.Instance.PlayMusic(FrogAcross.Audio.MusicSlot.Menu);
             StartCoroutine(Boot());
         }
 
@@ -67,6 +68,7 @@ namespace FrogAcross.UI
         {
             foreach (var kv in _screens) kv.Value.SetActive(kv.Key == name);
             _stack.Push(name);
+            FrogAcross.Audio.AudioDirector.Instance.Play(FrogAcross.Audio.GameSound.UiNavigate);
         }
 
         public void Back()
@@ -76,6 +78,7 @@ namespace FrogAcross.UI
                 _stack.Pop();
                 var target = _stack.Peek();
                 foreach (var kv in _screens) kv.Value.SetActive(kv.Key == target);
+                FrogAcross.Audio.AudioDirector.Instance.Play(FrogAcross.Audio.GameSound.UiNavigate);
             }
             // at the menu root: let the OS background us (no explicit action)
         }
