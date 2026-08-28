@@ -71,6 +71,10 @@ jobs:
         with:
           targetPlatform: Android
           androidExportType: androidAppBundle
+          # Our own CI entry point (parses the action's standard CLI args) —
+          # avoids the injected UnityBuilderAction script, which our analyzer
+          # gate rejects (vendor code carrying UNT violations).
+          buildMethod: FrogAcross.Editor.Build.BuildScript.BuildCi
       # Unsigned PR artifact — sideloadable for device testing after
       # bundletool conversion; short retention, this is a convenience.
       - uses: actions/upload-artifact@v4

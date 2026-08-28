@@ -138,3 +138,6 @@ When `/n8-replan` processes an ad-hoc entry it appends `— reconciled by /n8-re
 - **Decision:** versionCode = github.run_number + 100 (offset clears M0's local code 1); versionName from the tag via versioning: Custom.
   **Why:** Strict monotonicity by construction; discretion granted in #25.
   **Issue:** #25
+- **Decision (Rule 3 — CI build blocker):** The analyzer gate failed the CI Android build on GameCI's own injected UnityBuilderAction script (error UNT0007 in vendor code). Fix: custom buildMethod `BuildScript.BuildCi` — our own gate-compliant entry point parsing the action's standard CLI args (verified against build.sh @ v5.0.0: -customBuildPath, -buildVersion, -androidVersionCode, androidKeystore* are passed regardless of buildMethod; with buildMethod set, no script injection occurs). Vendoring a fixed copy at their path was rejected: build.sh cp -R overwrites same-path files. Parser pinned by BuildCiArgsTests.
+  **Why:** Weakening the gate (suppressing UNT0007 globally) was the only alternative and is explicitly forbidden by the no-weakened-gates rule.
+  **Issue:** #23, #25

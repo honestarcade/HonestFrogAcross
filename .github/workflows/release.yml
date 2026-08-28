@@ -47,6 +47,7 @@ jobs:
         with:
           targetPlatform: Android
           androidExportType: androidAppBundle
+          buildMethod: FrogAcross.Editor.Build.BuildScript.BuildCi
           versioning: Custom
           version: ${{ steps.ver.outputs.name }}
           androidVersionCode: ${{ steps.ver.outputs.code }}
