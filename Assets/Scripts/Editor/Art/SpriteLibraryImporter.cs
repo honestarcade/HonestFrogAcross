@@ -90,6 +90,22 @@ namespace FrogAcross.Editor.Art
                 if (names.Count > 0) Set(def, names.ToArray());
             }
 
+            // Crash presentation arrays (#51): riders get crashing keyframes + wreck states.
+            var crashPrefix = new Dictionary<string, (string crashing, string crashed)>
+            {
+                ["cyclist"] = ("crashing", "crashed"),
+                ["skater"] = ("skater-crashing", "skater-crashed"),
+                ["runner"] = ("runner-crashing", "runner-crashed"),
+            };
+            foreach (var def in reg.All<LaneObjectDef>())
+            {
+                if (!crashPrefix.TryGetValue(def.id, out var pfx)) continue;
+                def.crashingSprites = Dirs(d => liveries.SelectMany(l =>
+                    Enumerable.Range(0, 4).Select(f => $"{pfx.crashing}-{l}-{d}-f{f}"))).Select(Load).ToArray();
+                def.crashedSprites = Dirs(d => liveries.Select(l => $"{pfx.crashed}-{l}-{d}")).Select(Load).ToArray();
+                EditorUtility.SetDirty(def);
+            }
+
             foreach (var ob in reg.All<ObstructionDef>())
                 Set(ob, new[] { $"ob-{ob.id}" });
 

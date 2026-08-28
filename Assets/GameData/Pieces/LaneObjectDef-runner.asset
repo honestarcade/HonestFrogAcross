@@ -48,4 +48,46 @@ MonoBehaviour:
   inactiveKills: 0
   stunTicks: 120
   crashSequenceTicks: 144
+  crashingSprites:
+  - {fileID: 21300000, guid: 79e3f4f4990fc4eb28e40fc4659c8433, type: 3}
+  - {fileID: 21300000, guid: 84a9ebc67684c4420ba0137c5a090fef, type: 3}
+  - {fileID: 21300000, guid: 8fe70bab7009e4dd09155ce09908b262, type: 3}
+  - {fileID: 21300000, guid: 82cd78ff14c1b4b3d9f7d90f83b23351, type: 3}
+  - {fileID: 21300000, guid: 950caeb0f0db64e3dbda25bdaaaa7932, type: 3}
+  - {fileID: 21300000, guid: 6018715944a0e4529b268a126c691796, type: 3}
+  - {fileID: 21300000, guid: 8606773cb046440ee985d4ed0d04ed5a, type: 3}
+  - {fileID: 21300000, guid: f1d2e980781a94d0784a09912f70a441, type: 3}
+  - {fileID: 21300000, guid: 6f37638609b6148e995c6330933b7ef9, type: 3}
+  - {fileID: 21300000, guid: ea4a47d0dd356484ba9bf77f9061e813, type: 3}
+  - {fileID: 21300000, guid: 2296cafdd16ce4fe7bb16cb9b467f16d, type: 3}
+  - {fileID: 21300000, guid: a0130e360293f42c0b112db7c7d85825, type: 3}
+  - {fileID: 21300000, guid: 5429cb2fa6c8a4d59830a7d66ff564c1, type: 3}
+  - {fileID: 21300000, guid: 514a10bce8e2b4288a296219bf4ad392, type: 3}
+  - {fileID: 21300000, guid: d379e9adc2fe744e39eaff2192e5e4ad, type: 3}
+  - {fileID: 21300000, guid: 3a4c532c484e34926b52ae4f34e4daab, type: 3}
+  - {fileID: 21300000, guid: 504fb0cdf7ac5495bbdef3d06e2f1ed8, type: 3}
+  - {fileID: 21300000, guid: 61016e41fb96e43f896dae4a4e0d36c7, type: 3}
+  - {fileID: 21300000, guid: 55e1733e3f7b34c9db521904bcf24d43, type: 3}
+  - {fileID: 21300000, guid: c5f1d648d5b8a4fd7ae101da91eec09f, type: 3}
+  - {fileID: 21300000, guid: 036b474ffe2ad48c7bdfd662120b9293, type: 3}
+  - {fileID: 21300000, guid: 3dfd80f4e03984df2a8e1c477dc3745c, type: 3}
+  - {fileID: 21300000, guid: eed19c9fc49d74b678cbf7813f431a51, type: 3}
+  - {fileID: 21300000, guid: 7c95bcf4df46f4cc18e5c7554aea9521, type: 3}
+  - {fileID: 21300000, guid: 31b09e950fcc7476aaece4cc3bda3025, type: 3}
+  - {fileID: 21300000, guid: 0a4503d8c9b974390a04ae4cc716d933, type: 3}
+  - {fileID: 21300000, guid: 98904b07868444f3b977c0f6563ab9bc, type: 3}
+  - {fileID: 21300000, guid: ed96a2d7f28e4450cb5ee57c43fe3a3a, type: 3}
+  - {fileID: 21300000, guid: 160b2e3da9e09468681b397bb6096663, type: 3}
+  - {fileID: 21300000, guid: aec73b64ac8d147b1ba1ce087527f65b, type: 3}
+  - {fileID: 21300000, guid: c0b0c9e169557434196a7706c0bdc190, type: 3}
+  - {fileID: 21300000, guid: 820440969166949608eb5aa142502fcd, type: 3}
+  crashedSprites:
+  - {fileID: 21300000, guid: b1b17cddfaf4c40f5a7b774806d116c6, type: 3}
+  - {fileID: 21300000, guid: d05c94a3448ff42ed88f52e135d9a5ce, type: 3}
+  - {fileID: 21300000, guid: d716bfb0ab56249e3b90d355e7b9f061, type: 3}
+  - {fileID: 21300000, guid: de9ffa85e9e464abcb35b0f9028fe34b, type: 3}
+  - {fileID: 21300000, guid: c16b739ad38e14aa1946dd6bc8325659, type: 3}
+  - {fileID: 21300000, guid: 563ef9848318d4adca8e3b1343547f17, type: 3}
+  - {fileID: 21300000, guid: 828b5558e9aa34a14b80577d9baea400, type: 3}
+  - {fileID: 21300000, guid: 41033a62cfa384080881884d6ebe85fd, type: 3}
   warnLeadTicks: 0

@@ -26,4 +26,6 @@ MonoBehaviour:
   inactiveKills: 0
   stunTicks: 0
   crashSequenceTicks: 0
+  crashingSprites: []
+  crashedSprites: []
   warnLeadTicks: 0

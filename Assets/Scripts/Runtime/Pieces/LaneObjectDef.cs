@@ -24,6 +24,12 @@ namespace FrogAcross.Pieces
         [Tooltip("Crash animation length in ticks before the resting crashed state.")]
         public int crashSequenceTicks;
 
+        [Header("Crash presentation (#51)")]
+        [Tooltip("Crash animation keyframes: [right x liveries x 4 frames, then left x ...]")]
+        public Sprite[] crashingSprites;
+        [Tooltip("Resting wreck: [right x liveries, then left x liveries]")]
+        public Sprite[] crashedSprites;
+
         [Header("Kill")]
         [Tooltip("Warning lead shown before this object enters the row (trains), in ticks. 0 = none.")]
         public int warnLeadTicks;
