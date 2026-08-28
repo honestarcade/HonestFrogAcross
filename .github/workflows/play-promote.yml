@@ -22,15 +22,20 @@ jobs:
   promote:
     runs-on: ubuntu-latest
     steps:
-      - uses: google-github-actions/auth@v2
+      # gcloud signs the token locally — the SA needs no IAM Credentials API
+      # (same pattern as play-api-check.yml)
+      - name: Mint access token
         id: auth
-        with:
-          credentials_json: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
-          token_format: access_token
-          access_token_scopes: https://www.googleapis.com/auth/androidpublisher
+        env:
+          SA_JSON: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
+        run: |
+          printf '%s' "$SA_JSON" > "$RUNNER_TEMP/sa.json"
+          gcloud auth activate-service-account --key-file="$RUNNER_TEMP/sa.json"
+          echo "token=$(gcloud auth print-access-token --scopes=https://www.googleapis.com/auth/androidpublisher)" >> "$GITHUB_OUTPUT"
+          rm -f "$RUNNER_TEMP/sa.json"
       - name: Promote release
         env:
-          TOKEN: ${{ steps.auth.outputs.access_token }}
+          TOKEN: ${{ steps.auth.outputs.token }}
           PKG: com.honestarcade.frogacross
           FROM: ${{ inputs.from_track }}
           TO: ${{ inputs.to_track }}
