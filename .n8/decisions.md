@@ -149,3 +149,9 @@ When `/n8-replan` processes an ad-hoc entry it appends `— reconciled by /n8-re
   **Issue:** #25, #20
 - **Decision:** Discovered work filed as #35 (IL2CPP symbols + R8 mapping uploads with releases) instead of fixed inline — quality-of-life, not ship-critical.
   **Issue:** #25
+
+## Ad-hoc — 2026-08-28
+
+- **Change:** Tap-to-advance added: a clear tap counts as a forward swipe (one forward hop, same queue/legality rules); dead zone between tap ceiling and swipe threshold does nothing.
+  **Why:** Owner scope decision during planning review — faster forward movement ergonomics.
+  **Affects:** M2 #41 (amended directly — body/AC/tests updated pre-execution) and M4 #58 (controls copy rider commented). No other stories assume tap-does-nothing. Reconciled at source — reconciled by /n8-plan 2026-08-28.
