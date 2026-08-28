@@ -141,3 +141,18 @@ When `/n8-replan` processes an ad-hoc entry it appends `— reconciled by /n8-re
 - **Decision (Rule 3 — CI build blocker):** The analyzer gate failed the CI Android build on GameCI's own injected UnityBuilderAction script (error UNT0007 in vendor code). Fix: custom buildMethod `BuildScript.BuildCi` — our own gate-compliant entry point parsing the action's standard CLI args (verified against build.sh @ v5.0.0: -customBuildPath, -buildVersion, -androidVersionCode, androidKeystore* are passed regardless of buildMethod; with buildMethod set, no script injection occurs). Vendoring a fixed copy at their path was rejected: build.sh cp -R overwrites same-path files. Parser pinned by BuildCiArgsTests.
   **Why:** Weakening the gate (suppressing UNT0007 globally) was the only alternative and is explicitly forbidden by the no-weakened-gates rule.
   **Issue:** #23, #25
+
+## /n8-plan * (M2–M7) — 2026-08-28
+
+- **Decision (owner):** Riding = classic continuous drift; swipe-from-drift lands nearest column; edge drift kills.
+  **Issue:** #42
+- **Decision (owner, design override):** Gators — rideable surface is the BACK only, mouth-CLOSED only; open-mouth back kills; head/snout never rideable. Overrides the design canvases' "ride the eyes / snout kills" copy. Agent interpretation (ledgered in #49): the open-back rule applies continuously — mouth opening mid-ride kills at the open tick, mirroring turtle submerge.
+  **Issue:** #49
+- **Decision (owner):** Death is classic — bays persist, clock never pauses, infinite retries. Bike collision = 2s in-place stun (queued swipes dropped). Walkway = conveyor whose edge KILLS. Diagonal legality = landing square only. Swipe queue capped at 2. NO pause screen (Crossy-style; Android back = confirm-quit). Logo = spaced two-tone ("Frog" white + "Across" mint).
+  **Issue:** #39 #41 #51 #52 #55
+- **Assumptions (builder, logged not asked):** infinite lives (no lives UI exists in the design); board columns are per-level schema data; crashed rider wrecks are passable and safe; the clock is game-time (OS suspension adds nothing — a phone call must not cost a medal).
+  **Issue:** #37 #38 #51 #60
+- **Decision:** Invariant guards placed — invariant 2 → #38, invariant 4 → #39 (CLAUDE.md annotated as planned).
+- **Decision:** #35 (symbols/mapping) triaged into M7 under epic #12. M7's closed test (#69) is flagged to start during M5/M6 so Google's 14-day clock runs in parallel with content work.
+- **Decision:** One spike total (#45, sprite pipeline) — the only genuine unknown needing a prototype; all other hows are specified in story bodies.
+- **Whole-project analysis:** Audit emphases recorded in M8 (performance primary; stability; sim-boundary test coverage; cleanup; 508-lite incl. not-color-only medals; security posture verification). Project-skill candidates deferred until their machinery exists: a "sprite-pipeline" skill (after spike #45 decides the pipeline) and a "level-author" skill (after #44/#43 land) — to be offered via /n8-skill at the end of M2/M3. Gap check: cross-milestone key links each have a named owning story (#59↔#65 settings-to-buses; #54↔#60 overlay-to-progression); no orphaned wiring found.
