@@ -1,0 +1,2 @@
+{ "id": "broken-1", "columns": 11, "medal": {"gold": 10, "silver": 20, "bronze": 30}, "startColumn": 5, "bays": [5],
+  "rows": [ {"kind": "goal"}, {"kind": "road", "dir": "right", "speed": 2, "objects": [{"pieceId": "hovercar", "offset": 0, "spacing": 5, "phase": 0}]}, {"kind": "bank"} ] }

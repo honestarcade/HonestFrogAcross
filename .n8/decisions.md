@@ -170,8 +170,19 @@ When `/n8-replan` processes an ad-hoc entry it appends `— reconciled by /n8-re
   **Why:** Owner scope decision during planning review — faster forward movement ergonomics.
   **Affects:** M2 #41 (amended directly — body/AC/tests updated pre-execution) and M4 #58 (controls copy rider commented). No other stories assume tap-does-nothing. Reconciled at source — reconciled by /n8-plan 2026-08-28.
 
-## Ad-hoc — 2026-08-28
+## /n8-exec * — 2026-08-28
 
+- **Decision (Rule 1):** Split the four PieceDef ScriptableObject classes into per-class files — Unity binds .asset files to scripts by filename, and the single-file layout produced assets with missing scripts (caught by the registry tests on first run).
+  **Issue:** #37
+- **Decision:** Levels live in Assets/Resources/Levels/*.json (TextAssets), not StreamingAssets as the plan wrote — reading StreamingAssets on Android requires UnityWebRequest, whose modules were removed under invariant 1. Levels remain pure JSON files; all M3/M5 story references to StreamingAssets/Levels read as Resources/Levels.
+  **Issue:** #38 (affects #47-#54, #61-#64 path references)
+- **Decision:** Generator emits provisional medals (2.0×/2.9×/4.2× the diagonal-free solver floor) so schema validity holds before #63's calibration; generation is validate-and-solve gated inline (no unproven level touches disk) and byte-deterministic per seed.
+  **Issue:** #44
+- **Decision:** Solver decision cadence: act-or-wait-6-ticks at cooldown-free states, dedupe on quantized (tick/6, row, x·4, riding, bays, stun) — dev board solves diagonal-free in 0.39s, making the 100-level CI batch cheap.
+  **Issue:** #43
+## Ad-hoc — 2026-08-28
 - **Change:** Tap-region control scheme added as a settings option (#74, new M2 story): four zones (left/right thirds, middle-column top/bottom) move the character; no diagonals in this mode; Settings (#59) gains the scheme selector + a "Show regions" one-tap-dismiss preview; regions raycast BEHIND all UI. Consequences worked through the plan: gameplay HUD gains Restart + Main-menu buttons with confirm dialogs (#60), **all confirm dialogs freeze the sim/clock** ("no pause" now means "no dedicated pause screen" — freezing is consistent with OS-suspend), restart = fresh attempt (bays cleared, clock rearmed), solver gains a diagonal-free mode (#43) and medal calibration uses diagonal-free min-times (#63) so tap-region players can earn gold.
   **Why:** Owner scope additions during planning review (accessibility/ergonomics + quick restart).
   **Affects:** #74 (new), #43 #55 #58 #59 #60 #63 (amended via comments, pre-execution). Reconciled at source — reconciled by /n8-plan 2026-08-28.
+- **Decision (Rule 1 — own miss):** The Unity.InputSystem asmdef reference edited during #41 was never staged (path-scoped git adds missed it) — local suites ran against the working tree while CI compiled without the reference, failing the M2 PR. Committed as the fix; lesson noted: watch the pre-PR `git status` for modified-but-unstaged files, not just untracked.
+  **Issue:** #41

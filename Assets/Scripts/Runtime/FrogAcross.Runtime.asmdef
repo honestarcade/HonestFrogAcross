@@ -1,7 +1,9 @@
 {
     "name": "FrogAcross.Runtime",
     "rootNamespace": "FrogAcross",
-    "references": [],
+    "references": [
+        "Unity.InputSystem"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
