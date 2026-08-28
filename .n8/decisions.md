@@ -186,3 +186,14 @@ When `/n8-replan` processes an ad-hoc entry it appends `— reconciled by /n8-re
   **Affects:** #74 (new), #43 #55 #58 #59 #60 #63 (amended via comments, pre-execution). Reconciled at source — reconciled by /n8-plan 2026-08-28.
 - **Decision (Rule 1 — own miss):** The Unity.InputSystem asmdef reference edited during #41 was never staged (path-scoped git adds missed it) — local suites ran against the working tree while CI compiled without the reference, failing the M2 PR. Committed as the fix; lesson noted: watch the pre-PR `git status` for modified-but-unstaged files, not just untracked.
   **Issue:** #41
+
+### M4 execution (2026-08-28)
+
+- **#55 Shell is one code-built canvas with a screen dict + push/back stack.** No scene-per-screen: screens are built once at boot and toggled active, matching the code-built (reviewable, idempotent) UI approach from M3. Android back = Escape via the new Input System; at the menu root back is a no-op so the OS handles backgrounding.
+- **#56 LevelCatalog falls back to the dev chain until M5.** Canonical chain is `level-###` files in Resources/Levels; while none exist the seven dev slices form the playable chain. Swapping in M5's 100 levels is a pure file drop (invariant 2) — no code edit.
+- **#58 Copy loader is a flat line-based key scan, not a JSON DOM.** JsonUtility can't deserialize dictionaries; a full parser dependency would breach the no-deps posture. copy.json is constrained to one flat "key": "value" pair per line — documented by the tests that pin every used key.
+- **#59/#60 Single wipe path: `DataWipe.WipeAll()`.** Reset-all previously would have enumerated stores at the call site; extracted to Services so the "wipes everything" AC is enforceable by one test and future stores have one place to register. (Rule 2 — correctness of the wipe guarantee.)
+- **#60 Overlay `Show` gained optional `newBest`/`prevBest` params** instead of a new overload — non-catalog (dev) levels pass defaults and show no best line.
+- **Test isolation: scene-loading PlayMode tests must unload their scenes.** The Game scene's new HUD corner buttons leaked into UiGuardTests' corner-touch assertion. Added `SceneCleanup.UnloadAll()` UnityTearDown to every scene-loading test class rather than weakening the UiGuard test.
+- **Editor asmdef now references Unity.InputSystem** — SceneBuilder places `InputSystemUIInputModule` on both scenes' EventSystems (new Input System only, activeInputHandler=1).
+- **Analyzer gate catches of my own M4 code, fixed properly:** UNT0038 (uncached WaitForSeconds — AppShell boot beat and all PlayMode waits now static readonly), CS0618 FindFirstObjectByType → FindAnyObjectByType.
