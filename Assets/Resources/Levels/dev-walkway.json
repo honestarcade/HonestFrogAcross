@@ -1,0 +1,7 @@
+{ "id": "dev-walkway", "name": "Walkway Slice", "columns": 11,
+  "medal": { "gold": 7.0, "silver": 11.0, "bronze": 16.0 }, "startColumn": 5, "bays": [5],
+  "rows": [
+    { "kind": "goal" },
+    { "kind": "grass" },
+    { "kind": "walkway", "dir": "right", "speed": 1.6 },
+    { "kind": "bank" } ]}
