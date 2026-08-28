@@ -15,6 +15,24 @@ namespace FrogAcross.Editor.Scenes
     public static class SceneBuilder
     {
         public const string GameScenePath = "Assets/Scenes/Game.unity";
+        public const string ShellScenePath = "Assets/Scenes/Shell.unity";
+
+        [MenuItem("FrogAcross/Scenes/Rebuild Shell Scene")]
+        public static void BuildShellScene()
+        {
+            var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+            var camGo = new GameObject("Main Camera");
+            var cam = camGo.AddComponent<Camera>();
+            camGo.tag = "MainCamera";
+            cam.clearFlags = CameraClearFlags.SolidColor;
+            cam.backgroundColor = new Color(0.02f, 0.157f, 0.373f);
+            var es = new GameObject("EventSystem");
+            es.AddComponent<UnityEngine.EventSystems.EventSystem>();
+            es.AddComponent<UnityEngine.InputSystem.UI.InputSystemUIInputModule>();
+            new GameObject("Shell").AddComponent<FrogAcross.UI.AppShell>();
+            EditorSceneManager.SaveScene(scene, ShellScenePath);
+            Debug.Log("[SceneBuilder] Shell scene rebuilt.");
+        }
 
         [MenuItem("FrogAcross/Scenes/Rebuild Game Scene")]
         public static void BuildGameScene()
@@ -32,6 +50,9 @@ namespace FrogAcross.Editor.Scenes
             // tilted top-down perspective); the -8° design roll is a camera Z-roll.
             camGo.transform.SetPositionAndRotation(new Vector3(5f, -4.5f, -10f), Quaternion.Euler(0f, 0f, -8f));
 
+            var es = new GameObject("EventSystem");
+            es.AddComponent<UnityEngine.EventSystems.EventSystem>();
+            es.AddComponent<UnityEngine.InputSystem.UI.InputSystemUIInputModule>();
             var boot = new GameObject("Game");
             boot.AddComponent<GameBootstrap>();
 
@@ -39,9 +60,10 @@ namespace FrogAcross.Editor.Scenes
 
             EditorBuildSettings.scenes = new[]
             {
+                new EditorBuildSettingsScene(ShellScenePath, true),
                 new EditorBuildSettingsScene(GameScenePath, true),
             };
-            Debug.Log("[SceneBuilder] Game scene rebuilt and set as the sole build scene.");
+            Debug.Log("[SceneBuilder] Game scene rebuilt; build scenes = Shell, Game.");
         }
     }
 }

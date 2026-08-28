@@ -21,6 +21,7 @@ namespace FrogAcross.UI
         private GameObject _root;
         private Text _time;
         private Text _medal;
+        private Text _best;
         private Image _medalDot;
 
         public static (string name, Color color) MedalFor(float seconds, LevelDefinition level)
@@ -31,7 +32,7 @@ namespace FrogAcross.UI
             return ("COMPLETE", new Color(0.44f, 0.57f, 0.69f));
         }
 
-        public void Show(LevelDefinition level, long clockTicks)
+        public void Show(LevelDefinition level, long clockTicks, bool newBest = false, float prevBest = -1f)
         {
             if (_root == null) Build();
             float seconds = clockTicks / (float)SimConfig.TicksPerSecond;
@@ -39,6 +40,10 @@ namespace FrogAcross.UI
             _time.text = $"{seconds:0.0}s";
             _medal.text = name;
             _medalDot.color = color;
+            _best.text = newBest
+                ? (prevBest >= 0f ? $"NEW BEST — was {prevBest:0.0}s" : "NEW BEST")
+                : (prevBest >= 0f ? $"Best {prevBest:0.0}s" : "");
+            _best.color = newBest ? new Color(0f, 0.839f, 0.706f) : new Color(0.44f, 0.57f, 0.69f);
             _root.SetActive(true);
         }
 
@@ -68,6 +73,8 @@ namespace FrogAcross.UI
             title.color = Color.white;
             _time = Label(panel.transform, "0.0s", 52, new Vector2(0, 40));
             _time.color = Color.white;
+            _best = Label(panel.transform, "", 16, new Vector2(0, 6));
+            _best.color = new Color(0.44f, 0.57f, 0.69f);
 
             var dotGo = new GameObject("medal-dot");
             dotGo.transform.SetParent(panel.transform, false);

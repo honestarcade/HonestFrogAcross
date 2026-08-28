@@ -1,0 +1,22 @@
+{
+  "aboutBody": "Cross eight kinds of lane without dying. Finish the level to unlock the next one; finish it fast enough to earn a medal. Medal times are set per level.",
+  "aboutSwipe": "Swipe — one hop in the swipe direction: forward, back, left, right. A clear tap also hops forward.",
+  "aboutDiagonal": "Diagonal 43–47° — a clean diagonal covers two squares in one move.",
+  "aboutFooter": "v1.0 · 100 LEVELS · 6 CHARACTERS · NO ADS",
+  "goal": "Get your character from the near bank to an empty goal bay on the far side. Fill every bay on the level to finish it. One touch from anything lethal and the run restarts from the bank.",
+  "levelsTiming": "100 levels, each a fixed board — same lanes, same traffic pattern, every time. The clock starts on your first move and stops when the last bay fills. Beat the level to unlock the next; beat the target times for bronze, silver or gold.",
+  "swiping": "Swipe anywhere on the board. One swipe is one hop, and your character turns to face it. A clear tap hops forward. Hold a swipe at 43–47° to cover two squares in a single move. Swipes queue, so you can chain hops faster than the animation plays. Prefer taps? Turn on tap regions in Settings → Controls: left and right thirds sidestep, middle-top hops forward, middle-bottom hops back (no diagonals in this mode).",
+  "ruleRoad": "Road — contact kills. Direction and speed are set per level.",
+  "ruleRiver": "River — water kills. Ride logs, turtle logs and rafts; turtles submerge on a rhythm.",
+  "ruleSwamp": "Swamp — ride the BACK of a closed-mouth alligator only. An open mouth makes the whole gator lethal, and the head is never safe. Lily pads are static and safe.",
+  "ruleTracks": "Train tracks — nothing survives a train. The crossing warns before it arrives.",
+  "ruleBike": "Bike lane — a collision crashes the rider, not you. You're stunned in place for two seconds while the clock runs.",
+  "ruleWalkway": "Moving walkway — it carries you sideways. Ride it off the edge of the board and you're gone.",
+  "ruleMedians": "Grass and concrete medians are safe, except where a tree, bench, planter or pole blocks the tile.",
+  "ruleBays": "Goal bays — hop into an empty bay to fill it. Fill them all to finish the level.",
+  "studioBody": "Honest Arcade makes simple, fun games with no ads, no tracking, and no hidden agenda. Our games are open source and built without unnecessary bloat, so you can see exactly what you're getting.",
+  "studioTagline": "Just great games that respect your time, privacy, and device.",
+  "storedOnDevice": "Levels, medals, times and settings never leave your phone. No accounts, no analytics, nothing to delete on a server.",
+  "resetConfirm": "This clears every unlocked level, medal and best time, and returns settings to their defaults. It cannot be undone.",
+  "quitConfirm": "Quit to menu? This run's progress is lost."
+}

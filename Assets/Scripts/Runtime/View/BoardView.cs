@@ -17,6 +17,7 @@ namespace FrogAcross.View
     public sealed class BoardView : MonoBehaviour
     {
         public GameSim Sim { get; private set; }
+        public CharacterDef Character => _character;
 
         private readonly List<SpriteRenderer[]> _objects = new();
         private readonly List<int[]> _trainStart = new();
