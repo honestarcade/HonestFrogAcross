@@ -68,6 +68,10 @@ namespace FrogAcross.Sim
             State.MoveQueue.Clear();
         }
 
+        public SimState CaptureState() => State.Clone();
+
+        public void RestoreState(SimState snapshot) => State.CopyFrom(snapshot);
+
         public bool EnqueueMove(Move move)
         {
             if (State.Completed || State.RespawnDelay > 0 || State.StunTicksLeft > 0) return false;

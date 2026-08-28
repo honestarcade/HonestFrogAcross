@@ -43,6 +43,25 @@ namespace FrogAcross.Sim
 
         public static int CrashKey(int row, int train, int instance) => (row << 16) | (train << 8) | instance;
 
+        public SimState Clone()
+        {
+            var c = new SimState();
+            c.CopyFrom(this);
+            return c;
+        }
+
+        public void CopyFrom(SimState o)
+        {
+            Tick = o.Tick; PlayerRow = o.PlayerRow; PlayerX = o.PlayerX; Facing = o.Facing;
+            Riding = o.Riding; RideTrain = o.RideTrain; RideInstance = o.RideInstance; RideOffset = o.RideOffset;
+            StunTicksLeft = o.StunTicksLeft; HopCooldown = o.HopCooldown; RespawnDelay = o.RespawnDelay;
+            LastDeath = o.LastDeath; Deaths = o.Deaths;
+            ClockStarted = o.ClockStarted; ClockTicks = o.ClockTicks; Completed = o.Completed;
+            BaysFilled.Clear(); foreach (int b in o.BaysFilled) BaysFilled.Add(b);
+            CrashedAt.Clear(); foreach (var kv in o.CrashedAt) CrashedAt[kv.Key] = kv.Value;
+            MoveQueue.Clear(); foreach (var m in o.MoveQueue) MoveQueue.Enqueue(m);
+        }
+
         /// <summary>Order-stable content hash for the determinism guard.</summary>
         public long StateHash()
         {
