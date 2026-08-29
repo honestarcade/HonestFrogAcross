@@ -26,22 +26,22 @@ namespace FrogAcross.UI
 
             var movePill = UiKit.Panel(canvas.transform, "move-pill", new Color(0.02f, 0.078f, 0.157f, 0.55f));
             movePill.rectTransform.anchorMin = movePill.rectTransform.anchorMax = new Vector2(0f, 1f);
-            movePill.rectTransform.sizeDelta = new Vector2(300, 52);
-            movePill.rectTransform.anchoredPosition = new Vector2(190, -46);
-            _moveLabel = UiKit.Label(movePill.transform, "SWIPE ▲ FORWARD", 18, UiKit.TextBlue, Vector2.zero, new Vector2(290, 30));
+            movePill.rectTransform.sizeDelta = new Vector2(380, 66);
+            movePill.rectTransform.anchoredPosition = new Vector2(230, -56);
+            _moveLabel = UiKit.Label(movePill.transform, "SWIPE ▲ FORWARD", 24, UiKit.TextBlue, Vector2.zero, new Vector2(370, 38));
 
             var timePill = UiKit.Panel(canvas.transform, "time-pill", new Color(0.02f, 0.078f, 0.157f, 0.55f));
             timePill.rectTransform.anchorMin = timePill.rectTransform.anchorMax = new Vector2(1f, 1f);
-            timePill.rectTransform.sizeDelta = new Vector2(320, 52);
-            timePill.rectTransform.anchoredPosition = new Vector2(-330, -46);
-            _timer = UiKit.Label(timePill.transform, "0.0", 26, UiKit.White, new Vector2(-70, 0), new Vector2(140, 34));
+            timePill.rectTransform.sizeDelta = new Vector2(400, 66);
+            timePill.rectTransform.anchoredPosition = new Vector2(-410, -56);
+            _timer = UiKit.Label(timePill.transform, "0.0", 34, UiKit.White, new Vector2(-90, 0), new Vector2(170, 42));
             var dot = UiKit.Panel(timePill.transform, "gold-dot", UiKit.Gold);
-            dot.rectTransform.sizeDelta = new Vector2(14, 14);
-            dot.rectTransform.anchoredPosition = new Vector2(30, 0);
-            UiKit.Label(timePill.transform, $"{goldSeconds:0.0}s", 18, UiKit.TextBlue, new Vector2(95, 0), new Vector2(110, 26));
+            dot.rectTransform.sizeDelta = new Vector2(18, 18);
+            dot.rectTransform.anchoredPosition = new Vector2(38, 0);
+            UiKit.Label(timePill.transform, $"{goldSeconds:0.0}s", 24, UiKit.TextBlue, new Vector2(120, 0), new Vector2(140, 32));
 
             // corner buttons (owner amendment): dialogs freeze the sim
-            var restart = UiKit.Button(canvas.transform, "↻", Vector2.zero, new Vector2(58, 58), () =>
+            var restart = UiKit.Button(canvas.transform, "↻", Vector2.zero, new Vector2(76, 76), () =>
             {
                 if (FreezeGate != null && !FreezeGate()) return;
                 SetFrozen?.Invoke(true);
@@ -49,20 +49,20 @@ namespace FrogAcross.UI
                     "Bays and the clock reset — this attempt is abandoned.",
                     "Restart", () => { SetFrozen?.Invoke(false); OnRestartConfirmed?.Invoke(); },
                     () => SetFrozen?.Invoke(false));
-            }, fontSize: 28);
+            }, fontSize: 36);
             restart.image.rectTransform.anchorMin = restart.image.rectTransform.anchorMax = new Vector2(1f, 1f);
-            restart.image.rectTransform.anchoredPosition = new Vector2(-110, -46);
+            restart.image.rectTransform.anchoredPosition = new Vector2(-146, -56);
 
-            var menu = UiKit.Button(canvas.transform, "≡", Vector2.zero, new Vector2(58, 58), () =>
+            var menu = UiKit.Button(canvas.transform, "≡", Vector2.zero, new Vector2(76, 76), () =>
             {
                 if (FreezeGate != null && !FreezeGate()) return;
                 SetFrozen?.Invoke(true);
                 ConfirmDialog.Show(transform, "Quit to menu?", Copy.Get("quitConfirm"),
                     "Quit", () => { SetFrozen?.Invoke(false); OnQuitConfirmed?.Invoke(); },
                     () => SetFrozen?.Invoke(false));
-            }, fontSize: 28);
+            }, fontSize: 36);
             menu.image.rectTransform.anchorMin = menu.image.rectTransform.anchorMax = new Vector2(1f, 1f);
-            menu.image.rectTransform.anchoredPosition = new Vector2(-44, -46);
+            menu.image.rectTransform.anchoredPosition = new Vector2(-56, -56);
         }
 
         public void Tick(GameSim sim)

@@ -72,6 +72,21 @@ namespace FrogAcross.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator Camera_FramesTheBoundLevel_NoTilt()
+        {
+            // #87: every level fills the height, straight-on
+            yield return LoadGame("dev-road");
+            var bootstrap = Object.FindAnyObjectByType<GameBootstrap>();
+            var cam = Camera.main;
+            Assert.That(cam.orthographicSize,
+                Is.EqualTo(bootstrap.Sim.Level.Rows.Count / 2f + 0.4f).Within(0.001f),
+                "camera fits the level's rows");
+            Assert.That(cam.transform.rotation, Is.EqualTo(Quaternion.identity), "no roll");
+            Assert.That(cam.transform.position.x,
+                Is.EqualTo((bootstrap.Sim.Level.Columns - 1) / 2f).Within(0.001f), "board centered");
+        }
+
+        [UnityTest]
         public IEnumerator FrozenSim_AddsZeroToTheClock()
         {
             yield return LoadGame("dev-road");

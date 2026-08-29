@@ -16,6 +16,8 @@ namespace FrogAcross.Tests.EditMode.UI
             "ruleWalkway", "ruleMedians", "ruleBays",
             "studioBody", "studioTagline", "storedOnDevice",
             "resetConfirm", "quitConfirm",
+            "promiseAds", "promiseTracking", "promiseAccounts", "promisePurchases",
+            "promisePermissions", "promiseOpenSource", "promiseOffline", "studioSupport",
         };
 
         [SetUp]

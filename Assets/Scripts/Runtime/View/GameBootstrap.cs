@@ -70,6 +70,7 @@ namespace FrogAcross.View
             Frozen = false;
             Sim = new GameSim(LevelLoader.LoadFromResources(levelId, PieceRegistry.Load()));
             board.Bind(Sim, _character);
+            FitCamera();
             FrogAcross.Audio.AudioDirector.Instance.Bind(Sim, Sim.Level);
             FrogAcross.Audio.AudioDirector.Instance.PlayMusic(FrogAcross.Audio.MusicSlot.Gameplay);
             Sim.OnDeath += cause => _deathFx.Play(cause,
@@ -91,7 +92,7 @@ namespace FrogAcross.View
                 (_, newBest) = Progression.ReportCompletion(levelId, number, seconds,
                     Sim.Level.GoldSeconds, Sim.Level.SilverSeconds, Sim.Level.BronzeSeconds);
             }
-            _overlay.Show(Sim.Level, Sim.State.ClockTicks, newBest, prevBest);
+            _overlay.Show(Sim.Level, Sim.State.ClockTicks, newBest, prevBest, number);
         }
 
         private void NextLevel()
@@ -110,6 +111,23 @@ namespace FrogAcross.View
         }
 
         private void QuitToMenu() => SceneManager.LoadScene("Shell");
+
+        /// <summary>
+        /// #87: frame the bound level — board centered, filling the screen
+        /// height (side covers absorb wide aspects), no roll. Levels vary from
+        /// 5 to 12 rows, so a fixed scene camera cannot fit them all.
+        /// </summary>
+        private void FitCamera()
+        {
+            var cam = Camera.main;
+            if (cam == null) return;
+            int rows = Sim.Level.Rows.Count;
+            float cx = (Sim.Level.Columns - 1) / 2f;
+            float cy = -(rows - 1) / 2f;
+            cam.transform.SetPositionAndRotation(new Vector3(cx, cy, -10f), Quaternion.identity);
+            cam.orthographic = true;
+            cam.orthographicSize = rows / 2f + 0.4f;
+        }
 
         private void Update()
         {

@@ -138,10 +138,14 @@ namespace FrogAcross.UI
             var rt = go.AddComponent<RectTransform>();
             rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.5f);
             rt.anchoredPosition = pos;
-            float half = size * 1.62f;
-            var frog = Label(go.transform, "Frog", size, White, new Vector2(-half * 0.62f, 0), new Vector2(half * 1.5f, size + 12), TextAnchor.MiddleRight);
+            // widths sized to the glyphs at any point size ("Frog" ≈ 2.3em,
+            // " Across" ≈ 3.6em bold) so large lockups neither wrap nor overlap
+            float frogW = size * 2.6f, acrossW = size * 4.0f;
+            var frog = Label(go.transform, "Frog", size, White,
+                new Vector2(-frogW / 2f - size * 0.05f, 0), new Vector2(frogW, size + 16), TextAnchor.MiddleRight);
             frog.fontStyle = FontStyle.Bold;
-            var across = Label(go.transform, " Across", size, Mint, new Vector2(half * 0.78f, 0), new Vector2(half * 1.8f, size + 12), TextAnchor.MiddleLeft);
+            var across = Label(go.transform, " Across", size, Mint,
+                new Vector2(acrossW / 2f + size * 0.05f, 0), new Vector2(acrossW, size + 16), TextAnchor.MiddleLeft);
             across.fontStyle = FontStyle.Bold;
             return go.transform;
         }

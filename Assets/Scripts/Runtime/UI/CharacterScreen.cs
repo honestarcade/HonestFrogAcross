@@ -17,9 +17,9 @@ namespace FrogAcross.UI
             rootRt.anchorMin = Vector2.zero; rootRt.anchorMax = Vector2.one;
             rootRt.offsetMin = rootRt.offsetMax = Vector2.zero;
 
-            UiKit.Button(root.transform, "‹", new Vector2(-880, 460), new Vector2(56, 56), shell.Back);
-            UiKit.Label(root.transform, "Character", 34, UiKit.White, new Vector2(-680, 460), new Vector2(340, 48), TextAnchor.MiddleLeft);
-            UiKit.Label(root.transform, "SAME SPEED. DIFFERENT MOVE.", 16, UiKit.TextDim, new Vector2(-620, 420), new Vector2(460, 24), TextAnchor.MiddleLeft);
+            UiKit.Button(root.transform, "‹", new Vector2(-890, 465), new Vector2(76, 76), shell.Back, fontSize: 36);
+            UiKit.Label(root.transform, "Character", 46, UiKit.White, new Vector2(-660, 465), new Vector2(400, 60), TextAnchor.MiddleLeft);
+            UiKit.Label(root.transform, "SAME SPEED. DIFFERENT MOVE.", 22, UiKit.TextDim, new Vector2(-590, 405), new Vector2(520, 30), TextAnchor.MiddleLeft);
 
             var reg = PieceRegistry.Load();
             var chars = reg.All<CharacterDef>().ToList();
@@ -32,26 +32,31 @@ namespace FrogAcross.UI
                 bool isSelected = def.id == selected;
                 var cell = UiKit.Panel(root.transform, $"char-{def.id}",
                     new Color(1f, 1f, 1f, isSelected ? 0.12f : 0.05f));
-                cell.rectTransform.sizeDelta = new Vector2(280, 620);
-                cell.rectTransform.anchoredPosition = new Vector2(-750 + i * 300, -90);
+                cell.rectTransform.sizeDelta = new Vector2(290, 680);
+                cell.rectTransform.anchoredPosition = new Vector2(-762 + i * 305, -110);
 
                 var spriteGo = new GameObject("preview");
                 spriteGo.transform.SetParent(cell.transform, false);
                 var img = spriteGo.AddComponent<Image>();
-                img.sprite = def.sprites != null && def.sprites.Length > 0 ? def.sprites[0] : null;
+                // #90: previews face the player — the back-view frame
+                int face = FrogAcross.View.SpriteSelector.CharacterIndex(FrogAcross.Sim.Move.Back);
+                img.sprite = def.sprites != null && def.sprites.Length > face ? def.sprites[face]
+                    : def.sprites is { Length: > 0 } ? def.sprites[0] : null;
                 img.preserveAspect = true;
                 var srt = img.rectTransform;
-                srt.sizeDelta = new Vector2(170, 170);
-                srt.anchoredPosition = new Vector2(0, 110);
+                srt.sizeDelta = new Vector2(215, 215);
+                srt.anchoredPosition = new Vector2(0, 120);
                 var bob = spriteGo.AddComponent<IdleBob>();
                 bob.hop = def.moveStyle == MoveStyle.Hop;
 
-                var nameL = UiKit.Label(cell.transform, def.displayName, 26, UiKit.White, new Vector2(0, -60));
+                string shown = string.IsNullOrEmpty(def.displayName) ? def.id
+                    : char.ToUpperInvariant(def.displayName[0]) + def.displayName.Substring(1);
+                var nameL = UiKit.Label(cell.transform, shown, 34, UiKit.White, new Vector2(0, -75));
                 nameL.fontStyle = FontStyle.Bold;
-                UiKit.Label(cell.transform, def.moveStyle == MoveStyle.Hop ? "HOP" : "STEP", 16,
-                    def.moveStyle == MoveStyle.Hop ? UiKit.Mint : UiKit.Hex("B48CFF"), new Vector2(0, -100));
+                UiKit.Label(cell.transform, def.moveStyle == MoveStyle.Hop ? "HOP" : "STEP", 22,
+                    def.moveStyle == MoveStyle.Hop ? UiKit.Mint : UiKit.Hex("B48CFF"), new Vector2(0, -125));
                 if (isSelected)
-                    UiKit.Label(cell.transform, "✓", 30, UiKit.Mint, new Vector2(105, 270));
+                    UiKit.Label(cell.transform, "✓", 38, UiKit.Mint, new Vector2(108, 295));
 
                 var btn = cell.gameObject.AddComponent<Button>();
                 string id = def.id;

@@ -7,6 +7,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace FrogAcross.Tests.PlayMode
@@ -75,6 +76,74 @@ namespace FrogAcross.Tests.PlayMode
 
             var cell3 = Cell(3);
             Assert.That(cell3.GetComponent<Button>(), Is.Null, "locked level must not launch");
+        }
+
+        [UnityTest]
+        public IEnumerator Swipe_PagesTheGrid()
+        {
+            Progression.ResetAll();
+            SceneManager.LoadScene("Shell");
+            yield return null;
+            var shell = Object.FindAnyObjectByType<AppShell>();
+            yield return Wait1_3;
+            shell.RebuildScreen("levels", LevelsScreen.Build);
+            shell.Push("levels");
+            yield return null;
+
+            var canvas = GameObject.Find("shell-canvas").transform;
+            Text PageLabel()
+            {
+                foreach (var t in canvas.GetComponentsInChildren<Text>(true))
+                    if (t.text.StartsWith("PAGE")) return t;
+                return null;
+            }
+            Assert.That(PageLabel().text, Is.EqualTo("PAGE 1 / 5"));
+
+            var pager = canvas.GetComponentInChildren<SwipePager>(true);
+            Assert.That(pager, Is.Not.Null, "grid must carry the swipe pager (#85)");
+            void Swipe(float fromX, float toX)
+            {
+                var down = new PointerEventData(EventSystem.current) { position = new Vector2(fromX, 400) };
+                pager.OnBeginDrag(down);
+                var up = new PointerEventData(EventSystem.current) { position = new Vector2(toX, 400) };
+                pager.OnEndDrag(up);
+            }
+            Swipe(900, 300); // drag left = next page
+            yield return null;
+            Assert.That(PageLabel().text, Is.EqualTo("PAGE 2 / 5"), "left swipe pages forward");
+            Swipe(300, 900);
+            yield return null;
+            Assert.That(PageLabel().text, Is.EqualTo("PAGE 1 / 5"), "right swipe pages back");
+            Swipe(600, 560); // under threshold: no page
+            yield return null;
+            Assert.That(PageLabel().text, Is.EqualTo("PAGE 1 / 5"), "small drags don't page");
+        }
+
+        [UnityTest]
+        public IEnumerator ResetAllData_RefreshesTheBuiltScreens()
+        {
+            // #89: the wipe rebuilds menu/levels/character, no restart needed
+            Progression.ResetAll();
+            Progression.ReportCompletion(LevelCatalog.IdFor(1), 1, 10f, 15f, 20f, 30f);
+            SceneManager.LoadScene("Shell");
+            yield return null;
+            var shell = Object.FindAnyObjectByType<AppShell>();
+            yield return Wait1_3;
+
+            var canvas = GameObject.Find("shell-canvas").transform;
+            bool MenuSays(string text)
+            {
+                foreach (var t in canvas.GetComponentsInChildren<Text>(true))
+                    if (t.text.Contains(text)) return true;
+                return false;
+            }
+            Assert.That(MenuSays("Continue — Level 2"), Is.True, "seeded save shows level 2");
+
+            FrogAcross.Services.DataWipe.WipeAll();
+            shell.RefreshDataScreens();
+            yield return null;
+            Assert.That(MenuSays("Continue — Level 1"), Is.True, "wipe + refresh returns the menu to level 1");
+            Assert.That(MenuSays("Continue — Level 2"), Is.False, "no stale screen survives the wipe");
         }
     }
 }
