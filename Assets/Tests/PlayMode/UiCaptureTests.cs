@@ -91,6 +91,11 @@ namespace FrogAcross.Tests.PlayMode
             var level = LevelLoader.LoadFromResources("level-001", PieceRegistry.Load());
             overlay.Show(level, 260, newBest: true, prevBest: 6.8f, levelNumber: 13);
             yield return null;
+            bool sawFullTitle = false;
+            foreach (var text in host.GetComponentsInChildren<UnityEngine.UI.Text>(true))
+                if (text.text == "Level 13 Complete") sawFullTitle = true;
+            Assert.That(sawFullTitle, Is.True, "overlay title must read 'Level N Complete', untruncated");
+
             var overlayCanvas = host.GetComponentInChildren<Canvas>();
             Assert.That(overlayCanvas.GetComponent<CanvasScaler>(), Is.Not.Null,
                 "the overlay's canvas must scale too (#88 — it used to render raw pixels)");
@@ -103,13 +108,40 @@ namespace FrogAcross.Tests.PlayMode
         [UnityTest]
         public IEnumerator CaptureBoardAtDeviceResolution()
         {
-            AppShell.PendingLevelId = "level-001";
+            yield return CaptureBoard("level-001", "board");
+            yield return CaptureBoard("level-090", "board-tall");
+        }
+
+        private static IEnumerator CaptureBoard(string levelId, string name)
+        {
+            AppShell.PendingLevelId = levelId;
             SceneManager.LoadScene("Game");
             yield return null;
             yield return null;
+            var boot = Object.FindAnyObjectByType<FrogAcross.View.GameBootstrap>();
             var cam = Camera.main;
             var rt = new RenderTexture(3120, 1440, 24);
             cam.targetTexture = rt;
+            cam.aspect = 3120f / 1440f;
+            boot.SendMessage("FitCamera", SendMessageOptions.DontRequireReceiver);
+
+            // every board corner must sit inside the rolled frame
+            var level = boot.Sim.Level;
+            float halfW = cam.orthographicSize * cam.aspect, halfH = cam.orthographicSize;
+            foreach (var corner in new[]
+                     {
+                         new Vector3(-0.5f, 0.5f, 0f),
+                         new Vector3(level.Columns - 0.5f, 0.5f, 0f),
+                         new Vector3(-0.5f, -(level.BankRow + 0.5f), 0f),
+                         new Vector3(level.Columns - 0.5f, -(level.BankRow + 0.5f), 0f),
+                     })
+            {
+                var local = cam.transform.InverseTransformPoint(corner);
+                Assert.That(Mathf.Abs(local.y), Is.LessThanOrEqualTo(halfH + 0.001f),
+                    $"{levelId}: corner {corner} falls outside the rolled frame vertically");
+                Assert.That(Mathf.Abs(local.x), Is.LessThanOrEqualTo(halfW + 0.001f),
+                    $"{levelId}: corner {corner} falls outside the rolled frame horizontally");
+            }
             cam.Render();
             RenderTexture.active = rt;
             var tex = new Texture2D(3120, 1440, TextureFormat.RGB24, false);
@@ -118,8 +150,8 @@ namespace FrogAcross.Tests.PlayMode
             RenderTexture.active = null;
             cam.targetTexture = null;
             Directory.CreateDirectory("Builds/ui/device");
-            File.WriteAllBytes("Builds/ui/device/board.png", tex.EncodeToPNG());
-            Assert.That(File.Exists("Builds/ui/device/board.png"), Is.True);
+            File.WriteAllBytes($"Builds/ui/device/{name}.png", tex.EncodeToPNG());
+            Assert.That(File.Exists($"Builds/ui/device/{name}.png"), Is.True);
             Object.Destroy(rt);
             Object.Destroy(tex);
         }

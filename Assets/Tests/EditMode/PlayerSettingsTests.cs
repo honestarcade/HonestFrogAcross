@@ -50,8 +50,12 @@ namespace FrogAcross.Tests.EditMode
         [Test]
         public void Version_IsInitial()
         {
-            Assert.AreEqual("0.1.0", PlayerSettings.bundleVersion);
-            Assert.GreaterOrEqual(PlayerSettings.Android.bundleVersionCode, 1);
+            // CI stamps the tag version at build time, so pin the shape (and
+            // that it is not the placeholder), never one frozen literal.
+            Assert.That(PlayerSettings.bundleVersion, Does.Match(@"^\d+\.\d+\.\d+$"),
+                "bundleVersion must be semver");
+            Assert.That(PlayerSettings.bundleVersion, Is.Not.EqualTo("1.0"), "left at Unity's default");
+            Assert.That(PlayerSettings.Android.bundleVersionCode, Is.GreaterThan(0));
         }
     }
 }

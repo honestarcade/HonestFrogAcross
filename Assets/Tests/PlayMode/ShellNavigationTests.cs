@@ -17,8 +17,10 @@ namespace FrogAcross.Tests.PlayMode
         {
             var canvas = GameObject.Find("shell-canvas");
             if (canvas == null) return false;
-            // inactive children aren't found by GameObject.Find — walk the canvas
-            var t = canvas.transform.Find(name);
+            // screens live under the safe-area node; walk it (inactive children
+            // are invisible to GameObject.Find)
+            var t = canvas.transform.Find($"safe-area/{name}");
+            if (t == null) t = canvas.transform.Find(name);
             return t != null && t.gameObject.activeSelf;
         }
 

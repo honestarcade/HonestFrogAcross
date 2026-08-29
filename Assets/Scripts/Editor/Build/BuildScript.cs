@@ -24,7 +24,7 @@ namespace FrogAcross.Editor.Build
             PlayerSettings.productName = "Frog Across"; // spaced everywhere player-visible (owner decision 2026-08-28)
             PlayerSettings.companyName = "Honest Arcade";
             PlayerSettings.SetApplicationIdentifier(NamedBuildTarget.Android, PackageId);
-            PlayerSettings.bundleVersion = "0.1.0";
+            PlayerSettings.bundleVersion = "0.4.0"; // CI overrides per tag; keep in step so dev builds do not lie
             PlayerSettings.Android.bundleVersionCode = 1;
 
             // Landscape only, both rotations.

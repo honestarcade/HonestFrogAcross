@@ -79,8 +79,10 @@ namespace FrogAcross.Tests.PlayMode
         }
 
         [UnityTest]
-        public IEnumerator Swipe_PagesTheGrid()
+        public IEnumerator AllLevelsOnOneScrollingSurface_HeaderStaysPut()
         {
+            // owner ruling (2026-08-29): pagination removed — every level is
+            // on one scrolling surface, header fixed above it
             Progression.ResetAll();
             SceneManager.LoadScene("Shell");
             yield return null;
@@ -90,33 +92,26 @@ namespace FrogAcross.Tests.PlayMode
             shell.Push("levels");
             yield return null;
 
-            var canvas = GameObject.Find("shell-canvas").transform;
-            Text PageLabel()
-            {
-                foreach (var t in canvas.GetComponentsInChildren<Text>(true))
-                    if (t.text.StartsWith("PAGE")) return t;
-                return null;
-            }
-            Assert.That(PageLabel().text, Is.EqualTo("PAGE 1 / 5"));
+            var levels = GameObject.Find("shell-canvas").transform.Find("safe-area/levels");
+            Assert.That(levels, Is.Not.Null);
 
-            var pager = canvas.GetComponentInChildren<SwipePager>(true);
-            Assert.That(pager, Is.Not.Null, "grid must carry the swipe pager (#85)");
-            void Swipe(float fromX, float toX)
-            {
-                var down = new PointerEventData(EventSystem.current) { position = new Vector2(fromX, 400) };
-                pager.OnBeginDrag(down);
-                var up = new PointerEventData(EventSystem.current) { position = new Vector2(toX, 400) };
-                pager.OnEndDrag(up);
-            }
-            Swipe(900, 300); // drag left = next page
-            yield return null;
-            Assert.That(PageLabel().text, Is.EqualTo("PAGE 2 / 5"), "left swipe pages forward");
-            Swipe(300, 900);
-            yield return null;
-            Assert.That(PageLabel().text, Is.EqualTo("PAGE 1 / 5"), "right swipe pages back");
-            Swipe(600, 560); // under threshold: no page
-            yield return null;
-            Assert.That(PageLabel().text, Is.EqualTo("PAGE 1 / 5"), "small drags don't page");
+            int cells = 0;
+            foreach (var t in levels.GetComponentsInChildren<Transform>(true))
+                if (t.name.StartsWith("cell-")) cells++;
+            Assert.That(cells, Is.EqualTo(LevelCatalog.Count), "every level is present at once");
+
+            var scroll = levels.GetComponentInChildren<ScrollRect>(true);
+            Assert.That(scroll, Is.Not.Null, "the grid scrolls");
+            Assert.That(scroll.vertical, Is.True);
+            Assert.That(scroll.content.rect.height, Is.GreaterThan(scroll.viewport.rect.height),
+                "content taller than the viewport — there is something to scroll");
+
+            // the header is outside the scrolling content, so it cannot scroll away
+            var header = levels.Find("header");
+            Assert.That(header, Is.Not.Null, "levels screen uses the shared header");
+            Assert.That(header.IsChildOf(scroll.content), Is.False, "header must not scroll");
+            Assert.That(header.GetSiblingIndex(), Is.EqualTo(levels.childCount - 1),
+                "header renders above the grid so the back button is always tappable");
         }
 
         [UnityTest]
