@@ -23,94 +23,103 @@ namespace FrogAcross.UI
             var content = UiKit.ScrollArea(root.transform,
                 topLeftInset: new Vector2(UiKit.EdgePad, 210f),
                 bottomRightInset: new Vector2(UiKit.EdgePad, 40f));
-            UiKit.SetContentHeight(content, 1160f);
+            UiKit.SetContentHeight(content, 1500f);
 
-            // -------- sound --------
-            SoundRow(content, "All sound", "Master switch for every sound the game makes.",
-                new Vector2(-450, -90), () => SoundSettings.Master, v => SoundSettings.Master = v);
-            SoundRow(content, "Music", "Menu and gameplay music.",
-                new Vector2(-450, -230), () => SoundSettings.Music, v => SoundSettings.Music = v);
-            SoundRow(content, "Effects", "Hops, crashes, splashes, medals.",
-                new Vector2(-450, -370), () => SoundSettings.Effects, v => SoundSettings.Effects = v);
-            SoundRow(content, "Interface", "Taps and navigation.",
-                new Vector2(-450, -510), () => SoundSettings.Ui, v => SoundSettings.Ui = v);
+            // Both columns flow: sound subtitles wrap on narrow phones and the
+            // fixed offsets underneath them collided (owner: CONTROLS ran into
+            // the Interface row; Show-regions sat on the stored-data card).
+            var left = UiKit.Column(content, new Vector2(-900, -60), 820f, 26f);
+            SoundRow(left, "All sound", "Master switch for every sound the game makes.",
+                () => SoundSettings.Master, v => SoundSettings.Master = v);
+            SoundRow(left, "Music", "Menu and gameplay music.",
+                () => SoundSettings.Music, v => SoundSettings.Music = v);
+            SoundRow(left, "Effects", "Hops, crashes, splashes, medals.",
+                () => SoundSettings.Effects, v => SoundSettings.Effects = v);
+            SoundRow(left, "Interface", "Taps and navigation.",
+                () => SoundSettings.Ui, v => SoundSettings.Ui = v);
 
-            // -------- controls --------
-            UiKit.Label(content, "CONTROLS", 24, UiKit.TextDim, new Vector2(-700, -620), new Vector2(300, 32), TextAnchor.MiddleLeft);
+            UiKit.Label(left, "CONTROLS", UiKit.Caption, UiKit.TextDim,
+                Vector2.zero, new Vector2(820, 48), TextAnchor.MiddleLeft);
             bool regions = ControlSchemeSetting.Current == ControlScheme.TapRegions;
-            UiKit.Button(content, regions ? "Swipe" : "Swipe ✓", new Vector2(-620, -720), new Vector2(300, 104), () =>
+            var schemeRow = UiKit.Row(left, 124f);
+            UiKit.Button(schemeRow, regions ? "Swipe" : "Swipe ✓", Vector2.zero, new Vector2(330, 124), () =>
             {
                 ControlSchemeSetting.Current = ControlScheme.Swipe;
                 Refresh(shell);
-            }, primary: !regions, fontSize: 26);
-            UiKit.Button(content, regions ? "Tap regions ✓" : "Tap regions", new Vector2(-290, -720), new Vector2(330, 104), () =>
+            }, primary: !regions, fontSize: UiKit.Heading);
+            UiKit.Button(schemeRow, regions ? "Tap regions ✓" : "Tap regions", Vector2.zero, new Vector2(380, 124), () =>
             {
                 ControlSchemeSetting.Current = ControlScheme.TapRegions;
                 Refresh(shell);
-            }, primary: regions, fontSize: 26);
+            }, primary: regions, fontSize: UiKit.Heading);
             if (regions)
             {
-                var link = UiKit.Button(content, "Show regions", new Vector2(60, -720), new Vector2(300, 104),
-                    () => ShowRegionsPreview(shell.transform), fontSize: 26);
+                var link = UiKit.Button(left, "Show regions", Vector2.zero, new Vector2(420, 124),
+                    () => ShowRegionsPreview(shell.transform), fontSize: UiKit.Heading);
                 link.image.color = new Color(0f, 0.839f, 0.706f, 0.22f);
+                link.gameObject.AddComponent<LayoutElement>().preferredHeight = 124f;
             }
 
-            // -------- data --------
-            UiKit.Label(content, "DATA", 24, UiKit.TextDim, new Vector2(400, -60), new Vector2(300, 32), TextAnchor.MiddleLeft);
-            var dataCard = UiKit.Panel(content, "data-card", new Color(1f, 1f, 1f, 0.05f));
-            dataCard.rectTransform.sizeDelta = new Vector2(780, 330);
-            dataCard.rectTransform.anchoredPosition = new Vector2(520, -240);
-            UiKit.Label(dataCard.transform, "Progress", 32, UiKit.White, new Vector2(0, 105), new Vector2(700, 42), TextAnchor.MiddleLeft);
-            UiKit.Label(dataCard.transform, "Levels, medals, best times and settings.", 24, UiKit.TextBlue,
-                new Vector2(0, 55), new Vector2(700, 36), TextAnchor.MiddleLeft);
-            var resetBtn = UiKit.Button(dataCard.transform, "Reset all data", new Vector2(0, -70), new Vector2(700, 88),
-                () => ConfirmReset(shell), fontSize: 30);
-            resetBtn.image.color = UiKit.Danger;
+            var right = UiKit.Column(content, new Vector2(120, -60), 840f, 30f);
+            UiKit.Label(right, "DATA", UiKit.Caption, UiKit.TextDim,
+                Vector2.zero, new Vector2(840, 48), TextAnchor.MiddleLeft);
+
+            var dataCard = UiKit.Panel(right, "data-card", new Color(1f, 1f, 1f, 0.06f));
+            dataCard.gameObject.AddComponent<LayoutElement>().preferredHeight = 400f;
+            UiKit.Label(dataCard.transform, "Progress", UiKit.Heading, UiKit.White,
+                new Vector2(0, 132), new Vector2(760, 58), TextAnchor.MiddleLeft);
+            UiKit.Label(dataCard.transform, "Levels, medals, best times and settings.", UiKit.Body, UiKit.TextBlue,
+                new Vector2(0, 62), new Vector2(760, 50), TextAnchor.MiddleLeft);
+            var resetBtn = UiKit.Button(dataCard.transform, "Reset all data", new Vector2(0, -105),
+                new Vector2(760, 124), () => ConfirmReset(shell), fontSize: UiKit.Heading);
+            resetBtn.image.color = UiKit.Danger; // 20% alpha read as disabled
             foreach (var t in resetBtn.GetComponentsInChildren<Text>()) t.color = UiKit.White;
 
-            var storedCard = UiKit.Panel(content, "stored-card", new Color(1f, 1f, 1f, 0.035f));
-            storedCard.rectTransform.sizeDelta = new Vector2(780, 300);
-            storedCard.rectTransform.anchoredPosition = new Vector2(520, -610);
-            UiKit.Label(storedCard.transform, "STORED ON DEVICE ONLY", 22, UiKit.TextDim, new Vector2(0, 88), new Vector2(700, 30), TextAnchor.MiddleLeft);
-            UiKit.Label(storedCard.transform, Copy.Get("storedOnDevice"), 24, UiKit.TextBlue,
-                new Vector2(0, -24), new Vector2(700, 150), TextAnchor.UpperLeft);
+            var storedCard = UiKit.Panel(right, "stored-card", new Color(1f, 1f, 1f, 0.045f));
+            storedCard.gameObject.AddComponent<LayoutElement>().preferredHeight = 400f;
+            UiKit.Label(storedCard.transform, "STORED ON DEVICE ONLY", UiKit.Caption, UiKit.Mint,
+                new Vector2(0, 140), new Vector2(760, 44), TextAnchor.MiddleLeft);
+            UiKit.Label(storedCard.transform, Copy.Get("storedOnDevice"), UiKit.Body, UiKit.TextBlue,
+                new Vector2(0, -20), new Vector2(760, 240), TextAnchor.UpperLeft);
 
-            UiKit.Label(content, $"Frog Across v{Application.version}", 22, UiKit.TextDim, new Vector2(520, -800), new Vector2(780, 30), TextAnchor.MiddleLeft);
+            UiKit.Label(right, $"Frog Across v{Application.version}", UiKit.Caption, UiKit.TextDim,
+                Vector2.zero, new Vector2(840, 48), TextAnchor.MiddleLeft);
+
             UiKit.Header(root.transform, "Settings", shell.Back);
             return root;
         }
 
         private static void Refresh(AppShell shell)
         {
-            shell.RebuildScreen("settings", Build);
-            shell.Push("settings");
+            shell.Replace("settings", Build); // Push here stacked a second copy
         }
 
-        private static void SoundRow(Transform parent, string title, string sub, Vector2 pos,
+        private static void SoundRow(Transform parent, string title, string sub,
             System.Func<bool> get, System.Action<bool> set)
         {
             var row = UiKit.Panel(parent, $"row-{title}", new Color(1f, 1f, 1f, 0.06f));
-            row.rectTransform.sizeDelta = new Vector2(760, 124);
-            row.rectTransform.anchoredPosition = pos;
-            UiKit.Label(row.transform, title, 30, UiKit.White, new Vector2(-90, 22), new Vector2(500, 38), TextAnchor.MiddleLeft);
-            UiKit.Label(row.transform, sub, 22, UiKit.TextBlue, new Vector2(-90, -24), new Vector2(500, 32), TextAnchor.MiddleLeft);
-            UiKit.Toggle(row.transform, new Vector2(300, 0), get(), set);
+            row.gameObject.AddComponent<LayoutElement>().preferredHeight = 150f;
+            UiKit.Label(row.transform, title, UiKit.Heading, UiKit.White, new Vector2(-70, 34),
+                new Vector2(560, 56), TextAnchor.MiddleLeft);
+            UiKit.Label(row.transform, sub, UiKit.Caption, UiKit.TextBlue, new Vector2(-70, -32),
+                new Vector2(560, 48), TextAnchor.MiddleLeft);
+            UiKit.Toggle(row.transform, new Vector2(330, 0), get(), set);
         }
 
         /// <summary>Full-screen preview of the four tap zones; one tap dismisses (#74/#59 amendment).</summary>
         public static void ShowRegionsPreview(Transform parent)
         {
             var canvas = UiKit.Canvas(parent, "regions-preview", 200);
-            var scrim = UiKit.Stretch(UiKit.Fill(canvas.transform, "scrim", new Color(0f, 0f, 0f, 0.55f)));
+            var scrim = UiKit.Stretch(UiKit.Fill(canvas.transform, "scrim", new Color(0f, 0f, 0f, 0.10f)));
 
             void Zone(Vector2 aMin, Vector2 aMax, string arrow, string label)
             {
-                var z = UiKit.Fill(canvas.transform, $"zone-{label}", new Color(0f, 0.839f, 0.706f, 0.12f));
+                var z = UiKit.Fill(canvas.transform, $"zone-{label}", new Color(0f, 0.839f, 0.706f, 0.10f));
                 var rt = z.rectTransform;
                 rt.anchorMin = aMin; rt.anchorMax = aMax;
                 rt.offsetMin = new Vector2(6, 6); rt.offsetMax = new Vector2(-6, -6);
-                UiKit.Label(z.transform, arrow, 110, UiKit.Mint, new Vector2(0, 40));
-                UiKit.Label(z.transform, label, 34, UiKit.White, new Vector2(0, -80));
+                UiKit.Label(z.transform, arrow, 140, new Color(0f, 0.839f, 0.706f, 0.55f), new Vector2(0, 50));
+                UiKit.Label(z.transform, label, UiKit.Heading, new Color(1f, 1f, 1f, 0.6f), new Vector2(0, -110));
             }
             float side = TapRegionMapper.SideFraction;
             Zone(new Vector2(0f, 0f), new Vector2(side, 1f), "◀", "Left");
@@ -145,16 +154,16 @@ namespace FrogAcross.UI
             var canvas = UiKit.Canvas(parent, "confirm-dialog", 300);
             UiKit.Stretch(UiKit.Fill(canvas.transform, "scrim", new Color(0.012f, 0.055f, 0.125f, 0.78f)));
             var panel = UiKit.Panel(canvas.transform, "panel", UiKit.PanelNavy);
-            panel.rectTransform.sizeDelta = new Vector2(900, 460);
-            var t = UiKit.Label(panel.transform, title, 44, UiKit.White, new Vector2(0, 150), new Vector2(800, 58));
+            panel.rectTransform.sizeDelta = new Vector2(980, 520);
+            var t = UiKit.Label(panel.transform, title, UiKit.Title, UiKit.White, new Vector2(0, 150), new Vector2(820, 78));
             t.fontStyle = FontStyle.Bold;
-            UiKit.Label(panel.transform, body, 28, UiKit.TextBlue, new Vector2(0, 30), new Vector2(800, 160), TextAnchor.UpperLeft);
-            UiKit.Button(panel.transform, "Cancel", new Vector2(-200, -160), new Vector2(350, 96), () =>
+            UiKit.Label(panel.transform, body, UiKit.Body, UiKit.TextBlue, new Vector2(0, 20), new Vector2(800, 180), TextAnchor.UpperLeft);
+            UiKit.Button(panel.transform, "Cancel", new Vector2(-210, -170), new Vector2(370, 116), () =>
             {
                 Object.Destroy(canvas.gameObject);
                 onCancel?.Invoke();
             });
-            var confirm = UiKit.Button(panel.transform, confirmLabel, new Vector2(200, -160), new Vector2(350, 96), () =>
+            var confirm = UiKit.Button(panel.transform, confirmLabel, new Vector2(210, -170), new Vector2(370, 116), () =>
             {
                 Object.Destroy(canvas.gameObject);
                 onConfirm();

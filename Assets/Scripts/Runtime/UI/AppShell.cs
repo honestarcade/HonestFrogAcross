@@ -106,6 +106,18 @@ namespace FrogAcross.UI
             // at the menu root: let the OS background us (no explicit action)
         }
 
+        /// <summary>
+        /// Rebuild the screen you are already on and stay there. Screens used
+        /// to RebuildScreen + Push, which stacked a second copy of themselves —
+        /// so Back popped the duplicate and appeared to do nothing the first
+        /// time (owner: "had to hit it twice", 2026-08-29).
+        /// </summary>
+        public void Replace(string name, Func<Transform, AppShell, GameObject> builder)
+        {
+            RebuildScreen(name, builder);
+            foreach (var kv in _screens) kv.Value.SetActive(kv.Key == name);
+        }
+
         public void RebuildScreen(string name, Func<Transform, AppShell, GameObject> builder)
         {
             if (_screens.TryGetValue(name, out var old)) Destroy(old);
@@ -152,8 +164,7 @@ namespace FrogAcross.UI
             rrt.anchorMin = Vector2.zero; rrt.anchorMax = Vector2.one;
             rrt.offsetMin = rrt.offsetMax = Vector2.zero;
             UiKit.Stretch(UiKit.Fill(root.transform, "bg", UiKit.Navy));
-            UiKit.Logotype(root.transform, new Vector2(0, 40), 96);
-            UiKit.Label(root.transform, "BY HONEST ARCADE", 26, UiKit.TextDim, new Vector2(0, -110));
+            UiKit.Logotype(root.transform, new Vector2(0, 60), 116);
             var barBg = UiKit.Panel(root.transform, "bar-bg", new Color(1f, 1f, 1f, 0.12f), 8);
             barBg.rectTransform.sizeDelta = new Vector2(520, 12);
             barBg.rectTransform.anchoredPosition = new Vector2(0, -200);
@@ -176,20 +187,30 @@ namespace FrogAcross.UI
             rt.offsetMin = rt.offsetMax = Vector2.zero;
 
             // brand column left, actions right — both filling the safe area
-            UiKit.Logotype(root.transform, new Vector2(-470, 120), 110);
-            UiKit.Label(root.transform, "BY HONEST ARCADE", 28, UiKit.TextDim, new Vector2(-470, -40));
+            UiKit.Logotype(root.transform, new Vector2(-640, 250), 128);
 
             int current = Mathf.Min(Progression.HighestUnlocked, LevelCatalog.Count);
             int medals = 0;
             foreach (var r in Progression.Data.records) if (r.medal > 0) medals++;
-            var stat = UiKit.Panel(root.transform, "stat", new Color(1f, 1f, 1f, 0.06f));
-            stat.rectTransform.sizeDelta = new Vector2(620, 92);
-            stat.rectTransform.anchoredPosition = new Vector2(-470, -170);
-            UiKit.Label(stat.transform, $"Level {current} / {LevelCatalog.Count}    ·    {medals} medals",
-                32, UiKit.TextBlue, Vector2.zero, new Vector2(580, 44));
 
-            UiKit.Button(root.transform, $"Continue — Level {current}", new Vector2(450, 250),
-                new Vector2(760, 132), shell.LaunchCurrent, primary: true, fontSize: 42);
+            var levelChip = UiKit.Panel(root.transform, "chip-level", new Color(1f, 1f, 1f, 0.07f));
+            levelChip.rectTransform.sizeDelta = new Vector2(420, 96);
+            levelChip.rectTransform.anchoredPosition = new Vector2(-860, 20);
+            UiKit.Label(levelChip.transform, $"Level {current} / {LevelCatalog.Count}", UiKit.Caption,
+                UiKit.TextBlue, Vector2.zero, new Vector2(380, 44));
+            var medalChip = UiKit.Panel(root.transform, "chip-medals", new Color(1f, 1f, 1f, 0.07f));
+            medalChip.rectTransform.sizeDelta = new Vector2(330, 96);
+            medalChip.rectTransform.anchoredPosition = new Vector2(-430, 20);
+            UiKit.Label(medalChip.transform, $"{medals} medals", UiKit.Caption,
+                UiKit.TextBlue, Vector2.zero, new Vector2(290, 44));
+
+            UiKit.Label(root.transform, "SWIPE TO MOVE  ·  TAP TO HOP FORWARD", UiKit.Micro, UiKit.TextDim,
+                new Vector2(-640, -160), new Vector2(980, 44));
+            UiKit.Label(root.transform, $"v{Application.version}  ·  NO ADS  ·  NO TRACKING  ·  OPEN SOURCE",
+                UiKit.Micro, UiKit.TextDim, new Vector2(-640, -420), new Vector2(1100, 44));
+
+            UiKit.Button(root.transform, $"Continue — Level {current}", new Vector2(470, 300),
+                new Vector2(880, 160), shell.LaunchCurrent, primary: true, fontSize: UiKit.Title - 6);
             var grid = new (string label, string screen)[]
             {
                 ("Levels", "levels"), ("Character", "character"),
@@ -199,13 +220,11 @@ namespace FrogAcross.UI
             for (int i = 0; i < grid.Length; i++)
             {
                 var (label, screen) = grid[i];
-                float x = 450 + (i % 2 == 0 ? -196 : 196);
-                float y = 80 - (i / 2) * 150;
-                UiKit.Button(root.transform, label, new Vector2(x, y), new Vector2(372, 126),
-                    () => shell.Push(screen), fontSize: 30);
+                float x = 470 + (i % 2 == 0 ? -224 : 224);
+                float y = 100 - (i / 2) * 190;
+                UiKit.Button(root.transform, label, new Vector2(x, y), new Vector2(432, 160),
+                    () => shell.Push(screen), fontSize: UiKit.Heading);
             }
-            UiKit.Label(root.transform, $"v{Application.version} · NO ADS · NO TRACKING", 22, UiKit.TextDim,
-                new Vector2(-470, -350), new Vector2(700, 30));
             return root;
         }
     }

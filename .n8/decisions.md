@@ -259,3 +259,14 @@ When `/n8-replan` processes an ad-hoc entry it appends `— reconciled by /n8-re
 - **Version string** now comes from Application.version (was a hardcoded "1.0"); the baseline bundleVersion moved to 0.4.0 and PlayerSettingsTests pins the shape, not a frozen literal.
 - **Tap regions 33% → 20%** side bands (owner ruling): forward/back get the room.
 - **UI sprite importer rule**: Resources/UI imports as a single sprite — the project's sheet defaults had sliced the logo, so the menu drew one corner of the mark.
+
+### Device UAT round 3 — fix pass (2026-08-29)
+
+- **Type scale added to UiKit** (Display/Title/Heading/Body/Caption/Micro). The design's own sizes — 12–16px inside a 958-wide mock — scale to ~26pt on our 1920 canvas, which the owner reports as unreadable on a 6.9" phone. These are roughly double that; screens now use the names, never raw numbers, so "make it bigger" is one edit rather than forty.
+- **Fixed offsets replaced with layout groups (UiKit.Column / UiKit.Row).** Three separate overlap reports (About's rules, Settings' CONTROLS vs the Interface row, Show-regions vs the stored-data card) were all the same bug: copy that wraps to a different number of lines on a different aspect while the next element sits at a hardcoded Y. Lists of copy now flow at their natural heights.
+- **The double-press back button** was screens rebuilding themselves with RebuildScreen + Push, which stacked a second copy — Back popped the duplicate and looked dead. Added AppShell.Replace(); Character and Settings use it. Regression test drives both paths.
+- **Levels grid**: GridLayoutGroup with FixedColumnCount=10 plus GridFitter, which derives cell size from the surface it actually got (a fixed cell size gave 11 columns on one aspect and 12 on another). The ScrollArea origin node needed ignoreLayout — it had been dealt the first cell, leaving an empty slot before level 1.
+- **Medals are now the disc behind the number** (owner ruling), one size on every cell, sized for three digits, with an outlined numeral so it reads on gold. The old corner dot was too small to notice.
+- **Logo**: mark to the RIGHT of the wordmark with the byline underneath (owner's explicit call; the design has the mark on the left — noted here in case they want it flipped).
+- **Region preview** dimmed to 0.10 scrim + 0.10 zones (owner asked for "something really low").
+- **About/Gameplay version** now derives from Application.version and LevelCatalog.Count instead of the hardcoded "v1.0 · 100 LEVELS" copy string.
