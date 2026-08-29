@@ -1,19 +1,19 @@
 {
     "id": "level-079",
     "name": "level-079",
-    "columns": 12,
+    "columns": 11,
     "medal": {
-        "gold": 25.200000762939454,
-        "silver": 36.5,
-        "bronze": 52.79999923706055
+        "gold": 19.399999618530275,
+        "silver": 28.200000762939454,
+        "bronze": 40.79999923706055
     },
-    "startColumn": 10,
+    "startColumn": 4,
     "bays": [
+        0,
+        2,
         4,
-        5,
         6,
-        8,
-        11
+        10
     ],
     "rows": [
         {
@@ -24,127 +24,73 @@
             "obstructions": []
         },
         {
-            "kind": "river",
-            "dir": "left",
-            "speed": 1.850000023841858,
-            "objects": [
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
                 {
-                    "pieceId": "log-short",
-                    "offset": 2.5799999237060549,
-                    "spacing": 12.079999923706055,
-                    "phase": 0
-                },
-                {
-                    "pieceId": "gator",
-                    "offset": 6.309999942779541,
-                    "spacing": 12.899999618530274,
-                    "phase": 376
+                    "pieceId": "planter-daisy",
+                    "column": 3
                 }
-            ],
+            ]
+        },
+        {
+            "kind": "walkway",
+            "dir": "left",
+            "speed": 1.8600000143051148,
+            "objects": [],
             "obstructions": []
         },
         {
-            "kind": "concrete",
-            "dir": "",
-            "speed": 0.0,
+            "kind": "walkway",
+            "dir": "right",
+            "speed": 1.590000033378601,
             "objects": [],
-            "obstructions": [
-                {
-                    "pieceId": "bench",
-                    "column": 0
-                },
-                {
-                    "pieceId": "planter-lavender",
-                    "column": 2
-                },
-                {
-                    "pieceId": "tree",
-                    "column": 9
-                }
-            ]
-        },
-        {
-            "kind": "concrete",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
-            "obstructions": [
-                {
-                    "pieceId": "planter-fern",
-                    "column": 1
-                },
-                {
-                    "pieceId": "planter-lavender",
-                    "column": 5
-                }
-            ]
+            "obstructions": []
         },
         {
             "kind": "grass",
             "dir": "",
             "speed": 0.0,
             "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-fern",
+                    "column": 1
+                }
+            ]
+        },
+        {
+            "kind": "walkway",
+            "dir": "left",
+            "speed": 1.899999976158142,
+            "objects": [],
             "obstructions": []
         },
         {
             "kind": "swamp",
-            "dir": "right",
-            "speed": 1.7599999904632569,
+            "dir": "left",
+            "speed": 1.4500000476837159,
             "objects": [
                 {
-                    "pieceId": "log-short",
-                    "offset": 3.2100000381469728,
-                    "spacing": 12.100000381469727,
-                    "phase": 0
-                },
-                {
-                    "pieceId": "log",
-                    "offset": 9.899999618530274,
-                    "spacing": 14.579999923706055,
+                    "pieceId": "raft",
+                    "offset": 8.170000076293946,
+                    "spacing": 7.0,
                     "phase": 0
                 }
             ],
             "obstructions": []
         },
         {
-            "kind": "concrete",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
-            "obstructions": [
-                {
-                    "pieceId": "bush",
-                    "column": 2
-                },
-                {
-                    "pieceId": "planter-tulip",
-                    "column": 4
-                },
-                {
-                    "pieceId": "planter-fern",
-                    "column": 6
-                },
-                {
-                    "pieceId": "bench",
-                    "column": 7
-                }
-            ]
-        },
-        {
-            "kind": "river",
+            "kind": "swamp",
             "dir": "left",
-            "speed": 1.6200000047683716,
+            "speed": 1.8700000047683716,
             "objects": [
                 {
-                    "pieceId": "gator",
-                    "offset": 2.9100000858306886,
-                    "spacing": 13.65999984741211,
-                    "phase": 275
-                },
-                {
                     "pieceId": "raft",
-                    "offset": 11.220000267028809,
-                    "spacing": 11.880000114440918,
+                    "offset": 17.329999923706056,
+                    "spacing": 7.0,
                     "phase": 0
                 }
             ],
@@ -161,27 +107,20 @@
                     "column": 1
                 },
                 {
-                    "pieceId": "planter-lavender",
-                    "column": 9
+                    "pieceId": "tree",
+                    "column": 2
                 },
                 {
-                    "pieceId": "bush",
-                    "column": 10
+                    "pieceId": "planter-tulip",
+                    "column": 8
                 }
             ]
         },
         {
-            "kind": "swamp",
-            "dir": "left",
-            "speed": 1.7699999809265137,
-            "objects": [
-                {
-                    "pieceId": "log",
-                    "offset": 4.28000020980835,
-                    "spacing": 6.420000076293945,
-                    "phase": 0
-                }
-            ],
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
             "obstructions": []
         },
         {

@@ -3,14 +3,14 @@
     "name": "level-023",
     "columns": 11,
     "medal": {
-        "gold": 10.699999809265137,
-        "silver": 15.600000381469727,
-        "bronze": 22.5
+        "gold": 37.599998474121097,
+        "silver": 54.5,
+        "bronze": 78.9000015258789
     },
-    "startColumn": 7,
+    "startColumn": 8,
     "bays": [
-        1,
-        3
+        3,
+        5
     ],
     "rows": [
         {
@@ -27,47 +27,49 @@
             "objects": [
                 {
                     "pieceId": "log-long",
-                    "offset": 0.4099999964237213,
-                    "spacing": 18.139999389648439,
+                    "offset": 7.0,
+                    "spacing": 23.0,
                     "phase": 0
                 },
                 {
-                    "pieceId": "log",
-                    "offset": 12.829999923706055,
-                    "spacing": 15.920000076293946,
+                    "pieceId": "log-short",
+                    "offset": 18.5,
+                    "spacing": 23.0,
                     "phase": 0
                 }
             ],
             "obstructions": []
         },
         {
-            "kind": "grass",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
-            "obstructions": [
+            "kind": "swamp",
+            "dir": "left",
+            "speed": 1.1299999952316285,
+            "objects": [
                 {
-                    "pieceId": "bush",
-                    "column": 6
+                    "pieceId": "log",
+                    "offset": 20.510000228881837,
+                    "spacing": 21.0,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "log-short",
+                    "offset": 10.010000228881836,
+                    "spacing": 21.0,
+                    "phase": 0
                 }
-            ]
+            ],
+            "obstructions": []
         },
         {
             "kind": "swamp",
             "dir": "left",
-            "speed": 1.3200000524520875,
+            "speed": 1.100000023841858,
             "objects": [
                 {
                     "pieceId": "gator",
-                    "offset": 6.130000114440918,
-                    "spacing": 14.520000457763672,
-                    "phase": 322
-                },
-                {
-                    "pieceId": "turtle-log",
-                    "offset": 8.970000267028809,
-                    "spacing": 15.039999961853028,
-                    "phase": 267
+                    "offset": 18.059999465942384,
+                    "spacing": 10.5,
+                    "phase": 273
                 }
             ],
             "obstructions": []
@@ -80,30 +82,30 @@
             "obstructions": []
         },
         {
-            "kind": "swamp",
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
             "dir": "left",
-            "speed": 1.159999966621399,
+            "speed": 1.3700000047683716,
             "objects": [
                 {
-                    "pieceId": "turtle-log",
-                    "offset": 2.700000047683716,
-                    "spacing": 15.0,
-                    "phase": 134
+                    "pieceId": "log-short",
+                    "offset": 16.43000030517578,
+                    "spacing": 23.0,
+                    "phase": 0
                 },
                 {
-                    "pieceId": "raft",
-                    "offset": 8.539999961853028,
-                    "spacing": 13.34000015258789,
+                    "pieceId": "log-long",
+                    "offset": 4.929999828338623,
+                    "spacing": 23.0,
                     "phase": 0
                 }
             ],
-            "obstructions": []
-        },
-        {
-            "kind": "grass",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
             "obstructions": []
         },
         {

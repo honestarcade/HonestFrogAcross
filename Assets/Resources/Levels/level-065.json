@@ -3,9 +3,9 @@
     "name": "level-065",
     "columns": 11,
     "medal": {
-        "gold": 28.100000381469728,
-        "silver": 40.70000076293945,
-        "bronze": 59.0
+        "gold": 19.399999618530275,
+        "silver": 28.100000381469728,
+        "bronze": 40.70000076293945
     },
     "startColumn": 8,
     "bays": [
@@ -35,8 +35,8 @@
             "objects": [
                 {
                     "pieceId": "log",
-                    "offset": 1.7000000476837159,
-                    "spacing": 6.550000190734863,
+                    "offset": 5.440000057220459,
+                    "spacing": 7.0,
                     "phase": 0
                 }
             ],
@@ -65,8 +65,8 @@
             "objects": [
                 {
                     "pieceId": "turtle-log",
-                    "offset": 2.369999885559082,
-                    "spacing": 6.289999961853027,
+                    "offset": 7.920000076293945,
+                    "spacing": 7.0,
                     "phase": 315
                 }
             ],
@@ -79,8 +79,8 @@
             "objects": [
                 {
                     "pieceId": "passenger",
-                    "offset": 10.319999694824219,
-                    "spacing": 13.930000305175782,
+                    "offset": 25.93000030517578,
+                    "spacing": 17.5,
                     "phase": 0
                 }
             ],
@@ -109,8 +109,8 @@
             "objects": [
                 {
                     "pieceId": "freight",
-                    "offset": 9.8100004196167,
-                    "spacing": 14.4399995803833,
+                    "offset": 23.770000457763673,
+                    "spacing": 17.5,
                     "phase": 0
                 }
             ],

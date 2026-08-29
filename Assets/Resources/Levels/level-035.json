@@ -3,15 +3,15 @@
     "name": "level-035",
     "columns": 10,
     "medal": {
-        "gold": 22.700000762939454,
-        "silver": 32.900001525878909,
-        "bronze": 47.70000076293945
+        "gold": 14.199999809265137,
+        "silver": 20.600000381469728,
+        "bronze": 29.799999237060548
     },
-    "startColumn": 8,
+    "startColumn": 3,
     "bays": [
+        5,
         6,
-        7,
-        8
+        7
     ],
     "rows": [
         {
@@ -40,94 +40,94 @@
             "objects": [
                 {
                     "pieceId": "log-short",
-                    "offset": 5.159999847412109,
-                    "spacing": 13.380000114440918,
+                    "offset": 11.229999542236329,
+                    "spacing": 20.0,
                     "phase": 0
                 },
                 {
-                    "pieceId": "log-short",
-                    "offset": 7.989999771118164,
-                    "spacing": 11.960000038146973,
-                    "phase": 0
+                    "pieceId": "turtle-log",
+                    "offset": 1.2300000190734864,
+                    "spacing": 20.0,
+                    "phase": 119
                 }
             ],
             "obstructions": []
         },
         {
-            "kind": "road",
-            "dir": "left",
-            "speed": 1.8200000524520875,
-            "objects": [
-                {
-                    "pieceId": "car",
-                    "offset": 3.380000114440918,
-                    "spacing": 10.140000343322754,
-                    "phase": 0
-                },
-                {
-                    "pieceId": "truck",
-                    "offset": 11.25,
-                    "spacing": 14.739999771118164,
-                    "phase": 0
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "road",
-            "dir": "left",
-            "speed": 2.0799999237060549,
-            "objects": [
-                {
-                    "pieceId": "convertible",
-                    "offset": 0.6200000047683716,
-                    "spacing": 5.559999942779541,
-                    "phase": 0
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "concrete",
+            "kind": "grass",
             "dir": "",
             "speed": 0.0,
             "objects": [],
             "obstructions": [
                 {
-                    "pieceId": "tree",
-                    "column": 5
+                    "pieceId": "planter-fern",
+                    "column": 0
                 }
             ]
         },
         {
-            "kind": "tracks",
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-lavender",
+                    "column": 1
+                },
+                {
+                    "pieceId": "tree",
+                    "column": 3
+                },
+                {
+                    "pieceId": "tree",
+                    "column": 9
+                }
+            ]
+        },
+        {
+            "kind": "road",
             "dir": "right",
-            "speed": 2.0,
+            "speed": 1.7000000476837159,
             "objects": [
                 {
-                    "pieceId": "freight",
-                    "offset": 6.989999771118164,
-                    "spacing": 15.119999885559082,
+                    "pieceId": "truck",
+                    "offset": 9.880000114440918,
+                    "spacing": 20.0,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "convertible",
+                    "offset": 19.8799991607666,
+                    "spacing": 20.0,
                     "phase": 0
                 }
             ],
             "obstructions": []
         },
         {
-            "kind": "swamp",
-            "dir": "right",
-            "speed": 1.590000033378601,
+            "kind": "tracks",
+            "dir": "left",
+            "speed": 1.940000057220459,
             "objects": [
                 {
-                    "pieceId": "log-long",
-                    "offset": 2.0899999141693117,
-                    "spacing": 16.079999923706056,
+                    "pieceId": "passenger",
+                    "offset": 33.220001220703128,
+                    "spacing": 17.0,
                     "phase": 0
-                },
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "left",
+            "speed": 1.2200000286102296,
+            "objects": [
                 {
-                    "pieceId": "log",
-                    "offset": 8.510000228881836,
-                    "spacing": 14.800000190734864,
+                    "pieceId": "log-short",
+                    "offset": 4.139999866485596,
+                    "spacing": 6.0,
                     "phase": 0
                 }
             ],

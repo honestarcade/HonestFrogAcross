@@ -72,18 +72,33 @@ namespace FrogAcross.Tests.PlayMode
         }
 
         [UnityTest]
-        public IEnumerator Camera_FramesTheBoundLevel_NoTilt()
+        public IEnumerator Camera_FramesTheBoundLevel_WithTheDesignTilt()
         {
-            // #87: every level fills the height, straight-on
+            // The design draws the board rolled -8° and bleeding off every edge
+            // (owner correction 2026-08-29: my first pass removed the tilt).
             yield return LoadGame("dev-road");
             var bootstrap = Object.FindAnyObjectByType<GameBootstrap>();
             var cam = Camera.main;
-            Assert.That(cam.orthographicSize,
-                Is.EqualTo(bootstrap.Sim.Level.Rows.Count / 2f + 0.4f).Within(0.001f),
-                "camera fits the level's rows");
-            Assert.That(cam.transform.rotation, Is.EqualTo(Quaternion.identity), "no roll");
+            var level = bootstrap.Sim.Level;
+
+            Assert.That(cam.transform.eulerAngles.z,
+                Is.EqualTo(360f + GameBootstrap.BoardRollDegrees).Within(0.01f), "design roll");
             Assert.That(cam.transform.position.x,
-                Is.EqualTo((bootstrap.Sim.Level.Columns - 1) / 2f).Within(0.001f), "board centered");
+                Is.EqualTo((level.Columns - 1) / 2f).Within(0.001f), "board centered");
+
+            float halfW = cam.orthographicSize * cam.aspect, halfH = cam.orthographicSize;
+            foreach (var corner in new[]
+                     {
+                         new Vector3(-0.5f, 0.5f, 0f),
+                         new Vector3(level.Columns - 0.5f, 0.5f, 0f),
+                         new Vector3(-0.5f, -(level.BankRow + 0.5f), 0f),
+                         new Vector3(level.Columns - 0.5f, -(level.BankRow + 0.5f), 0f),
+                     })
+            {
+                var local = cam.transform.InverseTransformPoint(corner);
+                Assert.That(Mathf.Abs(local.y), Is.LessThanOrEqualTo(halfH + 0.001f),
+                    $"corner {corner} must stay inside the rolled frame");
+            }
         }
 
         [UnityTest]

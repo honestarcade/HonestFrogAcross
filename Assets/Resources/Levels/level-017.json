@@ -3,9 +3,9 @@
     "name": "level-017",
     "columns": 9,
     "medal": {
-        "gold": 21.399999618530275,
-        "silver": 31.100000381469728,
-        "bronze": 45.0
+        "gold": 21.600000381469728,
+        "silver": 31.399999618530275,
+        "bronze": 45.5
     },
     "startColumn": 5,
     "bays": [
@@ -28,8 +28,8 @@
             "objects": [
                 {
                     "pieceId": "gator",
-                    "offset": 5.760000228881836,
-                    "spacing": 7.730000019073486,
+                    "offset": 14.149999618530274,
+                    "spacing": 9.5,
                     "phase": 335
                 }
             ],
@@ -66,8 +66,8 @@
             "objects": [
                 {
                     "pieceId": "convertible",
-                    "offset": 4.809999942779541,
-                    "spacing": 5.429999828338623,
+                    "offset": 13.279999732971192,
+                    "spacing": 7.5,
                     "phase": 0
                 }
             ],
@@ -80,8 +80,8 @@
             "objects": [
                 {
                     "pieceId": "turtle-log",
-                    "offset": 5.909999847412109,
-                    "spacing": 6.769999980926514,
+                    "offset": 16.59000015258789,
+                    "spacing": 9.5,
                     "phase": 68
                 }
             ],
@@ -94,8 +94,8 @@
             "objects": [
                 {
                     "pieceId": "bus",
-                    "offset": 3.130000114440918,
-                    "spacing": 6.53000020980835,
+                    "offset": 8.15999984741211,
+                    "spacing": 8.5,
                     "phase": 0
                 }
             ],

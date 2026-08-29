@@ -3,9 +3,9 @@
     "name": "level-044",
     "columns": 11,
     "medal": {
-        "gold": 40.900001525878909,
-        "silver": 59.29999923706055,
-        "bronze": 85.9000015258789
+        "gold": 20.200000762939454,
+        "silver": 29.200000762939454,
+        "bronze": 42.29999923706055
     },
     "startColumn": 1,
     "bays": [
@@ -28,8 +28,8 @@
             "objects": [
                 {
                     "pieceId": "freight",
-                    "offset": 14.489999771118164,
-                    "spacing": 14.770000457763672,
+                    "offset": 34.34000015258789,
+                    "spacing": 17.5,
                     "phase": 0
                 }
             ],
@@ -42,8 +42,8 @@
             "objects": [
                 {
                     "pieceId": "gator",
-                    "offset": 0.019999999552965165,
-                    "spacing": 6.760000228881836,
+                    "offset": 0.07000000029802323,
+                    "spacing": 7.0,
                     "phase": 337
                 }
             ],
@@ -56,8 +56,8 @@
             "objects": [
                 {
                     "pieceId": "raft",
-                    "offset": 4.190000057220459,
-                    "spacing": 7.289999961853027,
+                    "offset": 12.079999923706055,
+                    "spacing": 10.5,
                     "phase": 0
                 }
             ],
@@ -70,8 +70,8 @@
             "objects": [
                 {
                     "pieceId": "skater",
-                    "offset": 1.440000057220459,
-                    "spacing": 4.610000133514404,
+                    "offset": 4.679999828338623,
+                    "spacing": 5.0,
                     "phase": 0
                 }
             ],
@@ -84,8 +84,8 @@
             "objects": [
                 {
                     "pieceId": "cyclist",
-                    "offset": 3.5799999237060549,
-                    "spacing": 4.460000038146973,
+                    "offset": 12.050000190734864,
+                    "spacing": 5.0,
                     "phase": 0
                 }
             ],

@@ -3,9 +3,9 @@
     "name": "level-012",
     "columns": 11,
     "medal": {
-        "gold": 12.899999618530274,
-        "silver": 18.700000762939454,
-        "bronze": 27.100000381469728
+        "gold": 33.599998474121097,
+        "silver": 48.70000076293945,
+        "bronze": 70.5999984741211
     },
     "startColumn": 9,
     "bays": [
@@ -27,37 +27,24 @@
             "objects": [
                 {
                     "pieceId": "turtle-log",
-                    "offset": 1.1200000047683716,
-                    "spacing": 13.920000076293946,
-                    "phase": 13
+                    "offset": 0.8899999856948853,
+                    "spacing": 21.0,
+                    "phase": 234
                 },
                 {
-                    "pieceId": "raft",
-                    "offset": 9.25,
-                    "spacing": 15.220000267028809,
-                    "phase": 0
+                    "pieceId": "gator",
+                    "offset": 11.390000343322754,
+                    "spacing": 21.0,
+                    "phase": 257
                 }
             ],
             "obstructions": []
         },
         {
-            "kind": "river",
-            "dir": "right",
-            "speed": 1.2000000476837159,
-            "objects": [
-                {
-                    "pieceId": "turtle-log",
-                    "offset": 6.440000057220459,
-                    "spacing": 16.15999984741211,
-                    "phase": 203
-                },
-                {
-                    "pieceId": "log-short",
-                    "offset": 13.609999656677246,
-                    "spacing": 12.119999885559082,
-                    "phase": 0
-                }
-            ],
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
             "obstructions": []
         },
         {
@@ -67,8 +54,8 @@
             "objects": [
                 {
                     "pieceId": "log",
-                    "offset": 1.5499999523162842,
-                    "spacing": 7.429999828338623,
+                    "offset": 4.380000114440918,
+                    "spacing": 10.5,
                     "phase": 0
                 }
             ],
@@ -88,8 +75,8 @@
             "objects": [
                 {
                     "pieceId": "truck",
-                    "offset": 0.8299999833106995,
-                    "spacing": 8.270000457763672,
+                    "offset": 2.109999895095825,
+                    "spacing": 10.5,
                     "phase": 0
                 }
             ],

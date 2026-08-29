@@ -3,16 +3,16 @@
     "name": "level-085",
     "columns": 11,
     "medal": {
-        "gold": 44.0,
-        "silver": 63.79999923706055,
-        "bronze": 92.5
+        "gold": 26.299999237060548,
+        "silver": 38.099998474121097,
+        "bronze": 55.20000076293945
     },
-    "startColumn": 4,
+    "startColumn": 8,
     "bays": [
-        0,
-        5,
+        1,
         7,
-        8
+        9,
+        10
     ],
     "rows": [
         {
@@ -29,8 +29,8 @@
             "objects": [
                 {
                     "pieceId": "cyclist",
-                    "offset": 1.7200000286102296,
-                    "spacing": 3.5799999237060549,
+                    "offset": 7.210000038146973,
+                    "spacing": 3.75,
                     "phase": 0
                 }
             ],
@@ -78,8 +78,8 @@
             "objects": [
                 {
                     "pieceId": "freight",
-                    "offset": 10.069999694824219,
-                    "spacing": 14.010000228881836,
+                    "offset": 25.15999984741211,
+                    "spacing": 17.5,
                     "phase": 0
                 }
             ],
@@ -92,8 +92,8 @@
             "objects": [
                 {
                     "pieceId": "log",
-                    "offset": 5.5,
-                    "spacing": 6.389999866485596,
+                    "offset": 18.09000015258789,
+                    "spacing": 7.0,
                     "phase": 0
                 }
             ],
@@ -106,8 +106,8 @@
             "objects": [
                 {
                     "pieceId": "log",
-                    "offset": 3.869999885559082,
-                    "spacing": 6.659999847412109,
+                    "offset": 12.1899995803833,
+                    "spacing": 7.0,
                     "phase": 0
                 }
             ],
@@ -120,8 +120,8 @@
             "objects": [
                 {
                     "pieceId": "passenger",
-                    "offset": 12.640000343322754,
-                    "spacing": 14.619999885559082,
+                    "offset": 30.260000228881837,
+                    "spacing": 17.5,
                     "phase": 0
                 }
             ],
@@ -141,15 +141,15 @@
             "objects": [
                 {
                     "pieceId": "log",
-                    "offset": 4.320000171661377,
-                    "spacing": 12.5600004196167,
+                    "offset": 20.40999984741211,
+                    "spacing": 21.0,
                     "phase": 0
                 },
                 {
-                    "pieceId": "turtle-log",
-                    "offset": 11.819999694824219,
-                    "spacing": 12.539999961853028,
-                    "phase": 239
+                    "pieceId": "gator",
+                    "offset": 9.90999984741211,
+                    "spacing": 21.0,
+                    "phase": 131
                 }
             ],
             "obstructions": []

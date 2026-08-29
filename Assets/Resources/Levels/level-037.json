@@ -3,11 +3,11 @@
     "name": "level-037",
     "columns": 11,
     "medal": {
-        "gold": 20.299999237060548,
-        "silver": 29.5,
-        "bronze": 42.70000076293945
+        "gold": 24.200000762939454,
+        "silver": 35.0,
+        "bronze": 50.70000076293945
     },
-    "startColumn": 6,
+    "startColumn": 9,
     "bays": [
         3,
         6,
@@ -52,80 +52,77 @@
             "objects": [
                 {
                     "pieceId": "log-short",
-                    "offset": 0.9700000286102295,
-                    "spacing": 13.359999656677246,
+                    "offset": 20.149999618530275,
+                    "spacing": 21.0,
                     "phase": 0
                 },
                 {
                     "pieceId": "turtle-log",
-                    "offset": 9.079999923706055,
-                    "spacing": 14.5,
-                    "phase": 304
+                    "offset": 9.649999618530274,
+                    "spacing": 21.0,
+                    "phase": 231
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "right",
+            "speed": 1.2000000476837159,
+            "objects": [
+                {
+                    "pieceId": "gator",
+                    "offset": 12.600000381469727,
+                    "spacing": 10.5,
+                    "phase": 82
                 }
             ],
             "obstructions": []
         },
         {
             "kind": "tracks",
-            "dir": "right",
-            "speed": 1.8300000429153443,
-            "objects": [
-                {
-                    "pieceId": "freight",
-                    "offset": 11.680000305175782,
-                    "spacing": 14.270000457763672,
-                    "phase": 0
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "tracks",
-            "dir": "right",
-            "speed": 1.899999976158142,
-            "objects": [
-                {
-                    "pieceId": "freight",
-                    "offset": 13.670000076293946,
-                    "spacing": 14.489999771118164,
-                    "phase": 0
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "road",
             "dir": "left",
-            "speed": 1.6399999856948853,
+            "speed": 1.8799999952316285,
             "objects": [
                 {
-                    "pieceId": "convertible",
-                    "offset": 3.4600000381469728,
-                    "spacing": 9.84000015258789,
+                    "pieceId": "freight",
+                    "offset": 24.309999465942384,
+                    "spacing": 17.5,
                     "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-tulip",
+                    "column": 4
                 },
                 {
-                    "pieceId": "bus",
-                    "offset": 6.21999979019165,
-                    "spacing": 12.739999771118164,
-                    "phase": 0
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "road",
-            "dir": "right",
-            "speed": 2.200000047683716,
-            "objects": [
+                    "pieceId": "tree",
+                    "column": 7
+                },
                 {
-                    "pieceId": "car",
-                    "offset": 3.6700000762939455,
-                    "spacing": 5.900000095367432,
-                    "phase": 0
+                    "pieceId": "planter-succulent",
+                    "column": 9
+                },
+                {
+                    "pieceId": "planter-succulent",
+                    "column": 10
                 }
-            ],
-            "obstructions": []
+            ]
         },
         {
             "kind": "bank",

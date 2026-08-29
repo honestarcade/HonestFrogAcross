@@ -75,7 +75,10 @@ namespace FrogAcross.Tests.PlayMode
         {
             var (simA, viewA) = Spawn();
             var strip = viewA.transform.Find("row-0-goal").GetComponent<UnityEngine.SpriteRenderer>();
-            Assert.AreEqual(simA.Level.Columns + 2f, strip.size.x, 1e-3f, "tiled strip spans the board + margins");
+            // full-bleed since the board tilts and fills the screen (owner, 2026-08-29)
+            Assert.AreEqual(FrogAcross.View.BoardView.StripWidth(simA.Level), strip.size.x, 1e-3f,
+                "tiled strip runs past the board on both sides");
+            Assert.Greater(strip.size.x, simA.Level.Columns + 2f, "wider than the old board-plus-margin strip");
             yield return null;
         }
 

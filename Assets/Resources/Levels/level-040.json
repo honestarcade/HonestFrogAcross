@@ -3,15 +3,15 @@
     "name": "level-040",
     "columns": 12,
     "medal": {
-        "gold": 27.700000762939454,
-        "silver": 40.20000076293945,
-        "bronze": 58.20000076293945
+        "gold": 69.80000305175781,
+        "silver": 101.19999694824219,
+        "bronze": 146.60000610351563
     },
-    "startColumn": 9,
+    "startColumn": 10,
     "bays": [
-        2,
-        4,
-        8,
+        3,
+        7,
+        9,
         10
     ],
     "rows": [
@@ -29,14 +29,34 @@
             "objects": [
                 {
                     "pieceId": "log-long",
-                    "offset": 3.9000000953674318,
-                    "spacing": 16.3799991607666,
+                    "offset": 19.450000762939454,
+                    "spacing": 24.0,
                     "phase": 0
                 },
                 {
+                    "pieceId": "log",
+                    "offset": 7.449999809265137,
+                    "spacing": 24.0,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "left",
+            "speed": 1.350000023841858,
+            "objects": [
+                {
+                    "pieceId": "gator",
+                    "offset": 4.510000228881836,
+                    "spacing": 22.0,
+                    "phase": 377
+                },
+                {
                     "pieceId": "raft",
-                    "offset": 9.4399995803833,
-                    "spacing": 13.9399995803833,
+                    "offset": 15.510000228881836,
+                    "spacing": 22.0,
                     "phase": 0
                 }
             ],
@@ -49,12 +69,8 @@
             "objects": [],
             "obstructions": [
                 {
-                    "pieceId": "planter-succulent",
-                    "column": 1
-                },
-                {
                     "pieceId": "bench",
-                    "column": 11
+                    "column": 5
                 }
             ]
         },
@@ -66,25 +82,27 @@
             "obstructions": [
                 {
                     "pieceId": "planter-daisy",
-                    "column": 7
+                    "column": 1
                 },
                 {
                     "pieceId": "lamp",
-                    "column": 9
+                    "column": 3
                 }
             ]
         },
         {
-            "kind": "concrete",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
-            "obstructions": [
+            "kind": "swamp",
+            "dir": "left",
+            "speed": 1.559999942779541,
+            "objects": [
                 {
-                    "pieceId": "planter-succulent",
-                    "column": 6
+                    "pieceId": "gator",
+                    "offset": 20.459999084472658,
+                    "spacing": 11.0,
+                    "phase": 176
                 }
-            ]
+            ],
+            "obstructions": []
         },
         {
             "kind": "tracks",
@@ -93,8 +111,8 @@
             "objects": [
                 {
                     "pieceId": "passenger",
-                    "offset": 1.0099999904632569,
-                    "spacing": 14.760000228881836,
+                    "offset": 2.4700000286102297,
+                    "spacing": 18.0,
                     "phase": 0
                 }
             ],
@@ -107,8 +125,8 @@
             "objects": [
                 {
                     "pieceId": "log-long",
-                    "offset": 4.949999809265137,
-                    "spacing": 8.010000228881836,
+                    "offset": 14.829999923706055,
+                    "spacing": 12.0,
                     "phase": 0
                 }
             ],
@@ -121,29 +139,9 @@
             "objects": [
                 {
                     "pieceId": "convertible",
-                    "offset": 5.239999771118164,
-                    "spacing": 5.739999771118164,
+                    "offset": 16.43000030517578,
+                    "spacing": 6.0,
                     "phase": 0
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "swamp",
-            "dir": "right",
-            "speed": 1.559999942779541,
-            "objects": [
-                {
-                    "pieceId": "gator",
-                    "offset": 5.409999847412109,
-                    "spacing": 14.899999618530274,
-                    "phase": 242
-                },
-                {
-                    "pieceId": "gator",
-                    "offset": 8.40999984741211,
-                    "spacing": 15.279999732971192,
-                    "phase": 30
                 }
             ],
             "obstructions": []

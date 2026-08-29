@@ -3,15 +3,15 @@
     "name": "level-026",
     "columns": 12,
     "medal": {
-        "gold": 25.700000762939454,
-        "silver": 37.20000076293945,
-        "bronze": 53.900001525878909
+        "gold": 27.399999618530275,
+        "silver": 39.70000076293945,
+        "bronze": 57.599998474121097
     },
-    "startColumn": 9,
+    "startColumn": 7,
     "bays": [
-        1,
-        3,
-        10
+        4,
+        7,
+        9
     ],
     "rows": [
         {
@@ -35,29 +35,35 @@
             "objects": [
                 {
                     "pieceId": "convertible",
-                    "offset": 1.690000057220459,
-                    "spacing": 11.819999694824219,
+                    "offset": 3.240000009536743,
+                    "spacing": 22.0,
                     "phase": 0
                 },
                 {
-                    "pieceId": "bus",
-                    "offset": 12.09000015258789,
-                    "spacing": 14.100000381469727,
+                    "pieceId": "truck",
+                    "offset": 14.239999771118164,
+                    "spacing": 22.0,
                     "phase": 0
                 }
             ],
             "obstructions": []
         },
         {
-            "kind": "road",
+            "kind": "swamp",
             "dir": "right",
-            "speed": 1.809999942779541,
+            "speed": 1.149999976158142,
             "objects": [
                 {
-                    "pieceId": "bus",
-                    "offset": 0.44999998807907107,
-                    "spacing": 6.96999979019165,
+                    "pieceId": "log-short",
+                    "offset": 15.34000015258789,
+                    "spacing": 22.0,
                     "phase": 0
+                },
+                {
+                    "pieceId": "gator",
+                    "offset": 4.340000152587891,
+                    "spacing": 22.0,
+                    "phase": 27
                 }
             ],
             "obstructions": []
@@ -69,8 +75,8 @@
             "objects": [
                 {
                     "pieceId": "truck",
-                    "offset": 1.1799999475479127,
-                    "spacing": 7.769999980926514,
+                    "offset": 3.3499999046325685,
+                    "spacing": 11.0,
                     "phase": 0
                 }
             ],
@@ -83,49 +89,49 @@
             "objects": [
                 {
                     "pieceId": "log-long",
-                    "offset": 5.329999923706055,
-                    "spacing": 16.860000610351564,
+                    "offset": 4.760000228881836,
+                    "spacing": 24.0,
                     "phase": 0
                 },
                 {
                     "pieceId": "log",
-                    "offset": 12.970000267028809,
-                    "spacing": 13.9399995803833,
+                    "offset": 16.760000228881837,
+                    "spacing": 24.0,
                     "phase": 0
                 }
             ],
             "obstructions": []
         },
         {
-            "kind": "river",
+            "kind": "road",
             "dir": "right",
-            "speed": 1.25,
+            "speed": 1.7699999809265137,
             "objects": [
                 {
-                    "pieceId": "gator",
-                    "offset": 4.599999904632568,
-                    "spacing": 7.360000133514404,
-                    "phase": 271
+                    "pieceId": "car",
+                    "offset": 6.289999961853027,
+                    "spacing": 20.0,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "bus",
+                    "offset": 16.290000915527345,
+                    "spacing": 20.0,
+                    "phase": 0
                 }
             ],
             "obstructions": []
         },
         {
             "kind": "swamp",
-            "dir": "left",
-            "speed": 1.0800000429153443,
+            "dir": "right",
+            "speed": 1.350000023841858,
             "objects": [
                 {
                     "pieceId": "gator",
-                    "offset": 7.369999885559082,
-                    "spacing": 15.239999771118164,
-                    "phase": 361
-                },
-                {
-                    "pieceId": "turtle-log",
-                    "offset": 10.760000228881836,
-                    "spacing": 14.34000015258789,
-                    "phase": 66
+                    "offset": 2.8399999141693117,
+                    "spacing": 11.0,
+                    "phase": 213
                 }
             ],
             "obstructions": []

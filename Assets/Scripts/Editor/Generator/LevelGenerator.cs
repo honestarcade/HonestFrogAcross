@@ -83,6 +83,12 @@ namespace FrogAcross.Editor.Generator
             if (errors.Count > 0) return (null, 0, 0, "validation: " + errors[0]);
 
             var level = LevelLoader.Parse(JsonUtility.ToJson(dto), registry);
+            for (int r = 0; r < level.Rows.Count; r++)
+            {
+                float gap = LaneGeometry.SmallestGap(level.Rows[r], level.Columns);
+                if (gap < LaneGeometry.MinGapCells - 0.02f)
+                    return (null, 0, 0, $"rows[{r}]: objects overlap (gap {gap:0.00} cells)");
+            }
             var solve = LevelSolver.Solve(level, allowDiagonals: false,
                 p.solverNodeBudget, p.solverTickBudget);
             if (!solve.Solved) return (null, 0, 0, "solver: " + solve.FailReason);
@@ -172,20 +178,37 @@ namespace FrogAcross.Editor.Generator
             }, rng);
 
             int trainCount = kind.semantics == LaneSemantics.DeadlyTraffic && kindId == "tracks" ? 1 : rng.Next(1, 3);
-            var trains = new List<ObjectTrainDto>();
-            float cursor = 0f;
+            var chosen = new LaneObjectDef[trainCount];
+            float maxSize = 0f;
             for (int t = 0; t < trainCount; t++)
             {
-                var piece = pieces[rng.Next(pieces.Count)];
-                float spacing = piece.sizeCells + 1.2f + Lerp(p.spacingSlack, rng);
+                chosen[t] = pieces[rng.Next(pieces.Count)];
+                maxSize = Math.Max(maxSize, chosen[t].sizeCells);
+            }
+
+            // Objects tile the wrap loop at an exact pitch — anything else
+            // collides at the seam (see LaneGeometry).
+            float loop = LaneGeometry.LoopFor(columns, maxSize);
+            float desiredPitch = maxSize + 1.2f + Lerp(p.spacingSlack, rng);
+            var placements = LaneGeometry.Place(trainCount, loop, maxSize, desiredPitch);
+
+            // Shift the whole row by a random phase: exact pitch keeps objects
+            // from overlapping, but without this every row starts at slot 0 and
+            // the lanes arrive in lockstep — walls of traffic the solver can
+            // only wait out (it flattened the difficulty curve).
+            float rowPhase = (float)rng.NextDouble() * loop;
+
+            var trains = new List<ObjectTrainDto>();
+            for (int t = 0; t < placements.Length; t++)
+            {
+                var piece = chosen[t];
                 trains.Add(new ObjectTrainDto
                 {
                     pieceId = piece.id,
-                    offset = Round2(cursor + (float)rng.NextDouble() * spacing),
-                    spacing = Round2(spacing * trainCount), // interleaved trains share the loop
+                    offset = Round2((placements[t].offset + rowPhase) % loop),
+                    spacing = Round2(placements[t].spacing),
                     phase = piece.cycleActiveTicks > 0 ? rng.Next(piece.cycleActiveTicks + piece.cycleInactiveTicks) : 0,
                 });
-                cursor += spacing;
             }
             row.objects = trains.ToArray();
             return row;

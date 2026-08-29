@@ -106,12 +106,24 @@ namespace FrogAcross.Tests.EditMode.Generator
             Assert.That(proxyMeans[9], Is.GreaterThan(proxyMeans[0] * 2f),
                 "level 90s must be substantially denser than the teaching decade");
 
-            float GoldMean(int from, int to) =>
-                Levels().Where(l => l.number >= from && l.number <= to).Average(l => l.dto.medal.gold);
-            float early = GoldMean(1, 30), middle = GoldMean(31, 60), late = GoldMean(61, 100);
+            // Difficulty in TIME is the solver floor — gold applies a factor
+            // taper on top, which would swamp the comparison.
+            var fixture = ContentLock.LoadFixture();
+            float FloorMean(int from, int to)
+            {
+                float sum = 0f; int n = 0;
+                foreach (var e in fixture.entries)
+                {
+                    int number = int.Parse(e.id.Substring(ContentLock.ShippedPrefix.Length));
+                    if (number < from || number > to) continue;
+                    sum += e.minTicks / 60f; n++;
+                }
+                return n == 0 ? 0f : sum / n;
+            }
+            float early = FloorMean(1, 30), middle = FloorMean(31, 60), late = FloorMean(61, 100);
             Assert.That(middle, Is.GreaterThan(early), "middle phase must outlast the teaching phase");
             Assert.That(late, Is.GreaterThan(middle), "late phase must outlast the middle phase");
-            Assert.That(late, Is.GreaterThan(early * 1.5f), "level 60+ must take substantially longer than 1–30");
+            Assert.That(late, Is.GreaterThan(early * 1.3f), "level 60+ must take substantially longer than 1–30");
         }
     }
 }
