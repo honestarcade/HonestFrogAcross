@@ -91,6 +91,18 @@ namespace FrogAcross.UI
             _screens[name] = built;
         }
 
+        /// <summary>
+        /// #89: screens are built once at boot, so anything that mutates
+        /// progression outside the Game scene (Reset all data) must rebuild
+        /// the data-driven screens or they show stale values until restart.
+        /// </summary>
+        public void RefreshDataScreens()
+        {
+            RebuildScreen("menu", MenuScreen.Build);
+            RebuildScreen("levels", LevelsScreen.Build);
+            RebuildScreen("character", CharacterScreen.Build);
+        }
+
         public void LaunchLevel(string levelId)
         {
             PendingLevelId = levelId;
@@ -114,11 +126,11 @@ namespace FrogAcross.UI
             var root = new GameObject("loading");
             root.transform.SetParent(parent, false);
             UiKit.Stretch(UiKit.Panel(root.transform, "bg", UiKit.Navy));
-            UiKit.Lockup(root.transform, new Vector2(0, 60), 64);
-            UiKit.Label(root.transform, "BY HONEST ARCADE", 18, UiKit.TextDim, new Vector2(0, -20));
+            UiKit.Lockup(root.transform, new Vector2(0, 80), 96);
+            UiKit.Label(root.transform, "BY HONEST ARCADE", 26, UiKit.TextDim, new Vector2(0, -40));
             var barBg = UiKit.Panel(root.transform, "bar-bg", new Color(1f, 1f, 1f, 0.12f));
-            barBg.rectTransform.sizeDelta = new Vector2(340, 8);
-            barBg.rectTransform.anchoredPosition = new Vector2(0, -90);
+            barBg.rectTransform.sizeDelta = new Vector2(520, 10);
+            barBg.rectTransform.anchoredPosition = new Vector2(0, -140);
             var bar = UiKit.Panel(barBg.transform, "bar", UiKit.Mint);
             bar.rectTransform.anchorMin = new Vector2(0, 0);
             bar.rectTransform.anchorMax = new Vector2(0.85f, 1); // honest: nearly-instant load
@@ -137,17 +149,18 @@ namespace FrogAcross.UI
             rt.anchorMin = Vector2.zero; rt.anchorMax = Vector2.one;
             rt.offsetMin = rt.offsetMax = Vector2.zero;
 
-            UiKit.Lockup(root.transform, new Vector2(-420, 140), 52);
-            UiKit.Label(root.transform, "BY HONEST ARCADE", 15, UiKit.TextDim, new Vector2(-420, 78));
+            // #84: fill the 1920×1080 reference — brand column left, actions right
+            UiKit.Lockup(root.transform, new Vector2(-480, 210), 84);
+            UiKit.Label(root.transform, "BY HONEST ARCADE", 24, UiKit.TextDim, new Vector2(-480, 110));
 
             int current = Mathf.Min(Progression.HighestUnlocked, LevelCatalog.Count);
             int medals = 0;
             foreach (var r in Progression.Data.records) if (r.medal > 0) medals++;
             UiKit.Label(root.transform, $"Level {current} / {LevelCatalog.Count}    ·    {medals} medals",
-                20, UiKit.TextBlue, new Vector2(-420, 20));
+                30, UiKit.TextBlue, new Vector2(-480, 20));
 
-            UiKit.Button(root.transform, $"Continue — Level {current}", new Vector2(330, 150),
-                new Vector2(480, 76), shell.LaunchCurrent, primary: true, fontSize: 26);
+            UiKit.Button(root.transform, $"Continue — Level {current}", new Vector2(440, 230),
+                new Vector2(700, 110), shell.LaunchCurrent, primary: true, fontSize: 38);
             var grid = new (string label, string screen)[]
             {
                 ("Levels", "levels"), ("Character", "character"),
@@ -157,11 +170,12 @@ namespace FrogAcross.UI
             for (int i = 0; i < grid.Length; i++)
             {
                 var (label, screen) = grid[i];
-                float x = 330 + (i % 2 == 0 ? -122 : 122);
-                float y = 60 - (i / 2) * 84;
-                UiKit.Button(root.transform, label, new Vector2(x, y), new Vector2(230, 68),
-                    () => shell.Push(screen));
+                float x = 440 + (i % 2 == 0 ? -180 : 180);
+                float y = 90 - (i / 2) * 130;
+                UiKit.Button(root.transform, label, new Vector2(x, y), new Vector2(340, 104),
+                    () => shell.Push(screen), fontSize: 27);
             }
+            UiKit.Label(root.transform, "v1.0 · NO ADS · NO TRACKING", 20, UiKit.TextDim, new Vector2(-480, -320));
             return root;
         }
     }
