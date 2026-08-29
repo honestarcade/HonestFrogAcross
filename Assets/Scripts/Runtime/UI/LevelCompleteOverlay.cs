@@ -19,6 +19,7 @@ namespace FrogAcross.UI
         public event Action OnLevels;
 
         private GameObject _root;
+        private Text _title;
         private Text _time;
         private Text _medal;
         private Text _best;
@@ -32,9 +33,11 @@ namespace FrogAcross.UI
             return ("COMPLETE", new Color(0.44f, 0.57f, 0.69f));
         }
 
-        public void Show(LevelDefinition level, long clockTicks, bool newBest = false, float prevBest = -1f)
+        public void Show(LevelDefinition level, long clockTicks, bool newBest = false, float prevBest = -1f,
+            int levelNumber = -1)
         {
             if (_root == null) Build();
+            _title.text = levelNumber > 0 ? $"Level {levelNumber} Complete" : "Level Complete";
             float seconds = clockTicks / (float)SimConfig.TicksPerSecond;
             var (name, color) = MedalFor(seconds, level);
             _time.text = $"{seconds:0.0}s";
@@ -56,12 +59,10 @@ namespace FrogAcross.UI
 
         private void Build()
         {
-            _root = new GameObject("level-complete");
-            _root.transform.SetParent(transform, false);
-            var canvas = _root.AddComponent<Canvas>();
-            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-            canvas.sortingOrder = 100;
-            _root.AddComponent<GraphicRaycaster>();
+            // UiKit.Canvas carries the CanvasScaler — the overlay's old raw
+            // canvas rendered at native pixels on device (#88)
+            var canvas = UiKit.Canvas(transform, "level-complete", 100);
+            _root = canvas.gameObject;
 
             var scrim = Panel(_root.transform, new Color(0.012f, 0.055f, 0.125f, 0.78f));
             Stretch(scrim.rectTransform);
@@ -69,13 +70,14 @@ namespace FrogAcross.UI
             var panel = Panel(_root.transform, new Color(0.043f, 0.212f, 0.439f)); // #0B3670
             var pr = panel.rectTransform;
             pr.anchorMin = pr.anchorMax = new Vector2(0.5f, 0.5f);
-            pr.sizeDelta = new Vector2(520, 300);
+            pr.sizeDelta = new Vector2(820, 480);
 
-            var title = Label(panel.transform, "Level complete", 30, new Vector2(0, 105));
-            title.color = Color.white;
-            _time = Label(panel.transform, "0.0s", 52, new Vector2(0, 40));
+            _title = Label(panel.transform, "Level Complete", 44, new Vector2(0, 170));
+            _title.color = Color.white;
+            _title.fontStyle = FontStyle.Bold;
+            _time = Label(panel.transform, "0.0s", 78, new Vector2(0, 70));
             _time.color = Color.white;
-            _best = Label(panel.transform, "", 16, new Vector2(0, 6));
+            _best = Label(panel.transform, "", 26, new Vector2(0, 14));
             _best.color = new Color(0.44f, 0.57f, 0.69f);
 
             var dotGo = new GameObject("medal-dot");
@@ -83,14 +85,14 @@ namespace FrogAcross.UI
             _medalDot = dotGo.AddComponent<Image>();
             var dr = _medalDot.rectTransform;
             dr.anchorMin = dr.anchorMax = new Vector2(0.5f, 0.5f);
-            dr.sizeDelta = new Vector2(26, 26);
-            dr.anchoredPosition = new Vector2(-52, -18);
-            _medal = Label(panel.transform, "GOLD", 22, new Vector2(22, -18));
+            dr.sizeDelta = new Vector2(36, 36);
+            dr.anchoredPosition = new Vector2(-76, -46);
+            _medal = Label(panel.transform, "GOLD", 32, new Vector2(30, -46));
             _medal.color = new Color(0.62f, 0.76f, 0.93f);
 
-            Btn(panel.transform, "Next level", new Vector2(-160, -105), () => OnNext?.Invoke(), true);
-            Btn(panel.transform, "Replay", new Vector2(0, -105), () => OnReplay?.Invoke(), false);
-            Btn(panel.transform, "Levels", new Vector2(160, -105), () => OnLevels?.Invoke(), false);
+            Btn(panel.transform, "Next level", new Vector2(-260, -170), () => OnNext?.Invoke(), true);
+            Btn(panel.transform, "Replay", new Vector2(0, -170), () => OnReplay?.Invoke(), false);
+            Btn(panel.transform, "Levels", new Vector2(260, -170), () => OnLevels?.Invoke(), false);
 
             _root.SetActive(false);
         }
@@ -137,11 +139,11 @@ namespace FrogAcross.UI
             btn.onClick.AddListener(() => onClick());
             var rt = img.rectTransform;
             rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.5f);
-            rt.sizeDelta = new Vector2(140, 52);
+            rt.sizeDelta = new Vector2(230, 76);
             rt.anchoredPosition = pos;
-            var t = Label(go.transform, label, 20, Vector2.zero);
+            var t = Label(go.transform, label, 28, Vector2.zero);
             t.color = primary ? new Color(0.02f, 0.157f, 0.373f) : Color.white;
-            t.rectTransform.sizeDelta = new Vector2(140, 52);
+            t.rectTransform.sizeDelta = new Vector2(230, 76);
         }
     }
 }
