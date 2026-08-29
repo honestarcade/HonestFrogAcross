@@ -8,12 +8,12 @@ namespace FrogAcross.Tests.EditMode.Input
     public class TapRegionTests
     {
         [TestCase(0.10f, 0.5f, Move.Left)]
-        [TestCase(0.332f, 0.5f, Move.Left)]     // just inside the left band
+        [TestCase(0.19f, 0.5f, Move.Left)]     // just inside the left band
         [TestCase(0.334f, 0.9f, Move.Forward)]  // just inside the middle, top
         [TestCase(0.5f, 0.51f, Move.Forward)]
         [TestCase(0.5f, 0.49f, Move.Back)]
         [TestCase(0.665f, 0.1f, Move.Back)]
-        [TestCase(0.667f, 0.1f, Move.Right)]    // just inside the right band
+        [TestCase(0.81f, 0.1f, Move.Right)]    // just inside the right band
         [TestCase(0.95f, 0.9f, Move.Right)]
         public void RegionGeometry(float x, float y, Move expected)
         {

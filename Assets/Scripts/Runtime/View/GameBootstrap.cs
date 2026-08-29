@@ -52,7 +52,7 @@ namespace FrogAcross.View
             _overlay = gameObject.AddComponent<LevelCompleteOverlay>();
             _overlay.OnReplay += StartLevel;
             _overlay.OnNext += NextLevel;
-            _overlay.OnLevels += QuitToMenu;
+            _overlay.OnMainMenu += QuitToMenu;
 
             _hud = gameObject.AddComponent<GameHud>();
             _hud.FreezeGate = () => !Frozen && !Sim.State.Completed;
@@ -110,23 +110,38 @@ namespace FrogAcross.View
             }
         }
 
-        private void QuitToMenu() => SceneManager.LoadScene("Shell");
+        private void QuitToMenu()
+        {
+            AppShell.SkipBoot = true; // returning must not replay the boot beat
+            SceneManager.LoadScene("Shell");
+        }
 
         /// <summary>
-        /// #87: frame the bound level — board centered, filling the screen
-        /// height (side covers absorb wide aspects), no roll. Levels vary from
-        /// 5 to 12 rows, so a fixed scene camera cannot fit them all.
+        /// Frames the bound level the way the design draws it: rolled -8° and
+        /// overscanned so the board bleeds past every edge (the design's board
+        /// is 1260×660 inside a 958×450 screen). No level-dependent letterbox.
         /// </summary>
-        private void FitCamera()
+        public const float BoardRollDegrees = -8f;
+
+        public void FitCamera()
         {
             var cam = Camera.main;
             if (cam == null) return;
             int rows = Sim.Level.Rows.Count;
             float cx = (Sim.Level.Columns - 1) / 2f;
             float cy = -(rows - 1) / 2f;
-            cam.transform.SetPositionAndRotation(new Vector3(cx, cy, -10f), Quaternion.identity);
+            cam.transform.SetPositionAndRotation(new Vector3(cx, cy, -10f),
+                Quaternion.Euler(0f, 0f, BoardRollDegrees));
             cam.orthographic = true;
-            cam.orthographicSize = rows / 2f + 0.4f;
+
+            // Every board corner must land inside the ROLLED frame. Rotating a
+            // corner (±cols/2, ±rows/2) by -θ gives |y| = cols/2·sinθ +
+            // rows/2·cosθ — that, plus a margin, is the half-height we need.
+            // (Fitting rows alone crops the goal and bank once the roll tips
+            // the corners in.)
+            float roll = Mathf.Abs(BoardRollDegrees) * Mathf.Deg2Rad;
+            cam.orthographicSize = Sim.Level.Columns / 2f * Mathf.Sin(roll)
+                + rows / 2f * Mathf.Cos(roll) + 0.35f;
         }
 
         private void Update()

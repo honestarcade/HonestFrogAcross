@@ -48,7 +48,7 @@ namespace FrogAcross.View
 
                 var strip = NewSprite($"row-{r}-{row.Kind.id}", SpriteOf(row.Kind, 0), -0.3f);
                 strip.drawMode = SpriteDrawMode.Tiled;
-                strip.size = new Vector2(level.Columns + 2f, 1f);
+                strip.size = new Vector2(StripWidth(level), 1f);
                 strip.transform.position = new Vector3((level.Columns - 1) / 2f, -r, 0.3f);
                 _strips.Add(strip);
 
@@ -93,17 +93,21 @@ namespace FrogAcross.View
                 _trainStart.Add(starts);
             }
 
-            // Side covers: objects wrap in the off-board margins — the design
-            // hides them beyond the board edges.
-            foreach (int side in new[] { -1, +1 })
+            // The design tilts the board (-8°) and lets it bleed past every
+            // screen edge. Aprons repeat the plain bank surface above and below
+            // so the roll never exposes the background, and the strips run
+            // full-bleed sideways (#3, owner device report 2026-08-29).
+            for (int a = 1; a <= ApronRows; a++)
             {
-                // flat surround (design: solid #16321F), wide enough for any
-                // phone aspect — the tiled bank texture used to band through
-                var cover = NewSprite($"cover-{side}", SolidSprite(), -0.55f);
-                cover.color = new Color(0.086f, 0.196f, 0.121f); // #16321F surround
-                cover.transform.localScale = new Vector3(40f, level.Rows.Count + 8f, 1f);
-                float cx = side < 0 ? -0.5f - 20f : level.Columns - 0.5f + 20f;
-                cover.transform.position = new Vector3(cx, -(level.Rows.Count - 1) / 2f, -0.55f);
+                var top = NewSprite($"apron-top-{a}", SpriteOf(level.Rows[level.BankRow].Kind, 0), -0.35f);
+                top.drawMode = SpriteDrawMode.Tiled;
+                top.size = new Vector2(StripWidth(level), 1f);
+                top.transform.position = new Vector3((level.Columns - 1) / 2f, a, 0.35f);
+
+                var bottom = NewSprite($"apron-bottom-{a}", SpriteOf(level.Rows[level.BankRow].Kind, 0), -0.35f);
+                bottom.drawMode = SpriteDrawMode.Tiled;
+                bottom.size = new Vector2(StripWidth(level), 1f);
+                bottom.transform.position = new Vector3((level.Columns - 1) / 2f, -(level.BankRow + a), 0.35f);
             }
 
             _player = NewSprite("player", _character.sprites[0], -0.5f);
@@ -128,7 +132,10 @@ namespace FrogAcross.View
                         sr.transform.position = new Vector3(
                             left + def.sizeCells * 0.5f, -r, sr.transform.position.z);
 
-                        bool visible = left + def.sizeCells > -1f && left < level.Columns + 1f;
+                        // objects live across the whole wrap loop; drawing only
+                        // the on-board slice left the full-bleed lanes empty
+                        bool visible = left + def.sizeCells > -MarginCells(level)
+                            && left < level.Columns + MarginCells(level);
                         if (sr.enabled != visible) sr.enabled = visible;
                         if (!visible) continue;
 
@@ -218,6 +225,22 @@ namespace FrogAcross.View
 
         private Sprite SpriteOf(PieceDef def, int i) =>
             def.sprites != null && def.sprites.Length > i ? def.sprites[i] : null;
+
+        /// <summary>Rows of repeated goal/bank surface drawn beyond the board.</summary>
+        public const int ApronRows = 4;
+
+        /// <summary>How far past the board objects and surfaces are drawn.</summary>
+        public static float MarginCells(LevelDefinition level)
+        {
+            float maxSize = 1f;
+            foreach (var row in level.Rows)
+                foreach (var train in row.Trains)
+                    maxSize = Mathf.Max(maxSize, train.Def.sizeCells);
+            return LaneGeometry.MarginFor(maxSize);
+        }
+
+        public static float StripWidth(LevelDefinition level) =>
+            level.Columns + 2f * MarginCells(level) + 6f;
 
         private static Sprite _solid;
 
