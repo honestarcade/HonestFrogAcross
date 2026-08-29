@@ -14,9 +14,17 @@
   "ruleWalkway": "Moving walkway — it carries you sideways. Ride it off the edge of the board and you're gone.",
   "ruleMedians": "Grass and concrete medians are safe, except where a tree, bench, planter or pole blocks the tile.",
   "ruleBays": "Goal bays — hop into an empty bay to fill it. Fill them all to finish the level.",
-  "studioBody": "Honest Arcade makes simple, fun games with no ads, no tracking, and no hidden agenda. Our games are open source and built without unnecessary bloat, so you can see exactly what you're getting.",
-  "studioTagline": "Just great games that respect your time, privacy, and device.",
+  "studioBody": "Honest Arcade makes simple games and useful apps with no ads, no tracking, and no hidden agenda. Everything we build is open source, so you can see exactly what you're getting.",
+  "studioTagline": "Just good software that respects your time, privacy, and device.",
   "storedOnDevice": "Levels, medals, times and settings never leave your phone. No accounts, no analytics, nothing to delete on a server.",
   "resetConfirm": "This clears every unlocked level, medal and best time, and returns settings to their defaults. It cannot be undone.",
-  "quitConfirm": "Quit to menu? This run's progress is lost."
+  "quitConfirm": "Quit to menu? This run's progress is lost.",
+  "promiseAds": "No banners, no interstitials, no “watch a video to unlock”. What you open is the whole thing.",
+  "promiseTracking": "We collect nothing. No identifiers, no crash pings, no usage events.",
+  "promiseAccounts": "Your progress stays on your device.",
+  "promisePurchases": "Everything is included. Nothing is held back for money.",
+  "promisePermissions": "We ask for nothing — no contacts, no location, no storage, no network.",
+  "promiseOpenSource": "The code is readable. Check how it works rather than taking our word for it.",
+  "promiseOffline": "No background activity, no battery drain while you are not using it.",
+  "studioSupport": "Our games stay free and ad-free because people chip in. If you’d like to help keep them that way, visit the website for details."
 }
