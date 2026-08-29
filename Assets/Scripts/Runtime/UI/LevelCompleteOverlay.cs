@@ -16,7 +16,7 @@ namespace FrogAcross.UI
     {
         public event Action OnNext;
         public event Action OnReplay;
-        public event Action OnLevels;
+        public event Action OnMainMenu;
 
         private GameObject _root;
         private Text _title;
@@ -64,20 +64,20 @@ namespace FrogAcross.UI
             var canvas = UiKit.Canvas(transform, "level-complete", 100);
             _root = canvas.gameObject;
 
-            var scrim = Panel(_root.transform, new Color(0.012f, 0.055f, 0.125f, 0.78f));
+            var scrim = Panel(_root.transform, new Color(0.012f, 0.055f, 0.125f, 0.78f), rounded: false);
             Stretch(scrim.rectTransform);
 
             var panel = Panel(_root.transform, new Color(0.043f, 0.212f, 0.439f)); // #0B3670
             var pr = panel.rectTransform;
             pr.anchorMin = pr.anchorMax = new Vector2(0.5f, 0.5f);
-            pr.sizeDelta = new Vector2(820, 480);
+            pr.sizeDelta = new Vector2(1080, 620);
 
-            _title = Label(panel.transform, "Level Complete", 44, new Vector2(0, 170));
+            _title = Label(panel.transform, "Level Complete", 58, new Vector2(0, 216));
             _title.color = Color.white;
             _title.fontStyle = FontStyle.Bold;
-            _time = Label(panel.transform, "0.0s", 78, new Vector2(0, 70));
+            _time = Label(panel.transform, "0.0s", 104, new Vector2(0, 88));
             _time.color = Color.white;
-            _best = Label(panel.transform, "", 26, new Vector2(0, 14));
+            _best = Label(panel.transform, "", 32, new Vector2(0, 12));
             _best.color = new Color(0.44f, 0.57f, 0.69f);
 
             var dotGo = new GameObject("medal-dot");
@@ -85,24 +85,25 @@ namespace FrogAcross.UI
             _medalDot = dotGo.AddComponent<Image>();
             var dr = _medalDot.rectTransform;
             dr.anchorMin = dr.anchorMax = new Vector2(0.5f, 0.5f);
-            dr.sizeDelta = new Vector2(36, 36);
-            dr.anchoredPosition = new Vector2(-76, -46);
-            _medal = Label(panel.transform, "GOLD", 32, new Vector2(30, -46));
+            dr.sizeDelta = new Vector2(44, 44);
+            dr.anchoredPosition = new Vector2(-96, -66);
+            _medal = Label(panel.transform, "GOLD", 40, new Vector2(40, -66));
             _medal.color = new Color(0.62f, 0.76f, 0.93f);
 
-            Btn(panel.transform, "Next level", new Vector2(-260, -170), () => OnNext?.Invoke(), true);
-            Btn(panel.transform, "Replay", new Vector2(0, -170), () => OnReplay?.Invoke(), false);
-            Btn(panel.transform, "Levels", new Vector2(260, -170), () => OnLevels?.Invoke(), false);
+            Btn(panel.transform, "Next level", new Vector2(-300, -210), () => OnNext?.Invoke(), true);
+            Btn(panel.transform, "Replay", new Vector2(0, -210), () => OnReplay?.Invoke(), false);
+            Btn(panel.transform, "Main Menu", new Vector2(300, -210), () => OnMainMenu?.Invoke(), false);
 
             _root.SetActive(false);
         }
 
-        private static Image Panel(Transform parent, Color c)
+        private static Image Panel(Transform parent, Color c, bool rounded = true)
         {
             var go = new GameObject("panel");
             go.transform.SetParent(parent, false);
             var img = go.AddComponent<Image>();
             img.color = c;
+            if (rounded) UiKit.Round(img);
             return img;
         }
 
@@ -122,9 +123,12 @@ namespace FrogAcross.UI
             t.text = text;
             t.fontSize = size;
             t.alignment = TextAnchor.MiddleCenter;
+            // the old fixed 480px box truncated "Level 13 Complete" to "Level 13"
+            t.horizontalOverflow = HorizontalWrapMode.Overflow;
+            t.verticalOverflow = VerticalWrapMode.Overflow;
             var rt = t.rectTransform;
             rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.5f);
-            rt.sizeDelta = new Vector2(480, size + 16);
+            rt.sizeDelta = new Vector2(940, size + 16);
             rt.anchoredPosition = pos;
             return t;
         }
@@ -134,16 +138,17 @@ namespace FrogAcross.UI
             var go = new GameObject($"btn-{label}");
             go.transform.SetParent(parent, false);
             var img = go.AddComponent<Image>();
-            img.color = primary ? new Color(0f, 0.839f, 0.706f) : new Color(1f, 1f, 1f, 0.08f);
+            img.color = primary ? new Color(0f, 0.839f, 0.706f) : new Color(1f, 1f, 1f, 0.12f);
+            UiKit.Round(img);
             var btn = go.AddComponent<Button>();
             btn.onClick.AddListener(() => onClick());
             var rt = img.rectTransform;
             rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.5f);
-            rt.sizeDelta = new Vector2(230, 76);
+            rt.sizeDelta = new Vector2(300, 104);
             rt.anchoredPosition = pos;
-            var t = Label(go.transform, label, 28, Vector2.zero);
+            var t = Label(go.transform, label, 34, Vector2.zero);
             t.color = primary ? new Color(0.02f, 0.157f, 0.373f) : Color.white;
-            t.rectTransform.sizeDelta = new Vector2(230, 76);
+            t.rectTransform.sizeDelta = new Vector2(300, 104);
         }
     }
 }

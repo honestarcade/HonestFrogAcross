@@ -17,9 +17,6 @@ namespace FrogAcross.UI
             rootRt.anchorMin = Vector2.zero; rootRt.anchorMax = Vector2.one;
             rootRt.offsetMin = rootRt.offsetMax = Vector2.zero;
 
-            UiKit.Button(root.transform, "‹", new Vector2(-890, 465), new Vector2(76, 76), shell.Back, fontSize: 36);
-            UiKit.Label(root.transform, "Character", 46, UiKit.White, new Vector2(-660, 465), new Vector2(400, 60), TextAnchor.MiddleLeft);
-            UiKit.Label(root.transform, "SAME SPEED. DIFFERENT MOVE.", 22, UiKit.TextDim, new Vector2(-590, 405), new Vector2(520, 30), TextAnchor.MiddleLeft);
 
             var reg = PieceRegistry.Load();
             var chars = reg.All<CharacterDef>().ToList();
@@ -33,7 +30,7 @@ namespace FrogAcross.UI
                 var cell = UiKit.Panel(root.transform, $"char-{def.id}",
                     new Color(1f, 1f, 1f, isSelected ? 0.12f : 0.05f));
                 cell.rectTransform.sizeDelta = new Vector2(290, 680);
-                cell.rectTransform.anchoredPosition = new Vector2(-762 + i * 305, -110);
+                cell.rectTransform.anchoredPosition = new Vector2(-762 + i * 305, -150);
 
                 var spriteGo = new GameObject("preview");
                 spriteGo.transform.SetParent(cell.transform, false);
@@ -67,6 +64,9 @@ namespace FrogAcross.UI
                     shell.Push("character");
                 });
             }
+            // header last: the cells used to be drawn over the back button,
+            // which is why it stopped responding (owner report, 2026-08-29)
+            UiKit.Header(root.transform, "Character", shell.Back, "SAME SPEED. DIFFERENT MOVE.");
             return root;
         }
     }
