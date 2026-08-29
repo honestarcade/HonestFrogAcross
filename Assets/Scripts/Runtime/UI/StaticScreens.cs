@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace FrogAcross.UI
 {
@@ -41,37 +42,27 @@ namespace FrogAcross.UI
     {
         public static GameObject BuildAbout(Transform parent, AppShell shell)
         {
-            var c = Screen(parent, shell, "about", "About Frog Across", 1180f, out var root);
-            UiKit.Label(c, Copy.Get("aboutBody"), 30, UiKit.TextBlue,
-                new Vector2(-380, -110), new Vector2(1000, 190), TextAnchor.UpperLeft);
-            Card(c, "Swipe", Copy.Get("aboutSwipe"), new Vector2(-620, -330), false, 540, 250);
-            Card(c, "Diagonal 43–47°", Copy.Get("aboutDiagonal"), new Vector2(-60, -330), true, 540, 250);
+            var c = Screen(parent, shell, "about", "About Frog Across", 1900f, out var root);
 
-            string[] laneKeys = { "ruleRoad", "ruleRiver", "ruleSwamp", "ruleTracks", "ruleBike", "ruleWalkway", "ruleMedians", "ruleBays" };
-            UiKit.Label(c, "WHAT'S ON THE BOARD", 24, UiKit.TextDim, new Vector2(560, -80),
-                new Vector2(760, 32), TextAnchor.MiddleLeft);
-            for (int i = 0; i < laneKeys.Length; i++)
-                UiKit.Label(c, "· " + Copy.Get(laneKeys[i]), 25, UiKit.TextBlue,
-                    new Vector2(560, -160 - i * 116), new Vector2(760, 110), TextAnchor.UpperLeft);
+            UiKit.Label(c, Copy.Get("aboutBody"), UiKit.Body, UiKit.TextBlue,
+                new Vector2(-430, -130), new Vector2(880, 260), TextAnchor.UpperLeft);
+            Card(c, "SWIPE", Copy.Get("aboutSwipe"), new Vector2(-430, -420), false, 880, 260);
+            Card(c, "DIAGONAL 43–47°", Copy.Get("aboutDiagonal"), new Vector2(-430, -720), true, 880, 260);
+            UiKit.Label(c, $"v{Application.version}  ·  {FrogAcross.Levels.LevelCatalog.Count} LEVELS  ·  6 CHARACTERS  ·  NO ADS",
+                UiKit.Caption, UiKit.TextDim, new Vector2(-430, -900), new Vector2(880, 44), TextAnchor.MiddleLeft);
 
-            UiKit.Label(c, Copy.Get("aboutFooter"), 24, UiKit.TextDim, new Vector2(-380, -620),
-                new Vector2(1000, 34), TextAnchor.MiddleLeft);
+            BoardRules(c, new Vector2(80, -70));
             return root;
         }
 
         public static GameObject BuildGameplay(Transform parent, AppShell shell)
         {
-            var c = Screen(parent, shell, "gameplay", "Gameplay", 1480f, out var root);
-            Card(c, "THE GOAL", Copy.Get("goal"), new Vector2(-420, -180), true, 940, 270);
-            Card(c, "LEVELS & TIMING", Copy.Get("levelsTiming"), new Vector2(-420, -500), false, 940, 300);
-            Card(c, "SWIPING & TAPPING", Copy.Get("swiping"), new Vector2(-420, -850), false, 940, 340);
+            var c = Screen(parent, shell, "gameplay", "Gameplay", 2100f, out var root);
+            Card(c, "THE GOAL", Copy.Get("goal"), new Vector2(-430, -220), true, 880, 340);
+            Card(c, "LEVELS & TIMING", Copy.Get("levelsTiming"), new Vector2(-430, -620), false, 880, 400);
+            Card(c, "SWIPING & TAPPING", Copy.Get("swiping"), new Vector2(-430, -1080), false, 880, 460);
 
-            string[] laneKeys = { "ruleRoad", "ruleRiver", "ruleSwamp", "ruleTracks", "ruleBike", "ruleWalkway", "ruleMedians", "ruleBays" };
-            UiKit.Label(c, "WHAT'S ON THE BOARD", 24, UiKit.TextDim, new Vector2(560, -80),
-                new Vector2(760, 32), TextAnchor.MiddleLeft);
-            for (int i = 0; i < laneKeys.Length; i++)
-                UiKit.Label(c, "· " + Copy.Get(laneKeys[i]), 25, UiKit.TextBlue,
-                    new Vector2(560, -160 - i * 116), new Vector2(760, 110), TextAnchor.UpperLeft);
+            BoardRules(c, new Vector2(80, -70));
             return root;
         }
 
@@ -79,10 +70,10 @@ namespace FrogAcross.UI
         {
             // #91: the standard Honest Arcade studio screen (from the Honest
             // Sudoku design), landscape: promises left, support + identity right.
-            var c = Screen(parent, shell, "studio", "About Honest Arcade", 1240f, out var root);
+            var c = Screen(parent, shell, "studio", "About Honest Arcade", 1900f, out var root);
 
-            UiKit.Label(c, "OUR PROMISES", 24, UiKit.TextDim, new Vector2(-560, -70),
-                new Vector2(400, 32), TextAnchor.MiddleLeft);
+            UiKit.Label(c, "OUR PROMISES", UiKit.Caption, UiKit.TextDim, new Vector2(-600, -80),
+                new Vector2(500, 44), TextAnchor.MiddleLeft);
             var promises = new (string k, string v, Color c)[]
             {
                 ("No ads. Ever.", Copy.Get("promiseAds"), UiKit.Mint),
@@ -93,33 +84,47 @@ namespace FrogAcross.UI
                 ("Open source", Copy.Get("promiseOpenSource"), UiKit.Hex("B48CFF")),
                 ("Works offline, stays small", Copy.Get("promiseOffline"), UiKit.Mint),
             };
+            var promiseColumn = UiKit.Column(c, new Vector2(-880, -140), 940f, 22f);
             for (int i = 0; i < promises.Length; i++)
             {
-                var row = UiKit.Panel(c, $"promise-{i}", new Color(1f, 1f, 1f, 0.06f));
-                row.rectTransform.sizeDelta = new Vector2(900, 116);
-                row.rectTransform.anchoredPosition = new Vector2(-430, -190 - i * 132);
-                UiKit.Label(row.transform, "✓", 32, promises[i].c, new Vector2(-410, 0), new Vector2(50, 44));
-                var k = UiKit.Label(row.transform, promises[i].k, 29, UiKit.White, new Vector2(40, 26),
-                    new Vector2(800, 38), TextAnchor.MiddleLeft);
+                var row = UiKit.Panel(promiseColumn, $"promise-{i}", new Color(1f, 1f, 1f, 0.06f));
+                var rowLayout = row.gameObject.AddComponent<VerticalLayoutGroup>();
+                rowLayout.padding = new RectOffset(84, 32, 22, 22);
+                rowLayout.spacing = 8;
+                rowLayout.childControlHeight = true;
+                rowLayout.childControlWidth = true;
+                rowLayout.childForceExpandHeight = false;
+                var rowFitter = row.gameObject.AddComponent<ContentSizeFitter>();
+                rowFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+
+                var k = UiKit.Label(row.transform, promises[i].k, UiKit.Heading, UiKit.White,
+                    Vector2.zero, new Vector2(820, 0), TextAnchor.MiddleLeft);
                 k.fontStyle = FontStyle.Bold;
-                UiKit.Label(row.transform, promises[i].v, 22, UiKit.Hex("9FC3EE"), new Vector2(40, -26),
-                    new Vector2(800, 44), TextAnchor.MiddleLeft);
+                UiKit.Label(row.transform, promises[i].v, UiKit.Caption, UiKit.Hex("9FC3EE"),
+                    Vector2.zero, new Vector2(820, 0), TextAnchor.UpperLeft);
+
+                var tick = UiKit.Label(row.transform, "✓", UiKit.Heading, promises[i].c,
+                    new Vector2(-424, 0), new Vector2(64, 64));
+                tick.rectTransform.anchorMin = tick.rectTransform.anchorMax = new Vector2(0f, 1f);
+                tick.rectTransform.pivot = new Vector2(0f, 1f);
+                tick.rectTransform.anchoredPosition = new Vector2(20, -24);
+                tick.gameObject.AddComponent<LayoutElement>().ignoreLayout = true;
             }
 
-            UiKit.Label(c, Copy.Get("studioBody"), 29, UiKit.Hex("C6DAF0"),
-                new Vector2(560, -170), new Vector2(760, 190), TextAnchor.UpperLeft);
-            UiKit.Label(c, Copy.Get("studioTagline"), 26, UiKit.Hex("7FA6D8"),
-                new Vector2(560, -330), new Vector2(760, 80), TextAnchor.UpperLeft);
+            UiKit.Label(c, Copy.Get("studioBody"), UiKit.Body, UiKit.Hex("C6DAF0"),
+                new Vector2(540, -190), new Vector2(840, 260), TextAnchor.UpperLeft);
+            UiKit.Label(c, Copy.Get("studioTagline"), UiKit.Body, UiKit.Hex("7FA6D8"),
+                new Vector2(540, -420), new Vector2(840, 100), TextAnchor.UpperLeft);
 
             var support = UiKit.Panel(c, "support-card", new Color(0f, 0.839f, 0.706f, 0.12f));
-            support.rectTransform.sizeDelta = new Vector2(780, 260);
-            support.rectTransform.anchoredPosition = new Vector2(560, -520);
-            UiKit.Label(support.transform, "SUPPORT HONEST ARCADE", 22, UiKit.Mint, new Vector2(0, 88),
-                new Vector2(700, 30), TextAnchor.MiddleLeft);
-            UiKit.Label(support.transform, Copy.Get("studioSupport"), 24, UiKit.Hex("C6DAF0"),
-                new Vector2(0, 0), new Vector2(700, 110), TextAnchor.UpperLeft);
-            var link = UiKit.Label(support.transform, "honestarcade.app/contribute →", 26, UiKit.White,
-                new Vector2(0, -88), new Vector2(700, 36), TextAnchor.MiddleLeft);
+            support.rectTransform.sizeDelta = new Vector2(860, 360);
+            support.rectTransform.anchoredPosition = new Vector2(540, -680);
+            UiKit.Label(support.transform, "SUPPORT HONEST ARCADE", UiKit.Caption, UiKit.Mint, new Vector2(0, 128),
+                new Vector2(780, 44), TextAnchor.MiddleLeft);
+            UiKit.Label(support.transform, Copy.Get("studioSupport"), UiKit.Body, UiKit.Hex("C6DAF0"),
+                new Vector2(0, 0), new Vector2(780, 160), TextAnchor.UpperLeft);
+            var link = UiKit.Label(support.transform, "honestarcade.app/contribute →", UiKit.Heading, UiKit.White,
+                new Vector2(0, -128), new Vector2(780, 52), TextAnchor.MiddleLeft);
             link.fontStyle = FontStyle.Bold;
 
             var chips = new (string text, Color c)[]
@@ -131,11 +136,23 @@ namespace FrogAcross.UI
             };
             for (int i = 0; i < chips.Length; i++)
                 Chip(c, chips[i].text, chips[i].c,
-                    new Vector2(300 + (i % 3) * 230, -700 - (i / 3) * 76));
+                    new Vector2(300 + (i % 3) * 268, -960 - (i / 3) * 92));
 
-            UiKit.Label(c, "HONESTARCADE.APP  ·  SOURCE ON GITHUB", 22, UiKit.Hex("7FA6D8"),
-                new Vector2(560, -940), new Vector2(780, 32), TextAnchor.MiddleLeft);
+            UiKit.Label(c, "HONESTARCADE.APP  ·  SOURCE ON GITHUB", UiKit.Caption, UiKit.Hex("7FA6D8"),
+                new Vector2(540, -1200), new Vector2(840, 44), TextAnchor.MiddleLeft);
             return root;
+        }
+
+        /// <summary>The lane rundown, flowed so wrapped lines never collide.</summary>
+        private static void BoardRules(Transform parent, Vector2 topLeft)
+        {
+            string[] laneKeys = { "ruleRoad", "ruleRiver", "ruleSwamp", "ruleTracks", "ruleBike", "ruleWalkway", "ruleMedians", "ruleBays" };
+            var column = UiKit.Column(parent, topLeft, 900f, 26f);
+            UiKit.Label(column, "WHAT'S ON THE BOARD", UiKit.Caption, UiKit.TextDim,
+                Vector2.zero, new Vector2(900, 44), TextAnchor.MiddleLeft);
+            foreach (var key in laneKeys)
+                UiKit.Label(column, "· " + Copy.Get(key), UiKit.Body, UiKit.TextBlue,
+                    Vector2.zero, new Vector2(900, 0), TextAnchor.UpperLeft);
         }
 
         /// <summary>
@@ -168,18 +185,18 @@ namespace FrogAcross.UI
                 : new Color(1f, 1f, 1f, 0.05f));
             card.rectTransform.sizeDelta = new Vector2(w, h);
             card.rectTransform.anchoredPosition = pos;
-            UiKit.Label(card.transform, title, 24, accent ? UiKit.Mint : UiKit.TextDim,
-                new Vector2(0, h / 2f - 38), new Vector2(w - 56, 32), TextAnchor.MiddleLeft);
-            UiKit.Label(card.transform, body, 26, UiKit.TextBlue,
-                new Vector2(0, -20), new Vector2(w - 56, h - 92), TextAnchor.UpperLeft);
+            UiKit.Label(card.transform, title, UiKit.Caption, accent ? UiKit.Mint : UiKit.TextDim,
+                new Vector2(0, h / 2f - 46), new Vector2(w - 64, 44), TextAnchor.MiddleLeft);
+            UiKit.Label(card.transform, body, UiKit.Body, UiKit.TextBlue,
+                new Vector2(0, -26), new Vector2(w - 64, h - 116), TextAnchor.UpperLeft);
         }
 
         private static void Chip(Transform parent, string text, Color color, Vector2 pos)
         {
             var chip = UiKit.Panel(parent, $"chip-{text}", new Color(color.r, color.g, color.b, 0.16f), UiKit.PillRadius);
-            chip.rectTransform.sizeDelta = new Vector2(216, 58);
+            chip.rectTransform.sizeDelta = new Vector2(252, 72);
             chip.rectTransform.anchoredPosition = pos;
-            UiKit.Label(chip.transform, text, 19, color, Vector2.zero, new Vector2(216, 58));
+            UiKit.Label(chip.transform, text, UiKit.Micro, color, Vector2.zero, new Vector2(252, 72));
         }
     }
 }

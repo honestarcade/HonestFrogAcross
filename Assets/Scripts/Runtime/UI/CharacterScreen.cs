@@ -29,8 +29,8 @@ namespace FrogAcross.UI
                 bool isSelected = def.id == selected;
                 var cell = UiKit.Panel(root.transform, $"char-{def.id}",
                     new Color(1f, 1f, 1f, isSelected ? 0.12f : 0.05f));
-                cell.rectTransform.sizeDelta = new Vector2(290, 680);
-                cell.rectTransform.anchoredPosition = new Vector2(-762 + i * 305, -150);
+                cell.rectTransform.sizeDelta = new Vector2(300, 720);
+                cell.rectTransform.anchoredPosition = new Vector2(-790 + i * 316, -150);
 
                 var spriteGo = new GameObject("preview");
                 spriteGo.transform.SetParent(cell.transform, false);
@@ -41,27 +41,27 @@ namespace FrogAcross.UI
                     : def.sprites is { Length: > 0 } ? def.sprites[0] : null;
                 img.preserveAspect = true;
                 var srt = img.rectTransform;
-                srt.sizeDelta = new Vector2(215, 215);
-                srt.anchoredPosition = new Vector2(0, 120);
+                srt.sizeDelta = new Vector2(240, 240);
+                srt.anchoredPosition = new Vector2(0, 150);
                 var bob = spriteGo.AddComponent<IdleBob>();
                 bob.hop = def.moveStyle == MoveStyle.Hop;
 
                 string shown = string.IsNullOrEmpty(def.displayName) ? def.id
                     : char.ToUpperInvariant(def.displayName[0]) + def.displayName.Substring(1);
-                var nameL = UiKit.Label(cell.transform, shown, 34, UiKit.White, new Vector2(0, -75));
+                var nameL = UiKit.Label(cell.transform, shown, UiKit.Title, UiKit.White, new Vector2(0, -96), new Vector2(300, 78));
                 nameL.fontStyle = FontStyle.Bold;
-                UiKit.Label(cell.transform, def.moveStyle == MoveStyle.Hop ? "HOP" : "STEP", 22,
-                    def.moveStyle == MoveStyle.Hop ? UiKit.Mint : UiKit.Hex("B48CFF"), new Vector2(0, -125));
+                UiKit.Label(cell.transform, def.moveStyle == MoveStyle.Hop ? "HOP" : "STEP", UiKit.Heading,
+                    def.moveStyle == MoveStyle.Hop ? UiKit.Mint : UiKit.Hex("B48CFF"), new Vector2(0, -168),
+                    new Vector2(300, 58));
                 if (isSelected)
-                    UiKit.Label(cell.transform, "✓", 38, UiKit.Mint, new Vector2(108, 295));
+                    UiKit.Label(cell.transform, "✓", 48, UiKit.Mint, new Vector2(110, 312));
 
                 var btn = cell.gameObject.AddComponent<Button>();
                 string id = def.id;
                 btn.onClick.AddListener(() =>
                 {
                     CharacterSelection.SelectedId = id;
-                    shell.RebuildScreen("character", Build);
-                    shell.Push("character");
+                    shell.Replace("character", Build); // Push here stacked a second copy
                 });
             }
             // header last: the cells used to be drawn over the back button,

@@ -63,15 +63,20 @@ namespace FrogAcross.Tests.PlayMode
 
             var cell1 = Cell(1);
             Assert.That(cell1, Is.Not.Null);
-            Assert.That(cell1.Find("medal"), Is.Not.Null, "completed level shows its medal dot");
+            Assert.That(cell1.Find("medal").GetComponent<Image>().color, Is.EqualTo(UiKit.Gold),
+                "completed level shows its medal colour behind the number");
             Assert.That(cell1.GetComponent<Button>(), Is.Not.Null, "completed level stays launchable");
             bool showsTime = false;
             foreach (var text in cell1.GetComponentsInChildren<Text>(true))
                 if (text.text == "10.0s") showsTime = true;
             Assert.That(showsTime, Is.True, "completed cell shows the best time");
 
+            // every cell carries the disc now (it is the number's backing); an
+            // unearned one is neutral rather than absent
             var cell2 = Cell(2);
-            Assert.That(cell2.Find("medal"), Is.Null, "unplayed level has no medal");
+            var disc2 = cell2.Find("medal").GetComponent<Image>();
+            Assert.That(disc2.color, Is.Not.EqualTo(UiKit.Gold).And.Not.EqualTo(UiKit.Silver)
+                .And.Not.EqualTo(UiKit.Bronze), "unplayed level shows no medal colour");
             Assert.That(cell2.GetComponent<Button>(), Is.Not.Null, "unlocked level is launchable");
 
             var cell3 = Cell(3);
@@ -112,6 +117,46 @@ namespace FrogAcross.Tests.PlayMode
             Assert.That(header.IsChildOf(scroll.content), Is.False, "header must not scroll");
             Assert.That(header.GetSiblingIndex(), Is.EqualTo(levels.childCount - 1),
                 "header renders above the grid so the back button is always tappable");
+        }
+
+        [UnityTest]
+        public IEnumerator Grid_IsTenAcross_WithMedalDiscsAndNoLeadingGap()
+        {
+            Progression.ResetAll();
+            Progression.ReportCompletion(LevelCatalog.IdFor(1), 1, 1f, 60f, 90f, 120f); // gold
+            SceneManager.LoadScene("Shell");
+            yield return null;
+            var shell = Object.FindAnyObjectByType<AppShell>();
+            yield return Wait1_3;
+            shell.RebuildScreen("levels", LevelsScreen.Build);
+            shell.Push("levels");
+            yield return null;
+            Canvas.ForceUpdateCanvases();
+            yield return null;
+
+            var levels = GameObject.Find("shell-canvas").transform.Find("safe-area/levels");
+            var grid = levels.GetComponentInChildren<GridLayoutGroup>(true);
+            Assert.That(grid.constraint, Is.EqualTo(GridLayoutGroup.Constraint.FixedColumnCount));
+            Assert.That(grid.constraintCount, Is.EqualTo(10), "owner asked for exactly ten across");
+
+            // cells one and eleven start a row each: no phantom slot before level 1
+            var cell1 = (RectTransform)grid.transform.Find("cell-1");
+            var cell10 = (RectTransform)grid.transform.Find("cell-10");
+            var cell11 = (RectTransform)grid.transform.Find("cell-11");
+            Assert.That(cell10.anchoredPosition.y, Is.EqualTo(cell1.anchoredPosition.y).Within(0.5f),
+                "levels 1-10 share the first row");
+            Assert.That(cell11.anchoredPosition.y, Is.LessThan(cell1.anchoredPosition.y),
+                "level 11 starts the second row");
+            Assert.That(cell11.anchoredPosition.x, Is.EqualTo(cell1.anchoredPosition.x).Within(0.5f),
+                "and lines up under level 1 — no leading gap");
+
+            // the medal is the disc behind the number, identical on every cell
+            var disc1 = (RectTransform)cell1.Find("medal");
+            var disc100 = (RectTransform)grid.transform.Find("cell-100").Find("medal");
+            Assert.That(disc1, Is.Not.Null, "completed level shows its medal disc");
+            Assert.That(disc1.rect.size, Is.EqualTo(disc100.rect.size), "same disc size for 1 and 100");
+            Assert.That(disc1.GetComponent<Image>().color, Is.EqualTo(UiKit.Gold), "gold level, gold disc");
+            Assert.That(disc1.GetComponentInChildren<Outline>(), Is.Not.Null, "number is outlined");
         }
 
         [UnityTest]

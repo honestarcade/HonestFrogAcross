@@ -27,6 +27,17 @@ namespace FrogAcross.UI
 
         public static Font DefaultFont => Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
 
+        // Type scale. The design's own sizes (12–16px in a 958-wide mock) read
+        // tiny on a real 6.9" phone, so these are roughly double the design's
+        // scaled values — the owner should never need reading glasses (device
+        // pass, 2026-08-29). Screens use these names, never raw numbers.
+        public const int Display = 120;  // menu wordmark
+        public const int Title = 64;     // screen headers
+        public const int Heading = 46;   // card titles, row titles
+        public const int Body = 40;      // paragraphs, list items
+        public const int Caption = 32;   // secondary lines
+        public const int Micro = 26;     // eyebrow labels, footers
+
         /// <summary>Corner radius in reference pixels — the design rounds everything.</summary>
         public const int Radius = 28;
         public const int PillRadius = 999;
@@ -211,6 +222,12 @@ namespace FrogAcross.UI
             rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.5f);
             rt.anchoredPosition = pos;
 
+            // Owner ruling (2026-08-29): mark beside the wordmark — not stacked
+            // above it — with the byline directly under the words.
+            Lockup(go.transform, Vector2.zero, size);
+            // right edge of the drawn wordmark: " Across" is left-aligned from
+            // the centre and runs about 3.6em at this weight
+            float wordRight = size * 3.7f;
             if (withMark && Logo != null)
             {
                 var markGo = new GameObject("mark");
@@ -219,11 +236,13 @@ namespace FrogAcross.UI
                 mark.sprite = Logo;
                 mark.preserveAspect = true;
                 mark.raycastTarget = false;
-                float m = size * 2.3f;
+                float m = size * 1.35f;
                 mark.rectTransform.sizeDelta = new Vector2(m, m);
-                mark.rectTransform.anchoredPosition = new Vector2(0, size * 1.35f);
+                mark.rectTransform.anchoredPosition = new Vector2(wordRight + m * 0.55f, 0f);
             }
-            Lockup(go.transform, Vector2.zero, size);
+            var byline = Label(go.transform, "BY HONEST ARCADE", Mathf.RoundToInt(size * 0.26f), TextDim,
+                new Vector2(0f, -size * 0.72f), new Vector2(size * 3.4f, size * 0.4f));
+            byline.raycastTarget = false;
             return go.transform;
         }
 
@@ -335,6 +354,9 @@ namespace FrogAcross.UI
             origin.pivot = new Vector2(0.5f, 1f);
             origin.sizeDelta = Vector2.zero;
             origin.anchoredPosition = Vector2.zero;
+            // a layout group on the surface would otherwise deal this node a
+            // cell of its own (it left an empty slot before level 1)
+            originGo.AddComponent<LayoutElement>().ignoreLayout = true;
 
             var scroll = viewGo.AddComponent<ScrollRect>();
             scroll.content = content;
@@ -350,6 +372,52 @@ namespace FrogAcross.UI
         }
 
         /// <summary>Sets the scrollable height (pass the transform ScrollArea returned).</summary>
+        /// <summary>
+        /// A top-anchored column that flows its children at their natural
+        /// heights. Lists of copy vary in length, so fixed per-item offsets
+        /// collide the moment a line wraps — this is the fix for that class of
+        /// bug, not another hand-tuned constant.
+        /// </summary>
+        public static RectTransform Column(Transform parent, Vector2 topLeft, float width, float spacing = 24f)
+        {
+            var go = new GameObject("column");
+            go.transform.SetParent(parent, false);
+            var rt = go.AddComponent<RectTransform>();
+            rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.5f);
+            rt.pivot = new Vector2(0f, 1f);
+            rt.sizeDelta = new Vector2(width, 0f);
+            rt.anchoredPosition = topLeft;
+
+            var layout = go.AddComponent<VerticalLayoutGroup>();
+            layout.spacing = spacing;
+            layout.childControlWidth = true;
+            layout.childControlHeight = true;
+            layout.childForceExpandWidth = true;
+            layout.childForceExpandHeight = false;
+            layout.childAlignment = TextAnchor.UpperLeft;
+
+            var fitter = go.AddComponent<ContentSizeFitter>();
+            fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+            return rt;
+        }
+
+        /// <summary>A horizontal band that flows its children left to right.</summary>
+        public static RectTransform Row(Transform parent, float height, float spacing = 20f)
+        {
+            var go = new GameObject("row");
+            go.transform.SetParent(parent, false);
+            var rt = go.AddComponent<RectTransform>();
+            var layout = go.AddComponent<HorizontalLayoutGroup>();
+            layout.spacing = spacing;
+            layout.childControlWidth = false;
+            layout.childControlHeight = false;
+            layout.childForceExpandWidth = false;
+            layout.childForceExpandHeight = false;
+            layout.childAlignment = TextAnchor.MiddleLeft;
+            go.AddComponent<LayoutElement>().preferredHeight = height;
+            return rt;
+        }
+
         public static void SetContentHeight(RectTransform origin, float height)
         {
             var content = ScrollContent(origin);

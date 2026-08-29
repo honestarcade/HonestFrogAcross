@@ -67,6 +67,36 @@ namespace FrogAcross.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator ChangingASetting_LeavesBackWorkingFirstPress()
+        {
+            // owner report: after picking a character (or a control scheme) the
+            // back button did nothing until pressed twice — the screen rebuilt
+            // itself with Push, stacking a second copy of itself
+            SceneManager.LoadScene("Shell");
+            yield return null;
+            var shell = Object.FindAnyObjectByType<AppShell>();
+            yield return Wait1_3;
+
+            shell.Push("character");
+            yield return null;
+            shell.Replace("character", CharacterScreen.Build); // what selecting does
+            yield return null;
+            Assert.That(ScreenActive("character"), Is.True, "still on the rebuilt screen");
+
+            shell.Back();
+            yield return null;
+            Assert.That(ScreenActive("menu"), Is.True, "one press returns to the menu");
+
+            shell.Push("settings");
+            yield return null;
+            shell.Replace("settings", SettingsScreen.Build);
+            yield return null;
+            shell.Back();
+            yield return null;
+            Assert.That(ScreenActive("menu"), Is.True, "same for settings");
+        }
+
+        [UnityTest]
         public IEnumerator Lockup_IsTwoToneSpacedFrogAcross()
         {
             SceneManager.LoadScene("Shell");

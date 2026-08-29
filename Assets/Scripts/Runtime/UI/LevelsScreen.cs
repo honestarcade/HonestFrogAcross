@@ -12,7 +12,8 @@ namespace FrogAcross.UI
     /// </summary>
     public static class LevelsScreen
     {
-        private const float CellW = 158f, CellH = 196f, Gap = 18f;
+        private const int Columns = 10;
+        private const float Gap = 20f;
 
         public static GameObject Build(Transform parent, AppShell shell)
         {
@@ -36,12 +37,16 @@ namespace FrogAcross.UI
                 bottomRightInset: new Vector2(UiKit.EdgePad, 40f));
             var surface = UiKit.ScrollContent(content);
             var grid = surface.gameObject.AddComponent<GridLayoutGroup>();
-            grid.cellSize = new Vector2(CellW, CellH);
             grid.spacing = new Vector2(Gap, Gap);
-            grid.padding = new RectOffset(0, 0, (int)Gap, (int)Gap);
+            grid.padding = new RectOffset(0, 0, 0, (int)Gap); // no dead band above row one
             grid.childAlignment = TextAnchor.UpperCenter;
+            grid.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
+            grid.constraintCount = Columns;
             var fitter = surface.gameObject.AddComponent<ContentSizeFitter>();
             fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+            var gridFitter = surface.gameObject.AddComponent<GridFitter>();
+            gridFitter.columns = Columns;
+            gridFitter.aspect = 1.12f; // room for the medal disc plus the time under it
 
             for (int n = 1; n <= total; n++) BuildCell(surface, shell, n);
 
@@ -63,8 +68,8 @@ namespace FrogAcross.UI
             bar.rectTransform.anchorMin = Vector2.zero;
             bar.rectTransform.anchorMax = new Vector2(total > 0 ? done / (float)total : 0f, 1f);
             bar.rectTransform.offsetMin = bar.rectTransform.offsetMax = Vector2.zero;
-            var pct = UiKit.Label(band.transform, $"{done} / {total} COMPLETE", 22, UiKit.TextDim,
-                Vector2.zero, new Vector2(340, 30), TextAnchor.MiddleLeft);
+            var pct = UiKit.Label(band.transform, $"{done} / {total} COMPLETE", UiKit.Caption, UiKit.TextDim,
+                Vector2.zero, new Vector2(420, 42), TextAnchor.MiddleLeft);
             pct.rectTransform.anchorMin = pct.rectTransform.anchorMax = new Vector2(0f, 1f);
             pct.rectTransform.pivot = new Vector2(0f, 1f);
             pct.rectTransform.anchoredPosition = new Vector2(UiKit.EdgePad + 920f, -220f);
@@ -83,11 +88,11 @@ namespace FrogAcross.UI
             var drt = dot.rectTransform;
             drt.anchorMin = drt.anchorMax = new Vector2(1f, 1f);
             drt.pivot = new Vector2(1f, 1f);
-            drt.sizeDelta = new Vector2(26, 26);
-            drt.anchoredPosition = new Vector2(rightOffset - 172f, -96f);
+            drt.sizeDelta = new Vector2(32, 32);
+            drt.anchoredPosition = new Vector2(rightOffset - 200f, -98f);
 
-            var text = UiKit.Label(band, label, 26, UiKit.TextBlue, Vector2.zero,
-                new Vector2(150, 34), TextAnchor.MiddleLeft);
+            var text = UiKit.Label(band, label, UiKit.Caption, UiKit.TextBlue, Vector2.zero,
+                new Vector2(190, 44), TextAnchor.MiddleLeft);
             var trt = text.rectTransform;
             trt.anchorMin = trt.anchorMax = new Vector2(1f, 1f);
             trt.pivot = new Vector2(1f, 1f);
@@ -103,24 +108,32 @@ namespace FrogAcross.UI
             var cell = UiKit.Panel(parent, $"cell-{n}",
                 unlocked ? new Color(1f, 1f, 1f, 0.09f) : new Color(1f, 1f, 1f, 0.03f));
 
-            var num = UiKit.Label(cell.transform, n.ToString(), 52,
-                unlocked ? UiKit.White : new Color(1f, 1f, 1f, 0.28f), new Vector2(0, 26),
-                new Vector2(CellW - 16, 64));
+            // The medal is the disc behind the number (owner ruling): one size
+            // for every level so "1" and "100" match, wide enough for three
+            // digits, and the number is outlined so it reads on gold.
+            var disc = UiKit.Panel(cell.transform, "medal", rec != null && rec.medal > 0
+                ? rec.medal switch { 3 => UiKit.Gold, 2 => UiKit.Silver, _ => UiKit.Bronze }
+                : new Color(1f, 1f, 1f, unlocked ? 0.10f : 0.05f), UiKit.PillRadius);
+            disc.rectTransform.anchorMin = disc.rectTransform.anchorMax = new Vector2(0.5f, 1f);
+            disc.rectTransform.pivot = new Vector2(0.5f, 1f);
+            disc.rectTransform.sizeDelta = new Vector2(DiscSize, DiscSize);
+            disc.rectTransform.anchoredPosition = new Vector2(0f, -DiscTop);
+
+            bool onMedal = rec != null && rec.medal > 0;
+            var num = UiKit.Label(disc.transform, n.ToString(), UiKit.Heading,
+                onMedal ? UiKit.NavyDeep : unlocked ? UiKit.White : new Color(1f, 1f, 1f, 0.3f),
+                Vector2.zero, new Vector2(DiscSize - 8f, DiscSize * 0.62f));
             num.fontStyle = FontStyle.Bold;
+            var outline = num.gameObject.AddComponent<Outline>();
+            outline.effectColor = onMedal ? new Color(1f, 1f, 1f, 0.85f) : new Color(0f, 0f, 0f, 0.55f);
+            outline.effectDistance = new Vector2(2f, -2f);
 
             bool played = rec != null && rec.bestSeconds >= 0;
-            UiKit.Label(cell.transform, played ? $"{rec.bestSeconds:0.0}s" : "—",
-                30, played ? UiKit.TextBlue : UiKit.TextDim, new Vector2(0, -40), new Vector2(CellW - 16, 40));
-
-            if (rec != null && rec.medal > 0)
-            {
-                var dot = UiKit.Panel(cell.transform, "medal", rec.medal switch
-                {
-                    3 => UiKit.Gold, 2 => UiKit.Silver, _ => UiKit.Bronze,
-                }, UiKit.PillRadius);
-                dot.rectTransform.sizeDelta = new Vector2(26, 26);
-                dot.rectTransform.anchoredPosition = new Vector2(CellW / 2f - 26, CellH / 2f - 26);
-            }
+            var time = UiKit.Label(cell.transform, played ? $"{rec.bestSeconds:0.0}s" : "—",
+                UiKit.Caption, played ? UiKit.TextBlue : UiKit.TextDim, Vector2.zero, new Vector2(160, 44));
+            time.rectTransform.anchorMin = time.rectTransform.anchorMax = new Vector2(0.5f, 0f);
+            time.rectTransform.pivot = new Vector2(0.5f, 0f);
+            time.rectTransform.anchoredPosition = new Vector2(0f, 12f);
 
             if (unlocked)
             {
@@ -130,5 +143,9 @@ namespace FrogAcross.UI
                 btn.onClick.AddListener(() => shell.LaunchLevel(id));
             }
         }
+
+        /// <summary>Medal disc: identical on every cell, sized for three digits.</summary>
+        public const float DiscSize = 112f;
+        private const float DiscTop = 14f;
     }
 }

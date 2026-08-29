@@ -70,7 +70,7 @@ namespace FrogAcross.UI
             var panel = Panel(_root.transform, new Color(0.043f, 0.212f, 0.439f)); // #0B3670
             var pr = panel.rectTransform;
             pr.anchorMin = pr.anchorMax = new Vector2(0.5f, 0.5f);
-            pr.sizeDelta = new Vector2(1080, 620);
+            pr.sizeDelta = new Vector2(1160, 660);
 
             _title = Label(panel.transform, "Level Complete", 58, new Vector2(0, 216));
             _title.color = Color.white;
@@ -83,16 +83,17 @@ namespace FrogAcross.UI
             var dotGo = new GameObject("medal-dot");
             dotGo.transform.SetParent(panel.transform, false);
             _medalDot = dotGo.AddComponent<Image>();
+            UiKit.Round(_medalDot, UiKit.PillRadius); // a medal is a circle, not a square
             var dr = _medalDot.rectTransform;
             dr.anchorMin = dr.anchorMax = new Vector2(0.5f, 0.5f);
-            dr.sizeDelta = new Vector2(44, 44);
-            dr.anchoredPosition = new Vector2(-96, -66);
-            _medal = Label(panel.transform, "GOLD", 40, new Vector2(40, -66));
+            dr.sizeDelta = new Vector2(56, 56);
+            dr.anchoredPosition = new Vector2(-110, -70);
+            _medal = Label(panel.transform, "GOLD", 44, new Vector2(50, -70));
             _medal.color = new Color(0.62f, 0.76f, 0.93f);
 
-            Btn(panel.transform, "Next level", new Vector2(-300, -210), () => OnNext?.Invoke(), true);
+            Btn(panel.transform, "Next level", new Vector2(-352, -216), () => OnNext?.Invoke(), true);
             Btn(panel.transform, "Replay", new Vector2(0, -210), () => OnReplay?.Invoke(), false);
-            Btn(panel.transform, "Main Menu", new Vector2(300, -210), () => OnMainMenu?.Invoke(), false);
+            Btn(panel.transform, "Main Menu", new Vector2(352, -216), () => OnMainMenu?.Invoke(), false);
 
             _root.SetActive(false);
         }
@@ -144,11 +145,11 @@ namespace FrogAcross.UI
             btn.onClick.AddListener(() => onClick());
             var rt = img.rectTransform;
             rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.5f);
-            rt.sizeDelta = new Vector2(300, 104);
+            rt.sizeDelta = new Vector2(320, 116);
             rt.anchoredPosition = pos;
-            var t = Label(go.transform, label, 34, Vector2.zero);
+            var t = Label(go.transform, label, 36, Vector2.zero);
             t.color = primary ? new Color(0.02f, 0.157f, 0.373f) : Color.white;
-            t.rectTransform.sizeDelta = new Vector2(300, 104);
+            t.rectTransform.sizeDelta = new Vector2(320, 116);
         }
     }
 }
