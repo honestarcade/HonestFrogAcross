@@ -25,6 +25,9 @@ namespace FrogAcross.Tests.PlayMode
         public IEnumerator UnloadScenes() { yield return SceneCleanup.UnloadAll(); }
 
         private static void CaptureCanvas(Canvas canvas, string outPath)
+            => CaptureCanvas(canvas, outPath, 1920, 1080);
+
+        private static void CaptureCanvas(Canvas canvas, string outPath, int w, int h)
         {
             var camGo = new GameObject("ui-capture-cam");
             var cam = camGo.AddComponent<Camera>();
@@ -33,7 +36,7 @@ namespace FrogAcross.Tests.PlayMode
             cam.backgroundColor = UiKit.Navy;
             cam.cullingMask = LayerMask.GetMask("UI") | 1; // default + UI
 
-            var rt = new RenderTexture(1920, 1080, 24);
+            var rt = new RenderTexture(w, h, 24);
             cam.targetTexture = rt;
 
             var prevMode = canvas.renderMode;
@@ -44,8 +47,8 @@ namespace FrogAcross.Tests.PlayMode
             cam.Render();
 
             RenderTexture.active = rt;
-            var tex = new Texture2D(1920, 1080, TextureFormat.RGB24, false);
-            tex.ReadPixels(new Rect(0, 0, 1920, 1080), 0, 0);
+            var tex = new Texture2D(w, h, TextureFormat.RGB24, false);
+            tex.ReadPixels(new Rect(0, 0, w, h), 0, 0);
             tex.Apply();
             RenderTexture.active = null;
             cam.targetTexture = null;
@@ -76,6 +79,9 @@ namespace FrogAcross.Tests.PlayMode
                 shell.Push(screen);
                 yield return null;
                 CaptureCanvas(canvas, $"Builds/ui/{screen}.png");
+                // the owner's device (S26 Ultra class): 3120×1440 — wider than
+                // 16:9, so side spill and anchor bugs show here first
+                CaptureCanvas(canvas, $"Builds/ui/device/{screen}.png", 3120, 1440);
                 Assert.That(File.Exists($"Builds/ui/{screen}.png"), Is.True, screen);
             }
 
@@ -89,8 +95,33 @@ namespace FrogAcross.Tests.PlayMode
             Assert.That(overlayCanvas.GetComponent<CanvasScaler>(), Is.Not.Null,
                 "the overlay's canvas must scale too (#88 — it used to render raw pixels)");
             CaptureCanvas(overlayCanvas, "Builds/ui/overlay.png");
+            CaptureCanvas(overlayCanvas, "Builds/ui/device/overlay.png", 3120, 1440);
             Assert.That(File.Exists("Builds/ui/overlay.png"), Is.True);
             Object.Destroy(host);
+        }
+
+        [UnityTest]
+        public IEnumerator CaptureBoardAtDeviceResolution()
+        {
+            AppShell.PendingLevelId = "level-001";
+            SceneManager.LoadScene("Game");
+            yield return null;
+            yield return null;
+            var cam = Camera.main;
+            var rt = new RenderTexture(3120, 1440, 24);
+            cam.targetTexture = rt;
+            cam.Render();
+            RenderTexture.active = rt;
+            var tex = new Texture2D(3120, 1440, TextureFormat.RGB24, false);
+            tex.ReadPixels(new Rect(0, 0, 3120, 1440), 0, 0);
+            tex.Apply();
+            RenderTexture.active = null;
+            cam.targetTexture = null;
+            Directory.CreateDirectory("Builds/ui/device");
+            File.WriteAllBytes("Builds/ui/device/board.png", tex.EncodeToPNG());
+            Assert.That(File.Exists("Builds/ui/device/board.png"), Is.True);
+            Object.Destroy(rt);
+            Object.Destroy(tex);
         }
     }
 }
