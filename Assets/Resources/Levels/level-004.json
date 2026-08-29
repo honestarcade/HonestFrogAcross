@@ -3,9 +3,9 @@
     "name": "level-004",
     "columns": 10,
     "medal": {
-        "gold": 13.600000381469727,
-        "silver": 19.799999237060548,
-        "bronze": 28.700000762939454
+        "gold": 14.600000381469727,
+        "silver": 21.100000381469728,
+        "bronze": 30.600000381469728
     },
     "startColumn": 2,
     "bays": [
@@ -27,14 +27,14 @@
             "objects": [
                 {
                     "pieceId": "car",
-                    "offset": 2.7799999713897707,
-                    "spacing": 12.979999542236329,
+                    "offset": 0.5400000214576721,
+                    "spacing": 16.0,
                     "phase": 0
                 },
                 {
-                    "pieceId": "bus",
-                    "offset": 13.739999771118164,
-                    "spacing": 16.15999984741211,
+                    "pieceId": "convertible",
+                    "offset": 8.539999961853028,
+                    "spacing": 16.0,
                     "phase": 0
                 }
             ],
@@ -48,34 +48,27 @@
             "obstructions": []
         },
         {
-            "kind": "road",
-            "dir": "right",
-            "speed": 1.159999966621399,
-            "objects": [
-                {
-                    "pieceId": "bus",
-                    "offset": 2.369999885559082,
-                    "spacing": 14.960000038146973,
-                    "phase": 0
-                },
-                {
-                    "pieceId": "truck",
-                    "offset": 10.609999656677246,
-                    "spacing": 15.140000343322754,
-                    "phase": 0
-                }
-            ],
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
             "obstructions": []
         },
         {
             "kind": "road",
-            "dir": "left",
-            "speed": 1.3600000143051148,
+            "dir": "right",
+            "speed": 1.1799999475479127,
             "objects": [
                 {
+                    "pieceId": "bus",
+                    "offset": 3.700000047683716,
+                    "spacing": 20.0,
+                    "phase": 0
+                },
+                {
                     "pieceId": "truck",
-                    "offset": 1.5399999618530274,
-                    "spacing": 8.300000190734864,
+                    "offset": 13.699999809265137,
+                    "spacing": 20.0,
                     "phase": 0
                 }
             ],

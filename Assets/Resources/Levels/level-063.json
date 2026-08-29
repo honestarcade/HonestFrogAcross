@@ -3,15 +3,15 @@
     "name": "level-063",
     "columns": 11,
     "medal": {
-        "gold": 21.100000381469728,
-        "silver": 30.600000381469728,
-        "bronze": 44.29999923706055
+        "gold": 17.399999618530275,
+        "silver": 25.299999237060548,
+        "bronze": 36.599998474121097
     },
-    "startColumn": 2,
+    "startColumn": 1,
     "bays": [
-        0,
-        3,
-        10
+        1,
+        4,
+        5
     ],
     "rows": [
         {
@@ -35,8 +35,8 @@
             "objects": [
                 {
                     "pieceId": "passenger",
-                    "offset": 10.3100004196167,
-                    "spacing": 14.630000114440918,
+                    "offset": 24.65999984741211,
+                    "spacing": 17.5,
                     "phase": 0
                 }
             ],
@@ -65,8 +65,8 @@
             "objects": [
                 {
                     "pieceId": "runner",
-                    "offset": 1.690000057220459,
-                    "spacing": 4.440000057220459,
+                    "offset": 5.710000038146973,
+                    "spacing": 5.0,
                     "phase": 0
                 }
             ],
@@ -79,34 +79,42 @@
             "objects": [
                 {
                     "pieceId": "log-short",
-                    "offset": 4.090000152587891,
-                    "spacing": 12.699999809265137,
+                    "offset": 2.8299999237060549,
+                    "spacing": 21.0,
                     "phase": 0
                 },
                 {
-                    "pieceId": "gator",
-                    "offset": 6.460000038146973,
-                    "spacing": 14.380000114440918,
-                    "phase": 279
+                    "pieceId": "turtle-log",
+                    "offset": 13.329999923706055,
+                    "spacing": 21.0,
+                    "phase": 197
                 }
             ],
             "obstructions": []
         },
         {
-            "kind": "bike",
-            "dir": "left",
-            "speed": 2.3399999141693117,
+            "kind": "road",
+            "dir": "right",
+            "speed": 2.299999952316284,
             "objects": [
                 {
-                    "pieceId": "skater",
-                    "offset": 3.630000114440918,
-                    "spacing": 8.34000015258789,
+                    "pieceId": "bus",
+                    "offset": 14.319999694824219,
+                    "spacing": 9.5,
                     "phase": 0
-                },
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "tracks",
+            "dir": "right",
+            "speed": 2.430000066757202,
+            "objects": [
                 {
-                    "pieceId": "skater",
-                    "offset": 8.149999618530274,
-                    "spacing": 9.260000228881836,
+                    "pieceId": "passenger",
+                    "offset": 4.260000228881836,
+                    "spacing": 17.5,
                     "phase": 0
                 }
             ],
@@ -115,22 +123,21 @@
         {
             "kind": "road",
             "dir": "left",
-            "speed": 2.049999952316284,
+            "speed": 1.9700000286102296,
             "objects": [
                 {
                     "pieceId": "convertible",
-                    "offset": 0.3799999952316284,
-                    "spacing": 5.21999979019165,
+                    "offset": 10.65999984741211,
+                    "spacing": 19.0,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "bus",
+                    "offset": 1.159999966621399,
+                    "spacing": 19.0,
                     "phase": 0
                 }
             ],
-            "obstructions": []
-        },
-        {
-            "kind": "walkway",
-            "dir": "right",
-            "speed": 1.309999942779541,
-            "objects": [],
             "obstructions": []
         },
         {

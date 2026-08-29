@@ -27,8 +27,12 @@ namespace FrogAcross.Tests.EditMode.Content
                     $"{id}: gold below the proven floor is unearnable");
                 Assert.That(dto.medal.gold, Is.LessThan(dto.medal.silver), $"{id}: gold < silver");
                 Assert.That(dto.medal.silver, Is.LessThan(dto.medal.bronze), $"{id}: silver < bronze");
-                Assert.That(dto.medal.bronze, Is.LessThanOrEqualTo(minSec * 10f),
-                    $"{id}: bronze drifted absurdly far from the floor");
+                // Outer sanity bound derived from the schedule itself (a magic
+                // constant here silently went stale the moment a factor moved).
+                int number = int.Parse(id.Substring(ContentLock.ShippedPrefix.Length));
+                float maxMultiple = MedalCalibrator.GoldFactorFor(number) * MedalCalibrator.BronzeOverGold * 1.05f;
+                Assert.That(dto.medal.bronze, Is.LessThanOrEqualTo(minSec * maxMultiple),
+                    $"{id}: bronze drifted beyond the calibrated schedule");
             }
         }
 

@@ -1,18 +1,18 @@
 {
     "id": "level-070",
     "name": "level-070",
-    "columns": 12,
+    "columns": 11,
     "medal": {
-        "gold": 18.5,
-        "silver": 26.799999237060548,
-        "bronze": 38.79999923706055
+        "gold": 26.5,
+        "silver": 38.400001525878909,
+        "bronze": 55.599998474121097
     },
-    "startColumn": 1,
+    "startColumn": 6,
     "bays": [
-        0,
         4,
+        7,
         8,
-        11
+        10
     ],
     "rows": [
         {
@@ -23,98 +23,23 @@
             "obstructions": []
         },
         {
-            "kind": "grass",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
-            "obstructions": [
-                {
-                    "pieceId": "planter-succulent",
-                    "column": 3
-                },
-                {
-                    "pieceId": "bench",
-                    "column": 6
-                },
-                {
-                    "pieceId": "planter-tulip",
-                    "column": 10
-                }
-            ]
-        },
-        {
-            "kind": "concrete",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
-            "obstructions": [
-                {
-                    "pieceId": "bench",
-                    "column": 1
-                },
-                {
-                    "pieceId": "lamp",
-                    "column": 4
-                },
-                {
-                    "pieceId": "planter-fern",
-                    "column": 8
-                }
-            ]
-        },
-        {
-            "kind": "road",
-            "dir": "left",
-            "speed": 2.1700000762939455,
-            "objects": [
-                {
-                    "pieceId": "bus",
-                    "offset": 4.010000228881836,
-                    "spacing": 11.4399995803833,
-                    "phase": 0
-                },
-                {
-                    "pieceId": "convertible",
-                    "offset": 8.270000457763672,
-                    "spacing": 8.899999618530274,
-                    "phase": 0
-                }
-            ],
-            "obstructions": []
-        },
-        {
             "kind": "bike",
             "dir": "right",
-            "speed": 2.859999895095825,
+            "speed": 2.3499999046325685,
             "objects": [
+                {
+                    "pieceId": "runner",
+                    "offset": 14.619999885559082,
+                    "spacing": 15.0,
+                    "phase": 0
+                },
                 {
                     "pieceId": "cyclist",
-                    "offset": 4.03000020980835,
-                    "spacing": 4.670000076293945,
+                    "offset": 7.119999885559082,
+                    "spacing": 15.0,
                     "phase": 0
                 }
             ],
-            "obstructions": []
-        },
-        {
-            "kind": "swamp",
-            "dir": "left",
-            "speed": 1.2999999523162842,
-            "objects": [
-                {
-                    "pieceId": "log-short",
-                    "offset": 5.429999828338623,
-                    "spacing": 6.079999923706055,
-                    "phase": 0
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "walkway",
-            "dir": "left",
-            "speed": 1.6200000047683716,
-            "objects": [],
             "obstructions": []
         },
         {
@@ -125,29 +50,96 @@
             "obstructions": [
                 {
                     "pieceId": "bush",
-                    "column": 2
+                    "column": 1
                 },
                 {
-                    "pieceId": "planter-lavender",
-                    "column": 4
-                },
-                {
-                    "pieceId": "planter-succulent",
+                    "pieceId": "lamp",
                     "column": 7
                 }
             ]
         },
         {
-            "kind": "grass",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
-            "obstructions": [
+            "kind": "river",
+            "dir": "right",
+            "speed": 1.3899999856948853,
+            "objects": [
                 {
-                    "pieceId": "planter-lavender",
-                    "column": 4
+                    "pieceId": "raft",
+                    "offset": 4.800000190734863,
+                    "spacing": 21.0,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "turtle-log",
+                    "offset": 15.300000190734864,
+                    "spacing": 21.0,
+                    "phase": 328
                 }
-            ]
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "left",
+            "speed": 1.3799999952316285,
+            "objects": [
+                {
+                    "pieceId": "log-long",
+                    "offset": 17.389999389648439,
+                    "spacing": 11.5,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "tracks",
+            "dir": "right",
+            "speed": 2.509999990463257,
+            "objects": [
+                {
+                    "pieceId": "passenger",
+                    "offset": 23.469999313354493,
+                    "spacing": 17.5,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "left",
+            "speed": 1.4500000476837159,
+            "objects": [
+                {
+                    "pieceId": "turtle-log",
+                    "offset": 3.390000104904175,
+                    "spacing": 7.0,
+                    "phase": 69
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "right",
+            "speed": 2.880000114440918,
+            "objects": [
+                {
+                    "pieceId": "skater",
+                    "offset": 9.029999732971192,
+                    "spacing": 5.0,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "walkway",
+            "dir": "left",
+            "speed": 1.840000033378601,
+            "objects": [],
+            "obstructions": []
         },
         {
             "kind": "bank",

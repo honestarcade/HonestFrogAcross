@@ -3,9 +3,9 @@
     "name": "level-010",
     "columns": 9,
     "medal": {
-        "gold": 30.5,
-        "silver": 44.29999923706055,
-        "bronze": 64.0999984741211
+        "gold": 22.0,
+        "silver": 31.899999618530275,
+        "bronze": 46.20000076293945
     },
     "startColumn": 2,
     "bays": [
@@ -28,8 +28,8 @@
             "objects": [
                 {
                     "pieceId": "truck",
-                    "offset": 5.670000076293945,
-                    "spacing": 7.789999961853027,
+                    "offset": 13.829999923706055,
+                    "spacing": 9.5,
                     "phase": 0
                 }
             ],
@@ -42,8 +42,8 @@
             "objects": [
                 {
                     "pieceId": "car",
-                    "offset": 4.880000114440918,
-                    "spacing": 5.78000020980835,
+                    "offset": 12.65999984741211,
+                    "spacing": 7.5,
                     "phase": 0
                 }
             ],
@@ -56,8 +56,8 @@
             "objects": [
                 {
                     "pieceId": "truck",
-                    "offset": 0.5400000214576721,
-                    "spacing": 8.0600004196167,
+                    "offset": 1.2699999809265137,
+                    "spacing": 9.5,
                     "phase": 0
                 }
             ],
@@ -70,8 +70,8 @@
             "objects": [
                 {
                     "pieceId": "truck",
-                    "offset": 3.7200000286102297,
-                    "spacing": 7.840000152587891,
+                    "offset": 9.020000457763672,
+                    "spacing": 9.5,
                     "phase": 0
                 }
             ],

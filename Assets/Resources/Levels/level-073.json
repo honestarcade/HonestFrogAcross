@@ -3,16 +3,16 @@
     "name": "level-073",
     "columns": 13,
     "medal": {
-        "gold": 27.700000762939454,
-        "silver": 40.20000076293945,
-        "bronze": 58.20000076293945
+        "gold": 31.200000762939454,
+        "silver": 45.20000076293945,
+        "bronze": 65.4000015258789
     },
-    "startColumn": 11,
+    "startColumn": 6,
     "bays": [
-        3,
-        4,
-        8,
-        12
+        0,
+        2,
+        5,
+        11
     ],
     "rows": [
         {
@@ -23,114 +23,75 @@
             "obstructions": []
         },
         {
-            "kind": "grass",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
-            "obstructions": [
-                {
-                    "pieceId": "bench",
-                    "column": 0
-                }
-            ]
-        },
-        {
-            "kind": "concrete",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
-            "obstructions": [
-                {
-                    "pieceId": "lamp",
-                    "column": 0
-                },
-                {
-                    "pieceId": "planter-daisy",
-                    "column": 2
-                },
-                {
-                    "pieceId": "bush",
-                    "column": 3
-                },
-                {
-                    "pieceId": "bush",
-                    "column": 6
-                },
-                {
-                    "pieceId": "bench",
-                    "column": 7
-                },
-                {
-                    "pieceId": "lamp",
-                    "column": 12
-                }
-            ]
-        },
-        {
-            "kind": "swamp",
+            "kind": "river",
             "dir": "right",
-            "speed": 1.649999976158142,
+            "speed": 1.8600000143051148,
             "objects": [
                 {
-                    "pieceId": "turtle-log",
-                    "offset": 0.4300000071525574,
-                    "spacing": 13.220000267028809,
-                    "phase": 103
-                },
-                {
-                    "pieceId": "raft",
-                    "offset": 9.210000038146973,
-                    "spacing": 13.119999885559082,
+                    "pieceId": "log",
+                    "offset": 2.940000057220459,
+                    "spacing": 7.670000076293945,
                     "phase": 0
                 }
             ],
             "obstructions": []
-        },
-        {
-            "kind": "swamp",
-            "dir": "left",
-            "speed": 1.5399999618530274,
-            "objects": [
-                {
-                    "pieceId": "raft",
-                    "offset": 0.6600000262260437,
-                    "spacing": 6.090000152587891,
-                    "phase": 0
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "grass",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
-            "obstructions": [
-                {
-                    "pieceId": "planter-tulip",
-                    "column": 0
-                },
-                {
-                    "pieceId": "lamp",
-                    "column": 8
-                }
-            ]
         },
         {
             "kind": "bike",
             "dir": "right",
-            "speed": 2.6700000762939455,
+            "speed": 2.7799999713897707,
             "objects": [
                 {
-                    "pieceId": "skater",
-                    "offset": 1.3300000429153443,
-                    "spacing": 8.399999618530274,
+                    "pieceId": "runner",
+                    "offset": 15.460000038146973,
+                    "spacing": 4.25,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "walkway",
+            "dir": "left",
+            "speed": 1.4500000476837159,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "right",
+            "speed": 2.490000009536743,
+            "objects": [
+                {
+                    "pieceId": "convertible",
+                    "offset": 6.090000152587891,
+                    "spacing": 9.5,
                     "phase": 0
                 },
                 {
-                    "pieceId": "skater",
-                    "offset": 5.010000228881836,
-                    "spacing": 8.140000343322754,
+                    "pieceId": "car",
+                    "offset": 10.84000015258789,
+                    "spacing": 9.5,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "right",
+            "speed": 1.7200000286102296,
+            "objects": [
+                {
+                    "pieceId": "raft",
+                    "offset": 6.289999961853027,
+                    "spacing": 23.0,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "raft",
+                    "offset": 17.790000915527345,
+                    "spacing": 23.0,
                     "phase": 0
                 }
             ],
@@ -139,56 +100,57 @@
         {
             "kind": "river",
             "dir": "right",
-            "speed": 1.7200000286102296,
+            "speed": 1.6799999475479127,
             "objects": [
                 {
                     "pieceId": "raft",
-                    "offset": 5.0,
-                    "spacing": 12.84000015258789,
-                    "phase": 0
-                },
-                {
-                    "pieceId": "log-long",
-                    "offset": 6.769999980926514,
-                    "spacing": 16.940000534057618,
+                    "offset": 12.210000038146973,
+                    "spacing": 7.670000076293945,
                     "phase": 0
                 }
             ],
+            "obstructions": []
+        },
+        {
+            "kind": "walkway",
+            "dir": "left",
+            "speed": 1.5299999713897706,
+            "objects": [],
             "obstructions": []
         },
         {
             "kind": "tracks",
             "dir": "left",
-            "speed": 2.559999942779541,
+            "speed": 2.3499999046325685,
             "objects": [
                 {
-                    "pieceId": "passenger",
-                    "offset": 4.440000057220459,
-                    "spacing": 14.319999694824219,
+                    "pieceId": "freight",
+                    "offset": 23.420000076293947,
+                    "spacing": 18.5,
                     "phase": 0
                 }
             ],
             "obstructions": []
         },
         {
-            "kind": "grass",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
-            "obstructions": [
+            "kind": "swamp",
+            "dir": "left",
+            "speed": 1.649999976158142,
+            "objects": [
                 {
-                    "pieceId": "planter-tulip",
-                    "column": 6
+                    "pieceId": "log-long",
+                    "offset": 4.800000190734863,
+                    "spacing": 25.0,
+                    "phase": 0
                 },
                 {
-                    "pieceId": "planter-succulent",
-                    "column": 8
-                },
-                {
-                    "pieceId": "planter-fern",
-                    "column": 12
+                    "pieceId": "log-long",
+                    "offset": 17.299999237060548,
+                    "spacing": 25.0,
+                    "phase": 0
                 }
-            ]
+            ],
+            "obstructions": []
         },
         {
             "kind": "bank",

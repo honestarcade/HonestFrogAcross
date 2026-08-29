@@ -3,14 +3,14 @@
     "name": "level-025",
     "columns": 10,
     "medal": {
-        "gold": 34.0,
-        "silver": 49.29999923706055,
-        "bronze": 71.5
+        "gold": 100.30000305175781,
+        "silver": 145.39999389648438,
+        "bronze": 210.60000610351563
     },
     "startColumn": 1,
     "bays": [
-        0,
-        5
+        2,
+        4
     ],
     "rows": [
         {
@@ -27,8 +27,8 @@
             "objects": [
                 {
                     "pieceId": "log-short",
-                    "offset": 3.3499999046325685,
-                    "spacing": 6.989999771118164,
+                    "offset": 8.609999656677246,
+                    "spacing": 9.0,
                     "phase": 0
                 }
             ],
@@ -41,8 +41,8 @@
             "objects": [
                 {
                     "pieceId": "gator",
-                    "offset": 4.699999809265137,
-                    "spacing": 7.150000095367432,
+                    "offset": 13.149999618530274,
+                    "spacing": 10.0,
                     "phase": 266
                 }
             ],
@@ -55,15 +55,15 @@
             "objects": [
                 {
                     "pieceId": "turtle-log",
-                    "offset": 2.759999990463257,
-                    "spacing": 13.520000457763672,
-                    "phase": 287
+                    "offset": 17.43000030517578,
+                    "spacing": 20.0,
+                    "phase": 5
                 },
                 {
                     "pieceId": "gator",
-                    "offset": 14.319999694824219,
-                    "spacing": 16.31999969482422,
-                    "phase": 393
+                    "offset": 7.429999828338623,
+                    "spacing": 20.0,
+                    "phase": 370
                 }
             ],
             "obstructions": []
@@ -71,40 +71,56 @@
         {
             "kind": "swamp",
             "dir": "right",
-            "speed": 1.340000033378601,
+            "speed": 1.4299999475479127,
             "objects": [
                 {
+                    "pieceId": "log-short",
+                    "offset": 0.029999999329447748,
+                    "spacing": 20.0,
+                    "phase": 0
+                },
+                {
                     "pieceId": "gator",
-                    "offset": 6.300000190734863,
-                    "spacing": 6.96999979019165,
-                    "phase": 214
+                    "offset": 10.029999732971192,
+                    "spacing": 20.0,
+                    "phase": 379
                 }
             ],
             "obstructions": []
         },
         {
-            "kind": "grass",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
-            "obstructions": [
+            "kind": "river",
+            "dir": "left",
+            "speed": 1.440000057220459,
+            "objects": [
                 {
-                    "pieceId": "planter-daisy",
-                    "column": 1
+                    "pieceId": "log-long",
+                    "offset": 11.4399995803833,
+                    "spacing": 11.0,
+                    "phase": 0
                 }
-            ]
+            ],
+            "obstructions": []
         },
         {
-            "kind": "grass",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
-            "obstructions": [
+            "kind": "road",
+            "dir": "right",
+            "speed": 2.0299999713897707,
+            "objects": [
                 {
-                    "pieceId": "planter-fern",
-                    "column": 4
+                    "pieceId": "car",
+                    "offset": 15.819999694824219,
+                    "spacing": 20.0,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "truck",
+                    "offset": 5.820000171661377,
+                    "spacing": 20.0,
+                    "phase": 0
                 }
-            ]
+            ],
+            "obstructions": []
         },
         {
             "kind": "bank",

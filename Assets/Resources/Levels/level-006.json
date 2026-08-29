@@ -3,14 +3,14 @@
     "name": "level-006",
     "columns": 10,
     "medal": {
-        "gold": 36.0,
-        "silver": 52.20000076293945,
-        "bronze": 75.5999984741211
+        "gold": 12.199999809265137,
+        "silver": 17.600000381469728,
+        "bronze": 25.5
     },
-    "startColumn": 4,
+    "startColumn": 2,
     "bays": [
-        4,
-        7
+        0,
+        3
     ],
     "rows": [
         {
@@ -27,8 +27,8 @@
             "objects": [
                 {
                     "pieceId": "convertible",
-                    "offset": 5.869999885559082,
-                    "spacing": 6.809999942779541,
+                    "offset": 13.779999732971192,
+                    "spacing": 8.0,
                     "phase": 0
                 }
             ],
@@ -41,42 +41,14 @@
             "objects": [
                 {
                     "pieceId": "car",
-                    "offset": 4.849999904632568,
-                    "spacing": 12.760000228881836,
+                    "offset": 12.989999771118164,
+                    "spacing": 16.0,
                     "phase": 0
                 },
                 {
-                    "pieceId": "truck",
-                    "offset": 10.279999732971192,
-                    "spacing": 17.260000228881837,
-                    "phase": 0
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "road",
-            "dir": "left",
-            "speed": 1.3899999856948853,
-            "objects": [
-                {
-                    "pieceId": "truck",
-                    "offset": 4.480000019073486,
-                    "spacing": 8.3100004196167,
-                    "phase": 0
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "road",
-            "dir": "left",
-            "speed": 1.5099999904632569,
-            "objects": [
-                {
-                    "pieceId": "bus",
-                    "offset": 5.25,
-                    "spacing": 7.949999809265137,
+                    "pieceId": "convertible",
+                    "offset": 4.989999771118164,
+                    "spacing": 16.0,
                     "phase": 0
                 }
             ],
@@ -90,23 +62,36 @@
             "obstructions": []
         },
         {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "bush",
+                    "column": 0
+                }
+            ]
+        },
+        {
             "kind": "road",
             "dir": "right",
-            "speed": 1.4700000286102296,
+            "speed": 1.4600000381469727,
             "objects": [
                 {
-                    "pieceId": "truck",
-                    "offset": 2.799999952316284,
-                    "spacing": 14.640000343322754,
-                    "phase": 0
-                },
-                {
-                    "pieceId": "car",
-                    "offset": 10.600000381469727,
-                    "spacing": 13.5600004196167,
+                    "pieceId": "convertible",
+                    "offset": 12.350000381469727,
+                    "spacing": 8.0,
                     "phase": 0
                 }
             ],
+            "obstructions": []
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
             "obstructions": []
         },
         {

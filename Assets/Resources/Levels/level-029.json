@@ -3,15 +3,15 @@
     "name": "level-029",
     "columns": 9,
     "medal": {
-        "gold": 19.799999237060548,
-        "silver": 28.700000762939454,
-        "bronze": 41.5
+        "gold": 31.799999237060548,
+        "silver": 46.0,
+        "bronze": 66.69999694824219
     },
     "startColumn": 7,
     "bays": [
-        1,
         3,
-        5
+        5,
+        7
     ],
     "rows": [
         {
@@ -40,8 +40,8 @@
             "objects": [
                 {
                     "pieceId": "truck",
-                    "offset": 1.8600000143051148,
-                    "spacing": 6.630000114440918,
+                    "offset": 5.329999923706055,
+                    "spacing": 9.5,
                     "phase": 0
                 }
             ],
@@ -54,14 +54,14 @@
             "objects": [
                 {
                     "pieceId": "turtle-log",
-                    "offset": 6.989999771118164,
-                    "spacing": 14.819999694824219,
-                    "phase": 118
+                    "offset": 6.809999942779541,
+                    "spacing": 19.0,
+                    "phase": 260
                 },
                 {
                     "pieceId": "raft",
-                    "offset": 8.960000038146973,
-                    "spacing": 13.479999542236329,
+                    "offset": 16.309999465942384,
+                    "spacing": 19.0,
                     "phase": 0
                 }
             ],
@@ -75,24 +75,20 @@
             "obstructions": []
         },
         {
-            "kind": "swamp",
-            "dir": "left",
-            "speed": 1.5,
-            "objects": [
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
                 {
-                    "pieceId": "log-short",
-                    "offset": 0.6499999761581421,
-                    "spacing": 13.319999694824219,
-                    "phase": 0
+                    "pieceId": "planter-tulip",
+                    "column": 2
                 },
                 {
-                    "pieceId": "raft",
-                    "offset": 10.539999961853028,
-                    "spacing": 15.239999771118164,
-                    "phase": 0
+                    "pieceId": "planter-succulent",
+                    "column": 6
                 }
-            ],
-            "obstructions": []
+            ]
         },
         {
             "kind": "river",
@@ -101,8 +97,8 @@
             "objects": [
                 {
                     "pieceId": "turtle-log",
-                    "offset": 4.309999942779541,
-                    "spacing": 7.599999904632568,
+                    "offset": 10.779999732971192,
+                    "spacing": 9.5,
                     "phase": 238
                 }
             ],
@@ -115,14 +111,14 @@
             "objects": [
                 {
                     "pieceId": "gator",
-                    "offset": 6.409999847412109,
-                    "spacing": 15.180000305175782,
-                    "phase": 103
+                    "offset": 4.679999828338623,
+                    "spacing": 19.0,
+                    "phase": 243
                 },
                 {
                     "pieceId": "log-short",
-                    "offset": 12.289999961853028,
-                    "spacing": 12.199999809265137,
+                    "offset": 14.180000305175782,
+                    "spacing": 19.0,
                     "phase": 0
                 }
             ],

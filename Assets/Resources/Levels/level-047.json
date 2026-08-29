@@ -3,15 +3,15 @@
     "name": "level-047",
     "columns": 11,
     "medal": {
-        "gold": 15.600000381469727,
-        "silver": 22.700000762939454,
-        "bronze": 32.79999923706055
+        "gold": 37.0,
+        "silver": 53.70000076293945,
+        "bronze": 77.80000305175781
     },
-    "startColumn": 5,
+    "startColumn": 6,
     "bays": [
-        1,
+        2,
+        4,
         5,
-        6,
         8
     ],
     "rows": [
@@ -29,8 +29,8 @@
             "objects": [
                 {
                     "pieceId": "cyclist",
-                    "offset": 1.6699999570846558,
-                    "spacing": 4.519999980926514,
+                    "offset": 5.550000190734863,
+                    "spacing": 5.0,
                     "phase": 0
                 }
             ],
@@ -43,14 +43,28 @@
             "objects": [
                 {
                     "pieceId": "cyclist",
-                    "offset": 3.069999933242798,
-                    "spacing": 8.279999732971192,
+                    "offset": 14.319999694824219,
+                    "spacing": 15.0,
                     "phase": 0
                 },
                 {
-                    "pieceId": "skater",
-                    "offset": 5.809999942779541,
-                    "spacing": 9.15999984741211,
+                    "pieceId": "cyclist",
+                    "offset": 6.820000171661377,
+                    "spacing": 15.0,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "tracks",
+            "dir": "left",
+            "speed": 1.9700000286102296,
+            "objects": [
+                {
+                    "pieceId": "freight",
+                    "offset": 14.75,
+                    "spacing": 17.5,
                     "phase": 0
                 }
             ],
@@ -59,65 +73,53 @@
         {
             "kind": "river",
             "dir": "left",
-            "speed": 1.5099999904632569,
+            "speed": 1.559999942779541,
             "objects": [
                 {
-                    "pieceId": "log-long",
-                    "offset": 5.46999979019165,
-                    "spacing": 7.980000019073486,
-                    "phase": 0
+                    "pieceId": "turtle-log",
+                    "offset": 16.780000686645509,
+                    "spacing": 21.0,
+                    "phase": 287
+                },
+                {
+                    "pieceId": "turtle-log",
+                    "offset": 6.28000020980835,
+                    "spacing": 21.0,
+                    "phase": 48
                 }
             ],
             "obstructions": []
-        },
-        {
-            "kind": "tracks",
-            "dir": "right",
-            "speed": 2.3299999237060549,
-            "objects": [
-                {
-                    "pieceId": "passenger",
-                    "offset": 13.029999732971192,
-                    "spacing": 14.949999809265137,
-                    "phase": 0
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "grass",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
-            "obstructions": [
-                {
-                    "pieceId": "bench",
-                    "column": 3
-                }
-            ]
-        },
-        {
-            "kind": "concrete",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
-            "obstructions": [
-                {
-                    "pieceId": "lamp",
-                    "column": 1
-                }
-            ]
         },
         {
             "kind": "bike",
             "dir": "left",
-            "speed": 2.3299999237060549,
+            "speed": 2.2100000381469728,
             "objects": [
                 {
-                    "pieceId": "runner",
-                    "offset": 4.349999904632568,
-                    "spacing": 4.829999923706055,
+                    "pieceId": "cyclist",
+                    "offset": 4.28000020980835,
+                    "spacing": 5.0,
                     "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "right",
+            "speed": 1.350000023841858,
+            "objects": [
+                {
+                    "pieceId": "raft",
+                    "offset": 2.0899999141693117,
+                    "spacing": 21.0,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "turtle-log",
+                    "offset": 12.59000015258789,
+                    "spacing": 21.0,
+                    "phase": 104
                 }
             ],
             "obstructions": []
@@ -127,16 +129,27 @@
             "dir": "",
             "speed": 0.0,
             "objects": [],
-            "obstructions": [
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "right",
+            "speed": 1.6100000143051148,
+            "objects": [
                 {
-                    "pieceId": "tree",
-                    "column": 1
+                    "pieceId": "gator",
+                    "offset": 20.649999618530275,
+                    "spacing": 21.0,
+                    "phase": 351
                 },
                 {
-                    "pieceId": "tree",
-                    "column": 6
+                    "pieceId": "log",
+                    "offset": 10.149999618530274,
+                    "spacing": 21.0,
+                    "phase": 0
                 }
-            ]
+            ],
+            "obstructions": []
         },
         {
             "kind": "bank",

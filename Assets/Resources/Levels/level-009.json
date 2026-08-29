@@ -3,15 +3,15 @@
     "name": "level-009",
     "columns": 11,
     "medal": {
-        "gold": 22.100000381469728,
-        "silver": 32.099998474121097,
-        "bronze": 46.5
+        "gold": 18.600000381469728,
+        "silver": 27.0,
+        "bronze": 39.099998474121097
     },
-    "startColumn": 4,
+    "startColumn": 5,
     "bays": [
-        0,
         4,
-        7
+        5,
+        9
     ],
     "rows": [
         {
@@ -28,8 +28,8 @@
             "objects": [
                 {
                     "pieceId": "convertible",
-                    "offset": 0.05999999865889549,
-                    "spacing": 5.130000114440918,
+                    "offset": 0.1899999976158142,
+                    "spacing": 5.670000076293945,
                     "phase": 0
                 }
             ],
@@ -74,8 +74,8 @@
             "objects": [
                 {
                     "pieceId": "bus",
-                    "offset": 3.7200000286102297,
-                    "spacing": 6.539999961853027,
+                    "offset": 10.819999694824219,
+                    "spacing": 9.5,
                     "phase": 0
                 }
             ],
@@ -88,14 +88,14 @@
             "objects": [
                 {
                     "pieceId": "truck",
-                    "offset": 7.130000114440918,
-                    "spacing": 15.479999542236329,
+                    "offset": 11.029999732971192,
+                    "spacing": 21.0,
                     "phase": 0
                 },
                 {
                     "pieceId": "convertible",
-                    "offset": 11.34000015258789,
-                    "spacing": 10.84000015258789,
+                    "offset": 0.5299999713897705,
+                    "spacing": 21.0,
                     "phase": 0
                 }
             ],
@@ -103,19 +103,13 @@
         },
         {
             "kind": "road",
-            "dir": "left",
-            "speed": 1.590000033378601,
+            "dir": "right",
+            "speed": 1.5099999904632569,
             "objects": [
                 {
-                    "pieceId": "truck",
-                    "offset": 3.9700000286102297,
-                    "spacing": 16.399999618530275,
-                    "phase": 0
-                },
-                {
                     "pieceId": "convertible",
-                    "offset": 13.399999618530274,
-                    "spacing": 11.600000381469727,
+                    "offset": 16.649999618530275,
+                    "spacing": 8.5,
                     "phase": 0
                 }
             ],

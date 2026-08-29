@@ -25,7 +25,7 @@ namespace FrogAcross.Editor.Generator
 
         public static float GoldFactorFor(int levelNumber) => levelNumber switch
         {
-            <= 10 => 4.5f,
+            <= 10 => 4.8f,
             <= 20 => 3.4f,
             <= 30 => 2.9f,
             <= 40 => 2.4f,

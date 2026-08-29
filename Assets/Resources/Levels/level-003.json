@@ -3,9 +3,9 @@
     "name": "level-003",
     "columns": 9,
     "medal": {
-        "gold": 15.899999618530274,
-        "silver": 23.100000381469728,
-        "bronze": 33.400001525878909
+        "gold": 17.0,
+        "silver": 24.600000381469728,
+        "bronze": 35.599998474121097
     },
     "startColumn": 1,
     "bays": [
@@ -34,8 +34,8 @@
             "objects": [
                 {
                     "pieceId": "convertible",
-                    "offset": 1.7200000286102296,
-                    "spacing": 7.170000076293945,
+                    "offset": 3.5999999046325685,
+                    "spacing": 7.5,
                     "phase": 0
                 }
             ],
@@ -62,8 +62,8 @@
             "objects": [
                 {
                     "pieceId": "convertible",
-                    "offset": 6.289999961853027,
-                    "spacing": 6.880000114440918,
+                    "offset": 13.710000038146973,
+                    "spacing": 7.5,
                     "phase": 0
                 }
             ],

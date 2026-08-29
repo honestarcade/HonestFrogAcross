@@ -55,7 +55,10 @@ namespace FrogAcross.Tests.EditMode.Generator
             var report = LevelGenerator.GenerateCandidates(p, reg);
             Assert.AreEqual(0, report.Accepted.Count);
             Assert.AreEqual(4, report.Rejected.Count);
-            Assert.IsTrue(report.Rejected.All(r => r.reason.StartsWith("solver: ") || r.reason.StartsWith("validation: ")));
+            Assert.IsTrue(report.Rejected.All(r =>
+                r.reason.StartsWith("solver: ") || r.reason.StartsWith("validation: ")
+                || r.reason.Contains("overlap")), // the lane-overlap gate rejects before solving
+                "every rejection names why: " + string.Join(" | ", report.Rejected.Select(r => r.reason)));
         }
     }
 }

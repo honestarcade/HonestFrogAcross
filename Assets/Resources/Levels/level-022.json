@@ -3,14 +3,14 @@
     "name": "level-022",
     "columns": 9,
     "medal": {
-        "gold": 12.5,
-        "silver": 18.200000762939454,
-        "bronze": 26.299999237060548
+        "gold": 22.5,
+        "silver": 32.70000076293945,
+        "bronze": 47.29999923706055
     },
-    "startColumn": 5,
+    "startColumn": 6,
     "bays": [
-        1,
-        4
+        2,
+        7
     ],
     "rows": [
         {
@@ -27,29 +27,29 @@
             "objects": [
                 {
                     "pieceId": "log-long",
-                    "offset": 3.140000104904175,
-                    "spacing": 19.100000381469728,
+                    "offset": 11.619999885559082,
+                    "spacing": 21.0,
                     "phase": 0
                 },
                 {
-                    "pieceId": "log-short",
-                    "offset": 13.930000305175782,
-                    "spacing": 11.579999923706055,
-                    "phase": 0
+                    "pieceId": "turtle-log",
+                    "offset": 1.1200000047683716,
+                    "spacing": 21.0,
+                    "phase": 5
                 }
             ],
             "obstructions": []
         },
         {
             "kind": "swamp",
-            "dir": "left",
-            "speed": 1.100000023841858,
+            "dir": "right",
+            "speed": 1.159999966621399,
             "objects": [
                 {
-                    "pieceId": "log-short",
-                    "offset": 4.110000133514404,
-                    "spacing": 7.119999885559082,
-                    "phase": 0
+                    "pieceId": "gator",
+                    "offset": 18.56999969482422,
+                    "spacing": 9.5,
+                    "phase": 242
                 }
             ],
             "obstructions": []
@@ -61,8 +61,8 @@
             "objects": [
                 {
                     "pieceId": "log-long",
-                    "offset": 4.420000076293945,
-                    "spacing": 9.449999809265137,
+                    "offset": 9.819999694824219,
+                    "spacing": 10.5,
                     "phase": 0
                 }
             ],
@@ -75,14 +75,14 @@
             "objects": [
                 {
                     "pieceId": "turtle-log",
-                    "offset": 4.679999828338623,
-                    "spacing": 14.539999961853028,
-                    "phase": 295
+                    "offset": 18.799999237060548,
+                    "spacing": 21.0,
+                    "phase": 153
                 },
                 {
                     "pieceId": "log-long",
-                    "offset": 11.65999984741211,
-                    "spacing": 19.0,
+                    "offset": 8.300000190734864,
+                    "spacing": 21.0,
                     "phase": 0
                 }
             ],
@@ -91,32 +91,26 @@
         {
             "kind": "swamp",
             "dir": "left",
-            "speed": 1.2699999809265137,
+            "speed": 1.3600000143051148,
             "objects": [
                 {
-                    "pieceId": "turtle-log",
-                    "offset": 4.760000228881836,
-                    "spacing": 6.78000020980835,
-                    "phase": 91
+                    "pieceId": "log-short",
+                    "offset": 16.309999465942384,
+                    "spacing": 8.5,
+                    "phase": 0
                 }
             ],
             "obstructions": []
         },
         {
             "kind": "road",
-            "dir": "left",
-            "speed": 1.649999976158142,
+            "dir": "right",
+            "speed": 1.559999942779541,
             "objects": [
                 {
-                    "pieceId": "truck",
-                    "offset": 4.489999771118164,
-                    "spacing": 14.239999771118164,
-                    "phase": 0
-                },
-                {
-                    "pieceId": "bus",
-                    "offset": 9.630000114440918,
-                    "spacing": 12.65999984741211,
+                    "pieceId": "car",
+                    "offset": 13.149999618530274,
+                    "spacing": 7.5,
                     "phase": 0
                 }
             ],

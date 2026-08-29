@@ -3,9 +3,9 @@
     "name": "level-002",
     "columns": 11,
     "medal": {
-        "gold": 12.899999618530274,
-        "silver": 18.700000762939454,
-        "bronze": 27.100000381469728
+        "gold": 13.800000190734864,
+        "silver": 20.0,
+        "bronze": 28.899999618530275
     },
     "startColumn": 2,
     "bays": [
@@ -41,37 +41,24 @@
             "objects": [
                 {
                     "pieceId": "car",
-                    "offset": 1.0299999713897706,
-                    "spacing": 12.5,
+                    "offset": 8.210000038146973,
+                    "spacing": 17.0,
                     "phase": 0
                 },
                 {
                     "pieceId": "car",
-                    "offset": 7.170000076293945,
-                    "spacing": 14.279999732971192,
+                    "offset": 16.709999084472658,
+                    "spacing": 17.0,
                     "phase": 0
                 }
             ],
             "obstructions": []
         },
         {
-            "kind": "road",
-            "dir": "right",
-            "speed": 1.0299999713897706,
-            "objects": [
-                {
-                    "pieceId": "car",
-                    "offset": 0.949999988079071,
-                    "spacing": 13.039999961853028,
-                    "phase": 0
-                },
-                {
-                    "pieceId": "car",
-                    "offset": 8.34000015258789,
-                    "spacing": 13.279999732971192,
-                    "phase": 0
-                }
-            ],
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
             "obstructions": []
         },
         {
