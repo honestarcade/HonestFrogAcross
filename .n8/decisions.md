@@ -222,3 +222,17 @@ When `/n8-replan` processes an ad-hoc entry it appends `— reconciled by /n8-re
 - **#68 privacy policy hosting (delegated):** GitHub Pages from main/docs (enabled 2026-08-28) — https://honestarcade.github.io/HonestFrogAcross/privacy. The repo is public and open source is part of the store pitch, so Pages fits; no separate infrastructure.
 - **#69 promotion runs in CI, not locally:** the Play service-account key exists only as a GitHub secret (by design — no local key material). Added play-promote.yml (workflow_dispatch, internal→alpha default) using the androidpublisher REST API; the SA remains testing-tracks-only, so production promotion (#70) stays a human Console act.
 - **#69 promote saga (fixed forward):** google-github-actions/auth mints via the IAM Credentials API → 403 for this SA; switched to gcloud local JWT (the play-api-check pattern). Then Play refused a completed alpha release — "Only releases with status draft may be created on draft app" — so the workflow now falls back to a draft release and says so; once the listing publishes, completed works. v0.2.0 (code 102) is on the closed track as a draft.
+
+## Ad-hoc — Studio screen adopts the Honest Sudoku design (2026-08-29)
+
+- **What changed:** the owner amended the "Honest Arcade" (studio) screen: the Frog Across design's version was wrong; the screen must be rebuilt from the Honest Sudoku design (claude.ai/design project 9e9471c9-5231-4fd8-9889-066345073295, Honest Sudoku.dc.html) adapted to landscape — and this studio content is intended as the standard across ALL Honest Arcade apps.
+- **Why:** cross-app brand consistency; stated during M4–M7 verification UAT.
+- **Affected:** #58's shipped studio screen (amended by #91, filed in M4); any future app scaffolding that copies this screen.
+
+### M4–M7 verification (2026-08-29)
+
+- **Fresh gate on main @ 752ee67:** EditMode 139/139, PlayMode 16/16; all 39 story-promised tests confirmed present by name and green.
+- **Golden independently re-derived:** full content pipeline re-run produced byte-identical levels + fixture + curve asset (git diff 0 lines); Python-only SHA256 + medal recomputation agreed (4 bronze values differ 0.1s at .x5 rounding boundaries — banker's rounding artifact, not drift).
+- **Owner device UAT (v0.2.0/102):** data layer clean across the board; visual layer failed → bugs #84–#90 + amendment #91. Teaching sequence played cold to L7. #35's Console warnings confirmed gone by the owner.
+- **M5 closed** (epic #10 closed; epic #9 also closed — fully proven). **M4 open** (confirmed bugs), **M6/M7 open** (owner-gated stories). M2/M3 remain executed-but-unverified; M3 now carries confirmed bug #86.
+- **Account correction:** Play developer account is ntpond@gmail.com; support@honestarcade.app is only the publisher contact email (memory updated — earlier notes had it backwards).
