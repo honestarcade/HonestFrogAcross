@@ -110,6 +110,7 @@ namespace FrogAcross.Tests.PlayMode
         {
             yield return CaptureBoard("level-001", "board");
             yield return CaptureBoard("level-090", "board-tall");
+            yield return CaptureBoard("level-010", "board-props"); // obstructions
         }
 
         private static IEnumerator CaptureBoard(string levelId, string name)
@@ -142,6 +143,19 @@ namespace FrogAcross.Tests.PlayMode
                 Assert.That(Mathf.Abs(local.x), Is.LessThanOrEqualTo(halfW + 0.001f),
                     $"{levelId}: corner {corner} falls outside the rolled frame horizontally");
             }
+            // composite the HUD over the board: overlay canvases don't render
+            // into a RenderTexture, so borrow the board camera for the shot
+            var hud = GameObject.Find("hud");
+            Canvas hudCanvas = hud != null ? hud.GetComponent<Canvas>() : null;
+            if (hudCanvas != null)
+            {
+                hudCanvas.renderMode = RenderMode.ScreenSpaceCamera;
+                hudCanvas.worldCamera = cam;
+                hudCanvas.planeDistance = 1f;
+                Canvas.ForceUpdateCanvases();
+                yield return null;
+            }
+
             cam.Render();
             RenderTexture.active = rt;
             var tex = new Texture2D(3120, 1440, TextureFormat.RGB24, false);

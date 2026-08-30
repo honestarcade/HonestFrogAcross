@@ -60,6 +60,28 @@ namespace FrogAcross.View
             return 0.25f; // submerged: sunken ghost under the water
         }
 
+        public const float HopHeight = 0.30f;  // apex of a hop, in cells
+        public const float StepBob = 0.10f;    // footfall bounce of a runner
+
+        /// <summary>
+        /// How a character carries itself between cells, as (lift above the
+        /// path, vertical stretch). The sim moves in one tick; this is the
+        /// view's cosmetic arc across the hop cooldown, and it is the piece's
+        /// own data (CharacterDef.moveStyle) that picks the shape — a frog
+        /// hops, a dog runs (owner, 2026-08-30).
+        /// </summary>
+        public static (float lift, float squash) MoveArc(MoveStyle style, float phase)
+        {
+            if (phase <= 0f || phase >= 1f) return (0f, 1f);
+            if (style == MoveStyle.Hop)
+            {
+                float a = Mathf.Sin(phase * Mathf.PI);      // one clean arc
+                return (a * HopHeight, 1f + a * 0.14f);     // stretched at the apex
+            }
+            float b = Mathf.Abs(Mathf.Sin(phase * Mathf.PI * 2f)); // two footfalls
+            return (b * StepBob, 1f - b * 0.06f);                  // and a squat
+        }
+
         /// <summary>Deterministic livery assignment per instance (no RNG).</summary>
         public static int LiveryFor(int row, int trainIdx, int instance, int liveryCount)
             => liveryCount <= 0 ? 0 : (row * 7 + trainIdx * 3 + instance) % liveryCount;
