@@ -152,6 +152,11 @@ namespace FrogAcross.UI
             t.alignment = align;
             t.horizontalOverflow = HorizontalWrapMode.Wrap;
             t.verticalOverflow = VerticalWrapMode.Overflow;
+            // Text is decoration, never a tap target: a label's box is 600 wide
+            // by default and would otherwise sit on top of whatever it labels
+            // and swallow the tap (owner: the regions overlay closed only in
+            // places, 2026-08-30). Buttons block with their own Image.
+            t.raycastTarget = false;
             var rt = t.rectTransform;
             rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.5f);
             rt.sizeDelta = sizeDelta ?? new Vector2(600, size + 14);

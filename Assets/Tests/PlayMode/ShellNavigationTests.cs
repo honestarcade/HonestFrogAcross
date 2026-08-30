@@ -1,8 +1,10 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using FrogAcross.UI;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 using UnityEngine.UI;
@@ -126,6 +128,50 @@ namespace FrogAcross.Tests.PlayMode
                 .GetComponentInChildren<ScrollRect>(true);
             Assert.That(rebuilt.verticalNormalizedPosition, Is.EqualTo(0.25f).Within(0.05f),
                 "the rebuilt screen keeps your place");
+        }
+
+        [UnityTest]
+        public IEnumerator RegionsPreview_ClosesOnATapAnywhere()
+        {
+            // owner: "opening the regions overlay works, however closing it is
+            // spotty… tapping towards the center works, but not the edges" —
+            // the zone captions were raycast targets sitting over the scrim,
+            // and a 600-wide caption covers a 20%-wide side zone completely
+            SceneManager.LoadScene("Shell");
+            yield return null;
+            var shell = Object.FindAnyObjectByType<AppShell>();
+            yield return Wait1_3;
+
+            SettingsScreen.ShowRegionsPreview(shell.transform);
+            yield return null;
+            Canvas.ForceUpdateCanvases();
+            yield return null;
+            Assert.That(GameObject.Find("regions-preview"), Is.Not.Null, "the preview opened");
+
+            var events = EventSystem.current;
+            var hits = new List<RaycastResult>();
+            for (int ix = 0; ix <= 10; ix++)
+            for (int iy = 0; iy <= 10; iy++)
+            {
+                var point = new Vector2(
+                    Mathf.Lerp(2f, Screen.width - 2f, ix / 10f),
+                    Mathf.Lerp(2f, Screen.height - 2f, iy / 10f));
+                hits.Clear();
+                events.RaycastAll(new PointerEventData(events) { position = point }, hits);
+                Assert.That(hits.Count, Is.GreaterThan(0), $"nothing under {point}");
+                Assert.That(hits[0].gameObject.name, Is.EqualTo("dismiss"),
+                    $"a tap at {point} must reach the dismiss sheet, not '{hits[0].gameObject.name}'");
+            }
+
+            // and the tap actually closes it — near the left edge, the corner
+            // the owner could not dismiss from
+            var edge = new Vector2(Screen.width * 0.04f, Screen.height * 0.5f);
+            hits.Clear();
+            events.RaycastAll(new PointerEventData(events) { position = edge }, hits);
+            ExecuteEvents.ExecuteHierarchy(hits[0].gameObject,
+                new PointerEventData(events) { position = edge }, ExecuteEvents.pointerClickHandler);
+            yield return null;
+            Assert.That(GameObject.Find("regions-preview"), Is.Null, "one tap closes the preview");
         }
 
         [UnityTest]
