@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using FrogAcross.UI;
 using NUnit.Framework;
 using UnityEngine;
@@ -94,6 +95,59 @@ namespace FrogAcross.Tests.PlayMode
             shell.Back();
             yield return null;
             Assert.That(ScreenActive("menu"), Is.True, "same for settings");
+        }
+
+        [UnityTest]
+        public IEnumerator ChangingASetting_KeepsYourPlaceInTheScroll()
+        {
+            // owner: flipping the control scheme halfway down Settings snapped
+            // the page back to the top
+            SceneManager.LoadScene("Shell");
+            yield return null;
+            var shell = Object.FindAnyObjectByType<AppShell>();
+            yield return Wait1_3;
+            shell.Push("settings");
+            yield return null;
+            Canvas.ForceUpdateCanvases();
+            yield return null;
+
+            var settings = GameObject.Find("shell-canvas").transform.Find("safe-area/settings");
+            var scroll = settings.GetComponentInChildren<ScrollRect>(true);
+            Assert.That(scroll.viewport.GetComponent<Graphic>(), Is.Not.Null,
+                "the viewport needs a raycast surface or drags over empty space do nothing");
+
+            scroll.verticalNormalizedPosition = 0.25f;
+            yield return null;
+            shell.Replace("settings", SettingsScreen.Build);
+            yield return null;
+            yield return null;
+
+            var rebuilt = GameObject.Find("shell-canvas").transform.Find("safe-area/settings")
+                .GetComponentInChildren<ScrollRect>(true);
+            Assert.That(rebuilt.verticalNormalizedPosition, Is.EqualTo(0.25f).Within(0.05f),
+                "the rebuilt screen keeps your place");
+        }
+
+        [UnityTest]
+        public IEnumerator StudioScreen_SupportBoxLinksOut_AndDropsTheFooterLinks()
+        {
+            SceneManager.LoadScene("Shell");
+            yield return null;
+            var shell = Object.FindAnyObjectByType<AppShell>();
+            yield return Wait1_3;
+            shell.Push("studio");
+            yield return null;
+
+            var studio = GameObject.Find("shell-canvas").transform.Find("safe-area/studio");
+            var support = studio.GetComponentsInChildren<Transform>(true)
+                .FirstOrDefault(t => t.name == "support-card");
+            Assert.That(support, Is.Not.Null);
+            Assert.That(support.GetComponent<Button>(), Is.Not.Null, "the whole box is the link");
+            Assert.That(StaticScreens.SupportUrl, Is.EqualTo("https://honestarcade.app/contribute"));
+
+            foreach (var text in studio.GetComponentsInChildren<Text>(true))
+                Assert.That(text.text, Does.Not.Contain("SOURCE ON GITHUB"),
+                    "the footer link lines were removed");
         }
 
         [UnityTest]

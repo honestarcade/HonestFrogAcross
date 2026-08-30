@@ -74,8 +74,8 @@ namespace FrogAcross.UI
             pct.rectTransform.pivot = new Vector2(0f, 1f);
             pct.rectTransform.anchoredPosition = new Vector2(UiKit.EdgePad + 920f, -220f);
 
-            Legend(band.transform, "Gold", UiKit.Gold, -540f);
-            Legend(band.transform, "Silver", UiKit.Silver, -330f);
+            Legend(band.transform, "Gold", UiKit.Gold, -940f);
+            Legend(band.transform, "Silver", UiKit.Silver, -530f);
             Legend(band.transform, "Bronze", UiKit.Bronze, -110f);
 
             UiKit.Header(root.transform, "Levels", shell.Back);
@@ -88,11 +88,11 @@ namespace FrogAcross.UI
             var drt = dot.rectTransform;
             drt.anchorMin = drt.anchorMax = new Vector2(1f, 1f);
             drt.pivot = new Vector2(1f, 1f);
-            drt.sizeDelta = new Vector2(32, 32);
-            drt.anchoredPosition = new Vector2(rightOffset - 200f, -98f);
+            drt.sizeDelta = new Vector2(64, 64);
+            drt.anchoredPosition = new Vector2(rightOffset - 360f, -92f);
 
-            var text = UiKit.Label(band, label, UiKit.Caption, UiKit.TextBlue, Vector2.zero,
-                new Vector2(190, 44), TextAnchor.MiddleLeft);
+            var text = UiKit.Label(band, label, UiKit.Heading + 12, UiKit.TextBlue, Vector2.zero,
+                new Vector2(280, 76), TextAnchor.MiddleLeft);
             var trt = text.rectTransform;
             trt.anchorMin = trt.anchorMax = new Vector2(1f, 1f);
             trt.pivot = new Vector2(1f, 1f);

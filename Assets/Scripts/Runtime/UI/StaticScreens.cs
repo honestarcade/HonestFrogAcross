@@ -40,16 +40,19 @@ namespace FrogAcross.UI
     /// <summary>#58: About / Gameplay / Studio — teaching the SHIPPED rules.</summary>
     public static class StaticScreens
     {
+        public const string SupportUrl = "https://honestarcade.app/contribute";
+
         public static GameObject BuildAbout(Transform parent, AppShell shell)
         {
-            var c = Screen(parent, shell, "about", "About Frog Across", 1900f, out var root);
+            var c = Screen(parent, shell, "about", "About Frog Across", 1500f, out var root);
 
-            UiKit.Label(c, Copy.Get("aboutBody"), UiKit.Body, UiKit.TextBlue,
-                new Vector2(-430, -130), new Vector2(880, 260), TextAnchor.UpperLeft);
-            Card(c, "SWIPE", Copy.Get("aboutSwipe"), new Vector2(-430, -420), false, 880, 260);
-            Card(c, "DIAGONAL 43–47°", Copy.Get("aboutDiagonal"), new Vector2(-430, -720), true, 880, 260);
-            UiKit.Label(c, $"v{Application.version}  ·  {FrogAcross.Levels.LevelCatalog.Count} LEVELS  ·  6 CHARACTERS  ·  NO ADS",
-                UiKit.Caption, UiKit.TextDim, new Vector2(-430, -900), new Vector2(880, 44), TextAnchor.MiddleLeft);
+            var left = UiKit.Column(c, new Vector2(-880, -70), 900f, 30f);
+            UiKit.Label(left, Copy.Get("aboutBody"), UiKit.Body, UiKit.TextBlue,
+                Vector2.zero, new Vector2(900, 0), TextAnchor.UpperLeft);
+            Card(left, "SWIPE", Copy.Get("aboutSwipe"), false, 900f);
+            Card(left, "DIAGONAL 43–47°", Copy.Get("aboutDiagonal"), true, 900f);
+            UiKit.Label(left, $"v{Application.version}  ·  {FrogAcross.Levels.LevelCatalog.Count} LEVELS  ·  6 CHARACTERS  ·  NO ADS",
+                UiKit.Caption, UiKit.TextDim, Vector2.zero, new Vector2(900, 48), TextAnchor.MiddleLeft);
 
             BoardRules(c, new Vector2(80, -70));
             return root;
@@ -57,10 +60,12 @@ namespace FrogAcross.UI
 
         public static GameObject BuildGameplay(Transform parent, AppShell shell)
         {
-            var c = Screen(parent, shell, "gameplay", "Gameplay", 2100f, out var root);
-            Card(c, "THE GOAL", Copy.Get("goal"), new Vector2(-430, -220), true, 880, 340);
-            Card(c, "LEVELS & TIMING", Copy.Get("levelsTiming"), new Vector2(-430, -620), false, 880, 400);
-            Card(c, "SWIPING & TAPPING", Copy.Get("swiping"), new Vector2(-430, -1080), false, 880, 460);
+            var c = Screen(parent, shell, "gameplay", "Gameplay", 1900f, out var root);
+
+            var left = UiKit.Column(c, new Vector2(-880, -70), 900f, 30f);
+            Card(left, "THE GOAL", Copy.Get("goal"), true, 900f);
+            Card(left, "LEVELS & TIMING", Copy.Get("levelsTiming"), false, 900f);
+            Card(left, "SWIPING & TAPPING", Copy.Get("swiping"), false, 900f);
 
             BoardRules(c, new Vector2(80, -70));
             return root;
@@ -116,7 +121,13 @@ namespace FrogAcross.UI
             UiKit.Label(c, Copy.Get("studioTagline"), UiKit.Body, UiKit.Hex("7FA6D8"),
                 new Vector2(540, -420), new Vector2(840, 100), TextAnchor.UpperLeft);
 
-            var support = UiKit.Panel(c, "support-card", new Color(0f, 0.839f, 0.706f, 0.12f));
+            var support = UiKit.Panel(c, "support-card", new Color(0f, 0.839f, 0.706f, 0.14f));
+            var supportBtn = support.gameObject.AddComponent<Button>();
+            supportBtn.targetGraphic = support;
+            supportBtn.onClick.AddListener(() =>
+                FrogAcross.Audio.AudioDirector.Instance.Play(FrogAcross.Audio.GameSound.UiTap));
+            // hands off to the browser: no network access of our own (invariant 1)
+            supportBtn.onClick.AddListener(() => Application.OpenURL(SupportUrl));
             support.rectTransform.sizeDelta = new Vector2(860, 360);
             support.rectTransform.anchoredPosition = new Vector2(540, -680);
             UiKit.Label(support.transform, "SUPPORT HONEST ARCADE", UiKit.Caption, UiKit.Mint, new Vector2(0, 128),
@@ -138,8 +149,6 @@ namespace FrogAcross.UI
                 Chip(c, chips[i].text, chips[i].c,
                     new Vector2(300 + (i % 3) * 268, -960 - (i / 3) * 92));
 
-            UiKit.Label(c, "HONESTARCADE.APP  ·  SOURCE ON GITHUB", UiKit.Caption, UiKit.Hex("7FA6D8"),
-                new Vector2(540, -1200), new Vector2(840, 44), TextAnchor.MiddleLeft);
             return root;
         }
 
@@ -177,18 +186,29 @@ namespace FrogAcross.UI
             return content;
         }
 
-        private static void Card(Transform parent, string title, string body, Vector2 pos, bool accent,
-            float w = 420, float h = 170)
+        /// <summary>
+        /// A copy card that grows to whatever its text needs. Lives inside a
+        /// UiKit.Column, which sizes it from this layout's preferred height —
+        /// a fixed height let "Swiping &amp; tapping" spill out of its box.
+        /// </summary>
+        private static void Card(Transform parent, string title, string body, bool accent, float width)
         {
             var card = UiKit.Panel(parent, $"card-{title}", accent
                 ? new Color(0f, 0.839f, 0.706f, 0.12f)
-                : new Color(1f, 1f, 1f, 0.05f));
-            card.rectTransform.sizeDelta = new Vector2(w, h);
-            card.rectTransform.anchoredPosition = pos;
+                : new Color(1f, 1f, 1f, 0.06f));
+
+            var layout = card.gameObject.AddComponent<VerticalLayoutGroup>();
+            layout.padding = new RectOffset(40, 40, 32, 34);
+            layout.spacing = 16;
+            layout.childControlWidth = true;
+            layout.childControlHeight = true;
+            layout.childForceExpandWidth = true;
+            layout.childForceExpandHeight = false;
+
             UiKit.Label(card.transform, title, UiKit.Caption, accent ? UiKit.Mint : UiKit.TextDim,
-                new Vector2(0, h / 2f - 46), new Vector2(w - 64, 44), TextAnchor.MiddleLeft);
+                Vector2.zero, new Vector2(width - 80, 0), TextAnchor.MiddleLeft);
             UiKit.Label(card.transform, body, UiKit.Body, UiKit.TextBlue,
-                new Vector2(0, -26), new Vector2(w - 64, h - 116), TextAnchor.UpperLeft);
+                Vector2.zero, new Vector2(width - 80, 0), TextAnchor.UpperLeft);
         }
 
         private static void Chip(Transform parent, string text, Color color, Vector2 pos)

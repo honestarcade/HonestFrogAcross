@@ -114,8 +114,26 @@ namespace FrogAcross.UI
         /// </summary>
         public void Replace(string name, Func<Transform, AppShell, GameObject> builder)
         {
+            // keep the reader where they were: flipping a setting halfway down
+            // the page used to snap it back to the top
+            float? scroll = null;
+            if (_screens.TryGetValue(name, out var existing) && existing != null)
+            {
+                var previous = existing.GetComponentInChildren<ScrollRect>(true);
+                if (previous != null) scroll = previous.verticalNormalizedPosition;
+            }
+
             RebuildScreen(name, builder);
             foreach (var kv in _screens) kv.Value.SetActive(kv.Key == name);
+            if (scroll.HasValue) StartCoroutine(RestoreScroll(name, scroll.Value));
+        }
+
+        private IEnumerator RestoreScroll(string name, float normalized)
+        {
+            yield return null; // let the rebuilt layout settle first
+            if (!_screens.TryGetValue(name, out var screen) || screen == null) yield break;
+            var scroll = screen.GetComponentInChildren<ScrollRect>(true);
+            if (scroll != null) scroll.verticalNormalizedPosition = normalized;
         }
 
         public void RebuildScreen(string name, Func<Transform, AppShell, GameObject> builder)
@@ -164,7 +182,7 @@ namespace FrogAcross.UI
             rrt.anchorMin = Vector2.zero; rrt.anchorMax = Vector2.one;
             rrt.offsetMin = rrt.offsetMax = Vector2.zero;
             UiKit.Stretch(UiKit.Fill(root.transform, "bg", UiKit.Navy));
-            UiKit.Logotype(root.transform, new Vector2(0, 60), 116);
+            UiKit.Logotype(root.transform, new Vector2(-560f, 60f), 116);
             var barBg = UiKit.Panel(root.transform, "bar-bg", new Color(1f, 1f, 1f, 0.12f), 8);
             barBg.rectTransform.sizeDelta = new Vector2(520, 12);
             barBg.rectTransform.anchoredPosition = new Vector2(0, -200);
@@ -178,6 +196,36 @@ namespace FrogAcross.UI
 
     internal static class MenuScreen
     {
+        /// <summary>A full-height column pinned to one safe-area edge.</summary>
+        private static Transform Side(Transform parent, bool left)
+        {
+            var go = new GameObject(left ? "brand-column" : "action-column");
+            go.transform.SetParent(parent, false);
+            var rt = go.AddComponent<RectTransform>();
+            rt.anchorMin = rt.anchorMax = new Vector2(left ? 0f : 1f, 0.5f);
+            rt.pivot = new Vector2(left ? 0f : 1f, 0.5f);
+            rt.sizeDelta = Vector2.zero;
+            rt.anchoredPosition = new Vector2(left ? UiKit.EdgePad : -UiKit.EdgePad, 0f);
+            return go.transform;
+        }
+
+        private static void RightAlign(RectTransform rt, float rightX, float centreY, Vector2 size)
+        {
+            rt.anchorMin = rt.anchorMax = new Vector2(1f, 0.5f);
+            rt.pivot = new Vector2(1f, 0.5f);
+            rt.sizeDelta = size;
+            rt.anchoredPosition = new Vector2(rightX, centreY);
+        }
+
+        /// <summary>Places a rect by its LEFT edge so a column can share one.</summary>
+        private static void LeftAlign(RectTransform rt, float leftX, float centreY, Vector2 size)
+        {
+            rt.anchorMin = rt.anchorMax = new Vector2(0f, 0.5f);
+            rt.pivot = new Vector2(0f, 0.5f);
+            rt.sizeDelta = size;
+            rt.anchoredPosition = new Vector2(leftX, centreY);
+        }
+
         public static GameObject Build(Transform parent, AppShell shell)
         {
             var root = new GameObject("menu");
@@ -186,31 +234,33 @@ namespace FrogAcross.UI
             rt.anchorMin = Vector2.zero; rt.anchorMax = Vector2.one;
             rt.offsetMin = rt.offsetMax = Vector2.zero;
 
-            // brand column left, actions right — both filling the safe area
-            UiKit.Logotype(root.transform, new Vector2(-640, 250), 128);
+            // Two columns pinned to the safe-area edges — fixed offsets from
+            // the centre would fall off a 16:9 phone, where the canvas is only
+            // 1920 wide.
+            var brand = Side(root.transform, left: true);
+            var actions = Side(root.transform, left: false);
+
+            UiKit.Logotype(brand, new Vector2(0f, 200f), 112);
 
             int current = Mathf.Min(Progression.HighestUnlocked, LevelCatalog.Count);
             int medals = 0;
             foreach (var r in Progression.Data.records) if (r.medal > 0) medals++;
 
-            var levelChip = UiKit.Panel(root.transform, "chip-level", new Color(1f, 1f, 1f, 0.07f));
-            levelChip.rectTransform.sizeDelta = new Vector2(420, 96);
-            levelChip.rectTransform.anchoredPosition = new Vector2(-860, 20);
+            var levelChip = UiKit.Panel(brand, "chip-level", new Color(1f, 1f, 1f, 0.07f));
+            LeftAlign(levelChip.rectTransform, 0f, 10f, new Vector2(440, 100));
             UiKit.Label(levelChip.transform, $"Level {current} / {LevelCatalog.Count}", UiKit.Caption,
-                UiKit.TextBlue, Vector2.zero, new Vector2(380, 44));
-            var medalChip = UiKit.Panel(root.transform, "chip-medals", new Color(1f, 1f, 1f, 0.07f));
-            medalChip.rectTransform.sizeDelta = new Vector2(330, 96);
-            medalChip.rectTransform.anchoredPosition = new Vector2(-430, 20);
+                UiKit.TextBlue, Vector2.zero, new Vector2(400, 48));
+            var medalChip = UiKit.Panel(brand, "chip-medals", new Color(1f, 1f, 1f, 0.07f));
+            LeftAlign(medalChip.rectTransform, 470f, 10f, new Vector2(340, 100));
             UiKit.Label(medalChip.transform, $"{medals} medals", UiKit.Caption,
-                UiKit.TextBlue, Vector2.zero, new Vector2(290, 44));
+                UiKit.TextBlue, Vector2.zero, new Vector2(300, 48));
 
-            UiKit.Label(root.transform, "SWIPE TO MOVE  ·  TAP TO HOP FORWARD", UiKit.Micro, UiKit.TextDim,
-                new Vector2(-640, -160), new Vector2(980, 44));
-            UiKit.Label(root.transform, $"v{Application.version}  ·  NO ADS  ·  NO TRACKING  ·  OPEN SOURCE",
-                UiKit.Micro, UiKit.TextDim, new Vector2(-640, -420), new Vector2(1100, 44));
-
-            UiKit.Button(root.transform, $"Continue — Level {current}", new Vector2(470, 300),
+            // Buttons: three rows of 160 from y=100 → the block bottom is -360,
+            // and the promise line's bottom sits level with it.
+            var continueBtn = UiKit.Button(actions, $"Continue — Level {current}", Vector2.zero,
                 new Vector2(880, 160), shell.LaunchCurrent, primary: true, fontSize: UiKit.Title - 6);
+            RightAlign(continueBtn.image.rectTransform, 0f, 300f, new Vector2(880, 160));
+
             var grid = new (string label, string screen)[]
             {
                 ("Levels", "levels"), ("Character", "character"),
@@ -220,11 +270,16 @@ namespace FrogAcross.UI
             for (int i = 0; i < grid.Length; i++)
             {
                 var (label, screen) = grid[i];
-                float x = 470 + (i % 2 == 0 ? -224 : 224);
-                float y = 100 - (i / 2) * 190;
-                UiKit.Button(root.transform, label, new Vector2(x, y), new Vector2(432, 160),
+                var btn = UiKit.Button(actions, label, Vector2.zero, new Vector2(432, 160),
                     () => shell.Push(screen), fontSize: UiKit.Heading);
+                float right = i % 2 == 0 ? -448f : 0f;
+                RightAlign(btn.image.rectTransform, right, 100f - (i / 2) * 190f, new Vector2(432, 160));
             }
+
+            var promise = UiKit.Label(brand,
+                $"v{Application.version}  ·  NO ADS  ·  NO TRACKING  ·  OPEN SOURCE",
+                UiKit.Micro, UiKit.TextDim, Vector2.zero, new Vector2(1000, 44), TextAnchor.MiddleLeft);
+            LeftAlign(promise.rectTransform, 0f, -360f + 22f, new Vector2(1000, 44));
             return root;
         }
     }
