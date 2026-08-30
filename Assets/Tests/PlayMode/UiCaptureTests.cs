@@ -74,7 +74,7 @@ namespace FrogAcross.Tests.PlayMode
             Assert.That(scaler, Is.Not.Null, "shell canvas must scale with screen size (#84)");
             Assert.That(scaler.referenceResolution, Is.EqualTo(new Vector2(1920, 1080)));
 
-            foreach (var screen in new[] { "menu", "levels", "character", "about", "gameplay", "settings", "studio" })
+            foreach (var screen in new[] { "loading", "menu", "levels", "character", "about", "gameplay", "settings", "studio" })
             {
                 shell.Push(screen);
                 yield return null;

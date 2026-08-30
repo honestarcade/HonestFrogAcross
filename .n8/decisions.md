@@ -279,3 +279,11 @@ When `/n8-replan` processes an ad-hoc entry it appends `— reconciled by /n8-re
 - **Copy cards size themselves** from a layout group instead of a fixed height — "Swiping & tapping" was spilling out of its box. Same root cause as the earlier overlap reports.
 - **Region preview is fully opaque** (owner: "take off the transparency altogether"): solid navy scrim, solid mint/blue/purple zones, dark glyphs.
 - **Support card is the link.** The whole green box opens https://honestarcade.app/contribute via Application.OpenURL. Adjacent to invariant 1, so stating it plainly: this is an OS hand-off to the browser, needs no INTERNET permission, sends no player data, and the shipped AAB still carries no network permission. The two footer link lines under the pills were removed.
+
+### Device UAT round 5 — fix pass (2026-08-29, awaiting owner sign-off before release)
+
+- **Loading screen regression (mine):** making Logotype left-anchored for the menu broke the loading screen, which anchored the block to the canvas's LEFT EDGE and then offset it further left. Logotype now decides its own anchoring after measuring: `centred: true` centres the whole block on the parent, otherwise it pins to a column's left edge.
+- **The mark carried 117px of transparent padding on all four sides** (23% of the sprite), so it rendered visually indented next to the pills and smaller than its box. Re-rendered tightly cropped (1px residual), which is what "the logo isn't aligned right" was.
+- **Menu footer** enlarged from Micro (26) to Body (40) — the owner had asked for bigger and I had left that line at the smallest size.
+- **Scroll restore no longer flashes:** the coroutine restored the position a frame late, so one frame drew at the top. Now the rebuilt screen is laid out (ForceUpdateCanvases + ForceRebuildLayoutImmediate) and the position restored in the same frame.
+- **Loading screen added to the capture harness** — it had never been rendered locally, which is exactly why the regression reached the owner's phone.

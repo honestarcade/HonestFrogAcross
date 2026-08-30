@@ -125,15 +125,16 @@ namespace FrogAcross.UI
 
             RebuildScreen(name, builder);
             foreach (var kv in _screens) kv.Value.SetActive(kv.Key == name);
-            if (scroll.HasValue) StartCoroutine(RestoreScroll(name, scroll.Value));
-        }
 
-        private IEnumerator RestoreScroll(string name, float normalized)
-        {
-            yield return null; // let the rebuilt layout settle first
-            if (!_screens.TryGetValue(name, out var screen) || screen == null) yield break;
-            var scroll = screen.GetComponentInChildren<ScrollRect>(true);
-            if (scroll != null) scroll.verticalNormalizedPosition = normalized;
+            if (!scroll.HasValue) return;
+            // Lay the rebuilt screen out and restore the position in the SAME
+            // frame — doing it a frame later drew one frame at the top, which
+            // read as a flash (owner: "it shouldn't move at all").
+            var rebuilt = _screens[name].GetComponentInChildren<ScrollRect>(true);
+            if (rebuilt == null) return;
+            Canvas.ForceUpdateCanvases();
+            LayoutRebuilder.ForceRebuildLayoutImmediate(rebuilt.content);
+            rebuilt.verticalNormalizedPosition = scroll.Value;
         }
 
         public void RebuildScreen(string name, Func<Transform, AppShell, GameObject> builder)
@@ -182,7 +183,7 @@ namespace FrogAcross.UI
             rrt.anchorMin = Vector2.zero; rrt.anchorMax = Vector2.one;
             rrt.offsetMin = rrt.offsetMax = Vector2.zero;
             UiKit.Stretch(UiKit.Fill(root.transform, "bg", UiKit.Navy));
-            UiKit.Logotype(root.transform, new Vector2(-560f, 60f), 116);
+            UiKit.Logotype(root.transform, new Vector2(0f, 60f), 116, centred: true);
             var barBg = UiKit.Panel(root.transform, "bar-bg", new Color(1f, 1f, 1f, 0.12f), 8);
             barBg.rectTransform.sizeDelta = new Vector2(520, 12);
             barBg.rectTransform.anchoredPosition = new Vector2(0, -200);
@@ -278,8 +279,8 @@ namespace FrogAcross.UI
 
             var promise = UiKit.Label(brand,
                 $"v{Application.version}  ·  NO ADS  ·  NO TRACKING  ·  OPEN SOURCE",
-                UiKit.Micro, UiKit.TextDim, Vector2.zero, new Vector2(1000, 44), TextAnchor.MiddleLeft);
-            LeftAlign(promise.rectTransform, 0f, -360f + 22f, new Vector2(1000, 44));
+                UiKit.Body, UiKit.TextBlue, Vector2.zero, new Vector2(1100, 56), TextAnchor.MiddleLeft);
+            LeftAlign(promise.rectTransform, 0f, -360f + 28f, new Vector2(1100, 56));
             return root;
         }
     }

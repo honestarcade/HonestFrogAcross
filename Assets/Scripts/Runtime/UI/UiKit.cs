@@ -221,14 +221,13 @@ namespace FrogAcross.UI
         /// level with the byline's.
         /// Returns the block's total width.
         /// </summary>
-        public static float Logotype(Transform parent, Vector2 leftCentre, int size, bool withMark = true)
+        public static float Logotype(Transform parent, Vector2 pos, int size, bool withMark = true,
+            bool centred = false)
         {
             var go = new GameObject("logotype");
             go.transform.SetParent(parent, false);
             var rt = go.AddComponent<RectTransform>();
-            rt.anchorMin = rt.anchorMax = new Vector2(0f, 0.5f);
             rt.pivot = new Vector2(0f, 0.5f);
-            rt.anchoredPosition = leftCentre;
 
             float mark = withMark && Logo != null ? size * 2.7f : 0f; // owner: double
             float gap = withMark && mark > 0f ? size * 0.34f : 0f;
@@ -275,6 +274,12 @@ namespace FrogAcross.UI
 
             float width = wordLeft + frogW + acrossW;
             rt.sizeDelta = new Vector2(width, size * 2.4f);
+
+            // Placement happens here, once the width is known: left-anchored to
+            // a column edge, or centred on the parent (the loading screen —
+            // anchoring it to the canvas's left edge pushed it off-screen).
+            rt.anchorMin = rt.anchorMax = centred ? new Vector2(0.5f, 0.5f) : new Vector2(0f, 0.5f);
+            rt.anchoredPosition = centred ? new Vector2(pos.x - width / 2f, pos.y) : pos;
             return width;
         }
 
