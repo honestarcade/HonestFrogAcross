@@ -270,3 +270,12 @@ When `/n8-replan` processes an ad-hoc entry it appends `— reconciled by /n8-re
 - **Logo**: mark to the RIGHT of the wordmark with the byline underneath (owner's explicit call; the design has the mark on the left — noted here in case they want it flipped).
 - **Region preview** dimmed to 0.10 scrim + 0.10 zones (owner asked for "something really low").
 - **About/Gameplay version** now derives from Application.version and LevelCatalog.Count instead of the hardcoded "v1.0 · 100 LEVELS" copy string.
+
+### Device UAT round 4 — fix pass (2026-08-29)
+
+- **Menu columns are now anchored to the safe-area edges**, not offset from centre. The owner's alignment requests (pills left-aligned to the logo, promise line level with the buttons) needed a shared left edge, and fixed centre offsets would have run off a 16:9 canvas (1920 wide) even though they fit the owner's 21:9 (2340).
+- **Logotype measures its own glyphs** (Text.preferredWidth) instead of assuming an em width — the guess was short and " Across" wrapped over the button column. Mark moved to the LEFT at double size (owner ruling; this also matches the design), bottom-aligned with the byline.
+- **Scroll fixes:** ScrollArea's viewport now carries an invisible raycast surface, so a drag starting over empty background scrolls (previously only drags over a graphic worked); and AppShell.Replace captures/restores verticalNormalizedPosition, so changing a setting mid-page no longer snaps to the top.
+- **Copy cards size themselves** from a layout group instead of a fixed height — "Swiping & tapping" was spilling out of its box. Same root cause as the earlier overlap reports.
+- **Region preview is fully opaque** (owner: "take off the transparency altogether"): solid navy scrim, solid mint/blue/purple zones, dark glyphs.
+- **Support card is the link.** The whole green box opens https://honestarcade.app/contribute via Application.OpenURL. Adjacent to invariant 1, so stating it plainly: this is an OS hand-off to the browser, needs no INTERNET permission, sends no player data, and the shipped AAB still carries no network permission. The two footer link lines under the pills were removed.

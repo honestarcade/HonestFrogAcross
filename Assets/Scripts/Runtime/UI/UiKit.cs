@@ -214,36 +214,76 @@ namespace FrogAcross.UI
         /// The full logo: frog mark above the two-tone spaced wordmark
         /// ("Frog" white + " Across" mint — owner decision).
         /// </summary>
-        public static Transform Logotype(Transform parent, Vector2 pos, int size, bool withMark = true)
+        /// <summary>
+        /// The full logo, laid out from a LEFT edge so callers can align other
+        /// things to it: mark on the left (owner ruling — matches the design),
+        /// wordmark beside it, byline under the words, and the mark's bottom
+        /// level with the byline's.
+        /// Returns the block's total width.
+        /// </summary>
+        public static float Logotype(Transform parent, Vector2 leftCentre, int size, bool withMark = true)
         {
             var go = new GameObject("logotype");
             go.transform.SetParent(parent, false);
             var rt = go.AddComponent<RectTransform>();
-            rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.5f);
-            rt.anchoredPosition = pos;
+            rt.anchorMin = rt.anchorMax = new Vector2(0f, 0.5f);
+            rt.pivot = new Vector2(0f, 0.5f);
+            rt.anchoredPosition = leftCentre;
 
-            // Owner ruling (2026-08-29): mark beside the wordmark — not stacked
-            // above it — with the byline directly under the words.
-            Lockup(go.transform, Vector2.zero, size);
-            // right edge of the drawn wordmark: " Across" is left-aligned from
-            // the centre and runs about 3.6em at this weight
-            float wordRight = size * 3.7f;
-            if (withMark && Logo != null)
+            float mark = withMark && Logo != null ? size * 2.7f : 0f; // owner: double
+            float gap = withMark && mark > 0f ? size * 0.34f : 0f;
+            float bylineY = -size * 0.72f, bylineH = size * 0.42f;
+
+            if (mark > 0f)
             {
                 var markGo = new GameObject("mark");
                 markGo.transform.SetParent(go.transform, false);
-                var mark = markGo.AddComponent<Image>();
-                mark.sprite = Logo;
-                mark.preserveAspect = true;
-                mark.raycastTarget = false;
-                float m = size * 1.35f;
-                mark.rectTransform.sizeDelta = new Vector2(m, m);
-                mark.rectTransform.anchoredPosition = new Vector2(wordRight + m * 0.55f, 0f);
+                var img = markGo.AddComponent<Image>();
+                img.sprite = Logo;
+                img.preserveAspect = true;
+                img.raycastTarget = false;
+                var mrt = img.rectTransform;
+                mrt.anchorMin = mrt.anchorMax = new Vector2(0f, 0.5f);
+                mrt.pivot = new Vector2(0f, 0.5f);
+                mrt.sizeDelta = new Vector2(mark, mark);
+                // bottom of the mark sits on the bottom of the byline
+                mrt.anchoredPosition = new Vector2(0f, bylineY - bylineH / 2f + mark / 2f);
             }
+
+            // Measure the glyphs rather than guessing an em width — the guess
+            // was short and "Across" wrapped onto the buttons.
+            float wordLeft = mark + gap;
+            var frog = Label(go.transform, "Frog", size, White, Vector2.zero,
+                new Vector2(size * 6f, size + 16), TextAnchor.MiddleLeft);
+            frog.fontStyle = FontStyle.Bold;
+            frog.horizontalOverflow = HorizontalWrapMode.Overflow;
+            float frogW = frog.preferredWidth;
+            LeftAnchor(frog.rectTransform, wordLeft, 0f, frogW);
+
+            var across = Label(go.transform, " Across", size, Mint, Vector2.zero,
+                new Vector2(size * 8f, size + 16), TextAnchor.MiddleLeft);
+            across.fontStyle = FontStyle.Bold;
+            across.horizontalOverflow = HorizontalWrapMode.Overflow;
+            float acrossW = across.preferredWidth;
+            LeftAnchor(across.rectTransform, wordLeft + frogW, 0f, acrossW);
+
             var byline = Label(go.transform, "BY HONEST ARCADE", Mathf.RoundToInt(size * 0.26f), TextDim,
-                new Vector2(0f, -size * 0.72f), new Vector2(size * 3.4f, size * 0.4f));
+                Vector2.zero, new Vector2(frogW + acrossW, bylineH), TextAnchor.MiddleLeft);
             byline.raycastTarget = false;
-            return go.transform;
+            byline.horizontalOverflow = HorizontalWrapMode.Overflow;
+            LeftAnchor(byline.rectTransform, wordLeft + size * 0.06f, bylineY, frogW + acrossW);
+
+            float width = wordLeft + frogW + acrossW;
+            rt.sizeDelta = new Vector2(width, size * 2.4f);
+            return width;
+        }
+
+        private static void LeftAnchor(RectTransform rt, float x, float y, float width)
+        {
+            rt.anchorMin = rt.anchorMax = new Vector2(0f, 0.5f);
+            rt.pivot = new Vector2(0f, 0.5f);
+            rt.sizeDelta = new Vector2(width, rt.sizeDelta.y);
+            rt.anchoredPosition = new Vector2(x, y);
         }
 
         /// <summary>The two-tone spaced wordmark alone.</summary>
@@ -333,6 +373,12 @@ namespace FrogAcross.UI
             view.offsetMin = new Vector2(bottomRightInset.x, bottomRightInset.y);
             view.offsetMax = new Vector2(-topLeftInset.x, -topLeftInset.y);
             viewGo.AddComponent<RectMask2D>();
+            // an invisible, raycastable surface: without it a drag that starts
+            // on empty background does nothing (owner: "swiping needs to work
+            // on the entire screen")
+            var catcher = viewGo.AddComponent<Image>();
+            catcher.color = new Color(0f, 0f, 0f, 0f);
+            catcher.raycastTarget = true;
 
             var contentGo = new GameObject("content");
             contentGo.transform.SetParent(viewGo.transform, false);

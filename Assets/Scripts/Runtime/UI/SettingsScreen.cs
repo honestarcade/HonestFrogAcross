@@ -110,22 +110,22 @@ namespace FrogAcross.UI
         public static void ShowRegionsPreview(Transform parent)
         {
             var canvas = UiKit.Canvas(parent, "regions-preview", 200);
-            var scrim = UiKit.Stretch(UiKit.Fill(canvas.transform, "scrim", new Color(0f, 0f, 0f, 0.10f)));
+            var scrim = UiKit.Stretch(UiKit.Fill(canvas.transform, "scrim", UiKit.NavyDeep));
 
-            void Zone(Vector2 aMin, Vector2 aMax, string arrow, string label)
+            void Zone(Vector2 aMin, Vector2 aMax, string arrow, string label, Color zoneColor)
             {
-                var z = UiKit.Fill(canvas.transform, $"zone-{label}", new Color(0f, 0.839f, 0.706f, 0.10f));
+                var z = UiKit.Fill(canvas.transform, $"zone-{label}", zoneColor); // opaque (owner ruling)
                 var rt = z.rectTransform;
                 rt.anchorMin = aMin; rt.anchorMax = aMax;
                 rt.offsetMin = new Vector2(6, 6); rt.offsetMax = new Vector2(-6, -6);
-                UiKit.Label(z.transform, arrow, 140, new Color(0f, 0.839f, 0.706f, 0.55f), new Vector2(0, 50));
-                UiKit.Label(z.transform, label, UiKit.Heading, new Color(1f, 1f, 1f, 0.6f), new Vector2(0, -110));
+                UiKit.Label(z.transform, arrow, 160, UiKit.NavyDeep, new Vector2(0, 60));
+                UiKit.Label(z.transform, label, UiKit.Title, UiKit.NavyDeep, new Vector2(0, -120));
             }
             float side = TapRegionMapper.SideFraction;
-            Zone(new Vector2(0f, 0f), new Vector2(side, 1f), "◀", "Left");
-            Zone(new Vector2(1f - side, 0f), new Vector2(1f, 1f), "▶", "Right");
-            Zone(new Vector2(side, 0.5f), new Vector2(1f - side, 1f), "▲", "Forward");
-            Zone(new Vector2(side, 0f), new Vector2(1f - side, 0.5f), "▼", "Back");
+            Zone(new Vector2(0f, 0f), new Vector2(side, 1f), "◀", "Left", UiKit.Mint);
+            Zone(new Vector2(1f - side, 0f), new Vector2(1f, 1f), "▶", "Right", UiKit.Mint);
+            Zone(new Vector2(side, 0.5f), new Vector2(1f - side, 1f), "▲", "Forward", UiKit.Hex("6FB4FF"));
+            Zone(new Vector2(side, 0f), new Vector2(1f - side, 0.5f), "▼", "Back", UiKit.Hex("B48CFF"));
 
             var dismiss = scrim.gameObject.AddComponent<Button>();
             dismiss.onClick.AddListener(() => Object.Destroy(canvas.gameObject));
