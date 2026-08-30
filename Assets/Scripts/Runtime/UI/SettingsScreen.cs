@@ -106,11 +106,11 @@ namespace FrogAcross.UI
             UiKit.Toggle(row.transform, new Vector2(330, 0), get(), set);
         }
 
-        /// <summary>Full-screen preview of the four tap zones; one tap dismisses (#74/#59 amendment).</summary>
+        /// <summary>Full-screen preview of the four tap zones; one tap anywhere dismisses (#74/#59 amendment).</summary>
         public static void ShowRegionsPreview(Transform parent)
         {
             var canvas = UiKit.Canvas(parent, "regions-preview", 200);
-            var scrim = UiKit.Stretch(UiKit.Fill(canvas.transform, "scrim", UiKit.NavyDeep));
+            UiKit.Stretch(UiKit.Fill(canvas.transform, "scrim", UiKit.NavyDeep));
 
             void Zone(Vector2 aMin, Vector2 aMax, string arrow, string label, Color zoneColor)
             {
@@ -127,10 +127,20 @@ namespace FrogAcross.UI
             Zone(new Vector2(side, 0.5f), new Vector2(1f - side, 1f), "▲", "Forward", UiKit.Hex("6FB4FF"));
             Zone(new Vector2(side, 0f), new Vector2(1f - side, 0.5f), "▼", "Back", UiKit.Hex("B48CFF"));
 
-            var dismiss = scrim.gameObject.AddComponent<Button>();
+            // Nothing in the preview is interactive, so the dismiss surface is a
+            // transparent sheet laid over the whole thing — last child, so it
+            // wins every raycast no matter what the zones draw. The old version
+            // put the Button on the scrim underneath and only cleared Images,
+            // leaving the 600-wide zone captions as raycast targets: they
+            // covered the narrow side zones end to end, so taps near the edges
+            // hit a caption and did nothing (owner: "closing it is spotty",
+            // 2026-08-30).
+            foreach (var g in canvas.GetComponentsInChildren<Graphic>(true)) g.raycastTarget = false;
+            var sheet = UiKit.Stretch(UiKit.Fill(canvas.transform, "dismiss", new Color(0f, 0f, 0f, 0f)));
+            sheet.raycastTarget = true;
+            var dismiss = sheet.gameObject.AddComponent<Button>();
+            dismiss.transition = Selectable.Transition.None; // nothing to tint
             dismiss.onClick.AddListener(() => Object.Destroy(canvas.gameObject));
-            foreach (var img in canvas.GetComponentsInChildren<Image>())
-                if (img != scrim) img.raycastTarget = false; // one tap anywhere dismisses
         }
 
         private static void ConfirmReset(AppShell shell)
