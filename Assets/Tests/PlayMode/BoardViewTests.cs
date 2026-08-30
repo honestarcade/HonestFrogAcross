@@ -3,9 +3,11 @@ using System.Linq;
 using FrogAcross.Levels;
 using FrogAcross.Pieces;
 using FrogAcross.Sim;
+using FrogAcross.UI;
 using FrogAcross.View;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
 namespace FrogAcross.Tests.PlayMode
@@ -19,6 +21,9 @@ namespace FrogAcross.Tests.PlayMode
         {
             if (_root != null) Object.Destroy(_root);
         }
+
+        [UnityTearDown]
+        public IEnumerator UnloadScenes() { yield return SceneCleanup.UnloadAll(); }
 
         private (GameSim sim, BoardView view) Spawn(string levelId = "dev-001")
         {
@@ -80,6 +85,143 @@ namespace FrogAcross.Tests.PlayMode
                 "tiled strip runs past the board on both sides");
             Assert.Greater(strip.size.x, simA.Level.Columns + 2f, "wider than the old board-plus-margin strip");
             yield return null;
+        }
+
+        [UnityTest]
+        public IEnumerator Obstructions_StayInsideTheirOwnCell()
+        {
+            // owner: "obstructions sometimes appear between lanes… level ten
+            // with the flower pots". The raw planter art is 1.28 x 1.04 cells
+            // and was drawn unscaled, so it crossed the lane line and both
+            // neighbouring columns.
+            var (sim, view) = Spawn("level-010");
+            yield return null;
+            int checkedProps = 0;
+            for (int r = 0; r < sim.Level.Rows.Count; r++)
+            foreach (var ob in sim.Level.Rows[r].Obstructions)
+            {
+                var t = view.transform.Find($"ob-{ob.Def.id}");
+                Assert.That(t, Is.Not.Null, $"row {r}: {ob.Def.id} not drawn");
+                var sr = t.GetComponent<UnityEngine.SpriteRenderer>();
+                var size = sr.sprite.bounds.size * t.localScale.x;
+                Assert.That(size.x, Is.LessThanOrEqualTo(1f), $"{ob.Def.id} is wider than its cell");
+                Assert.That(size.y, Is.LessThanOrEqualTo(1f), $"{ob.Def.id} is taller than its cell");
+                Assert.That(t.position.y + size.y / 2f, Is.LessThanOrEqualTo(-r + 0.5f + 1e-3f),
+                    $"{ob.Def.id} pokes into the lane above");
+                Assert.That(t.position.y - size.y / 2f, Is.GreaterThanOrEqualTo(-r - 0.5f - 1e-3f),
+                    $"{ob.Def.id} pokes into the lane below");
+                checkedProps++;
+            }
+            Assert.That(checkedProps, Is.GreaterThan(0), "level-010 has obstructions to check");
+        }
+
+        [UnityTest]
+        public IEnumerator LandingPads_AreGreyPadsCarryingTheMark()
+        {
+            // owner: "landing pads are black, they should be dark grey with the
+            // frogger logo on them"
+            var (sim, view) = Spawn();
+            yield return null;
+            foreach (int b in sim.Level.BayColumns)
+            {
+                var pad = view.transform.Find($"bay-{b}").GetComponent<UnityEngine.SpriteRenderer>();
+                Assert.That(pad.drawMode, Is.EqualTo(UnityEngine.SpriteDrawMode.Sliced), "rounded pad");
+                float grey = (pad.color.r + pad.color.g + pad.color.b) / 3f;
+                Assert.That(grey, Is.GreaterThan(0.15f), $"bay-{b} is still nearly black");
+                Assert.That(Mathf.Max(pad.color.r, pad.color.g, pad.color.b)
+                    - Mathf.Min(pad.color.r, pad.color.g, pad.color.b), Is.LessThan(0.12f),
+                    $"bay-{b} should read as grey, not tinted");
+
+                var mark = view.transform.Find($"bay-mark-{b}");
+                Assert.That(mark, Is.Not.Null, $"bay-{b} carries the Frog Across mark");
+                Assert.That(mark.GetComponent<UnityEngine.SpriteRenderer>().sprite, Is.Not.Null);
+            }
+        }
+
+        [UnityTest]
+        public IEnumerator TrafficNeverAppearsOrVanishesInView()
+        {
+            // owner: "cars/trucks/other objects spawn part way on the screen.
+            // This should never happen, ever… same for disappearing." The
+            // camera is far wider than the board, so culling objects at the
+            // board margin popped them in and out in plain sight.
+            AppShell.PendingLevelId = "level-090"; // tall board: the more rows,
+            // the wider the fitted camera, and the further past the board margin
+            // it sees (a 5-row level hid the bug behind its own zoom)
+            SceneManager.LoadScene("Game");
+            yield return null;
+            yield return null;
+            var boot = Object.FindAnyObjectByType<GameBootstrap>();
+            var cam = Camera.main;
+            cam.aspect = 3120f / 1440f; // the owner's panel: the widest we ship to
+            boot.SendMessage("FitCamera");
+            var view = Object.FindAnyObjectByType<BoardView>();
+
+            // the rolled frame, in world X
+            float halfH = cam.orthographicSize, halfW = halfH * cam.aspect;
+            float roll = Mathf.Abs(GameBootstrap.BoardRollDegrees) * Mathf.Deg2Rad;
+            float ext = halfW * Mathf.Cos(roll) + halfH * Mathf.Sin(roll);
+            float camX = cam.transform.position.x;
+            float left = camX - ext, right = camX + ext;
+
+            // Each ROW wraps at its own margin (a car lane's is 3 cells, a
+            // freight lane's is 10), while the camera reaches ~20 — so a car
+            // hit its wrap point in open view and jumped to the far side.
+            Assert.That(right, Is.GreaterThan(boot.Sim.Level.Columns + 3f),
+                "this level must be one where the camera sees past a car lane's wrap");
+
+            // Continuity: whatever is drawn fully on screen must still be drawn
+            // within one frame of travel of where it was. Wrapping is allowed
+            // to move any single sprite — what may not happen is the traffic
+            // itself appearing or vanishing mid-screen.
+            const float maxStep = 0.35f; // 3 ticks of the fastest lane, plus slack
+            var previous = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<float>>();
+            int continuityChecks = 0;
+            for (int frame = 0; frame < 150; frame++)
+            {
+                for (int i = 0; i < 3; i++) boot.Sim.Tick();
+                view.Render(boot.Sim.State.Tick);
+
+                var current = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<float>>();
+                var onScreen = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<float>>();
+                foreach (Transform child in view.transform)
+                {
+                    if (!child.name.StartsWith("obj-")) continue;
+                    var sr = child.GetComponent<UnityEngine.SpriteRenderer>();
+                    if (!sr.enabled) continue;
+                    // copies of one object share a key: "obj-car-2-w1" -> "obj-car-2"
+                    int w = child.name.LastIndexOf("-w", System.StringComparison.Ordinal);
+                    string key = w > 0 ? child.name.Substring(0, w) : child.name;
+                    float half = sr.sprite != null
+                        ? sr.sprite.bounds.size.x * child.localScale.x / 2f : 0.5f;
+                    if (!current.TryGetValue(key, out var list))
+                        current[key] = list = new System.Collections.Generic.List<float>();
+                    list.Add(child.position.x);
+                    if (child.position.x - half > left + 0.5f && child.position.x + half < right - 0.5f)
+                    {
+                        if (!onScreen.TryGetValue(key, out var vis))
+                            onScreen[key] = vis = new System.Collections.Generic.List<float>();
+                        vis.Add(child.position.x);
+                    }
+                }
+
+                foreach (var kv in previous)
+                {
+                    if (!current.TryGetValue(kv.Key, out var now)) now = new System.Collections.Generic.List<float>();
+                    foreach (float was in kv.Value)
+                    {
+                        float best = float.MaxValue;
+                        foreach (float x in now) best = Mathf.Min(best, Mathf.Abs(x - was));
+                        Assert.That(best, Is.LessThan(maxStep),
+                            $"frame {frame}: {kv.Key} was drawn at x={was:0.00} on screen and " +
+                            $"nothing of it is within {maxStep} of there now — it popped out of view");
+                        continuityChecks++;
+                    }
+                }
+                previous = onScreen;
+                yield return null;
+            }
+            Assert.That(continuityChecks, Is.GreaterThan(500), "sanity: traffic was actually rendered");
         }
 
         [UnityTest]

@@ -187,12 +187,15 @@ class Component extends DCLogic {
       trainKind: this.props.train === 'passenger' ? 'passenger' : 'freight',
       showTrain: !this.props.bare,
       pads: this.props.bare ? [] : (spread(Math.ceil(w / 210), 210, 30)),
-      bays: spread(Math.max(3, Math.round(w / 176)), 176, 40),
+      // bare strips are the surface only: a baked bay slot became a phantom
+      // landing pad every 8 cells, and baked lamps became phantom obstructions
+      // (owner device report, 2026-08-30)
+      bays: this.props.bare ? [] : spread(Math.max(3, Math.round(w / 176)), 176, 40),
       trees: this.props.bare ? [] : spread(Math.max(1, Math.round(w / 520)), 520, 110),
       benches: this.props.bare ? [] : spread(Math.max(1, Math.round(w / 520)), 520, 370),
       bushes: this.props.bare ? [] : spread(Math.max(1, Math.round(w / 520)), 520, 240),
-      planters: spread(Math.max(2, Math.round(w / 480)), 480, 420).map((p, i) => ({...p, plant: PLANTS[i % PLANTS.length]})),
-      lamps: spread(Math.max(2, Math.round(w / 480)), 480, 180)
+      planters: this.props.bare ? [] : spread(Math.max(2, Math.round(w / 480)), 480, 420).map((p, i) => ({...p, plant: PLANTS[i % PLANTS.length]})),
+      lamps: this.props.bare ? [] : spread(Math.max(2, Math.round(w / 480)), 480, 180)
     };
   }
 }

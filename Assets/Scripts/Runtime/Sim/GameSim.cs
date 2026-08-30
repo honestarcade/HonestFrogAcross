@@ -99,6 +99,10 @@ namespace FrogAcross.Sim
 
         public int InstanceCount(int row, int train) => _instanceCounts[row][train];
 
+        /// <summary>Wrap period of a row, in cells. The view repeats traffic at
+        /// this pitch so lanes read as endless however wide the camera is.</summary>
+        public float LoopCells(int row) => _loop[row];
+
         /// <summary>
         /// Train-warning query (#50): true when any warn-lead object in the row
         /// is on the board now or will be within its warnLeadTicks. Pure tick

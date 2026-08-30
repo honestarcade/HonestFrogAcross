@@ -61,7 +61,6 @@ namespace FrogAcross.View
             _hud.OnQuitConfirmed += QuitToMenu;
 
             StartLevel();
-            _hud.Build(Sim.Level.GoldSeconds);
         }
 
         public void StartLevel()
@@ -71,6 +70,8 @@ namespace FrogAcross.View
             Sim = new GameSim(LevelLoader.LoadFromResources(levelId, PieceRegistry.Load()));
             board.Bind(Sim, _character);
             FitCamera();
+            _hud.Build(Sim.Level.GoldSeconds); // per level: gold target, and it
+                                              // must survive a board rebuild
             FrogAcross.Audio.AudioDirector.Instance.Bind(Sim, Sim.Level);
             FrogAcross.Audio.AudioDirector.Instance.PlayMusic(FrogAcross.Audio.MusicSlot.Gameplay);
             Sim.OnDeath += cause => _deathFx.Play(cause,
