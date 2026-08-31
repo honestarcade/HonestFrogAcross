@@ -7,8 +7,8 @@ using UnityEngine;
 namespace FrogAcross.Editor.Audio
 {
     /// <summary>
-    /// #65: clearly-temporary generated blips, one per hook plus two music
-    /// loops, named placeholder-* so #66's swap can find every one. Distinct
+    /// #65: clearly-temporary generated blips, one per hook, named
+    /// placeholder-* so #66's swap can find every one. Distinct
     /// pitches make the every-hook demo audible without real assets.
     /// </summary>
     public static class PlaceholderSfx
@@ -29,10 +29,13 @@ namespace FrogAcross.Editor.Audio
                 Write($"placeholder-{AudioDirector.KeyFor(sound)}", 0.18f,
                     t => Blip(t, freq, descending));
             }
-            Write("placeholder-music-menu", 2.0f, t => Pad(t, 220f));
-            Write("placeholder-music-gameplay", 2.0f, t => Pad(t, 277f));
+            // No placeholder MUSIC. A blip stands in for a one-shot; a looping
+            // pad stands in for nothing — it is a continuous hum for as long as
+            // the app is open, which is exactly how it shipped (owner,
+            // 2026-08-31). The music slots stay silent until #66 delivers real
+            // tracks.
             AssetDatabase.Refresh();
-            Debug.Log($"[PlaceholderSfx] generated {i + 2} placeholder clips in {Folder}");
+            Debug.Log($"[PlaceholderSfx] generated {i} placeholder clips in {Folder}");
         }
 
         private static float Blip(float t, float freq, bool descending)
@@ -42,8 +45,6 @@ namespace FrogAcross.Editor.Audio
             return Mathf.Sin(2f * Mathf.PI * f * t) * envelope * 0.5f;
         }
 
-        private static float Pad(float t, float freq) =>
-            (Mathf.Sin(2f * Mathf.PI * freq * t) + 0.5f * Mathf.Sin(2f * Mathf.PI * freq * 1.5f * t)) * 0.18f;
 
         private static void Write(string name, float seconds, Func<float, float> sample)
         {
