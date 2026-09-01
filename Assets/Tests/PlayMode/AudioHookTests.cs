@@ -124,6 +124,13 @@ namespace FrogAcross.Tests.PlayMode
 
             director.PlayMusic(MusicSlot.Menu);
             Assert.That(director.CurrentMusic, Is.EqualTo(MusicSlot.Menu));
+            // …and until #66 delivers a real track, that slot is silent rather
+            // than a looping placeholder tone (owner: the load hum, 2026-08-31)
+            if (director.musicSource != null && Resources.Load<AudioClip>("Audio/music-menu") == null)
+            {
+                Assert.That(director.musicSource.clip, Is.Null, "no music clip is loaded");
+                Assert.That(director.musicSource.isPlaying, Is.False, "and nothing is droning");
+            }
             director.PlayMusic(MusicSlot.Gameplay);
             Assert.That(director.CurrentMusic, Is.EqualTo(MusicSlot.Gameplay));
         }

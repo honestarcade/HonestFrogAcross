@@ -163,12 +163,28 @@ namespace FrogAcross.Audio
             if (clip != null && source != null) source.PlayOneShot(clip);
         }
 
+        /// <summary>
+        /// Music plays only from a real, licensed track — never a placeholder.
+        /// A one-shot placeholder blip is a stand-in; a looping placeholder is
+        /// a 220Hz sine pad on repeat forever, which is what shipped and what
+        /// the owner heard: "a weird sound like a hum right when the app loads
+        /// and it doesn't shut off" (2026-08-31). Silence is the honest
+        /// stand-in until the tracks land (#66); no code change needed then —
+        /// dropping music-menu.ogg into Resources/Audio starts it playing.
+        /// </summary>
         public void PlayMusic(MusicSlot slot)
         {
             CurrentMusic = slot;
             if (musicSource == null) return;
-            var clip = LoadClip(slot == MusicSlot.Menu ? "music-menu" : "music-gameplay");
-            if (clip == null || musicSource.clip == clip) return;
+            var clip = Resources.Load<AudioClip>(
+                slot == MusicSlot.Menu ? "Audio/music-menu" : "Audio/music-gameplay");
+            if (clip == null)
+            {
+                musicSource.Stop();
+                musicSource.clip = null;
+                return;
+            }
+            if (musicSource.clip == clip) return;
             musicSource.clip = clip;
             musicSource.loop = true;
             musicSource.Play();

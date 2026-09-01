@@ -38,9 +38,26 @@ namespace FrogAcross.Tests.EditMode.Audio
                     .Any(n => n == key || n == $"placeholder-{key}");
                 Assert.That(found, Is.True, $"no clip for hook '{key}'");
             }
+        }
+
+        [Test]
+        public void NoPlaceholderMusic_Ships()
+        {
+            // A generated blip stands in for a one-shot. A generated pad stands
+            // in for nothing: on loop it is a continuous hum for as long as the
+            // app is open, and that is what shipped in 0.8.0 (owner: "a weird
+            // sound like a hum right when the app loads and it doesn't shut
+            // off"). The music slots stay silent until #66 lands real tracks.
             foreach (var slot in new[] { "music-menu", "music-gameplay" })
-                Assert.That(Directory.GetFiles(AudioFolder).Select(Path.GetFileNameWithoutExtension)
-                    .Any(n => n == slot || n == $"placeholder-{slot}"), Is.True, $"no clip for music slot '{slot}'");
+            {
+                Assert.That(File.Exists(Path.Combine(AudioFolder, $"placeholder-{slot}.wav")), Is.False,
+                    $"placeholder-{slot} is a looping tone, not a placeholder");
+                foreach (var file in Directory.GetFiles(AudioFolder, $"placeholder-{slot}.*"))
+                    Assert.Fail($"{Path.GetFileName(file)}: no placeholder music may ship");
+            }
+            Assert.That(File.ReadAllText("Assets/Scripts/Editor/Audio/PlaceholderSfx.cs"),
+                Does.Not.Contain("placeholder-music"),
+                "the generator must not put them back either");
         }
 
         [Test]
