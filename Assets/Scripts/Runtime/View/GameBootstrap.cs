@@ -141,8 +141,16 @@ namespace FrogAcross.View
             // (Fitting rows alone crops the goal and bank once the roll tips
             // the corners in.)
             float roll = Mathf.Abs(BoardRollDegrees) * Mathf.Deg2Rad;
-            cam.orthographicSize = Sim.Level.Columns / 2f * Mathf.Sin(roll)
+            float halfHeight = Sim.Level.Columns / 2f * Mathf.Sin(roll)
                 + rows / 2f * Mathf.Cos(roll) + 0.35f;
+
+            // Boards are sized to fill a 21:9 panel, so on a narrower phone the
+            // width is the binding constraint — fit it too, or the edge columns
+            // fall off the screen. Zooming out here shows more apron, which is
+            // exactly what the apron rows are for.
+            float halfWidth = Sim.Level.Columns / 2f * Mathf.Cos(roll)
+                + rows / 2f * Mathf.Sin(roll) + 0.35f;
+            cam.orthographicSize = Mathf.Max(halfHeight, halfWidth / Mathf.Max(0.1f, cam.aspect));
         }
 
         private void Update()

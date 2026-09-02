@@ -1,18 +1,18 @@
 {
     "id": "level-049",
     "name": "level-049",
-    "columns": 10,
+    "columns": 26,
     "medal": {
-        "gold": 20.700000762939454,
-        "silver": 30.0,
-        "bronze": 43.400001525878909
+        "gold": 26.200000762939454,
+        "silver": 38.0,
+        "bronze": 55.099998474121097
     },
-    "startColumn": 4,
+    "startColumn": 2,
     "bays": [
-        1,
         3,
         4,
-        5
+        18,
+        22
     ],
     "rows": [
         {
@@ -29,14 +29,14 @@
             "objects": [
                 {
                     "pieceId": "runner",
-                    "offset": 2.819999933242798,
-                    "spacing": 14.0,
+                    "offset": 6.050000190734863,
+                    "spacing": 10.0,
                     "phase": 0
                 },
                 {
                     "pieceId": "skater",
-                    "offset": 9.819999694824219,
-                    "spacing": 14.0,
+                    "offset": 11.050000190734864,
+                    "spacing": 10.0,
                     "phase": 0
                 }
             ],
@@ -49,14 +49,14 @@
             "objects": [
                 {
                     "pieceId": "gator",
-                    "offset": 11.579999923706055,
-                    "spacing": 20.0,
+                    "offset": 20.84000015258789,
+                    "spacing": 18.0,
                     "phase": 212
                 },
                 {
                     "pieceId": "raft",
-                    "offset": 1.5800000429153443,
-                    "spacing": 20.0,
+                    "offset": 29.84000015258789,
+                    "spacing": 18.0,
                     "phase": 0
                 }
             ],
@@ -69,8 +69,8 @@
             "objects": [
                 {
                     "pieceId": "cyclist",
-                    "offset": 0.7300000190734863,
-                    "spacing": 4.670000076293945,
+                    "offset": 1.559999942779541,
+                    "spacing": 4.289999961853027,
                     "phase": 0
                 }
             ],
@@ -83,8 +83,8 @@
             "objects": [
                 {
                     "pieceId": "bus",
-                    "offset": 7.079999923706055,
-                    "spacing": 9.0,
+                    "offset": 13.380000114440918,
+                    "spacing": 6.800000190734863,
                     "phase": 0
                 }
             ],
@@ -97,14 +97,14 @@
             "objects": [
                 {
                     "pieceId": "skater",
-                    "offset": 11.949999809265137,
-                    "spacing": 14.0,
+                    "offset": 25.6200008392334,
+                    "spacing": 10.0,
                     "phase": 0
                 },
                 {
                     "pieceId": "cyclist",
-                    "offset": 4.949999809265137,
-                    "spacing": 14.0,
+                    "offset": 0.6200000047683716,
+                    "spacing": 10.0,
                     "phase": 0
                 }
             ],
@@ -117,8 +117,8 @@
             "objects": [
                 {
                     "pieceId": "log",
-                    "offset": 8.619999885559082,
-                    "spacing": 10.0,
+                    "offset": 15.520000457763672,
+                    "spacing": 9.0,
                     "phase": 0
                 }
             ],
@@ -131,14 +131,14 @@
             "objects": [
                 {
                     "pieceId": "cyclist",
-                    "offset": 13.170000076293946,
-                    "spacing": 14.0,
+                    "offset": 28.219999313354493,
+                    "spacing": 10.0,
                     "phase": 0
                 },
                 {
                     "pieceId": "skater",
-                    "offset": 6.170000076293945,
-                    "spacing": 14.0,
+                    "offset": 3.2200000286102297,
+                    "spacing": 10.0,
                     "phase": 0
                 }
             ],
@@ -151,14 +151,14 @@
             "objects": [
                 {
                     "pieceId": "raft",
-                    "offset": 9.970000267028809,
-                    "spacing": 20.0,
+                    "offset": 17.950000762939454,
+                    "spacing": 18.0,
                     "phase": 0
                 },
                 {
                     "pieceId": "log",
-                    "offset": 19.969999313354493,
-                    "spacing": 20.0,
+                    "offset": 26.950000762939454,
+                    "spacing": 18.0,
                     "phase": 0
                 }
             ],

@@ -1,17 +1,17 @@
 {
     "id": "level-019",
     "name": "level-019",
-    "columns": 11,
+    "columns": 26,
     "medal": {
-        "gold": 20.0,
-        "silver": 29.0,
-        "bronze": 42.0
+        "gold": 25.799999237060548,
+        "silver": 37.400001525878909,
+        "bronze": 54.099998474121097
     },
-    "startColumn": 3,
+    "startColumn": 17,
     "bays": [
-        0,
-        7,
-        10
+        5,
+        15,
+        20
     ],
     "rows": [
         {
@@ -29,55 +29,14 @@
             "obstructions": []
         },
         {
-            "kind": "grass",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
-            "obstructions": []
-        },
-        {
-            "kind": "grass",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
-            "obstructions": []
-        },
-        {
-            "kind": "grass",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
-            "obstructions": []
-        },
-        {
             "kind": "river",
-            "dir": "right",
-            "speed": 1.3700000047683716,
+            "dir": "left",
+            "speed": 1.090000033378601,
             "objects": [
                 {
                     "pieceId": "raft",
-                    "offset": 3.069999933242798,
-                    "spacing": 21.0,
-                    "phase": 0
-                },
-                {
-                    "pieceId": "gator",
-                    "offset": 13.569999694824219,
-                    "spacing": 21.0,
-                    "phase": 147
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "river",
-            "dir": "right",
-            "speed": 1.4600000381469727,
-            "objects": [
-                {
-                    "pieceId": "log-long",
-                    "offset": 13.970000267028809,
-                    "spacing": 11.5,
+                    "offset": 31.510000228881837,
+                    "spacing": 9.0,
                     "phase": 0
                 }
             ],
@@ -90,8 +49,68 @@
             "objects": [],
             "obstructions": [
                 {
-                    "pieceId": "bush",
-                    "column": 7
+                    "pieceId": "planter-succulent",
+                    "column": 18
+                }
+            ]
+        },
+        {
+            "kind": "river",
+            "dir": "right",
+            "speed": 1.149999976158142,
+            "objects": [
+                {
+                    "pieceId": "log-short",
+                    "offset": 4.840000152587891,
+                    "spacing": 19.0,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "log-long",
+                    "offset": 14.34000015258789,
+                    "spacing": 19.0,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "left",
+            "speed": 1.0,
+            "objects": [
+                {
+                    "pieceId": "log",
+                    "offset": 27.469999313354493,
+                    "spacing": 9.0,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "left",
+            "speed": 1.399999976158142,
+            "objects": [
+                {
+                    "pieceId": "log-long",
+                    "offset": 35.09000015258789,
+                    "spacing": 12.670000076293946,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-daisy",
+                    "column": 5
                 }
             ]
         },

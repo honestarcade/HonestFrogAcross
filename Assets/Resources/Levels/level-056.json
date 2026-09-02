@@ -1,18 +1,18 @@
 {
     "id": "level-056",
     "name": "level-056",
-    "columns": 12,
+    "columns": 27,
     "medal": {
-        "gold": 16.0,
-        "silver": 23.200000762939454,
-        "bronze": 33.599998474121097
+        "gold": 30.799999237060548,
+        "silver": 44.599998474121097,
+        "bronze": 64.5999984741211
     },
-    "startColumn": 6,
+    "startColumn": 19,
     "bays": [
-        0,
-        3,
-        8,
-        10
+        14,
+        22,
+        23,
+        25
     ],
     "rows": [
         {
@@ -23,86 +23,60 @@
             "obstructions": []
         },
         {
-            "kind": "road",
-            "dir": "right",
-            "speed": 2.359999895095825,
-            "objects": [
-                {
-                    "pieceId": "car",
-                    "offset": 12.529999732971192,
-                    "spacing": 6.0,
-                    "phase": 0
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "road",
-            "dir": "right",
-            "speed": 1.840000033378601,
-            "objects": [
-                {
-                    "pieceId": "bus",
-                    "offset": 16.100000381469728,
-                    "spacing": 6.670000076293945,
-                    "phase": 0
-                }
-            ],
-            "obstructions": []
-        },
-        {
             "kind": "walkway",
             "dir": "right",
-            "speed": 1.6100000143051148,
+            "speed": 1.2599999904632569,
             "objects": [],
             "obstructions": []
         },
         {
-            "kind": "walkway",
-            "dir": "right",
-            "speed": 1.309999942779541,
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
             "objects": [],
-            "obstructions": []
+            "obstructions": [
+                {
+                    "pieceId": "planter-lavender",
+                    "column": 14
+                },
+                {
+                    "pieceId": "lamp",
+                    "column": 17
+                }
+            ]
         },
         {
-            "kind": "river",
+            "kind": "swamp",
             "dir": "left",
-            "speed": 1.2400000095367432,
+            "speed": 1.4800000190734864,
             "objects": [
                 {
                     "pieceId": "log-short",
-                    "offset": 0.36000001430511477,
-                    "spacing": 22.0,
+                    "offset": 23.670000076293947,
+                    "spacing": 18.5,
                     "phase": 0
                 },
                 {
                     "pieceId": "raft",
-                    "offset": 11.359999656677246,
-                    "spacing": 22.0,
+                    "offset": 32.91999816894531,
+                    "spacing": 18.5,
                     "phase": 0
                 }
             ],
             "obstructions": []
         },
         {
-            "kind": "road",
-            "dir": "left",
-            "speed": 2.369999885559082,
+            "kind": "swamp",
+            "dir": "right",
+            "speed": 1.600000023841858,
             "objects": [
                 {
-                    "pieceId": "convertible",
-                    "offset": 6.090000152587891,
-                    "spacing": 6.0,
-                    "phase": 0
+                    "pieceId": "gator",
+                    "offset": 25.350000381469728,
+                    "spacing": 7.400000095367432,
+                    "phase": 196
                 }
             ],
-            "obstructions": []
-        },
-        {
-            "kind": "walkway",
-            "dir": "right",
-            "speed": 1.590000033378601,
-            "objects": [],
             "obstructions": []
         },
         {
@@ -112,14 +86,86 @@
             "objects": [],
             "obstructions": [
                 {
-                    "pieceId": "lamp",
+                    "pieceId": "planter-daisy",
                     "column": 1
                 },
                 {
-                    "pieceId": "planter-fern",
-                    "column": 5
+                    "pieceId": "bench",
+                    "column": 11
+                },
+                {
+                    "pieceId": "planter-lavender",
+                    "column": 23
+                },
+                {
+                    "pieceId": "planter-daisy",
+                    "column": 25
                 }
             ]
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-lavender",
+                    "column": 16
+                },
+                {
+                    "pieceId": "planter-daisy",
+                    "column": 18
+                },
+                {
+                    "pieceId": "planter-lavender",
+                    "column": 21
+                },
+                {
+                    "pieceId": "planter-lavender",
+                    "column": 24
+                }
+            ]
+        },
+        {
+            "kind": "swamp",
+            "dir": "right",
+            "speed": 1.6200000047683716,
+            "objects": [
+                {
+                    "pieceId": "log-short",
+                    "offset": 22.049999237060548,
+                    "spacing": 18.5,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "gator",
+                    "offset": 31.299999237060548,
+                    "spacing": 18.5,
+                    "phase": 145
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "left",
+            "speed": 1.6699999570846558,
+            "objects": [
+                {
+                    "pieceId": "raft",
+                    "offset": 12.989999771118164,
+                    "spacing": 18.5,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "log",
+                    "offset": 22.239999771118165,
+                    "spacing": 18.5,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
         },
         {
             "kind": "bank",

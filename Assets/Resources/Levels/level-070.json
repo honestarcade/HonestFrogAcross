@@ -1,18 +1,18 @@
 {
     "id": "level-070",
     "name": "level-070",
-    "columns": 11,
+    "columns": 32,
     "medal": {
-        "gold": 26.5,
-        "silver": 38.400001525878909,
-        "bronze": 55.599998474121097
+        "gold": 26.899999618530275,
+        "silver": 39.099998474121097,
+        "bronze": 56.599998474121097
     },
-    "startColumn": 6,
+    "startColumn": 10,
     "bays": [
-        4,
-        7,
-        8,
-        10
+        3,
+        19,
+        22,
+        26
     ],
     "rows": [
         {
@@ -23,21 +23,36 @@
             "obstructions": []
         },
         {
-            "kind": "bike",
-            "dir": "right",
-            "speed": 2.3499999046325685,
+            "kind": "tracks",
+            "dir": "left",
+            "speed": 2.180000066757202,
             "objects": [
                 {
-                    "pieceId": "runner",
-                    "offset": 14.619999885559082,
-                    "spacing": 15.0,
+                    "pieceId": "passenger",
+                    "offset": 44.0099983215332,
+                    "spacing": 18.670000076293947,
                     "phase": 0
-                },
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "walkway",
+            "dir": "right",
+            "speed": 1.8300000429153443,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "right",
+            "speed": 1.7200000286102296,
+            "objects": [
                 {
-                    "pieceId": "cyclist",
-                    "offset": 7.119999885559082,
-                    "spacing": 15.0,
-                    "phase": 0
+                    "pieceId": "gator",
+                    "offset": 38.0,
+                    "spacing": 7.0,
+                    "phase": 72
                 }
             ],
             "obstructions": []
@@ -49,97 +64,100 @@
             "objects": [],
             "obstructions": [
                 {
-                    "pieceId": "bush",
-                    "column": 1
+                    "pieceId": "bench",
+                    "column": 0
                 },
                 {
-                    "pieceId": "lamp",
-                    "column": 7
+                    "pieceId": "planter-tulip",
+                    "column": 10
                 }
             ]
         },
         {
-            "kind": "river",
+            "kind": "road",
             "dir": "right",
-            "speed": 1.3899999856948853,
+            "speed": 2.619999885559082,
             "objects": [
                 {
-                    "pieceId": "raft",
-                    "offset": 4.800000190734863,
-                    "spacing": 21.0,
+                    "pieceId": "convertible",
+                    "offset": 21.059999465942384,
+                    "spacing": 14.0,
                     "phase": 0
                 },
                 {
-                    "pieceId": "turtle-log",
-                    "offset": 15.300000190734864,
-                    "spacing": 21.0,
-                    "phase": 328
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "swamp",
-            "dir": "left",
-            "speed": 1.3799999952316285,
-            "objects": [
-                {
-                    "pieceId": "log-long",
-                    "offset": 17.389999389648439,
-                    "spacing": 11.5,
+                    "pieceId": "truck",
+                    "offset": 28.059999465942384,
+                    "spacing": 14.0,
                     "phase": 0
                 }
             ],
             "obstructions": []
         },
         {
-            "kind": "tracks",
+            "kind": "road",
+            "dir": "left",
+            "speed": 2.059999942779541,
+            "objects": [
+                {
+                    "pieceId": "car",
+                    "offset": 0.41999998688697817,
+                    "spacing": 12.670000076293946,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "car",
+                    "offset": 6.75,
+                    "spacing": 12.670000076293946,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
             "dir": "right",
-            "speed": 2.509999990463257,
-            "objects": [
-                {
-                    "pieceId": "passenger",
-                    "offset": 23.469999313354493,
-                    "spacing": 17.5,
-                    "phase": 0
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "swamp",
-            "dir": "left",
-            "speed": 1.4500000476837159,
+            "speed": 1.4600000381469727,
             "objects": [
                 {
                     "pieceId": "turtle-log",
-                    "offset": 3.390000104904175,
+                    "offset": 15.3100004196167,
                     "spacing": 7.0,
-                    "phase": 69
+                    "phase": 79
                 }
             ],
             "obstructions": []
         },
         {
-            "kind": "bike",
-            "dir": "right",
-            "speed": 2.880000114440918,
-            "objects": [
-                {
-                    "pieceId": "skater",
-                    "offset": 9.029999732971192,
-                    "spacing": 5.0,
-                    "phase": 0
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "walkway",
-            "dir": "left",
-            "speed": 1.840000033378601,
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
             "objects": [],
-            "obstructions": []
+            "obstructions": [
+                {
+                    "pieceId": "planter-succulent",
+                    "column": 0
+                },
+                {
+                    "pieceId": "planter-fern",
+                    "column": 7
+                },
+                {
+                    "pieceId": "planter-lavender",
+                    "column": 8
+                },
+                {
+                    "pieceId": "planter-succulent",
+                    "column": 9
+                },
+                {
+                    "pieceId": "planter-daisy",
+                    "column": 11
+                },
+                {
+                    "pieceId": "bench",
+                    "column": 30
+                }
+            ]
         },
         {
             "kind": "bank",

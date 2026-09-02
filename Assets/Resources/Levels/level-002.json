@@ -1,13 +1,13 @@
 {
     "id": "level-002",
     "name": "level-002",
-    "columns": 11,
+    "columns": 22,
     "medal": {
-        "gold": 13.800000190734864,
-        "silver": 20.0,
-        "bronze": 28.899999618530275
+        "gold": 18.600000381469728,
+        "silver": 26.899999618530275,
+        "bronze": 39.0
     },
-    "startColumn": 2,
+    "startColumn": 12,
     "bays": [
         5,
         6
@@ -36,19 +36,19 @@
         },
         {
             "kind": "road",
-            "dir": "right",
-            "speed": 1.0099999904632569,
+            "dir": "left",
+            "speed": 1.2000000476837159,
             "objects": [
                 {
-                    "pieceId": "car",
-                    "offset": 8.210000038146973,
-                    "spacing": 17.0,
+                    "pieceId": "truck",
+                    "offset": 15.949999809265137,
+                    "spacing": 32.0,
                     "phase": 0
                 },
                 {
-                    "pieceId": "car",
-                    "offset": 16.709999084472658,
-                    "spacing": 17.0,
+                    "pieceId": "convertible",
+                    "offset": 31.950000762939454,
+                    "spacing": 32.0,
                     "phase": 0
                 }
             ],
@@ -62,10 +62,23 @@
             "obstructions": []
         },
         {
-            "kind": "grass",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
+            "kind": "road",
+            "dir": "right",
+            "speed": 1.0499999523162842,
+            "objects": [
+                {
+                    "pieceId": "convertible",
+                    "offset": 12.109999656677246,
+                    "spacing": 32.0,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "truck",
+                    "offset": 28.110000610351564,
+                    "spacing": 32.0,
+                    "phase": 0
+                }
+            ],
             "obstructions": []
         },
         {

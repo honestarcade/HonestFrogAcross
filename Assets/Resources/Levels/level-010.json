@@ -1,17 +1,17 @@
 {
     "id": "level-010",
     "name": "level-010",
-    "columns": 9,
+    "columns": 20,
     "medal": {
-        "gold": 22.0,
-        "silver": 31.899999618530275,
-        "bronze": 46.20000076293945
+        "gold": 41.79999923706055,
+        "silver": 60.70000076293945,
+        "bronze": 87.9000015258789
     },
-    "startColumn": 2,
+    "startColumn": 18,
     "bays": [
-        1,
-        2,
-        5
+        0,
+        3,
+        19
     ],
     "rows": [
         {
@@ -28,8 +28,8 @@
             "objects": [
                 {
                     "pieceId": "truck",
-                    "offset": 13.829999923706055,
-                    "spacing": 9.5,
+                    "offset": 21.84000015258789,
+                    "spacing": 10.0,
                     "phase": 0
                 }
             ],
@@ -42,8 +42,8 @@
             "objects": [
                 {
                     "pieceId": "car",
-                    "offset": 12.65999984741211,
-                    "spacing": 7.5,
+                    "offset": 21.940000534057618,
+                    "spacing": 6.5,
                     "phase": 0
                 }
             ],
@@ -56,8 +56,8 @@
             "objects": [
                 {
                     "pieceId": "truck",
-                    "offset": 1.2699999809265137,
-                    "spacing": 9.5,
+                    "offset": 2.009999990463257,
+                    "spacing": 10.0,
                     "phase": 0
                 }
             ],
@@ -70,8 +70,8 @@
             "objects": [
                 {
                     "pieceId": "truck",
-                    "offset": 9.020000457763672,
-                    "spacing": 9.5,
+                    "offset": 14.25,
+                    "spacing": 10.0,
                     "phase": 0
                 }
             ],
@@ -98,10 +98,17 @@
             ]
         },
         {
-            "kind": "grass",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
+            "kind": "road",
+            "dir": "left",
+            "speed": 1.409999966621399,
+            "objects": [
+                {
+                    "pieceId": "car",
+                    "offset": 16.059999465942384,
+                    "spacing": 6.5,
+                    "phase": 0
+                }
+            ],
             "obstructions": []
         },
         {

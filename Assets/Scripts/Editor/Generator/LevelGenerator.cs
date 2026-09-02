@@ -95,6 +95,8 @@ namespace FrogAcross.Editor.Generator
 
             // Provisional medals from the diagonal-free floor (#63 recalibrates).
             float minSec = solve.MinTicks / 60f;
+            if (p.maxSolverSeconds > 0f && minSec > p.maxSolverSeconds)
+                return (null, 0, 0, $"too long: {minSec:0}s of optimal play > {p.maxSolverSeconds:0}s");
             dto.medal = new MedalDto
             {
                 gold = Round1(minSec * 2.0f),
@@ -116,8 +118,14 @@ namespace FrogAcross.Editor.Generator
                 rows.Add(BuildRow(p.laneKindPool[rng.Next(p.laneKindPool.Length)], columns, p, rng, registry));
             rows.Add(new RowDto { kind = "bank" });
 
-            int bayN = Math.Min(rng.Next(p.bayCount.x, p.bayCount.y + 1), columns - 1);
-            var bays = Enumerable.Range(0, columns).OrderBy(_ => rng.Next()).Take(bayN).OrderBy(x => x).ToArray();
+            // start first: on a wide board a banded level can require its bays
+            // near the start, or level 1 becomes a long sideways walk
+            int startColumn = rng.Next(1, columns - 1);
+            int lo = p.bayWindow > 0 ? Math.Max(0, startColumn - p.bayWindow) : 0;
+            int hi = p.bayWindow > 0 ? Math.Min(columns - 1, startColumn + p.bayWindow) : columns - 1;
+            int bayN = Math.Min(rng.Next(p.bayCount.x, p.bayCount.y + 1), hi - lo + 1);
+            var bays = Enumerable.Range(lo, hi - lo + 1)
+                .OrderBy(_ => rng.Next()).Take(bayN).OrderBy(x => x).ToArray();
 
             return new LevelDto
             {
@@ -125,7 +133,7 @@ namespace FrogAcross.Editor.Generator
                 name = id,
                 columns = columns,
                 medal = new MedalDto { gold = 10, silver = 20, bronze = 30 }, // replaced post-solve
-                startColumn = rng.Next(1, columns - 1),
+                startColumn = startColumn,
                 bays = bays,
                 rows = rows.ToArray(),
             };

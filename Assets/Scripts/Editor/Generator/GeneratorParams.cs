@@ -15,6 +15,10 @@ namespace FrogAcross.Editor.Generator
         public Vector2Int middleRows = new(6, 9);
         public Vector2Int bayCount = new(2, 4);
 
+        [Tooltip("Bays must land within this many columns of the start (0 = anywhere). "
+                 + "Keeps a teaching level a near-straight line on a wide board.")]
+        public int bayWindow;
+
         [Tooltip("Lane kind ids drawn for middle rows (weights by repetition).")]
         public string[] laneKindPool =
         {
@@ -28,6 +32,11 @@ namespace FrogAcross.Editor.Generator
         [Tooltip("Extra spacing beyond size+1.2, in cells.")]
         public Vector2 spacingSlack = new(0.8f, 3.5f);
         [Range(0f, 0.5f)] public float obstructionChance = 0.18f;
+
+        [Tooltip("Reject candidates whose optimal solve runs longer than this many seconds "
+                 + "(0 = unlimited). A wide board makes lateral distance expensive — without "
+                 + "this, a water level can need three minutes of perfect play.")]
+        public float maxSolverSeconds;
 
         public int solverNodeBudget = 250_000;
         public long solverTickBudget = 10_800;

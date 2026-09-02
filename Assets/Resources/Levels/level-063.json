@@ -1,17 +1,17 @@
 {
     "id": "level-063",
     "name": "level-063",
-    "columns": 11,
+    "columns": 29,
     "medal": {
-        "gold": 17.399999618530275,
-        "silver": 25.299999237060548,
-        "bronze": 36.599998474121097
+        "gold": 26.100000381469728,
+        "silver": 37.79999923706055,
+        "bronze": 54.79999923706055
     },
     "startColumn": 1,
     "bays": [
         1,
-        4,
-        5
+        23,
+        27
     ],
     "rows": [
         {
@@ -35,8 +35,8 @@
             "objects": [
                 {
                     "pieceId": "passenger",
-                    "offset": 24.65999984741211,
-                    "spacing": 17.5,
+                    "offset": 37.34000015258789,
+                    "spacing": 17.670000076293947,
                     "phase": 0
                 }
             ],
@@ -55,86 +55,122 @@
                 {
                     "pieceId": "tree",
                     "column": 7
+                },
+                {
+                    "pieceId": "planter-tulip",
+                    "column": 18
+                },
+                {
+                    "pieceId": "planter-tulip",
+                    "column": 19
+                },
+                {
+                    "pieceId": "planter-lavender",
+                    "column": 23
+                },
+                {
+                    "pieceId": "planter-lavender",
+                    "column": 24
                 }
             ]
         },
         {
-            "kind": "bike",
-            "dir": "right",
-            "speed": 2.609999895095825,
-            "objects": [
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
                 {
-                    "pieceId": "runner",
-                    "offset": 5.710000038146973,
-                    "spacing": 5.0,
-                    "phase": 0
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "river",
-            "dir": "right",
-            "speed": 1.2999999523162842,
-            "objects": [
-                {
-                    "pieceId": "log-short",
-                    "offset": 2.8299999237060549,
-                    "spacing": 21.0,
-                    "phase": 0
+                    "pieceId": "bench",
+                    "column": 5
                 },
                 {
-                    "pieceId": "turtle-log",
-                    "offset": 13.329999923706055,
-                    "spacing": 21.0,
-                    "phase": 197
+                    "pieceId": "planter-succulent",
+                    "column": 7
+                },
+                {
+                    "pieceId": "planter-succulent",
+                    "column": 9
+                },
+                {
+                    "pieceId": "lamp",
+                    "column": 13
+                },
+                {
+                    "pieceId": "bush",
+                    "column": 22
+                },
+                {
+                    "pieceId": "lamp",
+                    "column": 28
+                }
+            ]
+        },
+        {
+            "kind": "tracks",
+            "dir": "right",
+            "speed": 2.5199999809265138,
+            "objects": [
+                {
+                    "pieceId": "passenger",
+                    "offset": 42.599998474121097,
+                    "spacing": 17.670000076293947,
+                    "phase": 0
                 }
             ],
             "obstructions": []
         },
         {
-            "kind": "road",
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-tulip",
+                    "column": 5
+                },
+                {
+                    "pieceId": "planter-fern",
+                    "column": 8
+                },
+                {
+                    "pieceId": "planter-tulip",
+                    "column": 13
+                },
+                {
+                    "pieceId": "planter-tulip",
+                    "column": 15
+                },
+                {
+                    "pieceId": "lamp",
+                    "column": 17
+                }
+            ]
+        },
+        {
+            "kind": "swamp",
             "dir": "right",
-            "speed": 2.299999952316284,
+            "speed": 1.4800000190734864,
             "objects": [
                 {
-                    "pieceId": "bus",
-                    "offset": 14.319999694824219,
-                    "spacing": 9.5,
-                    "phase": 0
+                    "pieceId": "turtle-log",
+                    "offset": 11.4399995803833,
+                    "spacing": 6.5,
+                    "phase": 50
                 }
             ],
             "obstructions": []
         },
         {
             "kind": "tracks",
-            "dir": "right",
-            "speed": 2.430000066757202,
-            "objects": [
-                {
-                    "pieceId": "passenger",
-                    "offset": 4.260000228881836,
-                    "spacing": 17.5,
-                    "phase": 0
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "road",
             "dir": "left",
-            "speed": 1.9700000286102296,
+            "speed": 2.2799999713897707,
             "objects": [
                 {
-                    "pieceId": "convertible",
-                    "offset": 10.65999984741211,
-                    "spacing": 19.0,
-                    "phase": 0
-                },
-                {
-                    "pieceId": "bus",
-                    "offset": 1.159999966621399,
-                    "spacing": 19.0,
+                    "pieceId": "freight",
+                    "offset": 42.0099983215332,
+                    "spacing": 17.670000076293947,
                     "phase": 0
                 }
             ],

@@ -1,17 +1,17 @@
 {
     "id": "level-028",
     "name": "level-028",
-    "columns": 12,
+    "columns": 24,
     "medal": {
-        "gold": 21.299999237060548,
-        "silver": 30.899999618530275,
-        "bronze": 44.79999923706055
+        "gold": 40.599998474121097,
+        "silver": 58.900001525878909,
+        "bronze": 85.4000015258789
     },
-    "startColumn": 5,
+    "startColumn": 15,
     "bays": [
-        2,
-        3,
-        7
+        5,
+        9,
+        18
     ],
     "rows": [
         {
@@ -22,33 +22,27 @@
             "obstructions": []
         },
         {
-            "kind": "swamp",
-            "dir": "right",
-            "speed": 1.1399999856948853,
+            "kind": "road",
+            "dir": "left",
+            "speed": 1.9500000476837159,
             "objects": [
                 {
-                    "pieceId": "raft",
-                    "offset": 17.540000915527345,
-                    "spacing": 22.0,
+                    "pieceId": "bus",
+                    "offset": 24.079999923706056,
+                    "spacing": 8.0,
                     "phase": 0
-                },
-                {
-                    "pieceId": "gator",
-                    "offset": 6.539999961853027,
-                    "spacing": 22.0,
-                    "phase": 366
                 }
             ],
             "obstructions": []
         },
         {
-            "kind": "swamp",
-            "dir": "right",
-            "speed": 1.5199999809265137,
+            "kind": "river",
+            "dir": "left",
+            "speed": 1.4700000286102296,
             "objects": [
                 {
                     "pieceId": "log-long",
-                    "offset": 5.119999885559082,
+                    "offset": 30.399999618530275,
                     "spacing": 12.0,
                     "phase": 0
                 }
@@ -58,11 +52,11 @@
         {
             "kind": "road",
             "dir": "right",
-            "speed": 2.0199999809265138,
+            "speed": 1.5700000524520875,
             "objects": [
                 {
-                    "pieceId": "car",
-                    "offset": 1.5199999809265137,
+                    "pieceId": "convertible",
+                    "offset": 9.789999961853028,
                     "spacing": 6.0,
                     "phase": 0
                 }
@@ -72,26 +66,12 @@
         {
             "kind": "swamp",
             "dir": "right",
-            "speed": 1.5499999523162842,
+            "speed": 1.1799999475479127,
             "objects": [
                 {
-                    "pieceId": "log-short",
-                    "offset": 8.109999656677246,
-                    "spacing": 6.670000076293945,
-                    "phase": 0
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "road",
-            "dir": "left",
-            "speed": 1.690000057220459,
-            "objects": [
-                {
-                    "pieceId": "bus",
-                    "offset": 19.969999313354493,
-                    "spacing": 6.670000076293945,
+                    "pieceId": "log-long",
+                    "offset": 27.110000610351564,
+                    "spacing": 12.0,
                     "phase": 0
                 }
             ],
@@ -100,33 +80,41 @@
         {
             "kind": "river",
             "dir": "left",
-            "speed": 1.2999999523162842,
+            "speed": 1.4600000381469727,
             "objects": [
                 {
                     "pieceId": "turtle-log",
-                    "offset": 14.829999923706055,
-                    "spacing": 11.0,
-                    "phase": 106
+                    "offset": 13.119999885559082,
+                    "spacing": 8.5,
+                    "phase": 172
                 }
             ],
             "obstructions": []
         },
         {
-            "kind": "river",
+            "kind": "swamp",
             "dir": "left",
-            "speed": 1.1100000143051148,
+            "speed": 1.190000057220459,
             "objects": [
                 {
-                    "pieceId": "raft",
-                    "offset": 3.8299999237060549,
-                    "spacing": 22.0,
+                    "pieceId": "log-short",
+                    "offset": 7.090000152587891,
+                    "spacing": 8.0,
                     "phase": 0
-                },
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "right",
+            "speed": 1.2899999618530274,
+            "objects": [
                 {
-                    "pieceId": "gator",
-                    "offset": 14.829999923706055,
-                    "spacing": 22.0,
-                    "phase": 149
+                    "pieceId": "turtle-log",
+                    "offset": 9.670000076293946,
+                    "spacing": 8.5,
+                    "phase": 113
                 }
             ],
             "obstructions": []

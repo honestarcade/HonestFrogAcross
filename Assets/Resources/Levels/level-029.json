@@ -1,17 +1,17 @@
 {
     "id": "level-029",
     "name": "level-029",
-    "columns": 9,
+    "columns": 23,
     "medal": {
-        "gold": 31.799999237060548,
-        "silver": 46.0,
-        "bronze": 66.69999694824219
+        "gold": 25.100000381469728,
+        "silver": 36.400001525878909,
+        "bronze": 52.70000076293945
     },
-    "startColumn": 7,
+    "startColumn": 18,
     "bays": [
-        3,
-        5,
-        7
+        14,
+        16,
+        21
     ],
     "rows": [
         {
@@ -30,49 +30,20 @@
                 {
                     "pieceId": "planter-tulip",
                     "column": 2
-                }
-            ]
-        },
-        {
-            "kind": "road",
-            "dir": "left",
-            "speed": 2.009999990463257,
-            "objects": [
-                {
-                    "pieceId": "truck",
-                    "offset": 5.329999923706055,
-                    "spacing": 9.5,
-                    "phase": 0
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "river",
-            "dir": "left",
-            "speed": 1.1699999570846558,
-            "objects": [
-                {
-                    "pieceId": "turtle-log",
-                    "offset": 6.809999942779541,
-                    "spacing": 19.0,
-                    "phase": 260
                 },
                 {
-                    "pieceId": "raft",
-                    "offset": 16.309999465942384,
-                    "spacing": 19.0,
-                    "phase": 0
+                    "pieceId": "planter-succulent",
+                    "column": 10
+                },
+                {
+                    "pieceId": "tree",
+                    "column": 11
+                },
+                {
+                    "pieceId": "lamp",
+                    "column": 12
                 }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "grass",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
-            "obstructions": []
+            ]
         },
         {
             "kind": "grass",
@@ -82,47 +53,115 @@
             "obstructions": [
                 {
                     "pieceId": "planter-tulip",
-                    "column": 2
+                    "column": 11
                 },
                 {
                     "pieceId": "planter-succulent",
-                    "column": 6
+                    "column": 15
+                },
+                {
+                    "pieceId": "tree",
+                    "column": 21
                 }
             ]
         },
         {
             "kind": "river",
-            "dir": "left",
-            "speed": 1.190000057220459,
+            "dir": "right",
+            "speed": 1.559999942779541,
             "objects": [
                 {
-                    "pieceId": "turtle-log",
-                    "offset": 10.779999732971192,
-                    "spacing": 9.5,
-                    "phase": 238
+                    "pieceId": "log-long",
+                    "offset": 1.340000033378601,
+                    "spacing": 11.670000076293946,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "right",
+            "speed": 1.2100000381469727,
+            "objects": [
+                {
+                    "pieceId": "log-long",
+                    "offset": 25.549999237060548,
+                    "spacing": 35.0,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "raft",
+                    "offset": 8.050000190734864,
+                    "spacing": 35.0,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "right",
+            "speed": 1.6399999856948853,
+            "objects": [
+                {
+                    "pieceId": "bus",
+                    "offset": 10.59000015258789,
+                    "spacing": 15.5,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "car",
+                    "offset": 18.34000015258789,
+                    "spacing": 15.5,
+                    "phase": 0
                 }
             ],
             "obstructions": []
         },
         {
             "kind": "swamp",
-            "dir": "left",
-            "speed": 1.3200000524520875,
+            "dir": "right",
+            "speed": 1.3899999856948853,
             "objects": [
                 {
-                    "pieceId": "gator",
-                    "offset": 4.679999828338623,
-                    "spacing": 19.0,
-                    "phase": 243
+                    "pieceId": "raft",
+                    "offset": 10.199999809265137,
+                    "spacing": 16.5,
+                    "phase": 0
                 },
                 {
-                    "pieceId": "log-short",
-                    "offset": 14.180000305175782,
-                    "spacing": 19.0,
+                    "pieceId": "raft",
+                    "offset": 18.450000762939454,
+                    "spacing": 16.5,
                     "phase": 0
                 }
             ],
             "obstructions": []
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "lamp",
+                    "column": 8
+                },
+                {
+                    "pieceId": "lamp",
+                    "column": 9
+                },
+                {
+                    "pieceId": "lamp",
+                    "column": 17
+                },
+                {
+                    "pieceId": "lamp",
+                    "column": 22
+                }
+            ]
         },
         {
             "kind": "bank",

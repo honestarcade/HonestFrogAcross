@@ -1,17 +1,17 @@
 {
     "id": "level-065",
     "name": "level-065",
-    "columns": 11,
+    "columns": 29,
     "medal": {
-        "gold": 19.399999618530275,
-        "silver": 28.100000381469728,
-        "bronze": 40.70000076293945
+        "gold": 23.200000762939454,
+        "silver": 33.599998474121097,
+        "bronze": 48.70000076293945
     },
-    "startColumn": 8,
+    "startColumn": 1,
     "bays": [
-        0,
-        1,
-        8
+        3,
+        10,
+        28
     ],
     "rows": [
         {
@@ -22,21 +22,14 @@
             "obstructions": []
         },
         {
-            "kind": "walkway",
-            "dir": "right",
-            "speed": 1.590000033378601,
-            "objects": [],
-            "obstructions": []
-        },
-        {
-            "kind": "swamp",
+            "kind": "road",
             "dir": "left",
-            "speed": 1.7400000095367432,
+            "speed": 2.3499999046325685,
             "objects": [
                 {
-                    "pieceId": "log",
-                    "offset": 5.440000057220459,
-                    "spacing": 7.0,
+                    "pieceId": "bus",
+                    "offset": 19.15999984741211,
+                    "spacing": 7.400000095367432,
                     "phase": 0
                 }
             ],
@@ -50,40 +43,85 @@
             "obstructions": [
                 {
                     "pieceId": "planter-daisy",
-                    "column": 2
+                    "column": 4
                 },
                 {
-                    "pieceId": "planter-tulip",
-                    "column": 5
+                    "pieceId": "bush",
+                    "column": 9
+                },
+                {
+                    "pieceId": "bench",
+                    "column": 14
+                },
+                {
+                    "pieceId": "bush",
+                    "column": 20
+                },
+                {
+                    "pieceId": "bench",
+                    "column": 28
                 }
             ]
+        },
+        {
+            "kind": "road",
+            "dir": "left",
+            "speed": 2.559999942779541,
+            "objects": [
+                {
+                    "pieceId": "truck",
+                    "offset": 12.260000228881836,
+                    "spacing": 7.800000190734863,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "right",
+            "speed": 2.6500000953674318,
+            "objects": [
+                {
+                    "pieceId": "truck",
+                    "offset": 31.579999923706056,
+                    "spacing": 19.5,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "bus",
+                    "offset": 2.3299999237060549,
+                    "spacing": 19.5,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
         },
         {
             "kind": "swamp",
             "dir": "right",
-            "speed": 1.6699999570846558,
+            "speed": 1.309999942779541,
             "objects": [
                 {
                     "pieceId": "turtle-log",
-                    "offset": 7.920000076293945,
-                    "spacing": 7.0,
-                    "phase": 315
+                    "offset": 24.940000534057618,
+                    "spacing": 19.5,
+                    "phase": 86
+                },
+                {
+                    "pieceId": "log",
+                    "offset": 34.689998626708987,
+                    "spacing": 19.5,
+                    "phase": 0
                 }
             ],
             "obstructions": []
         },
         {
-            "kind": "tracks",
-            "dir": "left",
-            "speed": 2.1700000762939455,
-            "objects": [
-                {
-                    "pieceId": "passenger",
-                    "offset": 25.93000030517578,
-                    "spacing": 17.5,
-                    "phase": 0
-                }
-            ],
+            "kind": "walkway",
+            "dir": "right",
+            "speed": 1.4500000476837159,
+            "objects": [],
             "obstructions": []
         },
         {
@@ -93,40 +131,50 @@
             "objects": [],
             "obstructions": [
                 {
-                    "pieceId": "planter-tulip",
+                    "pieceId": "planter-succulent",
+                    "column": 4
+                },
+                {
+                    "pieceId": "planter-daisy",
                     "column": 6
                 },
                 {
-                    "pieceId": "bush",
+                    "pieceId": "planter-tulip",
                     "column": 8
+                },
+                {
+                    "pieceId": "lamp",
+                    "column": 13
+                },
+                {
+                    "pieceId": "planter-lavender",
+                    "column": 23
+                },
+                {
+                    "pieceId": "planter-daisy",
+                    "column": 27
                 }
             ]
         },
         {
-            "kind": "tracks",
-            "dir": "left",
-            "speed": 2.5899999141693117,
+            "kind": "road",
+            "dir": "right",
+            "speed": 2.619999885559082,
             "objects": [
                 {
-                    "pieceId": "freight",
-                    "offset": 23.770000457763673,
-                    "spacing": 17.5,
+                    "pieceId": "car",
+                    "offset": 30.809999465942384,
+                    "spacing": 11.670000076293946,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "car",
+                    "offset": 1.649999976158142,
+                    "spacing": 11.670000076293946,
                     "phase": 0
                 }
             ],
             "obstructions": []
-        },
-        {
-            "kind": "concrete",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
-            "obstructions": [
-                {
-                    "pieceId": "bush",
-                    "column": 1
-                }
-            ]
         },
         {
             "kind": "bank",

@@ -109,37 +109,38 @@ namespace FrogAcross.Editor.Generator
         {
             new CurveBand
             {
-                label = "first-hop", startLevel = 1, endLevel = 1,
+                label = "first-hop", maxSolverSeconds = 8, startLevel = 1, endLevel = 1,
                 laneKindPool = new[] { "road", "road", "grass" },
                 requiredKinds = new[] { "road" },
                 middleRowsStartEnd = new Vector2Int(3, 3),
                 bayCountStartEnd = new Vector2Int(1, 1), // one bay: one crossing (#64)
-                maxSolverMoves = 7, // near-straight line: rows(5) + 2
-                columnsRange = new Vector2Int(9, 10),
+                maxSolverMoves = 11, // near-straight line: rows(5) + the bay window
+                bayWindow = 3,       // the one bay sits within 3 columns of the start
+                columnsRange = new Vector2Int(14, 15),
                 deadlySpeedStart = new Vector2(1.0f, 1.2f), deadlySpeedEnd = new Vector2(1.0f, 1.2f),
                 spacingSlackStart = new Vector2(3.5f, 4.5f), spacingSlackEnd = new Vector2(3.5f, 4.5f),
                 obstructionChanceStart = 0f, obstructionChanceEnd = 0f,
             },
             new CurveBand
             {
-                label = "teaching-road", startLevel = 2, endLevel = 10,
+                label = "teaching-road", maxSolverSeconds = 14, startLevel = 2, endLevel = 10,
                 laneKindPool = new[] { "road", "road", "grass" },
                 requiredKinds = new[] { "road" },
                 middleRowsStartEnd = new Vector2Int(5, 6),
                 bayCountStartEnd = new Vector2Int(2, 3),
-                columnsRange = new Vector2Int(9, 11),
+                columnsRange = new Vector2Int(20, 23),
                 deadlySpeedStart = new Vector2(1.0f, 1.3f), deadlySpeedEnd = new Vector2(1.4f, 1.8f),
                 spacingSlackStart = new Vector2(3.0f, 4.5f), spacingSlackEnd = new Vector2(2.2f, 3.6f),
                 obstructionChanceStart = 0f, obstructionChanceEnd = 0.08f,
             },
             new CurveBand
             {
-                label = "river", startLevel = 11, endLevel = 20,
+                label = "river", maxSolverSeconds = 20, startLevel = 11, endLevel = 20,
                 laneKindPool = new[] { "road", "grass", "river", "river" },
                 requiredKinds = new[] { "river" },
                 middleRowsStartEnd = new Vector2Int(5, 7),
                 bayCountStartEnd = new Vector2Int(2, 3),
-                columnsRange = new Vector2Int(9, 11),
+                columnsRange = new Vector2Int(20, 26),
                 deadlySpeedStart = new Vector2(1.3f, 1.8f), deadlySpeedEnd = new Vector2(1.5f, 2.1f),
                 waterSpeedStart = new Vector2(0.9f, 1.2f), waterSpeedEnd = new Vector2(1.0f, 1.5f),
                 spacingSlackStart = new Vector2(2.4f, 3.8f), spacingSlackEnd = new Vector2(2.0f, 3.4f),
@@ -147,12 +148,12 @@ namespace FrogAcross.Editor.Generator
             },
             new CurveBand
             {
-                label = "swamp", startLevel = 21, endLevel = 30,
+                label = "swamp", maxSolverSeconds = 22, startLevel = 21, endLevel = 30,
                 laneKindPool = new[] { "road", "grass", "river", "swamp", "swamp" },
                 requiredKinds = new[] { "swamp" },
                 middleRowsStartEnd = new Vector2Int(6, 7),
                 bayCountStartEnd = new Vector2Int(2, 3),
-                columnsRange = new Vector2Int(9, 12),
+                columnsRange = new Vector2Int(23, 26),
                 deadlySpeedStart = new Vector2(1.4f, 1.9f), deadlySpeedEnd = new Vector2(1.6f, 2.2f),
                 waterSpeedStart = new Vector2(1.0f, 1.4f), waterSpeedEnd = new Vector2(1.1f, 1.6f),
                 spacingSlackStart = new Vector2(2.2f, 3.6f), spacingSlackEnd = new Vector2(1.9f, 3.2f),
@@ -160,12 +161,12 @@ namespace FrogAcross.Editor.Generator
             },
             new CurveBand
             {
-                label = "tracks", startLevel = 31, endLevel = 40,
+                label = "tracks", maxSolverSeconds = 24, startLevel = 31, endLevel = 40,
                 laneKindPool = new[] { "road", "grass", "river", "swamp", "tracks", "concrete" },
                 requiredKinds = new[] { "tracks" },
                 middleRowsStartEnd = new Vector2Int(6, 8),
                 bayCountStartEnd = new Vector2Int(2, 4),
-                columnsRange = new Vector2Int(10, 12),
+                columnsRange = new Vector2Int(23, 29),
                 deadlySpeedStart = new Vector2(1.5f, 2.0f), deadlySpeedEnd = new Vector2(1.7f, 2.4f),
                 waterSpeedStart = new Vector2(1.0f, 1.5f), waterSpeedEnd = new Vector2(1.2f, 1.7f),
                 spacingSlackStart = new Vector2(2.0f, 3.4f), spacingSlackEnd = new Vector2(1.8f, 3.0f),
@@ -173,12 +174,12 @@ namespace FrogAcross.Editor.Generator
             },
             new CurveBand
             {
-                label = "bike", startLevel = 41, endLevel = 50,
+                label = "bike", maxSolverSeconds = 26, startLevel = 41, endLevel = 50,
                 laneKindPool = new[] { "road", "grass", "river", "swamp", "tracks", "bike", "bike", "concrete" },
                 requiredKinds = new[] { "bike" },
                 middleRowsStartEnd = new Vector2Int(7, 8),
                 bayCountStartEnd = new Vector2Int(3, 4),
-                columnsRange = new Vector2Int(10, 12),
+                columnsRange = new Vector2Int(26, 29),
                 deadlySpeedStart = new Vector2(1.6f, 2.2f), deadlySpeedEnd = new Vector2(1.8f, 2.5f),
                 waterSpeedStart = new Vector2(1.1f, 1.6f), waterSpeedEnd = new Vector2(1.2f, 1.8f),
                 crashSpeedStart = new Vector2(1.8f, 2.4f), crashSpeedEnd = new Vector2(2.0f, 2.8f),
@@ -187,12 +188,12 @@ namespace FrogAcross.Editor.Generator
             },
             new CurveBand
             {
-                label = "walkway", startLevel = 51, endLevel = 60,
+                label = "walkway", maxSolverSeconds = 28, startLevel = 51, endLevel = 60,
                 laneKindPool = new[] { "road", "grass", "river", "swamp", "tracks", "bike", "walkway", "walkway", "concrete" },
                 requiredKinds = new[] { "walkway" },
                 middleRowsStartEnd = new Vector2Int(7, 9),
                 bayCountStartEnd = new Vector2Int(3, 4),
-                columnsRange = new Vector2Int(10, 13),
+                columnsRange = new Vector2Int(26, 32),
                 deadlySpeedStart = new Vector2(1.7f, 2.3f), deadlySpeedEnd = new Vector2(1.9f, 2.6f),
                 waterSpeedStart = new Vector2(1.1f, 1.7f), waterSpeedEnd = new Vector2(1.3f, 1.8f),
                 crashSpeedStart = new Vector2(2.0f, 2.6f), crashSpeedEnd = new Vector2(2.2f, 2.9f),
@@ -202,11 +203,11 @@ namespace FrogAcross.Editor.Generator
             },
             new CurveBand
             {
-                label = "combination-1", startLevel = 61, endLevel = 80,
+                label = "combination-1", maxSolverSeconds = 30, startLevel = 61, endLevel = 80,
                 laneKindPool = new[] { "road", "river", "swamp", "tracks", "bike", "walkway", "grass", "concrete" },
                 middleRowsStartEnd = new Vector2Int(8, 9),
                 bayCountStartEnd = new Vector2Int(3, 5),
-                columnsRange = new Vector2Int(11, 13),
+                columnsRange = new Vector2Int(29, 32),
                 deadlySpeedStart = new Vector2(1.9f, 2.6f), deadlySpeedEnd = new Vector2(2.1f, 2.9f),
                 waterSpeedStart = new Vector2(1.2f, 1.8f), waterSpeedEnd = new Vector2(1.4f, 1.9f),
                 crashSpeedStart = new Vector2(2.2f, 2.8f), crashSpeedEnd = new Vector2(2.4f, 3.0f),
@@ -216,11 +217,13 @@ namespace FrogAcross.Editor.Generator
             },
             new CurveBand
             {
-                label = "combination-2", startLevel = 81, endLevel = 100,
+                label = "combination-2", maxSolverSeconds = 36, startLevel = 81, endLevel = 100,
                 laneKindPool = new[] { "road", "river", "swamp", "tracks", "bike", "walkway", "concrete" },
                 middleRowsStartEnd = new Vector2Int(9, 10),
-                bayCountStartEnd = new Vector2Int(4, 5),
-                columnsRange = new Vector2Int(11, 13),
+                // picks up where combination-1 leaves off — restarting at 4
+                // put a visible dip in the curve at level 81
+                bayCountStartEnd = new Vector2Int(5, 5),
+                columnsRange = new Vector2Int(32, 35),
                 deadlySpeedStart = new Vector2(2.1f, 2.8f), deadlySpeedEnd = new Vector2(2.3f, 3.2f),
                 waterSpeedStart = new Vector2(1.3f, 1.9f), waterSpeedEnd = new Vector2(1.5f, 2.0f),
                 crashSpeedStart = new Vector2(2.4f, 3.0f), crashSpeedEnd = new Vector2(2.6f, 3.2f),

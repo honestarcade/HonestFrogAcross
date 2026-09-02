@@ -1,16 +1,16 @@
 {
     "id": "level-021",
     "name": "level-021",
-    "columns": 12,
+    "columns": 26,
     "medal": {
-        "gold": 10.699999809265137,
-        "silver": 15.600000381469727,
-        "bronze": 22.5
+        "gold": 15.100000381469727,
+        "silver": 21.899999618530275,
+        "bronze": 31.799999237060548
     },
-    "startColumn": 5,
+    "startColumn": 8,
     "bays": [
-        5,
-        7
+        4,
+        12
     ],
     "rows": [
         {
@@ -27,14 +27,14 @@
             "objects": [
                 {
                     "pieceId": "log-long",
-                    "offset": 19.25,
-                    "spacing": 24.0,
+                    "offset": 30.489999771118165,
+                    "spacing": 19.0,
                     "phase": 0
                 },
                 {
                     "pieceId": "log",
-                    "offset": 7.25,
-                    "spacing": 24.0,
+                    "offset": 1.9900000095367432,
+                    "spacing": 19.0,
                     "phase": 0
                 }
             ],
@@ -53,56 +53,42 @@
                 {
                     "pieceId": "planter-tulip",
                     "column": 11
-                }
-            ]
-        },
-        {
-            "kind": "grass",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
-            "obstructions": [
-                {
-                    "pieceId": "planter-fern",
-                    "column": 5
-                }
-            ]
-        },
-        {
-            "kind": "swamp",
-            "dir": "right",
-            "speed": 1.0499999523162842,
-            "objects": [
-                {
-                    "pieceId": "log-short",
-                    "offset": 2.0199999809265138,
-                    "spacing": 22.0,
-                    "phase": 0
                 },
                 {
+                    "pieceId": "planter-fern",
+                    "column": 18
+                }
+            ]
+        },
+        {
+            "kind": "river",
+            "dir": "left",
+            "speed": 1.3700000047683716,
+            "objects": [
+                {
                     "pieceId": "gator",
-                    "offset": 13.020000457763672,
-                    "spacing": 22.0,
-                    "phase": 323
+                    "offset": 29.280000686645509,
+                    "spacing": 19.0,
+                    "phase": 76
+                },
+                {
+                    "pieceId": "log-long",
+                    "offset": 0.7799999713897705,
+                    "spacing": 19.0,
+                    "phase": 0
                 }
             ],
             "obstructions": []
         },
         {
-            "kind": "road",
-            "dir": "right",
-            "speed": 1.440000057220459,
+            "kind": "swamp",
+            "dir": "left",
+            "speed": 1.3700000047683716,
             "objects": [
                 {
-                    "pieceId": "car",
-                    "offset": 3.2799999713897707,
-                    "spacing": 18.0,
-                    "phase": 0
-                },
-                {
-                    "pieceId": "car",
-                    "offset": 12.279999732971192,
-                    "spacing": 18.0,
+                    "pieceId": "log-long",
+                    "offset": 6.920000076293945,
+                    "spacing": 9.5,
                     "phase": 0
                 }
             ],
@@ -115,15 +101,35 @@
             "objects": [
                 {
                     "pieceId": "gator",
-                    "offset": 3.990000009536743,
-                    "spacing": 22.0,
+                    "offset": 6.53000020980835,
+                    "spacing": 18.0,
                     "phase": 417
                 },
                 {
                     "pieceId": "turtle-log",
-                    "offset": 14.989999771118164,
-                    "spacing": 22.0,
+                    "offset": 15.529999732971192,
+                    "spacing": 18.0,
                     "phase": 84
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "right",
+            "speed": 1.3300000429153443,
+            "objects": [
+                {
+                    "pieceId": "log-long",
+                    "offset": 25.450000762939454,
+                    "spacing": 19.0,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "turtle-log",
+                    "offset": 34.95000076293945,
+                    "spacing": 19.0,
+                    "phase": 13
                 }
             ],
             "obstructions": []

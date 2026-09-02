@@ -1,19 +1,19 @@
 {
     "id": "level-077",
     "name": "level-077",
-    "columns": 11,
+    "columns": 29,
     "medal": {
-        "gold": 33.099998474121097,
-        "silver": 48.0,
-        "bronze": 69.5
+        "gold": 29.200000762939454,
+        "silver": 42.29999923706055,
+        "bronze": 61.20000076293945
     },
-    "startColumn": 6,
+    "startColumn": 8,
     "bays": [
-        3,
         4,
-        6,
-        7,
-        8
+        5,
+        13,
+        20,
+        23
     ],
     "rows": [
         {
@@ -30,8 +30,8 @@
             "objects": [
                 {
                     "pieceId": "freight",
-                    "offset": 2.2699999809265138,
-                    "spacing": 17.5,
+                    "offset": 3.440000057220459,
+                    "spacing": 17.670000076293947,
                     "phase": 0
                 }
             ],
@@ -42,51 +42,55 @@
             "dir": "",
             "speed": 0.0,
             "objects": [],
-            "obstructions": []
-        },
-        {
-            "kind": "swamp",
-            "dir": "right",
-            "speed": 1.659999966621399,
-            "objects": [
+            "obstructions": [
                 {
-                    "pieceId": "log",
-                    "offset": 3.359999895095825,
-                    "spacing": 21.0,
-                    "phase": 0
+                    "pieceId": "planter-fern",
+                    "column": 16
                 },
                 {
+                    "pieceId": "lamp",
+                    "column": 17
+                },
+                {
+                    "pieceId": "bench",
+                    "column": 19
+                },
+                {
+                    "pieceId": "planter-daisy",
+                    "column": 26
+                }
+            ]
+        },
+        {
+            "kind": "walkway",
+            "dir": "right",
+            "speed": 1.8300000429153443,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "right",
+            "speed": 1.409999966621399,
+            "objects": [
+                {
                     "pieceId": "log",
-                    "offset": 13.859999656677246,
-                    "spacing": 21.0,
+                    "offset": 23.65999984741211,
+                    "spacing": 6.5,
                     "phase": 0
                 }
             ],
             "obstructions": []
         },
         {
-            "kind": "swamp",
+            "kind": "tracks",
             "dir": "left",
-            "speed": 1.440000057220459,
+            "speed": 2.25,
             "objects": [
                 {
-                    "pieceId": "turtle-log",
-                    "offset": 13.420000076293946,
-                    "spacing": 7.0,
-                    "phase": 172
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "bike",
-            "dir": "right",
-            "speed": 2.4700000286102297,
-            "objects": [
-                {
-                    "pieceId": "runner",
-                    "offset": 10.8100004196167,
-                    "spacing": 5.0,
+                    "pieceId": "freight",
+                    "offset": 39.119998931884769,
+                    "spacing": 17.670000076293947,
                     "phase": 0
                 }
             ],
@@ -100,54 +104,111 @@
             "obstructions": [
                 {
                     "pieceId": "planter-tulip",
-                    "column": 1
+                    "column": 5
                 },
                 {
                     "pieceId": "bush",
-                    "column": 2
+                    "column": 13
+                },
+                {
+                    "pieceId": "planter-daisy",
+                    "column": 18
+                },
+                {
+                    "pieceId": "bench",
+                    "column": 20
+                },
+                {
+                    "pieceId": "planter-fern",
+                    "column": 21
+                },
+                {
+                    "pieceId": "planter-tulip",
+                    "column": 28
                 }
             ]
         },
         {
-            "kind": "walkway",
-            "dir": "right",
-            "speed": 1.5499999523162842,
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
             "objects": [],
-            "obstructions": []
-        },
-        {
-            "kind": "bike",
-            "dir": "right",
-            "speed": 2.8299999237060549,
-            "objects": [
+            "obstructions": [
                 {
-                    "pieceId": "cyclist",
-                    "offset": 14.520000457763672,
-                    "spacing": 5.0,
-                    "phase": 0
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "bike",
-            "dir": "left",
-            "speed": 2.880000114440918,
-            "objects": [
-                {
-                    "pieceId": "skater",
-                    "offset": 2.430000066757202,
-                    "spacing": 7.5,
-                    "phase": 0
+                    "pieceId": "lamp",
+                    "column": 5
                 },
                 {
-                    "pieceId": "runner",
-                    "offset": 6.179999828338623,
-                    "spacing": 7.5,
+                    "pieceId": "planter-daisy",
+                    "column": 12
+                },
+                {
+                    "pieceId": "planter-tulip",
+                    "column": 14
+                },
+                {
+                    "pieceId": "planter-tulip",
+                    "column": 17
+                },
+                {
+                    "pieceId": "bush",
+                    "column": 24
+                },
+                {
+                    "pieceId": "planter-lavender",
+                    "column": 25
+                }
+            ]
+        },
+        {
+            "kind": "road",
+            "dir": "right",
+            "speed": 2.069999933242798,
+            "objects": [
+                {
+                    "pieceId": "truck",
+                    "offset": 25.389999389648439,
+                    "spacing": 6.5,
                     "phase": 0
                 }
             ],
             "obstructions": []
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-succulent",
+                    "column": 5
+                },
+                {
+                    "pieceId": "planter-tulip",
+                    "column": 12
+                },
+                {
+                    "pieceId": "planter-succulent",
+                    "column": 13
+                },
+                {
+                    "pieceId": "lamp",
+                    "column": 17
+                },
+                {
+                    "pieceId": "planter-fern",
+                    "column": 20
+                },
+                {
+                    "pieceId": "planter-succulent",
+                    "column": 23
+                },
+                {
+                    "pieceId": "bench",
+                    "column": 27
+                }
+            ]
         },
         {
             "kind": "bank",

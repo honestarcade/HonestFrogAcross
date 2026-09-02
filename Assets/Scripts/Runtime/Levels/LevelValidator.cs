@@ -18,7 +18,7 @@ namespace FrogAcross.Levels
 
             if (dto == null) { Err("level: not parseable as a level object"); return errors; }
             if (string.IsNullOrEmpty(dto.id)) Err("level.id: required");
-            if (dto.columns is < 5 or > 30) Err($"level.columns: {dto.columns} outside 5..30");
+            if (dto.columns is < 5 or > 48) Err($"level.columns: {dto.columns} outside 5..48"); // landscape boards run wide (2026-09-02)
             if (dto.medal == null) Err("level.medal: required");
             else if (!(dto.medal.gold > 0 && dto.medal.gold < dto.medal.silver && dto.medal.silver < dto.medal.bronze))
                 Err($"level.medal: need 0 < gold < silver < bronze (got {dto.medal?.gold}/{dto.medal?.silver}/{dto.medal?.bronze})");

@@ -1,16 +1,16 @@
 {
     "id": "level-031",
     "name": "level-031",
-    "columns": 10,
+    "columns": 23,
     "medal": {
-        "gold": 21.799999237060548,
-        "silver": 31.600000381469728,
-        "bronze": 45.79999923706055
+        "gold": 14.5,
+        "silver": 21.0,
+        "bronze": 30.399999618530275
     },
-    "startColumn": 7,
+    "startColumn": 9,
     "bays": [
-        2,
-        5
+        12,
+        15
     ],
     "rows": [
         {
@@ -21,48 +21,66 @@
             "obstructions": []
         },
         {
-            "kind": "tracks",
+            "kind": "river",
             "dir": "right",
-            "speed": 1.7999999523162842,
+            "speed": 1.350000023841858,
             "objects": [
                 {
-                    "pieceId": "passenger",
-                    "offset": 2.859999895095825,
-                    "spacing": 17.0,
-                    "phase": 0
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "road",
-            "dir": "left",
-            "speed": 1.5299999713897706,
-            "objects": [
-                {
-                    "pieceId": "bus",
-                    "offset": 0.5699999928474426,
-                    "spacing": 18.0,
-                    "phase": 0
+                    "pieceId": "turtle-log",
+                    "offset": 10.34000015258789,
+                    "spacing": 16.5,
+                    "phase": 195
                 },
                 {
-                    "pieceId": "convertible",
-                    "offset": 9.569999694824219,
-                    "spacing": 18.0,
-                    "phase": 0
+                    "pieceId": "gator",
+                    "offset": 18.59000015258789,
+                    "spacing": 16.5,
+                    "phase": 78
                 }
             ],
             "obstructions": []
         },
         {
-            "kind": "swamp",
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-lavender",
+                    "column": 16
+                },
+                {
+                    "pieceId": "planter-succulent",
+                    "column": 17
+                },
+                {
+                    "pieceId": "tree",
+                    "column": 19
+                }
+            ]
+        },
+        {
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-succulent",
+                    "column": 15
+                }
+            ]
+        },
+        {
+            "kind": "tracks",
             "dir": "left",
-            "speed": 1.1299999952316285,
+            "speed": 1.7100000381469727,
             "objects": [
                 {
-                    "pieceId": "log-long",
-                    "offset": 11.229999542236329,
-                    "spacing": 11.0,
+                    "pieceId": "freight",
+                    "offset": 1.7699999809265137,
+                    "spacing": 15.670000076293946,
                     "phase": 0
                 }
             ],
@@ -73,32 +91,31 @@
             "dir": "",
             "speed": 0.0,
             "objects": [],
-            "obstructions": []
-        },
-        {
-            "kind": "tracks",
-            "dir": "left",
-            "speed": 1.6299999952316285,
-            "objects": [
+            "obstructions": [
                 {
-                    "pieceId": "passenger",
-                    "offset": 0.12999999523162843,
-                    "spacing": 17.0,
-                    "phase": 0
+                    "pieceId": "bench",
+                    "column": 7
+                },
+                {
+                    "pieceId": "planter-fern",
+                    "column": 9
+                },
+                {
+                    "pieceId": "bench",
+                    "column": 15
                 }
-            ],
-            "obstructions": []
+            ]
         },
         {
-            "kind": "road",
-            "dir": "right",
-            "speed": 1.7699999809265137,
+            "kind": "swamp",
+            "dir": "left",
+            "speed": 1.4600000381469727,
             "objects": [
                 {
-                    "pieceId": "car",
-                    "offset": 15.770000457763672,
-                    "spacing": 8.0,
-                    "phase": 0
+                    "pieceId": "turtle-log",
+                    "offset": 2.7300000190734865,
+                    "spacing": 8.25,
+                    "phase": 46
                 }
             ],
             "obstructions": []
