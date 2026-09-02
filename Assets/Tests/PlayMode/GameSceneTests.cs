@@ -1,5 +1,6 @@
 using System.Collections;
 using System.IO;
+using System.Linq;
 using FrogAcross.Pieces;
 using FrogAcross.Services;
 using FrogAcross.Sim;
@@ -8,6 +9,7 @@ using FrogAcross.View;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using UnityEngine.TestTools;
 
 namespace FrogAcross.Tests.PlayMode
@@ -49,6 +51,54 @@ namespace FrogAcross.Tests.PlayMode
             SceneManager.LoadScene("Game");
             yield return null; // Start runs
             yield return null;
+        }
+
+        [UnityTest]
+        public IEnumerator HudChipsNeverCoverALandingPad()
+        {
+            // The board rolls -8°, so both its edges rise left to right: the
+            // free wedges are top-left and bottom-right, and that is where the
+            // HUD lives. The clock used to sit top-right — the corner where the
+            // goal row reaches highest — and hid landing pads once boards grew
+            // wide (owner, 2026-09-02).
+            foreach (string levelId in new[] { "level-001", "level-058", "level-090", "level-100" })
+            {
+                yield return LoadGame(levelId);
+                var boot = Object.FindAnyObjectByType<GameBootstrap>();
+                var cam = Camera.main;
+                cam.aspect = 3120f / 1440f; // the owner's panel
+                boot.SendMessage("FitCamera");
+                yield return null;
+
+                // Measure from the canvas EDGES, not its centre: the runner's
+                // canvas is as wide as its own screen, and we are asking about
+                // a 21:9 one. Height is always 1080 (the scaler matches height)
+                // and the chips are edge-anchored, so edge-relative coordinates
+                // carry across.
+                var canvasRt = (RectTransform)GameObject.Find("hud").GetComponent<Canvas>().transform;
+                float canvasH = 1080f, canvasW = canvasH * cam.aspect;
+
+                foreach (string chip in new[] { "time-pill", "move-pill" })
+                {
+                    var rt = (RectTransform)canvasRt.GetComponentsInChildren<Transform>(true)
+                        .First(t => t.name == chip);
+                    var box = RectTransformUtility.CalculateRelativeRectTransformBounds(canvasRt, rt);
+                    float fromLeft = box.center.x + canvasRt.rect.width / 2f;
+                    float fromTop = canvasRt.rect.height / 2f - box.center.y;
+
+                    foreach (int bay in boot.Sim.Level.BayColumns)
+                    {
+                        var vp = cam.WorldToViewportPoint(new Vector3(bay, 0f, 0f)); // goal row is row 0
+                        float padLeft = vp.x * canvasW, padTop = (1f - vp.y) * canvasH;
+                        // a pad is ~0.9 cells wide; clear it, with a little room
+                        bool overX = Mathf.Abs(padLeft - fromLeft) < box.size.x / 2f + 50f;
+                        bool overY = Mathf.Abs(padTop - fromTop) < box.size.y / 2f + 50f;
+                        Assert.That(overX && overY, Is.False,
+                            $"{levelId}: '{chip}' covers the landing pad at column {bay} "
+                            + $"(pad {padLeft:0},{padTop:0} vs chip {fromLeft:0},{fromTop:0})");
+                    }
+                }
+            }
         }
 
         [UnityTest]
