@@ -145,9 +145,10 @@ namespace FrogAcross.Tests.PlayMode
             // This should never happen, ever… same for disappearing." The
             // camera is far wider than the board, so culling objects at the
             // board margin popped them in and out in plain sight.
-            AppShell.PendingLevelId = "level-090"; // tall board: the more rows,
-            // the wider the fitted camera, and the further past the board margin
-            // it sees (a 5-row level hid the bug behind its own zoom)
+            // The level whose narrowest lane wrap sits furthest inside the
+            // camera frame — boards now fill most of the screen, so this is
+            // where a wrap is still visible and traffic could still pop.
+            AppShell.PendingLevelId = "level-058";
             SceneManager.LoadScene("Game");
             yield return null;
             yield return null;
@@ -164,11 +165,19 @@ namespace FrogAcross.Tests.PlayMode
             float camX = cam.transform.position.x;
             float left = camX - ext, right = camX + ext;
 
-            // Each ROW wraps at its own margin (a car lane's is 3 cells, a
-            // freight lane's is 10), while the camera reaches ~20 — so a car
-            // hit its wrap point in open view and jumped to the far side.
-            Assert.That(right, Is.GreaterThan(boot.Sim.Level.Columns + 3f),
-                "this level must be one where the camera sees past a car lane's wrap");
+            // Each ROW wraps at its own margin — a rider lane's is 2 cells, a
+            // freight lane's is 10 — so the narrowest one is where an object
+            // hits its wrap point soonest, in open view.
+            float narrowest = float.MaxValue;
+            foreach (var row in boot.Sim.Level.Rows)
+            {
+                if (row.Trains.Count == 0) continue;
+                float maxSize = 1f;
+                foreach (var t in row.Trains) maxSize = Mathf.Max(maxSize, t.Def.sizeCells);
+                narrowest = Mathf.Min(narrowest, FrogAcross.Levels.LaneGeometry.MarginFor(maxSize));
+            }
+            Assert.That(right, Is.GreaterThan(boot.Sim.Level.Columns - 1 + narrowest),
+                "this level must be one where the camera still sees past a lane's wrap");
 
             // Continuity: whatever is drawn fully on screen must still be drawn
             // within one frame of travel of where it was. Wrapping is allowed

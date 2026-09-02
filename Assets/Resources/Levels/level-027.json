@@ -1,17 +1,17 @@
 {
     "id": "level-027",
     "name": "level-027",
-    "columns": 12,
+    "columns": 24,
     "medal": {
-        "gold": 71.0999984741211,
-        "silver": 103.0999984741211,
-        "bronze": 149.3000030517578
+        "gold": 40.5,
+        "silver": 58.70000076293945,
+        "bronze": 85.0
     },
-    "startColumn": 9,
+    "startColumn": 11,
     "bays": [
-        1,
-        9,
-        11
+        5,
+        6,
+        23
     ],
     "rows": [
         {
@@ -22,54 +22,34 @@
             "obstructions": []
         },
         {
-            "kind": "road",
-            "dir": "right",
-            "speed": 1.649999976158142,
-            "objects": [
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
                 {
-                    "pieceId": "bus",
-                    "offset": 0.7099999785423279,
-                    "spacing": 10.0,
-                    "phase": 0
+                    "pieceId": "planter-lavender",
+                    "column": 9
+                },
+                {
+                    "pieceId": "planter-succulent",
+                    "column": 10
+                },
+                {
+                    "pieceId": "planter-tulip",
+                    "column": 18
                 }
-            ],
-            "obstructions": []
+            ]
         },
         {
             "kind": "swamp",
             "dir": "left",
-            "speed": 1.1200000047683716,
+            "speed": 1.190000057220459,
             "objects": [
-                {
-                    "pieceId": "gator",
-                    "offset": 17.010000228881837,
-                    "spacing": 22.0,
-                    "phase": 249
-                },
-                {
-                    "pieceId": "raft",
-                    "offset": 6.010000228881836,
-                    "spacing": 22.0,
-                    "phase": 0
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "swamp",
-            "dir": "left",
-            "speed": 1.440000057220459,
-            "objects": [
-                {
-                    "pieceId": "log",
-                    "offset": 0.6200000047683716,
-                    "spacing": 24.0,
-                    "phase": 0
-                },
                 {
                     "pieceId": "log-long",
-                    "offset": 12.619999885559082,
-                    "spacing": 24.0,
+                    "offset": 7.489999771118164,
+                    "spacing": 9.0,
                     "phase": 0
                 }
             ],
@@ -82,48 +62,91 @@
             "objects": [],
             "obstructions": [
                 {
-                    "pieceId": "bench",
-                    "column": 9
+                    "pieceId": "planter-tulip",
+                    "column": 3
+                },
+                {
+                    "pieceId": "lamp",
+                    "column": 17
                 }
             ]
         },
         {
             "kind": "river",
             "dir": "left",
-            "speed": 1.25,
+            "speed": 1.100000023841858,
             "objects": [
                 {
-                    "pieceId": "turtle-log",
-                    "offset": 17.190000534057618,
-                    "spacing": 22.0,
-                    "phase": 146
+                    "pieceId": "log",
+                    "offset": 0.3199999928474426,
+                    "spacing": 17.0,
+                    "phase": 0
                 },
                 {
-                    "pieceId": "gator",
-                    "offset": 6.190000057220459,
-                    "spacing": 22.0,
-                    "phase": 324
+                    "pieceId": "log-short",
+                    "offset": 8.819999694824219,
+                    "spacing": 17.0,
+                    "phase": 0
                 }
             ],
             "obstructions": []
         },
         {
-            "kind": "grass",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
+            "kind": "river",
+            "dir": "left",
+            "speed": 1.1100000143051148,
+            "objects": [
+                {
+                    "pieceId": "raft",
+                    "offset": 20.739999771118165,
+                    "spacing": 17.0,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "log-short",
+                    "offset": 29.239999771118165,
+                    "spacing": 17.0,
+                    "phase": 0
+                }
+            ],
             "obstructions": []
         },
         {
             "kind": "swamp",
-            "dir": "left",
-            "speed": 1.3799999952316285,
+            "dir": "right",
+            "speed": 1.440000057220459,
             "objects": [
                 {
                     "pieceId": "log-long",
-                    "offset": 3.819999933242798,
-                    "spacing": 12.0,
+                    "offset": 18.540000915527345,
+                    "spacing": 18.0,
                     "phase": 0
+                },
+                {
+                    "pieceId": "raft",
+                    "offset": 27.540000915527345,
+                    "spacing": 18.0,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "right",
+            "speed": 1.309999942779541,
+            "objects": [
+                {
+                    "pieceId": "log-long",
+                    "offset": 7.110000133514404,
+                    "spacing": 36.0,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "gator",
+                    "offset": 25.110000610351564,
+                    "spacing": 36.0,
+                    "phase": 41
                 }
             ],
             "obstructions": []

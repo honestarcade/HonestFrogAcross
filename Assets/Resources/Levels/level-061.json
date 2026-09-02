@@ -1,17 +1,17 @@
 {
     "id": "level-061",
     "name": "level-061",
-    "columns": 13,
+    "columns": 30,
     "medal": {
-        "gold": 15.100000381469727,
-        "silver": 21.899999618530275,
-        "bronze": 31.700000762939454
+        "gold": 26.399999618530275,
+        "silver": 38.20000076293945,
+        "bronze": 55.400001525878909
     },
-    "startColumn": 7,
+    "startColumn": 15,
     "bays": [
-        1,
-        5,
-        6
+        10,
+        17,
+        19
     ],
     "rows": [
         {
@@ -22,55 +22,41 @@
             "obstructions": []
         },
         {
-            "kind": "concrete",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
-            "obstructions": [
+            "kind": "swamp",
+            "dir": "right",
+            "speed": 1.399999976158142,
+            "objects": [
                 {
-                    "pieceId": "planter-daisy",
-                    "column": 11
-                }
-            ]
-        },
-        {
-            "kind": "concrete",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
-            "obstructions": [
-                {
-                    "pieceId": "lamp",
-                    "column": 3
+                    "pieceId": "raft",
+                    "offset": 6.599999904632568,
+                    "spacing": 20.0,
+                    "phase": 0
                 },
                 {
-                    "pieceId": "planter-lavender",
-                    "column": 5
+                    "pieceId": "gator",
+                    "offset": 16.600000381469728,
+                    "spacing": 20.0,
+                    "phase": 57
                 }
-            ]
+            ],
+            "obstructions": []
         },
         {
             "kind": "walkway",
-            "dir": "left",
-            "speed": 1.2400000095367432,
+            "dir": "right",
+            "speed": 1.7000000476837159,
             "objects": [],
             "obstructions": []
         },
         {
-            "kind": "road",
+            "kind": "tracks",
             "dir": "left",
-            "speed": 2.5799999237060549,
+            "speed": 2.140000104904175,
             "objects": [
                 {
-                    "pieceId": "car",
-                    "offset": 2.049999952316284,
-                    "spacing": 21.0,
-                    "phase": 0
-                },
-                {
-                    "pieceId": "bus",
-                    "offset": 12.550000190734864,
-                    "spacing": 21.0,
+                    "pieceId": "passenger",
+                    "offset": 17.3700008392334,
+                    "spacing": 18.0,
                     "phase": 0
                 }
             ],
@@ -79,12 +65,12 @@
         {
             "kind": "tracks",
             "dir": "left",
-            "speed": 2.559999942779541,
+            "speed": 2.490000009536743,
             "objects": [
                 {
                     "pieceId": "freight",
-                    "offset": 14.789999961853028,
-                    "spacing": 18.5,
+                    "offset": 21.260000228881837,
+                    "spacing": 18.0,
                     "phase": 0
                 }
             ],
@@ -92,27 +78,13 @@
         },
         {
             "kind": "river",
-            "dir": "right",
-            "speed": 1.5700000524520875,
+            "dir": "left",
+            "speed": 1.25,
             "objects": [
                 {
-                    "pieceId": "log-long",
-                    "offset": 3.0899999141693117,
-                    "spacing": 12.5,
-                    "phase": 0
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "road",
-            "dir": "right",
-            "speed": 2.359999895095825,
-            "objects": [
-                {
-                    "pieceId": "truck",
-                    "offset": 10.710000038146973,
-                    "spacing": 7.670000076293945,
+                    "pieceId": "log",
+                    "offset": 3.9200000762939455,
+                    "spacing": 8.0,
                     "phase": 0
                 }
             ],
@@ -125,18 +97,58 @@
             "objects": [],
             "obstructions": [
                 {
-                    "pieceId": "planter-succulent",
-                    "column": 1
+                    "pieceId": "planter-daisy",
+                    "column": 5
                 },
                 {
                     "pieceId": "lamp",
-                    "column": 3
+                    "column": 8
                 },
                 {
-                    "pieceId": "planter-lavender",
-                    "column": 12
+                    "pieceId": "planter-fern",
+                    "column": 10
+                },
+                {
+                    "pieceId": "bush",
+                    "column": 14
+                },
+                {
+                    "pieceId": "bush",
+                    "column": 16
+                },
+                {
+                    "pieceId": "lamp",
+                    "column": 23
                 }
             ]
+        },
+        {
+            "kind": "tracks",
+            "dir": "right",
+            "speed": 1.909999966621399,
+            "objects": [
+                {
+                    "pieceId": "freight",
+                    "offset": 47.439998626708987,
+                    "spacing": 18.0,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "right",
+            "speed": 1.6699999570846558,
+            "objects": [
+                {
+                    "pieceId": "log-long",
+                    "offset": 24.299999237060548,
+                    "spacing": 10.5,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
         },
         {
             "kind": "bank",

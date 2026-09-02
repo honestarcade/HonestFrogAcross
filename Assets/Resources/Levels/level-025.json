@@ -1,16 +1,16 @@
 {
     "id": "level-025",
     "name": "level-025",
-    "columns": 10,
+    "columns": 24,
     "medal": {
-        "gold": 100.30000305175781,
-        "silver": 145.39999389648438,
-        "bronze": 210.60000610351563
+        "gold": 49.599998474121097,
+        "silver": 71.9000015258789,
+        "bronze": 104.0999984741211
     },
-    "startColumn": 1,
+    "startColumn": 17,
     "bays": [
-        2,
-        4
+        9,
+        14
     ],
     "rows": [
         {
@@ -27,8 +27,8 @@
             "objects": [
                 {
                     "pieceId": "log-short",
-                    "offset": 8.609999656677246,
-                    "spacing": 9.0,
+                    "offset": 15.3100004196167,
+                    "spacing": 8.0,
                     "phase": 0
                 }
             ],
@@ -41,8 +41,8 @@
             "objects": [
                 {
                     "pieceId": "gator",
-                    "offset": 13.149999618530274,
-                    "spacing": 10.0,
+                    "offset": 22.350000381469728,
+                    "spacing": 8.5,
                     "phase": 266
                 }
             ],
@@ -55,14 +55,14 @@
             "objects": [
                 {
                     "pieceId": "turtle-log",
-                    "offset": 17.43000030517578,
-                    "spacing": 20.0,
+                    "offset": 29.6299991607666,
+                    "spacing": 17.0,
                     "phase": 5
                 },
                 {
                     "pieceId": "gator",
-                    "offset": 7.429999828338623,
-                    "spacing": 20.0,
+                    "offset": 4.130000114440918,
+                    "spacing": 17.0,
                     "phase": 370
                 }
             ],
@@ -75,14 +75,14 @@
             "objects": [
                 {
                     "pieceId": "log-short",
-                    "offset": 0.029999999329447748,
-                    "spacing": 20.0,
+                    "offset": 0.05000000074505806,
+                    "spacing": 17.0,
                     "phase": 0
                 },
                 {
                     "pieceId": "gator",
-                    "offset": 10.029999732971192,
-                    "spacing": 20.0,
+                    "offset": 8.550000190734864,
+                    "spacing": 17.0,
                     "phase": 379
                 }
             ],
@@ -95,8 +95,8 @@
             "objects": [
                 {
                     "pieceId": "log-long",
-                    "offset": 11.4399995803833,
-                    "spacing": 11.0,
+                    "offset": 18.719999313354493,
+                    "spacing": 9.0,
                     "phase": 0
                 }
             ],
@@ -109,14 +109,14 @@
             "objects": [
                 {
                     "pieceId": "car",
-                    "offset": 15.819999694824219,
-                    "spacing": 20.0,
+                    "offset": 26.899999618530275,
+                    "spacing": 17.0,
                     "phase": 0
                 },
                 {
                     "pieceId": "truck",
-                    "offset": 5.820000171661377,
-                    "spacing": 20.0,
+                    "offset": 1.399999976158142,
+                    "spacing": 17.0,
                     "phase": 0
                 }
             ],

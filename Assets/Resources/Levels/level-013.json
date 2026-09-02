@@ -1,16 +1,16 @@
 {
     "id": "level-013",
     "name": "level-013",
-    "columns": 10,
+    "columns": 22,
     "medal": {
-        "gold": 16.0,
-        "silver": 23.200000762939454,
-        "bronze": 33.599998474121097
+        "gold": 34.79999923706055,
+        "silver": 50.5,
+        "bronze": 73.0999984741211
     },
-    "startColumn": 6,
+    "startColumn": 1,
     "bays": [
-        1,
-        4
+        3,
+        10
     ],
     "rows": [
         {
@@ -27,14 +27,14 @@
             "objects": [
                 {
                     "pieceId": "turtle-log",
-                    "offset": 15.869999885559082,
-                    "spacing": 20.0,
+                    "offset": 25.389999389648439,
+                    "spacing": 32.0,
                     "phase": 145
                 },
                 {
                     "pieceId": "raft",
-                    "offset": 5.869999885559082,
-                    "spacing": 20.0,
+                    "offset": 9.390000343322754,
+                    "spacing": 32.0,
                     "phase": 0
                 }
             ],
@@ -57,58 +57,42 @@
             ]
         },
         {
-            "kind": "river",
-            "dir": "right",
-            "speed": 1.159999966621399,
-            "objects": [
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
                 {
-                    "pieceId": "log-long",
-                    "offset": 17.06999969482422,
-                    "spacing": 22.0,
-                    "phase": 0
-                },
-                {
-                    "pieceId": "log-short",
-                    "offset": 6.070000171661377,
-                    "spacing": 22.0,
-                    "phase": 0
+                    "pieceId": "planter-fern",
+                    "column": 3
                 }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "river",
-            "dir": "left",
-            "speed": 1.2200000286102296,
-            "objects": [
-                {
-                    "pieceId": "log",
-                    "offset": 9.079999923706055,
-                    "spacing": 22.0,
-                    "phase": 0
-                },
-                {
-                    "pieceId": "log-long",
-                    "offset": 20.079999923706056,
-                    "spacing": 22.0,
-                    "phase": 0
-                }
-            ],
-            "obstructions": []
+            ]
         },
         {
             "kind": "road",
-            "dir": "right",
-            "speed": 1.7400000095367432,
+            "dir": "left",
+            "speed": 1.5399999618530274,
             "objects": [
                 {
-                    "pieceId": "bus",
-                    "offset": 5.78000020980835,
-                    "spacing": 9.0,
+                    "pieceId": "car",
+                    "offset": 22.3700008392334,
+                    "spacing": 7.0,
                     "phase": 0
                 }
             ],
             "obstructions": []
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-fern",
+                    "column": 17
+                }
+            ]
         },
         {
             "kind": "bank",

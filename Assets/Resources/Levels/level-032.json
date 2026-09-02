@@ -1,16 +1,16 @@
 {
     "id": "level-032",
     "name": "level-032",
-    "columns": 11,
+    "columns": 26,
     "medal": {
-        "gold": 17.700000762939454,
-        "silver": 25.700000762939454,
-        "bronze": 37.20000076293945
+        "gold": 42.400001525878909,
+        "silver": 61.5,
+        "bronze": 89.0999984741211
     },
-    "startColumn": 4,
+    "startColumn": 17,
     "bays": [
-        3,
-        9
+        2,
+        22
     ],
     "rows": [
         {
@@ -27,8 +27,8 @@
             "objects": [
                 {
                     "pieceId": "passenger",
-                    "offset": 26.899999618530275,
-                    "spacing": 17.5,
+                    "offset": 38.41999816894531,
+                    "spacing": 16.670000076293947,
                     "phase": 0
                 }
             ],
@@ -41,8 +41,8 @@
             "objects": [
                 {
                     "pieceId": "freight",
-                    "offset": 33.41999816894531,
-                    "spacing": 17.5,
+                    "offset": 47.75,
+                    "spacing": 16.670000076293947,
                     "phase": 0
                 }
             ],
@@ -55,8 +55,8 @@
             "objects": [
                 {
                     "pieceId": "log-long",
-                    "offset": 6.730000019073486,
-                    "spacing": 11.5,
+                    "offset": 11.119999885559082,
+                    "spacing": 9.5,
                     "phase": 0
                 }
             ],
@@ -69,8 +69,8 @@
             "objects": [
                 {
                     "pieceId": "freight",
-                    "offset": 33.5,
-                    "spacing": 17.5,
+                    "offset": 47.86000061035156,
+                    "spacing": 16.670000076293947,
                     "phase": 0
                 }
             ],
@@ -83,14 +83,14 @@
             "objects": [
                 {
                     "pieceId": "gator",
-                    "offset": 19.950000762939454,
-                    "spacing": 21.0,
+                    "offset": 34.20000076293945,
+                    "spacing": 18.0,
                     "phase": 149
                 },
                 {
                     "pieceId": "raft",
-                    "offset": 9.449999809265137,
-                    "spacing": 21.0,
+                    "offset": 7.199999809265137,
+                    "spacing": 18.0,
                     "phase": 0
                 }
             ],
@@ -103,14 +103,14 @@
             "objects": [
                 {
                     "pieceId": "raft",
-                    "offset": 11.920000076293946,
-                    "spacing": 21.0,
+                    "offset": 20.440000534057618,
+                    "spacing": 18.0,
                     "phase": 0
                 },
                 {
                     "pieceId": "raft",
-                    "offset": 1.4199999570846558,
-                    "spacing": 21.0,
+                    "offset": 29.440000534057618,
+                    "spacing": 18.0,
                     "phase": 0
                 }
             ],

@@ -1,16 +1,16 @@
 {
     "id": "level-012",
     "name": "level-012",
-    "columns": 11,
+    "columns": 26,
     "medal": {
         "gold": 33.599998474121097,
         "silver": 48.70000076293945,
         "bronze": 70.5999984741211
     },
-    "startColumn": 9,
+    "startColumn": 18,
     "bays": [
-        3,
-        7
+        2,
+        18
     ],
     "rows": [
         {
@@ -27,14 +27,14 @@
             "objects": [
                 {
                     "pieceId": "turtle-log",
-                    "offset": 0.8899999856948853,
-                    "spacing": 21.0,
+                    "offset": 1.5299999713897706,
+                    "spacing": 18.0,
                     "phase": 234
                 },
                 {
                     "pieceId": "gator",
-                    "offset": 11.390000343322754,
-                    "spacing": 21.0,
+                    "offset": 10.529999732971192,
+                    "spacing": 18.0,
                     "phase": 257
                 }
             ],
@@ -45,38 +45,54 @@
             "dir": "",
             "speed": 0.0,
             "objects": [],
-            "obstructions": []
-        },
-        {
-            "kind": "river",
-            "dir": "right",
-            "speed": 1.2100000381469727,
-            "objects": [
+            "obstructions": [
                 {
-                    "pieceId": "log",
-                    "offset": 4.380000114440918,
-                    "spacing": 10.5,
-                    "phase": 0
+                    "pieceId": "bush",
+                    "column": 14
                 }
-            ],
-            "obstructions": []
+            ]
         },
         {
             "kind": "grass",
             "dir": "",
             "speed": 0.0,
             "objects": [],
-            "obstructions": []
+            "obstructions": [
+                {
+                    "pieceId": "tree",
+                    "column": 2
+                }
+            ]
         },
         {
             "kind": "road",
             "dir": "right",
-            "speed": 1.6699999570846558,
+            "speed": 1.7899999618530274,
             "objects": [
                 {
-                    "pieceId": "truck",
-                    "offset": 2.109999895095825,
-                    "spacing": 10.5,
+                    "pieceId": "car",
+                    "offset": 14.760000228881836,
+                    "spacing": 6.400000095367432,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "river",
+            "dir": "right",
+            "speed": 0.9200000166893005,
+            "objects": [
+                {
+                    "pieceId": "gator",
+                    "offset": 2.990000009536743,
+                    "spacing": 18.0,
+                    "phase": 28
+                },
+                {
+                    "pieceId": "log-short",
+                    "offset": 11.989999771118164,
+                    "spacing": 18.0,
                     "phase": 0
                 }
             ],

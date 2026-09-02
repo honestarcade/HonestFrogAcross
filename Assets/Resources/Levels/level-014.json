@@ -1,16 +1,16 @@
 {
     "id": "level-014",
     "name": "level-014",
-    "columns": 11,
+    "columns": 25,
     "medal": {
-        "gold": 12.600000381469727,
-        "silver": 18.200000762939454,
-        "bronze": 26.399999618530275
+        "gold": 28.399999618530275,
+        "silver": 41.20000076293945,
+        "bronze": 59.70000076293945
     },
-    "startColumn": 9,
+    "startColumn": 6,
     "bays": [
-        4,
-        6
+        12,
+        22
     ],
     "rows": [
         {
@@ -27,14 +27,14 @@
             "objects": [
                 {
                     "pieceId": "turtle-log",
-                    "offset": 12.520000457763672,
-                    "spacing": 23.0,
+                    "offset": 20.149999618530275,
+                    "spacing": 18.5,
                     "phase": 56
                 },
                 {
                     "pieceId": "log-long",
-                    "offset": 1.0199999809265137,
-                    "spacing": 23.0,
+                    "offset": 29.399999618530275,
+                    "spacing": 18.5,
                     "phase": 0
                 }
             ],
@@ -47,8 +47,8 @@
             "objects": [
                 {
                     "pieceId": "truck",
-                    "offset": 20.6299991607666,
-                    "spacing": 10.5,
+                    "offset": 34.38999938964844,
+                    "spacing": 8.75,
                     "phase": 0
                 }
             ],
@@ -61,8 +61,8 @@
             "objects": [
                 {
                     "pieceId": "bus",
-                    "offset": 15.359999656677246,
-                    "spacing": 9.5,
+                    "offset": 26.68000030517578,
+                    "spacing": 8.25,
                     "phase": 0
                 }
             ],
@@ -75,14 +75,14 @@
             "objects": [
                 {
                     "pieceId": "truck",
-                    "offset": 13.699999809265137,
-                    "spacing": 21.0,
+                    "offset": 22.84000015258789,
+                    "spacing": 17.5,
                     "phase": 0
                 },
                 {
                     "pieceId": "convertible",
-                    "offset": 3.200000047683716,
-                    "spacing": 21.0,
+                    "offset": 31.59000015258789,
+                    "spacing": 17.5,
                     "phase": 0
                 }
             ],
@@ -97,18 +97,28 @@
                 {
                     "pieceId": "bush",
                     "column": 0
+                },
+                {
+                    "pieceId": "bench",
+                    "column": 16
                 }
             ]
         },
         {
             "kind": "river",
-            "dir": "left",
-            "speed": 1.0499999523162842,
+            "dir": "right",
+            "speed": 1.1799999475479127,
             "objects": [
                 {
-                    "pieceId": "raft",
-                    "offset": 0.27000001072883608,
-                    "spacing": 7.0,
+                    "pieceId": "turtle-log",
+                    "offset": 10.470000267028809,
+                    "spacing": 37.0,
+                    "phase": 86
+                },
+                {
+                    "pieceId": "log-long",
+                    "offset": 28.969999313354493,
+                    "spacing": 37.0,
                     "phase": 0
                 }
             ],

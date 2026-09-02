@@ -1,16 +1,16 @@
 {
     "id": "level-005",
     "name": "level-005",
-    "columns": 11,
+    "columns": 23,
     "medal": {
-        "gold": 12.199999809265137,
-        "silver": 17.600000381469728,
-        "bronze": 25.5
+        "gold": 26.600000381469728,
+        "silver": 38.5,
+        "bronze": 55.79999923706055
     },
-    "startColumn": 1,
+    "startColumn": 9,
     "bays": [
-        3,
-        4
+        19,
+        22
     ],
     "rows": [
         {
@@ -27,14 +27,14 @@
             "objects": [
                 {
                     "pieceId": "car",
-                    "offset": 13.34000015258789,
-                    "spacing": 17.0,
+                    "offset": 22.760000228881837,
+                    "spacing": 14.5,
                     "phase": 0
                 },
                 {
                     "pieceId": "car",
-                    "offset": 4.840000152587891,
-                    "spacing": 17.0,
+                    "offset": 1.0099999904632569,
+                    "spacing": 14.5,
                     "phase": 0
                 }
             ],
@@ -47,8 +47,8 @@
             "objects": [
                 {
                     "pieceId": "convertible",
-                    "offset": 7.699999809265137,
-                    "spacing": 8.5,
+                    "offset": 13.140000343322754,
+                    "spacing": 7.25,
                     "phase": 0
                 }
             ],
@@ -69,10 +69,23 @@
             "obstructions": []
         },
         {
-            "kind": "grass",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
+            "kind": "road",
+            "dir": "left",
+            "speed": 1.2999999523162842,
+            "objects": [
+                {
+                    "pieceId": "convertible",
+                    "offset": 3.6700000762939455,
+                    "spacing": 14.5,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "convertible",
+                    "offset": 10.920000076293946,
+                    "spacing": 14.5,
+                    "phase": 0
+                }
+            ],
             "obstructions": []
         },
         {

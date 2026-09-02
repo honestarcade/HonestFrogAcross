@@ -1,17 +1,17 @@
 {
     "id": "level-008",
     "name": "level-008",
-    "columns": 9,
+    "columns": 23,
     "medal": {
-        "gold": 23.899999618530275,
-        "silver": 34.70000076293945,
-        "bronze": 50.20000076293945
+        "gold": 35.400001525878909,
+        "silver": 51.400001525878909,
+        "bronze": 74.4000015258789
     },
-    "startColumn": 1,
+    "startColumn": 13,
     "bays": [
-        2,
-        4,
-        8
+        0,
+        6,
+        19
     ],
     "rows": [
         {
@@ -23,57 +23,30 @@
         },
         {
             "kind": "road",
-            "dir": "left",
+            "dir": "right",
+            "speed": 1.659999966621399,
+            "objects": [
+                {
+                    "pieceId": "bus",
+                    "offset": 12.970000267028809,
+                    "spacing": 7.75,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "right",
             "speed": 1.5,
             "objects": [
                 {
-                    "pieceId": "convertible",
-                    "offset": 4.420000076293945,
-                    "spacing": 7.5,
+                    "pieceId": "car",
+                    "offset": 12.369999885559082,
+                    "spacing": 5.800000190734863,
                     "phase": 0
                 }
             ],
-            "obstructions": []
-        },
-        {
-            "kind": "road",
-            "dir": "right",
-            "speed": 1.5800000429153443,
-            "objects": [
-                {
-                    "pieceId": "truck",
-                    "offset": 15.239999771118164,
-                    "spacing": 9.5,
-                    "phase": 0
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "road",
-            "dir": "right",
-            "speed": 1.5199999809265137,
-            "objects": [
-                {
-                    "pieceId": "bus",
-                    "offset": 8.989999771118164,
-                    "spacing": 17.0,
-                    "phase": 0
-                },
-                {
-                    "pieceId": "bus",
-                    "offset": 0.49000000953674319,
-                    "spacing": 17.0,
-                    "phase": 0
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "grass",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
             "obstructions": []
         },
         {
@@ -83,20 +56,53 @@
             "objects": [],
             "obstructions": [
                 {
-                    "pieceId": "planter-daisy",
-                    "column": 7
+                    "pieceId": "lamp",
+                    "column": 14
                 }
             ]
         },
         {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
             "kind": "road",
             "dir": "left",
-            "speed": 1.340000033378601,
+            "speed": 1.3899999856948853,
             "objects": [
                 {
+                    "pieceId": "bus",
+                    "offset": 25.34000015258789,
+                    "spacing": 15.5,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "bus",
+                    "offset": 2.0899999141693117,
+                    "spacing": 15.5,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "left",
+            "speed": 1.5099999904632569,
+            "objects": [
+                {
+                    "pieceId": "convertible",
+                    "offset": 28.81999969482422,
+                    "spacing": 14.5,
+                    "phase": 0
+                },
+                {
                     "pieceId": "car",
-                    "offset": 12.369999885559082,
-                    "spacing": 7.5,
+                    "offset": 7.070000171661377,
+                    "spacing": 14.5,
                     "phase": 0
                 }
             ],

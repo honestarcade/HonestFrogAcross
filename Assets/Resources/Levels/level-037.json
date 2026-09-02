@@ -1,17 +1,17 @@
 {
     "id": "level-037",
     "name": "level-037",
-    "columns": 11,
+    "columns": 27,
     "medal": {
-        "gold": 24.200000762939454,
-        "silver": 35.0,
-        "bronze": 50.70000076293945
+        "gold": 23.0,
+        "silver": 33.400001525878909,
+        "bronze": 48.29999923706055
     },
-    "startColumn": 9,
+    "startColumn": 12,
     "bays": [
-        3,
-        6,
-        8
+        1,
+        11,
+        19
     ],
     "rows": [
         {
@@ -30,58 +30,29 @@
                 {
                     "pieceId": "planter-tulip",
                     "column": 5
-                }
-            ]
-        },
-        {
-            "kind": "concrete",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
-            "obstructions": [
+                },
                 {
                     "pieceId": "bush",
-                    "column": 10
+                    "column": 22
                 }
             ]
         },
         {
-            "kind": "river",
-            "dir": "left",
-            "speed": 1.4600000381469727,
+            "kind": "swamp",
+            "dir": "right",
+            "speed": 1.2100000381469727,
             "objects": [
                 {
-                    "pieceId": "log-short",
-                    "offset": 20.149999618530275,
-                    "spacing": 21.0,
+                    "pieceId": "raft",
+                    "offset": 25.40999984741211,
+                    "spacing": 18.5,
                     "phase": 0
                 },
                 {
-                    "pieceId": "turtle-log",
-                    "offset": 9.649999618530274,
-                    "spacing": 21.0,
-                    "phase": 231
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "grass",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
-            "obstructions": []
-        },
-        {
-            "kind": "river",
-            "dir": "right",
-            "speed": 1.2000000476837159,
-            "objects": [
-                {
-                    "pieceId": "gator",
-                    "offset": 12.600000381469727,
-                    "spacing": 10.5,
-                    "phase": 82
+                    "pieceId": "log",
+                    "offset": 34.65999984741211,
+                    "spacing": 18.5,
+                    "phase": 0
                 }
             ],
             "obstructions": []
@@ -89,13 +60,27 @@
         {
             "kind": "tracks",
             "dir": "left",
-            "speed": 1.8799999952316285,
+            "speed": 1.809999942779541,
             "objects": [
                 {
                     "pieceId": "freight",
-                    "offset": 24.309999465942384,
-                    "spacing": 17.5,
+                    "offset": 34.279998779296878,
+                    "spacing": 17.0,
                     "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "left",
+            "speed": 1.2699999809265137,
+            "objects": [
+                {
+                    "pieceId": "turtle-log",
+                    "offset": 16.1299991607666,
+                    "spacing": 7.400000095367432,
+                    "phase": 6
                 }
             ],
             "obstructions": []
@@ -107,22 +92,64 @@
             "objects": [],
             "obstructions": [
                 {
+                    "pieceId": "planter-succulent",
+                    "column": 6
+                },
+                {
                     "pieceId": "planter-tulip",
-                    "column": 4
+                    "column": 12
                 },
                 {
                     "pieceId": "tree",
-                    "column": 7
+                    "column": 15
                 },
                 {
                     "pieceId": "planter-succulent",
-                    "column": 9
+                    "column": 17
                 },
                 {
                     "pieceId": "planter-succulent",
-                    "column": 10
+                    "column": 18
+                },
+                {
+                    "pieceId": "planter-fern",
+                    "column": 26
                 }
             ]
+        },
+        {
+            "kind": "road",
+            "dir": "right",
+            "speed": 2.119999885559082,
+            "objects": [
+                {
+                    "pieceId": "bus",
+                    "offset": 23.43000030517578,
+                    "spacing": 17.5,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "convertible",
+                    "offset": 32.18000030517578,
+                    "spacing": 17.5,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "swamp",
+            "dir": "left",
+            "speed": 1.6299999952316285,
+            "objects": [
+                {
+                    "pieceId": "raft",
+                    "offset": 14.020000457763672,
+                    "spacing": 7.400000095367432,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
         },
         {
             "kind": "bank",

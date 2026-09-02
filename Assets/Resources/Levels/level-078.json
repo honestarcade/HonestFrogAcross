@@ -1,19 +1,19 @@
 {
     "id": "level-078",
     "name": "level-078",
-    "columns": 12,
+    "columns": 29,
     "medal": {
-        "gold": 34.79999923706055,
-        "silver": 50.5,
-        "bronze": 73.0999984741211
+        "gold": 28.0,
+        "silver": 40.599998474121097,
+        "bronze": 58.70000076293945
     },
-    "startColumn": 8,
+    "startColumn": 14,
     "bays": [
-        3,
-        4,
-        5,
-        7,
-        8
+        6,
+        10,
+        11,
+        21,
+        24
     ],
     "rows": [
         {
@@ -24,74 +24,46 @@
             "obstructions": []
         },
         {
-            "kind": "tracks",
-            "dir": "right",
-            "speed": 2.8499999046325685,
-            "objects": [
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
                 {
-                    "pieceId": "passenger",
-                    "offset": 26.969999313354493,
-                    "spacing": 18.0,
-                    "phase": 0
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "bike",
-            "dir": "right",
-            "speed": 2.7799999713897707,
-            "objects": [
-                {
-                    "pieceId": "skater",
-                    "offset": 14.229999542236329,
-                    "spacing": 8.0,
-                    "phase": 0
+                    "pieceId": "planter-lavender",
+                    "column": 2
                 },
                 {
-                    "pieceId": "cyclist",
-                    "offset": 2.2300000190734865,
-                    "spacing": 8.0,
-                    "phase": 0
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "road",
-            "dir": "right",
-            "speed": 2.509999990463257,
-            "objects": [
-                {
-                    "pieceId": "bus",
-                    "offset": 1.7999999523162842,
-                    "spacing": 20.0,
-                    "phase": 0
+                    "pieceId": "planter-lavender",
+                    "column": 8
                 },
                 {
-                    "pieceId": "bus",
-                    "offset": 11.800000190734864,
-                    "spacing": 20.0,
-                    "phase": 0
+                    "pieceId": "planter-tulip",
+                    "column": 15
+                },
+                {
+                    "pieceId": "planter-succulent",
+                    "column": 18
+                },
+                {
+                    "pieceId": "lamp",
+                    "column": 20
+                },
+                {
+                    "pieceId": "planter-tulip",
+                    "column": 28
                 }
-            ],
-            "obstructions": []
+            ]
         },
         {
             "kind": "swamp",
-            "dir": "left",
+            "dir": "right",
             "speed": 1.5199999809265137,
             "objects": [
                 {
-                    "pieceId": "log-short",
-                    "offset": 10.630000114440918,
-                    "spacing": 22.0,
-                    "phase": 0
-                },
-                {
-                    "pieceId": "raft",
-                    "offset": 21.6299991607666,
-                    "spacing": 22.0,
+                    "pieceId": "log",
+                    "offset": 19.239999771118165,
+                    "spacing": 7.800000190734863,
                     "phase": 0
                 }
             ],
@@ -105,53 +77,103 @@
             "obstructions": [
                 {
                     "pieceId": "bench",
-                    "column": 6
-                },
-                {
-                    "pieceId": "planter-tulip",
                     "column": 10
                 },
                 {
-                    "pieceId": "planter-succulent",
+                    "pieceId": "planter-tulip",
                     "column": 11
-                }
-            ]
-        },
-        {
-            "kind": "grass",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
-            "obstructions": [
+                },
                 {
                     "pieceId": "planter-fern",
-                    "column": 4
+                    "column": 14
+                },
+                {
+                    "pieceId": "bush",
+                    "column": 17
+                },
+                {
+                    "pieceId": "planter-tulip",
+                    "column": 18
+                },
+                {
+                    "pieceId": "tree",
+                    "column": 23
+                },
+                {
+                    "pieceId": "planter-succulent",
+                    "column": 28
                 }
             ]
-        },
-        {
-            "kind": "river",
-            "dir": "right",
-            "speed": 1.7200000286102296,
-            "objects": [
-                {
-                    "pieceId": "log-short",
-                    "offset": 7.190000057220459,
-                    "spacing": 6.670000076293945,
-                    "phase": 0
-                }
-            ],
-            "obstructions": []
         },
         {
             "kind": "tracks",
-            "dir": "left",
-            "speed": 2.569999933242798,
+            "dir": "right",
+            "speed": 2.5799999237060549,
             "objects": [
                 {
                     "pieceId": "freight",
-                    "offset": 24.149999618530275,
-                    "spacing": 18.0,
+                    "offset": 40.529998779296878,
+                    "spacing": 17.670000076293947,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "left",
+            "speed": 2.7799999713897707,
+            "objects": [
+                {
+                    "pieceId": "runner",
+                    "offset": 26.559999465942384,
+                    "spacing": 11.0,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "runner",
+                    "offset": 32.060001373291019,
+                    "spacing": 11.0,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "right",
+            "speed": 2.25,
+            "objects": [
+                {
+                    "pieceId": "convertible",
+                    "offset": 31.360000610351564,
+                    "spacing": 11.670000076293946,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "car",
+                    "offset": 2.190000057220459,
+                    "spacing": 11.670000076293946,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "road",
+            "dir": "left",
+            "speed": 2.2100000381469728,
+            "objects": [
+                {
+                    "pieceId": "truck",
+                    "offset": 24.670000076293947,
+                    "spacing": 19.5,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "car",
+                    "offset": 34.41999816894531,
+                    "spacing": 19.5,
                     "phase": 0
                 }
             ],
@@ -164,20 +186,48 @@
             "objects": [],
             "obstructions": [
                 {
-                    "pieceId": "planter-lavender",
-                    "column": 0
+                    "pieceId": "bench",
+                    "column": 3
+                },
+                {
+                    "pieceId": "lamp",
+                    "column": 10
                 },
                 {
                     "pieceId": "planter-fern",
+                    "column": 21
+                },
+                {
+                    "pieceId": "tree",
+                    "column": 25
+                },
+                {
+                    "pieceId": "bush",
+                    "column": 28
+                }
+            ]
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-succulent",
                     "column": 1
                 },
                 {
-                    "pieceId": "lamp",
-                    "column": 5
+                    "pieceId": "tree",
+                    "column": 11
                 },
                 {
-                    "pieceId": "lamp",
-                    "column": 6
+                    "pieceId": "planter-succulent",
+                    "column": 22
+                },
+                {
+                    "pieceId": "bench",
+                    "column": 28
                 }
             ]
         },

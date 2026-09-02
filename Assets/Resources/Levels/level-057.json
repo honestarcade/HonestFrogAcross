@@ -1,18 +1,18 @@
 {
     "id": "level-057",
     "name": "level-057",
-    "columns": 12,
+    "columns": 30,
     "medal": {
-        "gold": 17.600000381469728,
-        "silver": 25.5,
-        "bronze": 37.0
+        "gold": 28.5,
+        "silver": 41.29999923706055,
+        "bronze": 59.79999923706055
     },
-    "startColumn": 1,
+    "startColumn": 10,
     "bays": [
-        0,
-        2,
-        6,
-        10
+        11,
+        19,
+        22,
+        29
     ],
     "rows": [
         {
@@ -36,14 +36,14 @@
             "objects": [
                 {
                     "pieceId": "bus",
-                    "offset": 5.71999979019165,
-                    "spacing": 20.0,
+                    "offset": 10.859999656677246,
+                    "spacing": 12.670000076293946,
                     "phase": 0
                 },
                 {
                     "pieceId": "car",
-                    "offset": 15.720000267028809,
-                    "spacing": 20.0,
+                    "offset": 17.190000534057618,
+                    "spacing": 12.670000076293946,
                     "phase": 0
                 }
             ],
@@ -63,7 +63,7 @@
             "objects": [
                 {
                     "pieceId": "freight",
-                    "offset": 34.869998931884769,
+                    "offset": 52.310001373291019,
                     "spacing": 18.0,
                     "phase": 0
                 }
@@ -77,7 +77,7 @@
             "objects": [
                 {
                     "pieceId": "passenger",
-                    "offset": 0.029999999329447748,
+                    "offset": 0.03999999910593033,
                     "spacing": 18.0,
                     "phase": 0
                 }
@@ -91,14 +91,14 @@
             "objects": [
                 {
                     "pieceId": "car",
-                    "offset": 13.739999771118164,
-                    "spacing": 18.0,
+                    "offset": 27.479999542236329,
+                    "spacing": 12.0,
                     "phase": 0
                 },
                 {
                     "pieceId": "car",
-                    "offset": 4.739999771118164,
-                    "spacing": 18.0,
+                    "offset": 33.47999954223633,
+                    "spacing": 12.0,
                     "phase": 0
                 }
             ],
@@ -111,7 +111,7 @@
             "objects": [
                 {
                     "pieceId": "freight",
-                    "offset": 2.5799999237060549,
+                    "offset": 3.869999885559082,
                     "spacing": 18.0,
                     "phase": 0
                 }

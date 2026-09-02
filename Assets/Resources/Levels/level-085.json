@@ -1,18 +1,19 @@
 {
     "id": "level-085",
     "name": "level-085",
-    "columns": 11,
+    "columns": 32,
     "medal": {
-        "gold": 26.299999237060548,
-        "silver": 38.099998474121097,
-        "bronze": 55.20000076293945
+        "gold": 30.100000381469728,
+        "silver": 43.599998474121097,
+        "bronze": 63.20000076293945
     },
-    "startColumn": 8,
+    "startColumn": 24,
     "bays": [
-        1,
         7,
-        9,
-        10
+        21,
+        23,
+        27,
+        29
     ],
     "rows": [
         {
@@ -23,14 +24,69 @@
             "obstructions": []
         },
         {
-            "kind": "bike",
+            "kind": "walkway",
             "dir": "left",
-            "speed": 3.0,
+            "speed": 1.7999999523162842,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "tracks",
+            "dir": "right",
+            "speed": 2.2300000190734865,
             "objects": [
                 {
-                    "pieceId": "cyclist",
-                    "offset": 7.210000038146973,
-                    "spacing": 3.75,
+                    "pieceId": "freight",
+                    "offset": 52.029998779296878,
+                    "spacing": 18.670000076293947,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "right",
+            "speed": 2.6700000762939455,
+            "objects": [
+                {
+                    "pieceId": "runner",
+                    "offset": 9.260000228881836,
+                    "spacing": 9.0,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "runner",
+                    "offset": 13.760000228881836,
+                    "spacing": 9.0,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "tracks",
+            "dir": "left",
+            "speed": 2.4700000286102297,
+            "objects": [
+                {
+                    "pieceId": "freight",
+                    "offset": 40.459999084472659,
+                    "spacing": 14.0,
+                    "phase": 0
+                }
+            ],
+            "obstructions": []
+        },
+        {
+            "kind": "bike",
+            "dir": "left",
+            "speed": 2.990000009536743,
+            "objects": [
+                {
+                    "pieceId": "runner",
+                    "offset": 6.630000114440918,
+                    "spacing": 4.0,
                     "phase": 0
                 }
             ],
@@ -43,116 +99,104 @@
             "objects": [],
             "obstructions": [
                 {
-                    "pieceId": "planter-succulent",
-                    "column": 0
+                    "pieceId": "planter-lavender",
+                    "column": 2
                 },
                 {
-                    "pieceId": "tree",
-                    "column": 5
+                    "pieceId": "bench",
+                    "column": 13
                 },
                 {
-                    "pieceId": "planter-succulent",
-                    "column": 6
+                    "pieceId": "planter-lavender",
+                    "column": 19
                 },
                 {
-                    "pieceId": "bush",
-                    "column": 7
-                },
-                {
-                    "pieceId": "bush",
-                    "column": 9
+                    "pieceId": "lamp",
+                    "column": 23
                 }
             ]
         },
         {
-            "kind": "walkway",
-            "dir": "left",
-            "speed": 1.8200000524520875,
-            "objects": [],
-            "obstructions": []
-        },
-        {
             "kind": "tracks",
             "dir": "left",
-            "speed": 2.190000057220459,
-            "objects": [
-                {
-                    "pieceId": "freight",
-                    "offset": 25.15999984741211,
-                    "spacing": 17.5,
-                    "phase": 0
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "river",
-            "dir": "left",
-            "speed": 1.5,
-            "objects": [
-                {
-                    "pieceId": "log",
-                    "offset": 18.09000015258789,
-                    "spacing": 7.0,
-                    "phase": 0
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "swamp",
-            "dir": "left",
-            "speed": 1.4299999475479127,
-            "objects": [
-                {
-                    "pieceId": "log",
-                    "offset": 12.1899995803833,
-                    "spacing": 7.0,
-                    "phase": 0
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "tracks",
-            "dir": "right",
-            "speed": 2.7100000381469728,
+            "speed": 2.799999952316284,
             "objects": [
                 {
                     "pieceId": "passenger",
-                    "offset": 30.260000228881837,
-                    "spacing": 17.5,
+                    "offset": 6.230000019073486,
+                    "spacing": 18.670000076293947,
                     "phase": 0
                 }
             ],
             "obstructions": []
         },
         {
-            "kind": "walkway",
-            "dir": "left",
-            "speed": 1.7200000286102296,
-            "objects": [],
-            "obstructions": []
-        },
-        {
-            "kind": "river",
+            "kind": "bike",
             "dir": "right",
-            "speed": 1.6799999475479127,
+            "speed": 3.0299999713897707,
             "objects": [
                 {
-                    "pieceId": "log",
-                    "offset": 20.40999984741211,
-                    "spacing": 21.0,
+                    "pieceId": "skater",
+                    "offset": 29.93000030517578,
+                    "spacing": 9.0,
                     "phase": 0
                 },
                 {
-                    "pieceId": "gator",
-                    "offset": 9.90999984741211,
-                    "spacing": 21.0,
-                    "phase": 131
+                    "pieceId": "skater",
+                    "offset": 34.43000030517578,
+                    "spacing": 9.0,
+                    "phase": 0
                 }
             ],
             "obstructions": []
+        },
+        {
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "planter-daisy",
+                    "column": 5
+                },
+                {
+                    "pieceId": "planter-tulip",
+                    "column": 7
+                },
+                {
+                    "pieceId": "planter-succulent",
+                    "column": 8
+                },
+                {
+                    "pieceId": "planter-fern",
+                    "column": 13
+                },
+                {
+                    "pieceId": "tree",
+                    "column": 17
+                },
+                {
+                    "pieceId": "planter-daisy",
+                    "column": 19
+                },
+                {
+                    "pieceId": "planter-tulip",
+                    "column": 25
+                },
+                {
+                    "pieceId": "tree",
+                    "column": 27
+                },
+                {
+                    "pieceId": "tree",
+                    "column": 29
+                },
+                {
+                    "pieceId": "bench",
+                    "column": 31
+                }
+            ]
         },
         {
             "kind": "bank",

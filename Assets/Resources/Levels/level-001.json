@@ -1,15 +1,15 @@
 {
     "id": "level-001",
     "name": "level-001",
-    "columns": 9,
+    "columns": 14,
     "medal": {
         "gold": 4.099999904632568,
         "silver": 5.900000095367432,
         "bronze": 8.600000381469727
     },
-    "startColumn": 3,
+    "startColumn": 9,
     "bays": [
-        1
+        7
     ],
     "rows": [
         {
@@ -20,23 +20,17 @@
             "obstructions": []
         },
         {
-            "kind": "road",
-            "dir": "right",
-            "speed": 1.0,
-            "objects": [
-                {
-                    "pieceId": "bus",
-                    "offset": 8.800000190734864,
-                    "spacing": 17.0,
-                    "phase": 0
-                },
-                {
-                    "pieceId": "convertible",
-                    "offset": 0.30000001192092898,
-                    "spacing": 17.0,
-                    "phase": 0
-                }
-            ],
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
             "obstructions": []
         },
         {
@@ -46,22 +40,14 @@
             "objects": [
                 {
                     "pieceId": "bus",
-                    "offset": 14.579999923706055,
-                    "spacing": 8.5,
+                    "offset": 17.06999969482422,
+                    "spacing": 22.0,
                     "phase": 0
-                }
-            ],
-            "obstructions": []
-        },
-        {
-            "kind": "road",
-            "dir": "left",
-            "speed": 1.059999942779541,
-            "objects": [
+                },
                 {
                     "pieceId": "car",
-                    "offset": 12.100000381469727,
-                    "spacing": 7.5,
+                    "offset": 6.070000171661377,
+                    "spacing": 22.0,
                     "phase": 0
                 }
             ],

@@ -43,6 +43,12 @@ namespace FrogAcross.Editor.Generator
 
         [Tooltip("Reject candidates the solver needs more than this many moves for (0 = unlimited).")]
         public int maxSolverMoves;
+
+        [Tooltip("Bays must land within this many columns of the start (0 = anywhere).")]
+        public int bayWindow;
+
+        [Tooltip("Reject candidates needing more than this many seconds of optimal play (0 = unlimited).")]
+        public float maxSolverSeconds;
     }
 
     /// <summary>
@@ -74,6 +80,8 @@ namespace FrogAcross.Editor.Generator
             p.middleRows = new Vector2Int(rows, rows);
             int bays = Mathf.RoundToInt(Mathf.Lerp(band.bayCountStartEnd.x, band.bayCountStartEnd.y, t));
             p.bayCount = new Vector2Int(bays, bays);
+            p.bayWindow = band.bayWindow;
+            p.maxSolverSeconds = band.maxSolverSeconds;
             p.deadlySpeed = Vector2.Lerp(band.deadlySpeedStart, band.deadlySpeedEnd, t);
             p.waterSpeed = Vector2.Lerp(band.waterSpeedStart, band.waterSpeedEnd, t);
             p.crashSpeed = Vector2.Lerp(band.crashSpeedStart, band.crashSpeedEnd, t);

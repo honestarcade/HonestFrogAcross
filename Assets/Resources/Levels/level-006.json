@@ -1,16 +1,16 @@
 {
     "id": "level-006",
     "name": "level-006",
-    "columns": 10,
+    "columns": 21,
     "medal": {
-        "gold": 12.199999809265137,
-        "silver": 17.600000381469728,
-        "bronze": 25.5
+        "gold": 21.799999237060548,
+        "silver": 31.600000381469728,
+        "bronze": 45.70000076293945
     },
-    "startColumn": 2,
+    "startColumn": 4,
     "bays": [
-        0,
-        3
+        1,
+        16
     ],
     "rows": [
         {
@@ -27,8 +27,8 @@
             "objects": [
                 {
                     "pieceId": "convertible",
-                    "offset": 13.779999732971192,
-                    "spacing": 8.0,
+                    "offset": 23.25,
+                    "spacing": 9.0,
                     "phase": 0
                 }
             ],
@@ -41,24 +41,17 @@
             "objects": [
                 {
                     "pieceId": "car",
-                    "offset": 12.989999771118164,
-                    "spacing": 16.0,
+                    "offset": 21.93000030517578,
+                    "spacing": 13.5,
                     "phase": 0
                 },
                 {
                     "pieceId": "convertible",
-                    "offset": 4.989999771118164,
-                    "spacing": 16.0,
+                    "offset": 1.6799999475479127,
+                    "spacing": 13.5,
                     "phase": 0
                 }
             ],
-            "obstructions": []
-        },
-        {
-            "kind": "grass",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
             "obstructions": []
         },
         {
@@ -69,7 +62,7 @@
             "obstructions": [
                 {
                     "pieceId": "bush",
-                    "column": 0
+                    "column": 11
                 }
             ]
         },
@@ -80,12 +73,24 @@
             "objects": [
                 {
                     "pieceId": "convertible",
-                    "offset": 12.350000381469727,
-                    "spacing": 8.0,
+                    "offset": 20.84000015258789,
+                    "spacing": 6.75,
                     "phase": 0
                 }
             ],
             "obstructions": []
+        },
+        {
+            "kind": "grass",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "bench",
+                    "column": 11
+                }
+            ]
         },
         {
             "kind": "grass",

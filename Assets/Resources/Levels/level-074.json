@@ -1,18 +1,18 @@
 {
     "id": "level-074",
     "name": "level-074",
-    "columns": 13,
+    "columns": 29,
     "medal": {
-        "gold": 19.600000381469728,
-        "silver": 28.399999618530275,
-        "bronze": 41.20000076293945
+        "gold": 28.5,
+        "silver": 41.29999923706055,
+        "bronze": 59.79999923706055
     },
-    "startColumn": 8,
+    "startColumn": 10,
     "bays": [
-        1,
-        3,
-        7,
-        10
+        0,
+        5,
+        19,
+        23
     ],
     "rows": [
         {
@@ -23,14 +23,14 @@
             "obstructions": []
         },
         {
-            "kind": "bike",
-            "dir": "right",
-            "speed": 2.359999895095825,
+            "kind": "road",
+            "dir": "left",
+            "speed": 2.5299999713897707,
             "objects": [
                 {
-                    "pieceId": "skater",
-                    "offset": 12.25,
-                    "spacing": 4.25,
+                    "pieceId": "car",
+                    "offset": 24.860000610351564,
+                    "spacing": 4.380000114440918,
                     "phase": 0
                 }
             ],
@@ -43,75 +43,50 @@
             "objects": [],
             "obstructions": [
                 {
+                    "pieceId": "planter-tulip",
+                    "column": 4
+                },
+                {
                     "pieceId": "planter-fern",
-                    "column": 3
+                    "column": 5
+                },
+                {
+                    "pieceId": "planter-succulent",
+                    "column": 12
+                },
+                {
+                    "pieceId": "lamp",
+                    "column": 13
+                },
+                {
+                    "pieceId": "tree",
+                    "column": 22
                 }
             ]
         },
         {
-            "kind": "river",
-            "dir": "right",
-            "speed": 1.4600000381469727,
+            "kind": "swamp",
+            "dir": "left",
+            "speed": 1.809999942779541,
             "objects": [
                 {
-                    "pieceId": "log-short",
-                    "offset": 12.5600004196167,
-                    "spacing": 7.0,
+                    "pieceId": "raft",
+                    "offset": 24.399999618530275,
+                    "spacing": 7.800000190734863,
                     "phase": 0
                 }
             ],
             "obstructions": []
         },
         {
-            "kind": "grass",
-            "dir": "",
-            "speed": 0.0,
-            "objects": [],
-            "obstructions": [
-                {
-                    "pieceId": "planter-fern",
-                    "column": 2
-                },
-                {
-                    "pieceId": "lamp",
-                    "column": 8
-                },
-                {
-                    "pieceId": "lamp",
-                    "column": 10
-                },
-                {
-                    "pieceId": "bench",
-                    "column": 11
-                },
-                {
-                    "pieceId": "planter-succulent",
-                    "column": 12
-                }
-            ]
-        },
-        {
-            "kind": "walkway",
-            "dir": "right",
-            "speed": 1.4500000476837159,
-            "objects": [],
-            "obstructions": []
-        },
-        {
             "kind": "road",
-            "dir": "right",
-            "speed": 2.1600000858306886,
+            "dir": "left",
+            "speed": 2.609999895095825,
             "objects": [
                 {
-                    "pieceId": "truck",
-                    "offset": 3.069999933242798,
-                    "spacing": 23.0,
-                    "phase": 0
-                },
-                {
-                    "pieceId": "convertible",
-                    "offset": 14.569999694824219,
-                    "spacing": 23.0,
+                    "pieceId": "car",
+                    "offset": 21.309999465942384,
+                    "spacing": 5.0,
                     "phase": 0
                 }
             ],
@@ -119,27 +94,27 @@
         },
         {
             "kind": "tracks",
-            "dir": "left",
-            "speed": 2.359999895095825,
+            "dir": "right",
+            "speed": 2.2300000190734865,
             "objects": [
                 {
                     "pieceId": "freight",
-                    "offset": 7.269999980926514,
-                    "spacing": 18.5,
+                    "offset": 51.59000015258789,
+                    "spacing": 17.670000076293947,
                     "phase": 0
                 }
             ],
             "obstructions": []
         },
         {
-            "kind": "swamp",
-            "dir": "left",
-            "speed": 1.840000033378601,
+            "kind": "tracks",
+            "dir": "right",
+            "speed": 2.2100000381469728,
             "objects": [
                 {
-                    "pieceId": "log",
-                    "offset": 6.820000171661377,
-                    "spacing": 7.670000076293945,
+                    "pieceId": "passenger",
+                    "offset": 10.760000228881836,
+                    "spacing": 17.670000076293947,
                     "phase": 0
                 }
             ],
@@ -147,9 +122,53 @@
         },
         {
             "kind": "walkway",
-            "dir": "right",
-            "speed": 1.5700000524520875,
+            "dir": "left",
+            "speed": 1.7599999904632569,
             "objects": [],
+            "obstructions": []
+        },
+        {
+            "kind": "concrete",
+            "dir": "",
+            "speed": 0.0,
+            "objects": [],
+            "obstructions": [
+                {
+                    "pieceId": "bush",
+                    "column": 9
+                },
+                {
+                    "pieceId": "planter-tulip",
+                    "column": 21
+                },
+                {
+                    "pieceId": "lamp",
+                    "column": 24
+                },
+                {
+                    "pieceId": "planter-fern",
+                    "column": 27
+                }
+            ]
+        },
+        {
+            "kind": "road",
+            "dir": "left",
+            "speed": 2.5399999618530275,
+            "objects": [
+                {
+                    "pieceId": "truck",
+                    "offset": 38.290000915527347,
+                    "spacing": 19.5,
+                    "phase": 0
+                },
+                {
+                    "pieceId": "car",
+                    "offset": 9.039999961853028,
+                    "spacing": 19.5,
+                    "phase": 0
+                }
+            ],
             "obstructions": []
         },
         {
