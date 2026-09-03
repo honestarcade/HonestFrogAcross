@@ -44,7 +44,7 @@ jobs:
           # UnityEditor.Android, which the base image lacks.
           customImage: unityci/editor:ubuntu-6000.5.10f1-android-3
           artifactsPath: test-results-${{ matrix.testMode }}
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: test-results-${{ matrix.testMode }}
@@ -77,7 +77,7 @@ jobs:
           buildMethod: FrogAcross.Editor.Build.BuildScript.BuildCi
       # Unsigned PR artifact — sideloadable for device testing after
       # bundletool conversion; short retention, this is a convenience.
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: frogacross-aab-${{ github.sha }}
           path: build/Android
