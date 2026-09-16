@@ -44,6 +44,11 @@ jobs:
           # UnityEditor.Android, which the base image lacks.
           customImage: unityci/editor:ubuntu-6000.5.10f1-android-3
           artifactsPath: test-results-${{ matrix.testMode }}
+          # Pinned: the action downloads this CLI at run time, and `latest`
+          # means anyone's release can break our gate. It did — game-ci/cli
+          # v0.1.66 was published with NO assets, so every test job 404'd two
+          # seconds in, before Unity started (2026-09-16). v0.1.65 is intact.
+          cliVersion: v0.1.65
       - uses: actions/upload-artifact@v4
         if: always()
         with:
