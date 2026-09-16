@@ -34,11 +34,25 @@ generated on it. **No attribution is required in the app.**
 Sources: <https://help.elevenlabs.io/hc/en-us/articles/13313564601361-Can-I-publish-the-content-I-generate-on-the-platform>,
 <https://elevenlabs.io/terms-of-use>
 
-## Music (0 of 2)
+## Music (2)
 
-`music-menu` and `music-gameplay` are not yet supplied. Since #103 an absent
-music file is real silence rather than a placeholder tone, so the slots stay
-quiet until tracks land. See #105.
+| File | Source | Licence |
+|---|---|---|
+| `music-menu.wav` | ElevenLabs text-to-sound-effects, `loop: true` | ElevenLabs Creator plan, commercial licence |
+| `music-gameplay.wav` | ElevenLabs text-to-sound-effects, `loop: true` | ElevenLabs Creator plan, commercial licence |
+
+**Not Eleven Music.** These 24-second beds come from the same
+`/v1/sound-generation` endpoint as the effects, using its `loop` flag, and are
+covered by the same plain commercial licence. Eleven Music is a separate
+product whose rights depend on a "Music Commercial Rights table" that is not in
+the public docs, defines "Studio Games" as its own category, and attaches
+co-branding obligations to paid tiers — none of which could be verified well
+enough to assert a licence here (2026-09-16). If a composed soundtrack is
+wanted later, those terms need reading first.
+
+Both loop seamlessly by construction, so they are neither trimmed nor faded —
+either would break the seam. They are installed at about -9 dBFS: music sits
+under the game.
 
 ## How these were made
 

@@ -26,6 +26,10 @@ from pathlib import Path
 
 API = "https://api.elevenlabs.io/v1/sound-generation?output_format=pcm_44100"
 RATE = 44100
+# pcm_44100 comes back as INTERLEAVED STEREO 16-bit. Writing it as mono plays
+# every clip at half speed an octave down, holding half its content — verified
+# against `afinfo` on an mp3 of the same request (2026-09-16).
+CHANNELS = 2
 
 
 def _ssl_context() -> ssl.SSLContext:
@@ -66,6 +70,21 @@ SOUNDS = {
 }
 
 
+# The two music slots, generated with the sound-effects endpoint's loop flag
+# (v2 model) rather than Eleven Music: the SFX terms grant a plain commercial
+# licence on any paid plan, while Eleven Music's rights depend on a separate
+# table and a "Studio Games" category we cannot read from the public docs
+# (2026-09-16). These are ambient beds, not a composed soundtrack.
+MUSIC = {
+    "music-menu": ("a calm playful looping background bed for a cartoon game "
+                   "menu, soft warm marimba and gentle pad, unhurried, light, "
+                   "instrumental, no drums", 24.0),
+    "music-gameplay": ("a light energetic looping background bed for a cartoon "
+                       "arcade game, playful gentle percussion and warm bass, "
+                       "steady, instrumental, not intense", 24.0),
+}
+
+
 # Relative level per sound, in dB below full scale, applied when a pick is
 # installed. Generation normalises every clip to -1 dBFS, which would put a
 # menu tap at the same volume as the win fanfare — these are the levels that
@@ -103,6 +122,29 @@ def generate(prompt: str, seconds: float, key: str) -> bytes:
         return r.read()
 
 
+def polish_loop(pcm: bytes) -> bytes:
+    """A loop may not be trimmed or faded — either would break the seam. Set
+    the level only, and leave it a few dB down: music sits under the game.
+    Music stays STEREO."""
+    peak = audioop.max(pcm, 2) or 1
+    return audioop.mul(pcm, 2, min(8.0, (32767 * 0.35) / peak))  # about -9 dBFS
+
+
+def generate_loop(prompt: str, seconds: float, key: str) -> bytes:
+    body = json.dumps({
+        "text": prompt,
+        "duration_seconds": min(30.0, seconds),
+        "prompt_influence": 0.5,
+        "loop": True,
+    }).encode()
+    req = urllib.request.Request(API, data=body, method="POST", headers={
+        "xi-api-key": key,
+        "Content-Type": "application/json",
+    })
+    with urllib.request.urlopen(req, timeout=300, context=_ssl_context()) as r:
+        return r.read()
+
+
 def polish(pcm: bytes, seconds: float) -> bytes:
     """Trim the silent head, cut to length, fade out, normalise to -1 dBFS.
 
@@ -111,6 +153,7 @@ def polish(pcm: bytes, seconds: float) -> bytes:
     """
     if not pcm:
         return pcm
+    pcm = audioop.tomono(pcm, 2, 0.5, 0.5)  # stereo in, mono out: effects are mono
     peak = audioop.max(pcm, 2) or 1
     gate = max(int(peak * 0.02), 64)
 
@@ -140,9 +183,9 @@ def polish(pcm: bytes, seconds: float) -> bytes:
     return audioop.mul(pcm, 2, min(8.0, (32767 * 0.89) / peak))  # -1 dBFS
 
 
-def write_wav(path: Path, pcm: bytes) -> None:
+def write_wav(path: Path, pcm: bytes, channels: int = 1) -> None:
     with wave.open(str(path), "wb") as w:
-        w.setnchannels(1)
+        w.setnchannels(channels)
         w.setsampwidth(2)
         w.setframerate(RATE)
         w.writeframes(pcm)
@@ -154,15 +197,15 @@ DEST = Path(__file__).resolve().parents[2] / "Assets/Resources/Audio"
 def install(src: Path, picks: dict) -> None:
     """Copy the chosen takes into the game at their mixed levels."""
     for name, variant in picks.items():
-        raw = (src / f"{name}-v{variant}.wav").read_bytes()
         with wave.open(str(src / f"{name}-v{variant}.wav"), "rb") as w:
-            pcm = w.readframes(w.getnframes())
-        gain = 10 ** (MIX_DB[name] / 20.0)
-        write_wav(DEST / f"{name}.wav", audioop.mul(pcm, 2, gain))
+            pcm, channels, frames = w.readframes(w.getnframes()), w.getnchannels(), w.getnframes()
+        # a loop is already at its bed level and must not be touched again
+        gain = 10 ** (MIX_DB.get(name, 0.0) / 20.0)
+        write_wav(DEST / f"{name}.wav", audioop.mul(pcm, 2, gain), channels)
         peak = audioop.max(audioop.mul(pcm, 2, gain), 2)
-        print(f"  {name}.wav  v{variant}  {MIX_DB[name]:+.1f} dB  "
-              f"peak {20 * __import__('math').log10(max(peak, 1) / 32767.0):.1f} dBFS "
-              f"({len(raw)} -> {len(pcm)} bytes)")
+        print(f"  {name}.wav  v{variant}  {MIX_DB.get(name, 0.0):+.1f} dB  "
+              f"peak {20 * __import__('math').log10(max(peak, 1) / 32767.0):.1f} dBFS  "
+              f"{frames / RATE:.2f}s  {channels}ch")
 
 
 def main() -> int:
@@ -170,6 +213,8 @@ def main() -> int:
     ap.add_argument("out_dir")
     ap.add_argument("--variants", type=int, default=3)
     ap.add_argument("--only", default="")
+    ap.add_argument("--music", action="store_true",
+                    help="generate the two looping music beds instead")
     ap.add_argument("--install", default="",
                     help="pick winners and install them, e.g. hop=2,ui-tap=3")
     args = ap.parse_args()
@@ -179,7 +224,7 @@ def main() -> int:
             (k.strip(), int(v)) for k, v in
             (pair.split("=") for pair in args.install.split(","))
         )
-        unknown = [k for k in picks if k not in SOUNDS]
+        unknown = [k for k in picks if k not in SOUNDS and k not in MUSIC]
         if unknown:
             print(f"unknown sound(s): {', '.join(unknown)}", file=sys.stderr)
             return 2
@@ -191,6 +236,21 @@ def main() -> int:
     if not key:
         print("ELEVENLABS_API_KEY is not set — source the env file first", file=sys.stderr)
         return 2
+
+    if args.music:
+        out = Path(args.out_dir)
+        out.mkdir(parents=True, exist_ok=True)
+        for name, (prompt, seconds) in MUSIC.items():
+            for v in range(1, args.variants + 1):
+                try:
+                    pcm = polish_loop(generate_loop(prompt, seconds, key))
+                except Exception as exc:              # noqa: BLE001
+                    print(f"  {name} v{v}: FAILED ({exc})")
+                    continue
+                write_wav(out / f"{name}-v{v}.wav", pcm, CHANNELS)
+                print(f"  {name} v{v}: {len(pcm) / (2 * CHANNELS) / RATE:.1f}s stereo  "
+                      f"{len(pcm) / 1024 / 1024:.1f} MB")
+        return 0
 
     wanted = [k.strip() for k in args.only.split(",") if k.strip()] or list(SOUNDS)
     unknown = [k for k in wanted if k not in SOUNDS]
@@ -224,8 +284,8 @@ def write_audition_page(out: Path, names: list, variants: int) -> None:
     """A local page for picking winners by ear — three players per sound,
     side by side, with the trigger and the length budget in view."""
     rows = []
-    for name in names:
-        prompt, seconds = SOUNDS[name]
+    for name in list(names) + [m for m in MUSIC if (out / f"{m}-v1.wav").exists()]:
+        prompt, seconds = SOUNDS[name] if name in SOUNDS else MUSIC[name]
         players = "".join(
             f'<div class="v"><span>v{v}</span>'
             f'<audio controls preload="none" src="{name}-v{v}.wav"></audio></div>'

@@ -99,6 +99,21 @@ namespace FrogAcross.Tests.EditMode.Audio
         }
 
         [Test]
+        public void BothMusicSlots_ResolveToARealTrack()
+        {
+            // #105's music half: the slots were silent by design until tracks
+            // landed (#103). They have landed — keep them landed.
+            foreach (var slot in new[] { "music-menu", "music-gameplay" })
+            {
+                var files = Directory.GetFiles(AudioFolder, slot + ".*")
+                    .Where(f => !f.EndsWith(".meta")).ToList();
+                Assert.That(files, Is.Not.Empty, $"no track for music slot '{slot}'");
+                Assert.That(PeakDbfs(files[0]), Is.LessThanOrEqualTo(-6f),
+                    $"'{slot}' is a bed under the game, not a foreground sound");
+            }
+        }
+
+        [Test]
         public void NoPlaceholderMusic_Ships()
         {
             // A generated blip stands in for a one-shot. A generated pad stands
