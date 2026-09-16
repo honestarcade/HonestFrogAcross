@@ -109,3 +109,7 @@ InitTestScene*.unity*
 # Signing — never commit key material
 *.keystore
 *.jks
+
+# Python bytecode from the asset pipelines
+__pycache__/
+*.pyc
