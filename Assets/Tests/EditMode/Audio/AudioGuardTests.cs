@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using FrogAcross.Audio;
@@ -37,6 +38,78 @@ namespace FrogAcross.Tests.EditMode.Audio
                     .Select(Path.GetFileNameWithoutExtension)
                     .Any(n => n == key || n == $"placeholder-{key}");
                 Assert.That(found, Is.True, $"no clip for hook '{key}'");
+            }
+        }
+
+        [Test]
+        public void NoPlaceholderAssets_Remain()
+        {
+            // #66's definition of done: every hook resolves to a real, licensed
+            // clip. The generated blips were scaffolding for #65 and are gone
+            // now that the owner's audio is in (2026-09-16).
+            var left = Directory.GetFiles(AudioFolder)
+                .Select(Path.GetFileName)
+                .Where(n => n.StartsWith("placeholder-"))
+                .ToList();
+            Assert.That(left, Is.Empty,
+                $"placeholder assets still ship: {string.Join(", ", left)}");
+        }
+
+        /// <summary>Peak sample of a 16-bit PCM wav, as dBFS.</summary>
+        private static float PeakDbfs(string path)
+        {
+            var bytes = File.ReadAllBytes(path);
+            int data = -1;
+            for (int i = 12; i < bytes.Length - 8; i += 2)
+                if (bytes[i] == 'd' && bytes[i + 1] == 'a' && bytes[i + 2] == 't' && bytes[i + 3] == 'a')
+                {
+                    data = i + 8;
+                    break;
+                }
+            Assert.That(data, Is.GreaterThan(0), $"{path}: no data chunk");
+            int peak = 0;
+            for (int i = data; i + 1 < bytes.Length; i += 2)
+                peak = Math.Max(peak, Math.Abs((short)(bytes[i] | (bytes[i + 1] << 8))));
+            return 20f * Mathf.Log10(Math.Max(peak, 1) / 32767f);
+        }
+
+        [Test]
+        public void ShippedClips_SitAtTheirMixLevels()
+        {
+            // Generation normalises every clip to -1 dBFS; installing applies
+            // the relative mix (ArtSource/pipeline/sfx.py, MIX_DB). Without it
+            // a menu tap is as loud as the win fanfare.
+            var peaks = new Dictionary<string, float>();
+            foreach (var file in Directory.GetFiles(AudioFolder, "*.wav"))
+            {
+                float db = PeakDbfs(file);
+                peaks[Path.GetFileNameWithoutExtension(file)] = db;
+                Assert.That(db, Is.LessThanOrEqualTo(-1f),
+                    $"{Path.GetFileName(file)} peaks at {db:0.0} dBFS — headroom is -1");
+            }
+            if (peaks.Count == 0) return; // nothing installed yet
+
+            // the shape of the mix, not exact numbers: quiet chrome, loud rewards
+            foreach (var chrome in new[] { "ui-tap", "ui-navigate", "hop" })
+            foreach (var reward in new[] { "medal", "level-complete" })
+                if (peaks.ContainsKey(chrome) && peaks.ContainsKey(reward))
+                    Assert.That(peaks[chrome], Is.LessThan(peaks[reward] - 3f),
+                        $"'{chrome}' ({peaks[chrome]:0.0} dBFS) must sit well under "
+                        + $"'{reward}' ({peaks[reward]:0.0} dBFS)");
+        }
+
+        [Test]
+        public void BothMusicSlots_ResolveToARealTrack()
+        {
+            // #105's music half: the slots were silent by design until tracks
+            // landed (#103). They have landed — keep them landed.
+            foreach (var slot in new[] { "music-menu", "music-gameplay" })
+            {
+                var files = Directory.GetFiles(AudioFolder, slot + ".*")
+                    .Where(f => !f.EndsWith(".meta")).ToList();
+                Assert.That(files, Is.Not.Empty, $"no track for music slot '{slot}'");
+                Assert.That(PeakDbfs(files[0]), Is.LessThanOrEqualTo(-6f),
+                    $"'{slot}' is a bed under the game, not a foreground sound");
             }
         }
 

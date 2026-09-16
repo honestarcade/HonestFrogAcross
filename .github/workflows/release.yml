@@ -6,8 +6,12 @@ on:
   push:
     tags: ['v*']
 
+# A called workflow cannot exceed its caller's grants, so the gate's
+# checks: write has to be granted here too or the release path fails where
+# the PR path passes.
 permissions:
   contents: read
+  checks: write
 
 # Never kill a deploy mid-flight.
 concurrency:
