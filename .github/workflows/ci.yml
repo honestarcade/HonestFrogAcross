@@ -55,7 +55,7 @@ jobs:
           # v0.1.66 was published with NO assets, so every test job 404'd two
           # seconds in, before Unity started (2026-09-16). v0.1.65 is intact.
           cliVersion: v0.1.65
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: test-results-${{ matrix.testMode }}
@@ -88,7 +88,7 @@ jobs:
           buildMethod: FrogAcross.Editor.Build.BuildScript.BuildCi
       # Unsigned PR artifact — sideloadable for device testing after
       # bundletool conversion; short retention, this is a convenience.
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: frogacross-aab-${{ github.sha }}
           path: build/Android
