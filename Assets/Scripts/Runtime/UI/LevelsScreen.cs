@@ -165,13 +165,19 @@ namespace FrogAcross.UI
             var level = LevelLoader.LoadFromResources(id, FrogAcross.Pieces.PieceRegistry.Load());
 
             var bubble = UiKit.Panel(screen, BubbleName, UiKit.PanelNavy);
-            bubble.rectTransform.sizeDelta = new Vector2(300, 240);
+            bubble.rectTransform.sizeDelta = new Vector2(BubbleW, BubbleH);
             // parented to the SCREEN, not the cell: the grid lives in a masked
-            // scroll view and a child bubble would be clipped at the edges
-            bubble.rectTransform.position = cell.position + new Vector3(0f, cell.rect.height * 0.75f, 0f);
+            // scroll view and a child bubble would be clipped at the edges.
+            //
+            // It sits BESIDE the cell, never above it (#146). The old placement
+            // put the bubble's lower half back over the cell — i.e. under the
+            // holding finger — so the bronze row was unreadable, and the finger
+            // had to move to see it. Which side depends on which half of the
+            // screen the cell is in, so the bubble never runs off the edge.
+            PlaceBeside(bubble.rectTransform, screen as RectTransform, cell);
 
-            UiKit.Label(bubble.transform, $"LEVEL {n}", UiKit.Micro, UiKit.TextDim,
-                new Vector2(0, 88), new Vector2(260, 34));
+            UiKit.Label(bubble.transform, $"LEVEL {n}", UiKit.Caption, UiKit.TextDim,
+                new Vector2(0, BubbleH * 0.5f - 42f), new Vector2(BubbleW - 48f, 40f));
 
             var rows = new[]
             {
@@ -179,18 +185,52 @@ namespace FrogAcross.UI
                 ("SILVER", Medals.Silver, level.SilverSeconds),
                 ("BRONZE", Medals.Bronze, level.BronzeSeconds),
             };
-            float y = 30f;
+            float y = 42f;
             foreach (var (name, color, seconds) in rows)
             {
                 var dot = UiKit.Panel(bubble.transform, $"dot-{name}", color, UiKit.PillRadius);
-                dot.rectTransform.sizeDelta = new Vector2(26, 26);
-                dot.rectTransform.anchoredPosition = new Vector2(-104, y);
-                UiKit.Label(bubble.transform, name, UiKit.Micro, UiKit.TextBlue,
-                    new Vector2(-30, y), new Vector2(120, 34), TextAnchor.MiddleLeft);
-                UiKit.Label(bubble.transform, $"{seconds:0.0}s", UiKit.Caption, UiKit.White,
-                    new Vector2(80, y), new Vector2(120, 38), TextAnchor.MiddleRight);
-                y -= 52f;
+                dot.rectTransform.sizeDelta = new Vector2(32, 32);
+                dot.rectTransform.anchoredPosition = new Vector2(-BubbleW * 0.5f + 46f, y);
+                UiKit.Label(bubble.transform, name, UiKit.Caption, UiKit.TextBlue,
+                    new Vector2(-BubbleW * 0.5f + 150f, y), new Vector2(180, 40), TextAnchor.MiddleLeft);
+                UiKit.Label(bubble.transform, $"{seconds:0.0}s", UiKit.Body, UiKit.White,
+                    new Vector2(BubbleW * 0.5f - 110f, y), new Vector2(180, 44), TextAnchor.MiddleRight);
+                y -= 66f;
             }
+
+            // Nothing in the bubble may take a raycast. It is drawn ABOVE the
+            // cell in the hierarchy, so a raycast target here steals the pointer
+            // from the cell underneath, the cell receives OnPointerExit, and the
+            // hold cancels itself the instant the bubble appears (#146).
+            foreach (var g in bubble.GetComponentsInChildren<Graphic>(true)) g.raycastTarget = false;
+        }
+
+        private const float BubbleW = 440f;
+        private const float BubbleH = 280f;
+
+        /// <summary>Put the bubble to the cell's left or right — whichever keeps
+        /// it on screen — vertically centred on the cell and clamped inside the
+        /// parent so it never hangs off the top or bottom.</summary>
+        private static void PlaceBeside(RectTransform bubble, RectTransform parent, RectTransform cell)
+        {
+            if (parent == null)
+            {
+                // no rect parent to measure against: fall back to beside-the-cell
+                // in world space rather than back on top of the finger
+                bubble.position = cell.position + new Vector3(cell.rect.width, 0f, 0f);
+                return;
+            }
+            Vector3 local = parent.InverseTransformPoint(cell.position);
+            float gap = cell.rect.width * 0.5f + BubbleW * 0.5f + 20f;
+            bool cellOnRight = local.x > 0f;
+            float x = local.x + (cellOnRight ? -gap : gap);
+
+            float limitX = parent.rect.width * 0.5f - BubbleW * 0.5f - 12f;
+            float limitY = parent.rect.height * 0.5f - BubbleH * 0.5f - 12f;
+            bubble.anchorMin = bubble.anchorMax = new Vector2(0.5f, 0.5f);
+            bubble.pivot = new Vector2(0.5f, 0.5f);
+            bubble.anchoredPosition = new Vector2(
+                Mathf.Clamp(x, -limitX, limitX), Mathf.Clamp(local.y, -limitY, limitY));
         }
 
         private static void HideTimes(Transform screen)

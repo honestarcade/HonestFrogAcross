@@ -47,9 +47,16 @@ namespace FrogAcross.UI
 
         public void OnPointerExit(PointerEventData _)
         {
-            // a scroll drag leaves the cell long before the hold completes
+            // Before the hold completes, leaving the cell is a scroll: cancel,
+            // so the ScrollRect above keeps its drag (#123).
             if (_down && !Held) { _down = false; _elapsed = 0f; }
-            else if (Held) End();
+
+            // AFTER it completes, leaving the cell means nothing. The preview
+            // stays up until the finger lifts. It used to dismiss here, which
+            // made the feature unusable: the times are rendered next to the
+            // holding finger, so reading them requires moving it, and moving it
+            // closed them (#146). OnPointerUp is routed to the pressed object
+            // wherever the finger ends up, so release still dismisses.
         }
 
         private void End()
