@@ -123,8 +123,8 @@
         },
         {
             "id": "level-021",
-            "fileHash": "155CF022192554021907178BA439D72F26790B07CB0C942136D3BD688BABE625",
-            "minTicks": 313,
+            "fileHash": "44DD6A8BCB9BA792F08259A18B6ECBAFC3EE7400311842A7AFD84C4AB3711CAB",
+            "minTicks": 379,
             "solved": true
         },
         {
@@ -147,14 +147,14 @@
         },
         {
             "id": "level-025",
-            "fileHash": "9CDE3B3DE0761C87026FC56BA3D913DEE9A054D3D885CB83FA5E92E3A9D58974",
-            "minTicks": 1026,
+            "fileHash": "571B9D2D9B3E07684BA0475DEAB26D0DF5E40F8DDD119392ADC37B2BE3508FD3",
+            "minTicks": 1016,
             "solved": true
         },
         {
             "id": "level-026",
-            "fileHash": "139CF5FAB427B17C72E30CC1CD46E3FD2FC0EB244A5339F8941ECB0F533668F1",
-            "minTicks": 797,
+            "fileHash": "75EADEAECA1430470ED73FCCE8B305EA6AB450718B4505176EB9497CE9F163B4",
+            "minTicks": 813,
             "solved": true
         },
         {
@@ -177,8 +177,8 @@
         },
         {
             "id": "level-030",
-            "fileHash": "3B7446FA624A124B515EBDAE1639AA57469168A3027C9431FA89059E26EB2EBA",
-            "minTicks": 1235,
+            "fileHash": "894C9ADB4D6C08AD6B011C56BF9F76124F83D154EBFA1DC7DA3C941A72A2F1C2",
+            "minTicks": 1231,
             "solved": true
         },
         {
@@ -249,8 +249,8 @@
         },
         {
             "id": "level-042",
-            "fileHash": "D66EC069F4F1018543D1DAD8F87EDE996AD9DABBFD04010C128ECD51796B0539",
-            "minTicks": 591,
+            "fileHash": "A8F55252E105BB34296C8BF716A683448F76D7ADB1C70347612F56A4238FB54C",
+            "minTicks": 477,
             "solved": true
         },
         {
@@ -273,8 +273,8 @@
         },
         {
             "id": "level-046",
-            "fileHash": "A27116D7B1D692E3593A88291DB5FBBFF1384C94F99A61D73452A96E14D7E69C",
-            "minTicks": 800,
+            "fileHash": "418DE605D45785C22D78C58E985D1B4DED19246E7A81DA5F31DC13AC74B5677A",
+            "minTicks": 798,
             "solved": true
         },
         {
@@ -369,8 +369,8 @@
         },
         {
             "id": "level-062",
-            "fileHash": "B9A22E61043A294C0C15B2A5F3BD18D0EE4F0D76DF4E69B0BA09201790A34644",
-            "minTicks": 721,
+            "fileHash": "C1E8A7AD3C970CA183091DCB1C438CFBEC3799FA87C635AC49C7A129183E3C5E",
+            "minTicks": 733,
             "solved": true
         },
         {
@@ -381,8 +381,8 @@
         },
         {
             "id": "level-064",
-            "fileHash": "76F4F91AFB7DEBDE7DEFFA5D971C856F996CDCDDB606409D3ED60476B6E2F94C",
-            "minTicks": 743,
+            "fileHash": "89D3EA2ED17583A26AEDA5903F5878AB9F738D227A7D59B9C0EC2F43E1DB190A",
+            "minTicks": 745,
             "solved": true
         },
         {
@@ -399,8 +399,8 @@
         },
         {
             "id": "level-067",
-            "fileHash": "F05F328EA809DCCC16B47A54616C79DAFF1C28D753D2E27A7C27C5D4EB8DDC75",
-            "minTicks": 1043,
+            "fileHash": "347C9C6FDE72B7E9C16FF1EBE0E3E803534CF71DF8080D0DA85B6C49ACB57285",
+            "minTicks": 1044,
             "solved": true
         },
         {
@@ -489,20 +489,20 @@
         },
         {
             "id": "level-082",
-            "fileHash": "61C67D5EC8B050F78610E93D25D8D711C2287B96029CB59A7FE24D6846A57680",
-            "minTicks": 883,
+            "fileHash": "70BFBFE1F880F2A92007AF78CF63DEDE2592BE6BC7FA3273199A51B8559949B6",
+            "minTicks": 881,
             "solved": true
         },
         {
             "id": "level-083",
-            "fileHash": "BE7C09D16D53985A8A39C879EA9F0787763056ECD79246C9C7F20EF120BDD5D0",
-            "minTicks": 854,
+            "fileHash": "500EA8E88D68136F8ECAFCE1BC6B38C1E7255B4009462FF94A6B760B757FFC3A",
+            "minTicks": 865,
             "solved": true
         },
         {
             "id": "level-084",
-            "fileHash": "C655C372D8AD79C410E62E19E3D2684FC964DB92B92B4A555310A68C6FBD6498",
-            "minTicks": 871,
+            "fileHash": "C4AF8E19C31011CEE948522A4B9659649374D458548340EF841DCC6A309B1858",
+            "minTicks": 899,
             "solved": true
         },
         {
@@ -525,14 +525,14 @@
         },
         {
             "id": "level-088",
-            "fileHash": "DF16781C35C3F76B6A2657CF622D823FDFE72BC29EA83E5E2236ABD364D57235",
-            "minTicks": 955,
+            "fileHash": "B00747C3FE232C34867AF1D9448E7CCAE16FB1ABA4487DCE053AF245E191F58A",
+            "minTicks": 952,
             "solved": true
         },
         {
             "id": "level-089",
-            "fileHash": "B8D0654572DB387FB6A98D11099DBF3EDBDF5D2A859BF49A768488CC7F9A494C",
-            "minTicks": 873,
+            "fileHash": "F7C08EBFDFCDA58FE2F7140BD7DBF4F5B9F09FC8F310D8CBA1696B031D1EA6C0",
+            "minTicks": 917,
             "solved": true
         },
         {
@@ -585,8 +585,8 @@
         },
         {
             "id": "level-098",
-            "fileHash": "F9DCDB7ECE266D226B4030D0D86377768343CBE1FE9341F19989918BB660D634",
-            "minTicks": 941,
+            "fileHash": "B03B47155DE3742326A03240F14B2A410A2247F0E528FC74E7DB5AD1A48EE50B",
+            "minTicks": 1050,
             "solved": true
         },
         {
@@ -597,8 +597,8 @@
         },
         {
             "id": "level-100",
-            "fileHash": "02C32C3DBA6294DFE88FB5FDDD9A20261F52E10621D7B294BE9B1FB926FE2E79",
-            "minTicks": 945,
+            "fileHash": "316647AD883D250C2F49A2136682541DCD05000148B2B18BCEF3BC28194F5D1C",
+            "minTicks": 993,
             "solved": true
         }
     ]

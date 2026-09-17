@@ -108,8 +108,13 @@ namespace FrogAcross.Tests.EditMode.Audio
                 var files = Directory.GetFiles(AudioFolder, slot + ".*")
                     .Where(f => !f.EndsWith(".meta")).ToList();
                 Assert.That(files, Is.Not.Empty, $"no track for music slot '{slot}'");
-                Assert.That(PeakDbfs(files[0]), Is.LessThanOrEqualTo(-6f),
-                    $"'{slot}' is a bed under the game, not a foreground sound");
+                // Declared levels live in ArtSource/pipeline/sfx.py (MUSIC_DBFS)
+                // and are set by `sfx.py --relevel`, which is idempotent. The
+                // menu bed sits 6 dB under the gameplay one at the owner's
+                // request — "about half the volume" (#120).
+                float expected = slot == "music-menu" ? -15f : -9f;
+                Assert.That(PeakDbfs(files[0]), Is.EqualTo(expected).Within(0.3f),
+                    $"'{slot}' is not at its declared bed level");
             }
         }
 

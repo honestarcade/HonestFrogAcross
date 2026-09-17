@@ -3,9 +3,9 @@
     "name": "level-100",
     "columns": 35,
     "medal": {
-        "gold": 31.5,
-        "silver": 45.70000076293945,
-        "bronze": 66.0999984741211
+        "gold": 33.099998474121097,
+        "silver": 48.0,
+        "bronze": 69.5
     },
     "startColumn": 15,
     "bays": [

@@ -343,3 +343,47 @@ When `/n8-replan` processes an ad-hoc entry it appends `— reconciled by /n8-re
   **Affects:** #23 (the quality gate); the release path, which inherits the caller's grants and needed the same permission.
 
 - **Correction (mine, for the record):** commit `4915126` is titled "ci: pin the game-ci CLI version" but carries **49 audio files, `LICENSES.md`, the import rules, the guards and the pipeline script**. The CI branch was cut while standing on the audio branch, so the squash merge took both. The content is correct and passed the full gate; the history is misleading. `main` is shared and protected, so it was not rewritten — #113 (closed) holds the real write-up and #105 carries a pointer to it.
+
+## /n8-exec M9 — 2026-09-17
+
+- **Decision:** Mirror the ride zone at the zone test in `GameSim.TryAttach` rather than adding direction-aware fields to the piece data.
+  **Why:** One rule keyed on the same sign the sprite already uses, so view and sim cannot disagree again; every asymmetric `rideableZone*` inherits it; and the authored 0.05–0.55 keeps its meaning ("measured from the nose") instead of becoming two numbers per direction.
+  **Issue:** #124
+
+- **Decision (Rule 3, discovered work):** Raised the solver node budget from 250k to 1M in `ContentLock` and `GeneratorParams`.
+  **Why:** With the zone corrected, `level-089` exhausted the old budget and the lock refused to verify it — but the level is completable in 917 ticks over 95 moves at 1M nodes. The verifier was under-powered, not the level broken. Both constants raised together so generation and locking agree; a lock that cannot verify a good level is worse than a slow one. Full re-lock costs 165.8s.
+  **Issue:** #124
+
+- **Decision:** Recalibrated medals on the 16 levels whose optimal floor moved, rather than preserving the old published times.
+  **Why:** Medals derive from the solver floor by design (#63); pinning the old numbers would make gold unreachable on the levels that got slower and trivially cheap on the ones that got faster. Shifts are small (−1.9s to +1.8s) and some are negative because a left-moving gator's back is now rideable, opening routes as well as closing them.
+  **Issue:** #124
+
+- **Method note:** `ContentLockTests` is hash-only on the CI path, so a green suite says nothing about whether a sim change moved a solve. The content check for #124 was a direct re-solve of all 100 levels, not the suite.
+
+- **Decision:** `ConfirmDialog`'s button guard is scoped to `btn-*` objects and floors at `UiKit.Body`, not `Heading`.
+  **Why:** A first attempt at "every Text inside a Button" swept in buttons that *wrap content* — a levels-grid cell whose text is the level number, the support card whose text is a paragraph — which legitimately set their own sizes. Body is the honest floor: a button label should never be smaller than body copy, and it clears the 44 the header chevron deliberately uses.
+  **Issue:** #121
+
+- **Decision:** The music bed level is declared absolutely (`MUSIC_DBFS`) and applied by an idempotent `--relevel`, rather than a relative gain.
+  **Why:** The owner-picked audition takes are gone (scratch clears between sessions) and hand-editing the WAV is what #120 rules out. A relative −6 dB cuts twice if run twice; measuring and scaling to an absolute target re-runs to the same number.
+  **Issue:** #120
+
+- **Decision:** Only `music-menu` was lowered; `music-gameplay` stays at −9 dBFS.
+  **Why:** The owner named the menu specifically. It leaves the two beds 6 dB apart, which wants an ear rather than my guess — flagged on the issue for the next device pass.
+  **Issue:** #120
+
+- **Decision:** Used `SOUND` (singular) rather than the owner's "Sounds".
+  **Why:** Its two neighbours are `CONTROLS` and `DATA`. Consistency with the screen beat literal wording; a one-character reversal if the owner disagrees.
+  **Issue:** #125
+
+- **Decision:** The time→medal rule moved to `UI.Medals.Standing`, used by both the HUD and the completion overlay.
+  **Why:** The AC asked for the two to agree. Sharing the rule makes that structural; two threshold tables agree only until someone edits one.
+  **Issue:** #122
+
+- **Decision:** `LongPress` does not implement `IDragHandler`, and the bubble parents to the screen rather than the cell.
+  **Why:** The nearest drag handler above a levels cell is the `ScrollRect` — claiming the drag would have stopped the grid scrolling. And the grid sits in a masked scroll view, so a child bubble would be clipped at the edges.
+  **Issue:** #123
+
+- **Decision:** The medal preview is shown for locked levels too.
+  **Why:** The times are the point of the preview; knowing the target before unlocking is useful and hiding it serves nothing. The AC flagged this as the owner's call.
+  **Issue:** #123
