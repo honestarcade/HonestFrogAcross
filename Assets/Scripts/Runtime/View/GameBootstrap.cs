@@ -68,8 +68,8 @@ namespace FrogAcross.View
             _overlay.Hide();
             Frozen = false;
             Sim = new GameSim(LevelLoader.LoadFromResources(levelId, PieceRegistry.Load()));
+            FitCamera();              // before Bind: the apron count reads the zoom
             board.Bind(Sim, _character);
-            FitCamera();
             _hud.Build(Sim.Level.GoldSeconds); // per level: gold target, and it
                                               // must survive a board rebuild
             FrogAcross.Audio.AudioDirector.Instance.Bind(Sim, Sim.Level);
@@ -122,36 +122,9 @@ namespace FrogAcross.View
         /// overscanned so the board bleeds past every edge (the design's board
         /// is 1260×660 inside a 958×450 screen). No level-dependent letterbox.
         /// </summary>
-        public const float BoardRollDegrees = -8f;
+        public const float BoardRollDegrees = BoardCamera.RollDegrees;
 
-        public void FitCamera()
-        {
-            var cam = Camera.main;
-            if (cam == null) return;
-            int rows = Sim.Level.Rows.Count;
-            float cx = (Sim.Level.Columns - 1) / 2f;
-            float cy = -(rows - 1) / 2f;
-            cam.transform.SetPositionAndRotation(new Vector3(cx, cy, -10f),
-                Quaternion.Euler(0f, 0f, BoardRollDegrees));
-            cam.orthographic = true;
-
-            // Every board corner must land inside the ROLLED frame. Rotating a
-            // corner (±cols/2, ±rows/2) by -θ gives |y| = cols/2·sinθ +
-            // rows/2·cosθ — that, plus a margin, is the half-height we need.
-            // (Fitting rows alone crops the goal and bank once the roll tips
-            // the corners in.)
-            float roll = Mathf.Abs(BoardRollDegrees) * Mathf.Deg2Rad;
-            float halfHeight = Sim.Level.Columns / 2f * Mathf.Sin(roll)
-                + rows / 2f * Mathf.Cos(roll) + 0.35f;
-
-            // Boards are sized to fill a 21:9 panel, so on a narrower phone the
-            // width is the binding constraint — fit it too, or the edge columns
-            // fall off the screen. Zooming out here shows more apron, which is
-            // exactly what the apron rows are for.
-            float halfWidth = Sim.Level.Columns / 2f * Mathf.Cos(roll)
-                + rows / 2f * Mathf.Sin(roll) + 0.35f;
-            cam.orthographicSize = Mathf.Max(halfHeight, halfWidth / Mathf.Max(0.1f, cam.aspect));
-        }
+        public void FitCamera() => BoardCamera.Fit(Camera.main, Sim.Level, Camera.main != null ? Camera.main.aspect : 1.78f);
 
         private void Update()
         {

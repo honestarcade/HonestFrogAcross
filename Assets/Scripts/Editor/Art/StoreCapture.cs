@@ -20,6 +20,12 @@ namespace FrogAcross.Editor.Art
     {
         public const string OutFolder = "ArtSource/store/screenshots";
 
+        // Play wants 16:9 landscape, min 1920x1080, and the long side may be at
+        // most twice the short side — so the owner's own 3120x1440 panel (2.17:1)
+        // would be rejected. 1920x1080 it is.
+        public const int Width = 1920;
+        public const int Height = 1080;
+
         private static readonly (string id, string tag)[] Shots =
         {
             ("level-003", "teaching-road"),
@@ -65,27 +71,41 @@ namespace FrogAcross.Editor.Art
                 }
             }
 
+            var camGo = new GameObject("cam");
+            var cam = camGo.AddComponent<Camera>();
+            cam.clearFlags = CameraClearFlags.SolidColor;
+            cam.backgroundColor = new Color(0.02f, 0.157f, 0.373f); // brand navy
+            cam.aspect = Width / (float)Height;
+            // the game's own framing, not a copy of it — this harness carried a
+            // stale duplicate (no roll, its own zoom) until 2026-09-17
+            BoardCamera.Fit(cam, level, cam.aspect);
+
+            // board after the camera: BoardView sizes its aprons to the zoom
+            camGo.tag = "MainCamera";
             var boardGo = new GameObject("board");
             var view = boardGo.AddComponent<BoardView>();
             view.Bind(sim);
             view.Render(sim.State.Tick);
 
-            var camGo = new GameObject("cam");
-            var cam = camGo.AddComponent<Camera>();
-            cam.orthographic = true;
-            cam.clearFlags = CameraClearFlags.SolidColor;
-            cam.backgroundColor = new Color(0.02f, 0.157f, 0.373f); // brand navy
-            float cx = (level.Columns - 1) / 2f;
-            float cy = -(level.Rows.Count - 1) / 2f;
-            // fit height with a slim margin; 16:9 width follows
-            cam.orthographicSize = level.Rows.Count / 2f + 0.6f;
-            camGo.transform.SetPositionAndRotation(new Vector3(cx, cy, -10f), Quaternion.identity);
+            // the HUD is part of what a player sees, so it is part of the shot
+            var hudGo = new GameObject("hud-host");
+            var hud = hudGo.AddComponent<FrogAcross.UI.GameHud>();
+            hud.Build(level.GoldSeconds);
+            hud.Tick(sim);
+            var hudCanvas = hudGo.GetComponentInChildren<Canvas>();
+            if (hudCanvas != null)
+            {
+                hudCanvas.renderMode = RenderMode.ScreenSpaceCamera;
+                hudCanvas.worldCamera = cam;
+                hudCanvas.planeDistance = 1f;
+                Canvas.ForceUpdateCanvases();
+            }
 
-            var rt = new RenderTexture(1920, 1080, 24);
+            var rt = new RenderTexture(Width, Height, 24);
             cam.targetTexture = rt;
             cam.Render();
             RenderTexture.active = rt;
-            var tex = new Texture2D(rt.width, rt.height, TextureFormat.RGB24, false);
+            var tex = new Texture2D(rt.width, rt.height, TextureFormat.RGB24, false); // 24-bit, no alpha (Play)
             tex.ReadPixels(new Rect(0, 0, rt.width, rt.height), 0, 0);
             tex.Apply();
             cam.targetTexture = null;
