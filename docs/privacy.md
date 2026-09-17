@@ -1,6 +1,6 @@
 # Frog Across — Privacy Policy
 
-**Effective date: 2026-08-28**
+**Effective date: 2026-08-28** · Last updated: 2026-09-17
 
 Frog Across (package `com.honestarcade.frogacross`), published by Honest
 Arcade, collects **no data**. None.
@@ -12,7 +12,10 @@ Arcade, collects **no data**. None.
   <https://github.com/honestarcade/HonestFrogAcross>.
 - No personal information, identifiers, usage analytics, crash reports,
   advertising IDs, or diagnostics are collected, stored, shared, or sold —
-  by us or by any third party. There are no third-party SDKs.
+  by us or by any third party. The game is built with the Unity engine and
+  contains no advertising, analytics, attribution or crash-reporting SDKs of
+  any kind. Nothing in the app can transmit data regardless, because it holds
+  no INTERNET permission.
 - Your progress (unlocked levels, medals, best times, settings) is saved
   **only on your device** and never leaves it. Uninstalling the app deletes it.
 - The app shows no ads and contains no purchases.

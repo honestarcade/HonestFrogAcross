@@ -1,6 +1,11 @@
 # Validation for the Play service account (#24): proves the secret's JSON
 # authenticates against the Play Developer API with access to our package,
 # before the release pipeline depends on it. Dispatch manually.
+#
+# It also probes STORE LISTING write access (#67) — creating an edit only
+# proves release permission, which the account already had, so the listing
+# grant needs its own probe. Every edit here is discarded, never committed:
+# nothing this workflow does can change the live listing.
 name: Play API check
 on:
   workflow_dispatch:
@@ -34,9 +39,45 @@ jobs:
           RESP=$(cat "$RUNNER_TEMP/resp.json")
           EDIT_ID=$(echo "$RESP" | jq -r .id)
           echo "Edit created: $EDIT_ID"
-          curl -sf -X DELETE -H "Authorization: Bearer $TOKEN" \
-            "https://androidpublisher.googleapis.com/androidpublisher/v3/applications/$PKG/edits/$EDIT_ID" || true
+
+          SA_EMAIL=$(jq -r .client_email "$RUNNER_TEMP/sa.json")
+          BASE="https://androidpublisher.googleapis.com/androidpublisher/v3/applications/$PKG/edits/$EDIT_ID"
+
+          # Read the listings that exist today
+          LIST_HTTP=$(curl -s -o "$RUNNER_TEMP/listings.json" -w '%{http_code}' \
+            -H "Authorization: Bearer $TOKEN" "$BASE/listings")
+          LANGS=$(jq -r '[.listings[]?.language] | join(", ")' "$RUNNER_TEMP/listings.json" 2>/dev/null)
+
+          # Write one back inside the throwaway edit: this is the call that
+          # needs "Edit store listing, pricing & distribution"
+          TITLE=$(jq -r '.listings[]? | select(.language=="en-US") | .title // empty' "$RUNNER_TEMP/listings.json")
+          [ -n "$TITLE" ] || TITLE="Frog Across"
+          WRITE_HTTP=$(curl -s -o "$RUNNER_TEMP/write.json" -w '%{http_code}' -X PATCH \
+            -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
+            -d "$(jq -n --arg t "$TITLE" '{title:$t}')" \
+            "$BASE/listings/en-US")
+
+          # Discard the edit — nothing above reaches the live listing
+          curl -sf -X DELETE -H "Authorization: Bearer $TOKEN" "$BASE" || true
+
+          # stdout as well as the summary: step summaries are not readable
+          # through the API, so a future check of this run needs them in the log
+          echo "SA: $SA_EMAIL | listings HTTP $LIST_HTTP [${LANGS:-none yet}] | write HTTP $WRITE_HTTP"
           {
-            printf '## Play API access verified\n\n'
-            printf -- '- Service account authenticated and created (then discarded) an edit for %s\n' "$PKG"
+            printf '## Play API access\n\n'
+            printf -- '- Service account: `%s`\n' "$SA_EMAIL"
+            printf -- '- Edit create/discard for `%s`: **OK**\n' "$PKG"
+            printf -- '- Listings read (HTTP %s): %s\n' "$LIST_HTTP" "${LANGS:-none yet}"
+            if [ "$WRITE_HTTP" = "200" ]; then
+              printf -- '- Listing **write** (HTTP 200): **granted** — the listing can be pushed from CI\n'
+            else
+              printf -- '- Listing write (HTTP %s): **NOT granted**\n' "$WRITE_HTTP"
+              printf -- '\n```\n%s\n```\n' "$(cat "$RUNNER_TEMP/write.json")"
+            fi
           } >> "$GITHUB_STEP_SUMMARY"
+
+          if [ "$WRITE_HTTP" != "200" ]; then
+            echo "::error::Listing write returned HTTP $WRITE_HTTP — the store-listing permission is missing"
+            cat "$RUNNER_TEMP/write.json"
+            exit 1
+          fi
