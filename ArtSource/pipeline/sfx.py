@@ -14,7 +14,6 @@ Usage:
 Writes <out_dir>/<key>-v<N>.wav (44.1kHz, mono, 16-bit) plus prompts.txt.
 """
 import argparse
-import audioop
 import ssl
 import json
 import os
@@ -30,6 +29,38 @@ RATE = 44100
 # every clip at half speed an octave down, holding half its content — verified
 # against `afinfo` on an mp3 of the same request (2026-09-16).
 CHANNELS = 2
+
+
+# audioop was removed in Python 3.13 (PEP 594) and this script only ever needed
+# two operations from it, so they live here instead (#132).
+def _peak(pcm: bytes) -> int:
+    """Largest absolute 16-bit sample."""
+    hi = 0
+    for i in range(0, len(pcm) - 1, 2):
+        v = struct.unpack_from("<h", pcm, i)[0]
+        if v == -32768:
+            return 32768
+        hi = max(hi, abs(v))
+    return hi
+
+
+def _scale(pcm: bytes, factor: float) -> bytes:
+    """Multiply every sample, clamped to the 16-bit range."""
+    out = bytearray(len(pcm))
+    for i in range(0, len(pcm) - 1, 2):
+        v = int(struct.unpack_from("<h", pcm, i)[0] * factor)
+        struct.pack_into("<h", out, i, max(-32768, min(32767, v)))
+    return bytes(out)
+
+
+def _to_mono(pcm: bytes) -> bytes:
+    """Average interleaved stereo down to mono."""
+    out = bytearray(len(pcm) // 2)
+    for i in range(0, len(pcm) - 3, 4):
+        left = struct.unpack_from("<h", pcm, i)[0]
+        right = struct.unpack_from("<h", pcm, i + 2)[0]
+        struct.pack_into("<h", out, i // 2, (left + right) // 2)
+    return bytes(out)
 
 
 def _ssl_context() -> ssl.SSLContext:
@@ -111,7 +142,7 @@ MIX_DB = {
 # re-levelling is idempotent — a relative cut applied twice cuts twice (#120).
 MUSIC_DBFS = {
     "music-menu": -15.0,      # owner: "about half the volume" (2026-09-17)
-    "music-gameplay": -9.0,   # unchanged; the owner named the menu specifically
+    "music-gameplay": -9.0,   # relevel writes this file too; the LEVEL is unchanged
 }
 
 
@@ -123,10 +154,10 @@ def relevel(names) -> None:
         with wave.open(str(path), "rb") as w:
             channels, frames = w.getnchannels(), w.getnframes()
             pcm = w.readframes(frames)
-        peak = audioop.max(pcm, 2) or 1
+        peak = _peak(pcm) or 1
         before_db = 20 * math.log10(peak / 32767.0)
         target = 32767.0 * (10 ** (MUSIC_DBFS[name] / 20.0))
-        write_wav(path, audioop.mul(pcm, 2, target / peak), channels)
+        write_wav(path, _scale(pcm, target / peak), channels)
         print(f"  {name}.wav  {before_db:.1f} -> {MUSIC_DBFS[name]:.1f} dBFS  "
               f"{frames / RATE:.1f}s {channels}ch")
 
@@ -151,8 +182,8 @@ def polish_loop(pcm: bytes) -> bytes:
     """A loop may not be trimmed or faded — either would break the seam. Set
     the level only, and leave it a few dB down: music sits under the game.
     Music stays STEREO."""
-    peak = audioop.max(pcm, 2) or 1
-    return audioop.mul(pcm, 2, min(8.0, (32767 * 0.35) / peak))  # about -9 dBFS
+    peak = _peak(pcm) or 1
+    return _scale(pcm, min(8.0, (32767 * 0.35) / peak))  # about -9 dBFS
 
 
 def generate_loop(prompt: str, seconds: float, key: str) -> bytes:
@@ -178,8 +209,8 @@ def polish(pcm: bytes, seconds: float) -> bytes:
     """
     if not pcm:
         return pcm
-    pcm = audioop.tomono(pcm, 2, 0.5, 0.5)  # stereo in, mono out: effects are mono
-    peak = audioop.max(pcm, 2) or 1
+    pcm = _to_mono(pcm)  # stereo in, mono out: effects are mono
+    peak = _peak(pcm) or 1
     gate = max(int(peak * 0.02), 64)
 
     start = 0
@@ -204,8 +235,8 @@ def polish(pcm: bytes, seconds: float) -> bytes:
             struct.pack_into("<h", tail, off, int(v * (1 - n / fade)))
         pcm = pcm[:-fade * 2] + bytes(tail)
 
-    peak = audioop.max(pcm, 2) or 1
-    return audioop.mul(pcm, 2, min(8.0, (32767 * 0.89) / peak))  # -1 dBFS
+    peak = _peak(pcm) or 1
+    return _scale(pcm, min(8.0, (32767 * 0.89) / peak))  # -1 dBFS
 
 
 def write_wav(path: Path, pcm: bytes, channels: int = 1) -> None:
@@ -226,8 +257,8 @@ def install(src: Path, picks: dict) -> None:
             pcm, channels, frames = w.readframes(w.getnframes()), w.getnchannels(), w.getnframes()
         # a loop is already at its bed level and must not be touched again
         gain = 10 ** (MIX_DB.get(name, 0.0) / 20.0)
-        write_wav(DEST / f"{name}.wav", audioop.mul(pcm, 2, gain), channels)
-        peak = audioop.max(audioop.mul(pcm, 2, gain), 2)
+        write_wav(DEST / f"{name}.wav", _scale(pcm, gain), channels)
+        peak = _peak(_scale(pcm, gain))
         print(f"  {name}.wav  v{variant}  {MIX_DB.get(name, 0.0):+.1f} dB  "
               f"peak {20 * __import__('math').log10(max(peak, 1) / 32767.0):.1f} dBFS  "
               f"{frames / RATE:.2f}s  {channels}ch")
@@ -259,15 +290,16 @@ def main() -> int:
         print(f"\n{len(picks)} clips installed to {DEST}")
         return 0
 
-    key = os.environ.get("ELEVENLABS_API_KEY", "")
-    if not key:
-        print("ELEVENLABS_API_KEY is not set — source the env file first", file=sys.stderr)
-        return 2
-
     if args.relevel:
         relevel(list(MUSIC))
         print(f"\n{len(MUSIC)} beds re-levelled in {DEST}")
         return 0
+
+    # --relevel makes no network call, so the key is only required past here (#132)
+    key = os.environ.get("ELEVENLABS_API_KEY", "")
+    if not key:
+        print("ELEVENLABS_API_KEY is not set — source the env file first", file=sys.stderr)
+        return 2
 
     if args.music:
         out = Path(args.out_dir)

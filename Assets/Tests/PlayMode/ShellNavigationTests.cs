@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using FrogAcross.Levels;
+using FrogAcross.Pieces;
 using FrogAcross.UI;
 using NUnit.Framework;
 using UnityEngine;
@@ -217,11 +219,21 @@ namespace FrogAcross.Tests.PlayMode
                 yield return null;
             }
 
-            // and the dialog, which is built on demand and so is not on any screen
+            // and the surfaces built ON DEMAND, which sit on no screen and so
+            // went unaudited — that is exactly how #121 reached a phone (#130)
             var dialog = ConfirmDialog.Show(shell.transform, "Restart level?",
                 "Bays and the clock reset — this attempt is abandoned.", "Restart", () => { });
             yield return null;
             Audit(dialog, "confirm-dialog");
+            Object.Destroy(dialog);
+
+            var overlayHost = new GameObject("overlay-audit");
+            var overlay = overlayHost.AddComponent<LevelCompleteOverlay>();
+            overlay.Show(LevelLoader.LoadFromResources("level-001", PieceRegistry.Load()),
+                260, newBest: true, prevBest: 6.8f, levelNumber: 1);
+            yield return null;
+            Audit(overlayHost, "level-complete");
+            Object.Destroy(overlayHost);
 
             Assert.That(offenders, Is.Empty,
                 "button labels below UiKit.Body (" + UiKit.Body + "): "
@@ -247,9 +259,19 @@ namespace FrogAcross.Tests.PlayMode
 
             Assert.That(body.alignment, Is.EqualTo(TextAnchor.UpperCenter),
                 "the body reads centred, against centred buttons");
-            float gap = title.rectTransform.anchoredPosition.y - body.rectTransform.anchoredPosition.y;
-            Assert.That(gap, Is.GreaterThan(100f),
-                $"the body sits {gap:0} from the title — too tight under the heading");
+
+            // Rendered EDGES, not anchor centres. The old form measured
+            // centre-to-centre and read 130 on the pre-fix layout versus 120
+            // after — it went the wrong way and still passed, so it pinned
+            // nothing (#128). Title bottom to body top is what a reader sees.
+            float titleBottom = title.rectTransform.anchoredPosition.y
+                - title.rectTransform.sizeDelta.y / 2f;
+            float bodyTop = body.rectTransform.anchoredPosition.y
+                + body.rectTransform.sizeDelta.y / 2f;
+            float gap = titleBottom - bodyTop;
+            Assert.That(gap, Is.GreaterThanOrEqualTo(25f),
+                $"only {gap:0} units between the title's bottom and the body's top — "
+                + "the copy is crowding the heading");
             Object.Destroy(dialog);
         }
 

@@ -281,11 +281,13 @@ namespace FrogAcross.Sim
 
                     // Rideable: zone + cycle rules (owner's gator law lives in def data).
                     float frac = Math.Clamp((x - left) / def.sizeCells, 0f, 1f);
-                    // The zone is authored from the piece's NOSE, and the sprite
-                    // mirrors with travel direction (SpriteSelector.GatorIndex).
-                    // The zone has to mirror with it, or a left-moving gator is
-                    // safe on its drawn head and drowns you on its drawn back —
-                    // half of all gator rows (#124).
+                    // The zone is authored against the RIGHT-FACING art — 0 is the
+                    // tail, 1 is the snout — and the sprite mirrors with travel
+                    // direction (SpriteSelector.GatorIndex). The zone has to
+                    // mirror with it, or a left-moving gator is safe on its drawn
+                    // head and drowns you on its drawn back (#124). The earlier
+                    // wording here said "from the NOSE", which is backwards: from
+                    // the nose, 0.05-0.55 would BE the snout half (#129).
                     if (rowDef.DirSign < 0) frac = 1f - frac;
                     bool inZone = frac >= def.rideableZoneStart && frac <= def.rideableZoneEnd;
                     bool active = def.IsRideableAtTick(State.Tick, train.PhaseTicks);

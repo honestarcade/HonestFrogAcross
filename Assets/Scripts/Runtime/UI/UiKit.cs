@@ -165,7 +165,9 @@ namespace FrogAcross.UI
         }
 
         public static Button Button(Transform parent, string label, Vector2 pos, Vector2 size,
-            Action onClick, bool primary = false, int fontSize = 22)
+            // Defaults to Body, not 22: the silent 22 is what put the confirm
+            // dialogs three sizes under every other button (#121/#130).
+            Action onClick, bool primary = false, int fontSize = Body)
         {
             var go = new GameObject($"btn-{label}");
             go.transform.SetParent(parent, false);

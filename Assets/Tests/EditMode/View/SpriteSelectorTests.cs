@@ -11,6 +11,26 @@ namespace FrogAcross.Tests.EditMode.View
     public class SpriteSelectorTests
     {
         [Test]
+        public void EveryMedalSurface_UsesOneRuleAndOnePalette()
+        {
+            // #131: the HUD and the completion panel were unified, but the
+            // PERSISTED medal on the levels grid had its own copy of the
+            // thresholds, and the two colour palettes were not Equals-equal.
+            var level = LevelLoader.LoadFromResources("level-001", PieceRegistry.Load());
+            float g = level.GoldSeconds, s = level.SilverSeconds, b = level.BronzeSeconds;
+
+            foreach (var (t, expected) in new[]
+                     { (g - 0.1f, 3), (g + 0.1f, 2), (s + 0.1f, 1), (b + 0.1f, 0) })
+                Assert.That(MedalRule.IndexFor(t, g, s, b), Is.EqualTo(expected),
+                    $"at {t:0.0}s the persisted medal index must match the shared rule");
+
+            // the colours the grid uses and the colours the HUD uses are one set
+            Assert.That(Medals.Gold, Is.EqualTo(UiKit.Gold), "one gold, not two");
+            Assert.That(Medals.Silver, Is.EqualTo(UiKit.Silver), "one silver, not two");
+            Assert.That(Medals.Bronze, Is.EqualTo(UiKit.Bronze), "one bronze, not two");
+        }
+
+        [Test]
         public void MedalStanding_StepsDownAndAgreesWithTheOverlay()
         {
             // #122: the HUD shows what is still reachable, the completion panel

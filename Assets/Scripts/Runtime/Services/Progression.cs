@@ -1,4 +1,5 @@
 using System;
+using FrogAcross.Levels;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -47,7 +48,7 @@ namespace FrogAcross.Services
         public static (int medal, bool newBest) ReportCompletion(
             string levelId, int levelNumber, float seconds, float gold, float silver, float bronze)
         {
-            int medal = seconds <= gold ? 3 : seconds <= silver ? 2 : seconds <= bronze ? 1 : 0;
+            int medal = MedalRule.IndexFor(seconds, gold, silver, bronze); // one rule (#131)
             var rec = RecordFor(levelId);
             if (rec == null)
             {
