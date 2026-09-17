@@ -407,3 +407,18 @@ When `/n8-replan` processes an ad-hoc entry it appends `— reconciled by /n8-re
 
 - **Consequence, logged:** widening the gator zone moved 17 of 100 optimal floors, nearly all *faster* — a wider safe zone opens routes. Medals recalibrated from the new floors and the fixture re-locked, same as the #124 pass.
   **Issue:** #129
+
+## Release v0.11.0 — 2026-09-17
+
+- **Released:** `v0.11.0` at `a2b5e9f`, versionCode **112**, shipped to the Google Play **internal** track (`com.honestarcade.frogacross`). Play edit `08399331424394149626` committed; symbols + R8 mapping uploaded. Tester URL: https://play.google.com/apps/test/com.honestarcade.frogacross/112
+  **Covers:** all of M9 (#126 + #133) plus #115–#119 (licence, listing access, board fit at every aspect).
+  **Gate:** the tag re-ran the identical PR checks on the tagged commit — EditMode 154/154, PlayMode 39/39, Android build — before the upload job was allowed to run.
+
+- **Decision:** Cut the release with M9 still open and four `confirmed` bugs outstanding, against `/n8-release`'s stated preconditions.
+  **Why:** M9's six stories each retain an "owner confirms on device" AC, which cannot be verified without an installable build — and the build is what the release produces. Cutting to the *internal* track is the normal way out of that circularity. The four open bugs (#134 sev:medium, #135/#136/#137 sev:low) are regression-coverage and record-accuracy findings; none changes shipped behaviour. Owner confirmed both breaches explicitly before the tag was pushed.
+  **Issues:** #134 #135 #136 #137
+
+- **Decision:** v0.11.0 is the first tag to carry a GitHub Release object; the previous ten are bare tags.
+  **Why:** Internal testers need readable notes on what changed and what to look for. Owner approved the change in practice. Notes are hand-written above `--generate-notes` output.
+
+- **Known, not fixed:** `ProjectSettings.asset` still carries `bundleVersion: 0.4.0` and `AndroidBundleVersionCode: 1`, stale across seven releases. Harmless for shipped builds — `versioning: Custom` overrides both at build time, and the AAB self-reports 0.11.0/112 correctly — but local builds report 0.4.0. Worth either syncing on release or documenting as intentionally overridden.
