@@ -234,6 +234,56 @@ namespace FrogAcross.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator TheBoardCoversTheWholeScreen_AtEveryAspect()
+        {
+            // The apron was a fixed 4 rows, which was enough while the camera
+            // only fitted rows. Fitting width too means a narrower screen zooms
+            // out past them and the background shows through at the corners —
+            // invisible on the 21:9 panel we test on, plain on a 16:9 phone
+            // (found by the store-screenshot capture, 2026-09-17).
+            foreach (float aspect in new[] { 21f / 9f, 16f / 9f, 4f / 3f })
+            {
+                AppShell.PendingLevelId = "level-100"; // widest board we ship
+                SceneManager.LoadScene("Game");
+                yield return null;
+                yield return null;
+                var boot = Object.FindAnyObjectByType<GameBootstrap>();
+                var cam = Camera.main;
+                cam.aspect = aspect;
+                boot.SendMessage("FitCamera");
+                boot.board.Bind(boot.Sim);   // aprons size to the fitted camera
+                yield return null;
+
+                float top = float.MinValue, bottom = float.MaxValue;
+                float left = float.MaxValue, right = float.MinValue;
+                foreach (Transform child in boot.board.transform)
+                {
+                    var sr = child.GetComponent<UnityEngine.SpriteRenderer>();
+                    if (sr == null || sr.drawMode != UnityEngine.SpriteDrawMode.Tiled) continue;
+                    top = Mathf.Max(top, child.position.y + sr.size.y / 2f);
+                    bottom = Mathf.Min(bottom, child.position.y - sr.size.y / 2f);
+                    left = Mathf.Min(left, child.position.x - sr.size.x / 2f);
+                    right = Mathf.Max(right, child.position.x + sr.size.x / 2f);
+                }
+
+                foreach (var corner in new[]
+                         {
+                             new Vector3(0f, 0f, 10f), new Vector3(1f, 0f, 10f),
+                             new Vector3(0f, 1f, 10f), new Vector3(1f, 1f, 10f),
+                         })
+                {
+                    var world = cam.ViewportToWorldPoint(corner);
+                    Assert.That(world.y, Is.InRange(bottom, top),
+                        $"aspect {aspect:0.00}: screen corner {corner} is above/below every "
+                        + "surface — the background shows through");
+                    Assert.That(world.x, Is.InRange(left, right),
+                        $"aspect {aspect:0.00}: screen corner {corner} is off the side of every surface");
+                }
+                yield return SceneCleanup.UnloadAll();
+            }
+        }
+
+        [UnityTest]
         public IEnumerator BayFill_FitsInsideItsCell()
         {
             // regression (#67 screenshots): raw character sprites are ~4 world

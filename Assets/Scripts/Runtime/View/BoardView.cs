@@ -148,7 +148,11 @@ namespace FrogAcross.View
             // screen edge. Aprons repeat the plain bank surface above and below
             // so the roll never exposes the background, and the strips run
             // full-bleed sideways (#3, owner device report 2026-08-29).
-            for (int a = 1; a <= ApronRows; a++)
+            var boardCam = Camera.main;
+            int aprons = boardCam != null && boardCam.orthographic
+                ? ApronRowsFor(level, boardCam.orthographicSize)
+                : ApronRows;
+            for (int a = 1; a <= aprons; a++)
             {
                 var top = NewSprite($"apron-top-{a}", SpriteOf(level.Rows[level.BankRow].Kind, 0), -0.35f);
                 top.drawMode = SpriteDrawMode.Tiled;
@@ -348,8 +352,23 @@ namespace FrogAcross.View
         private Sprite SpriteOf(PieceDef def, int i) =>
             def.sprites != null && def.sprites.Length > i ? def.sprites[i] : null;
 
-        /// <summary>Rows of repeated goal/bank surface drawn beyond the board.</summary>
+        /// <summary>Fewest rows of repeated surface drawn beyond the board.</summary>
         public const int ApronRows = 4;
+
+        /// <summary>
+        /// How many apron rows this camera actually needs. A fixed 4 was enough
+        /// while the camera only ever fitted rows; once it started fitting width
+        /// too, a narrower screen zooms out past them and the background shows
+        /// through at the top and bottom — visible on a 16:9 phone, invisible on
+        /// the 21:9 one we test on (found by the store capture, 2026-09-17).
+        /// </summary>
+        public static int ApronRowsFor(LevelDefinition level, float orthoSize)
+        {
+            float exposed = orthoSize - level.Rows.Count / 2f;          // beyond the board
+            float roll = Mathf.Abs(BoardCamera.RollDegrees) * Mathf.Deg2Rad;
+            exposed += level.Columns / 2f * Mathf.Sin(roll);            // the rolled corners reach higher
+            return Mathf.Max(ApronRows, Mathf.CeilToInt(exposed) + 1);
+        }
 
         /// <summary>How far past the board objects and surfaces are drawn.</summary>
         public static float MarginCells(LevelDefinition level)
