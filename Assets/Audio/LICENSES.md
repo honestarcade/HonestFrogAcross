@@ -1,5 +1,10 @@
 # Audio provenance
 
+> **Scope note.** The repository's `LICENSE` (MIT) covers source code. The audio
+> files below are licensed to Honest Arcade for use in this game and are **not**
+> sublicensed for redistribution — ElevenLabs' terms specifically prohibit
+> licensing collections of generated output to third parties.
+
 Every audio file shipped in `Assets/Resources/Audio/` is listed here with its
 source and licence. The `TemporaryClips_AreClearlyTagged` guard fails the build
 if a file is neither `placeholder-`prefixed nor named in this manifest.
