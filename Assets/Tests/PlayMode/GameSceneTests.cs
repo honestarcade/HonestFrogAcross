@@ -102,6 +102,46 @@ namespace FrogAcross.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator HudMedalChip_StepsDownAsThresholdsPass()
+        {
+            // owner: "once that time passes, it should show a silver medal with
+            // the time limit for that. After silver, it should just show bronze
+            // medal with no time limit" (#122)
+            yield return LoadGame("dev-road");
+            var boot = Object.FindAnyObjectByType<GameBootstrap>();
+            var hud = Object.FindAnyObjectByType<GameHud>();
+            var level = boot.Sim.Level;
+
+            var pill = GameObject.Find("hud").GetComponentsInChildren<Transform>(true)
+                .First(t => t.name == "time-pill");
+            var dot = pill.GetComponentsInChildren<UnityEngine.UI.Image>(true)
+                .First(i => i.name == "medal-dot");
+            var texts = pill.GetComponentsInChildren<UnityEngine.UI.Text>(true);
+            var target = texts.First(t => t.fontSize == UiKit.Caption);   // the deadline
+            var clock = texts.First(t => t.fontSize == UiKit.Title);      // the elapsed time
+
+            boot.Frozen = true; // drive the clock directly
+
+            foreach (var (seconds, colour, deadline) in new[]
+                     {
+                         (level.GoldSeconds - 0.5f, Medals.Gold, level.GoldSeconds),
+                         (level.GoldSeconds + 0.5f, Medals.Silver, level.SilverSeconds),
+                         (level.SilverSeconds + 0.5f, Medals.Bronze, level.BronzeSeconds),
+                         (level.BronzeSeconds + 0.5f, Medals.Spent, 0f),
+                     })
+            {
+                boot.Sim.State.ClockTicks = (long)(seconds * SimConfig.TicksPerSecond);
+                hud.Tick(boot.Sim);
+                yield return null;
+
+                Assert.That(dot.color, Is.EqualTo(colour), $"dot colour at {seconds:0.0}s");
+                Assert.That(target.text, Is.EqualTo(deadline > 0f ? $"{deadline:0.0}s" : ""),
+                    $"deadline shown at {seconds:0.0}s");
+                Assert.That(clock.text, Is.EqualTo($"{seconds:0.0}"), "the clock still reads the run");
+            }
+        }
+
+        [UnityTest]
         public IEnumerator TheCharacterAnimatesBetweenCells()
         {
             // The sim moves in a single tick; the view has to carry the frog

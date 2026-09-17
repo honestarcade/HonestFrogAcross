@@ -90,7 +90,7 @@ namespace FrogAcross.Editor.Art
             // the HUD is part of what a player sees, so it is part of the shot
             var hudGo = new GameObject("hud-host");
             var hud = hudGo.AddComponent<FrogAcross.UI.GameHud>();
-            hud.Build(level.GoldSeconds);
+            hud.Build(level);
             hud.Tick(sim);
             var hudCanvas = hudGo.GetComponentInChildren<Canvas>();
             if (hudCanvas != null)

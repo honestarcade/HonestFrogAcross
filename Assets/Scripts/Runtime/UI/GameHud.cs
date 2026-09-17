@@ -1,4 +1,5 @@
 using System;
+using FrogAcross.Levels;
 using FrogAcross.Sim;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,7 +20,10 @@ namespace FrogAcross.UI
 
         private Text _moveLabel;
         private Text _timer;
+        private Text _target;
+        private Image _medalDot;
         private GameObject _canvasGo;
+        private LevelDefinition _level;
 
         /// <summary>Corner buttons: bigger than a normal tap target, because
         /// they are pressed mid-run with a thumb (owner, 2026-08-30).</summary>
@@ -30,8 +34,9 @@ namespace FrogAcross.UI
         private const float Inset = 40f;
         private const float ChipHeight = 80f;
 
-        public void Build(float goldSeconds)
+        public void Build(LevelDefinition level)
         {
+            _level = level;
             // Rebuilt per level: the gold target on the chip belongs to the
             // level being played, and a rebuild is how the HUD comes back after
             // a restart.
@@ -57,11 +62,13 @@ namespace FrogAcross.UI
             timePill.rectTransform.anchoredPosition = new Vector2(Inset + 270, -(Inset + ChipHeight / 2f));
             _timer = UiKit.Label(timePill.transform, "0.0", UiKit.Title, UiKit.White,
                 new Vector2(-110, 0), new Vector2(260, 78));
-            var dot = UiKit.Panel(timePill.transform, "gold-dot", UiKit.Gold, UiKit.PillRadius);
-            dot.rectTransform.sizeDelta = new Vector2(26, 26);
-            dot.rectTransform.anchoredPosition = new Vector2(48, 0);
-            UiKit.Label(timePill.transform, $"{goldSeconds:0.0}s", UiKit.Caption, UiKit.TextBlue,
-                new Vector2(160, 0), new Vector2(180, 44));
+            // colour and target are resolved per frame in Tick: the chip used
+            // to promise gold for the whole run, long after gold was gone (#122)
+            _medalDot = UiKit.Panel(timePill.transform, "medal-dot", Medals.Gold, UiKit.PillRadius);
+            _medalDot.rectTransform.sizeDelta = new Vector2(26, 26);
+            _medalDot.rectTransform.anchoredPosition = new Vector2(48, 0);
+            _target = UiKit.Label(timePill.transform, $"{level.GoldSeconds:0.0}s", UiKit.Caption,
+                UiKit.TextBlue, new Vector2(160, 0), new Vector2(180, 44));
 
             // The wedge is a triangle: widest along the very top edge and
             // narrowing as you descend, so the hint goes BESIDE the clock, not
@@ -114,7 +121,17 @@ namespace FrogAcross.UI
         public void Tick(GameSim sim)
         {
             if (_timer == null) return;
-            _timer.text = (sim.State.ClockTicks / (float)SimConfig.TicksPerSecond).ToString("0.0");
+            float elapsed = sim.State.ClockTicks / (float)SimConfig.TicksPerSecond;
+            _timer.text = elapsed.ToString("0.0");
+
+            // step the chip down as each threshold passes; past bronze there is
+            // nothing left to chase, so the deadline goes blank
+            if (_level != null && _medalDot != null)
+            {
+                var (_, color, target) = Medals.Standing(elapsed, _level);
+                _medalDot.color = color;
+                _target.text = target > 0f ? $"{target:0.0}s" : "";
+            }
             _moveLabel.text = sim.State.Facing switch
             {
                 Move.Back => "▼ BACK",

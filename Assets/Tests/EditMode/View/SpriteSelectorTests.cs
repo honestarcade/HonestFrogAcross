@@ -1,6 +1,7 @@
 using FrogAcross.Levels;
 using FrogAcross.Pieces;
 using FrogAcross.Sim;
+using FrogAcross.UI;
 using FrogAcross.View;
 using NUnit.Framework;
 using UnityEngine;
@@ -9,6 +10,37 @@ namespace FrogAcross.Tests.EditMode.View
 {
     public class SpriteSelectorTests
     {
+        [Test]
+        public void MedalStanding_StepsDownAndAgreesWithTheOverlay()
+        {
+            // #122: the HUD shows what is still reachable, the completion panel
+            // shows what was earned. One rule, or they drift apart.
+            var level = LevelLoader.LoadFromResources("level-001", PieceRegistry.Load());
+            float g = level.GoldSeconds, s = level.SilverSeconds, b = level.BronzeSeconds;
+            Assert.That(g, Is.LessThan(s), "fixture sanity"); Assert.That(s, Is.LessThan(b));
+
+            foreach (var (t, name, target) in new[]
+                     {
+                         (g - 0.1f, "GOLD", g),
+                         (g + 0.1f, "SILVER", s),
+                         (s + 0.1f, "BRONZE", b),
+                         (b + 0.1f, "COMPLETE", 0f),
+                     })
+            {
+                var standing = Medals.Standing(t, level);
+                Assert.That(standing.name, Is.EqualTo(name), $"at {t:0.0}s");
+                Assert.That(standing.target, Is.EqualTo(target).Within(1e-3f),
+                    $"at {t:0.0}s the chip should chase {target:0.0}s");
+                // the overlay must call the same medal for the same time
+                Assert.That(LevelCompleteOverlay.MedalFor(t, level).name, Is.EqualTo(standing.name),
+                    $"HUD and overlay disagree at {t:0.0}s");
+                Assert.That(LevelCompleteOverlay.MedalFor(t, level).color, Is.EqualTo(standing.color));
+            }
+
+            Assert.That(Medals.Standing(b + 0.1f, level).target, Is.EqualTo(0f),
+                "past bronze there is no deadline left to chase");
+        }
+
         [Test]
         public void MoveArc_IsTheCharactersOwnStyle()
         {

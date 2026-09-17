@@ -70,7 +70,7 @@ namespace FrogAcross.View
             Sim = new GameSim(LevelLoader.LoadFromResources(levelId, PieceRegistry.Load()));
             FitCamera();              // before Bind: the apron count reads the zoom
             board.Bind(Sim, _character);
-            _hud.Build(Sim.Level.GoldSeconds); // per level: gold target, and it
+            _hud.Build(Sim.Level);    // per level: thresholds, and it
                                               // must survive a board rebuild
             FrogAcross.Audio.AudioDirector.Instance.Bind(Sim, Sim.Level);
             FrogAcross.Audio.AudioDirector.Instance.PlayMusic(FrogAcross.Audio.MusicSlot.Gameplay);

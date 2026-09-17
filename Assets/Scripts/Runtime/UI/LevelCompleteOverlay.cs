@@ -27,10 +27,8 @@ namespace FrogAcross.UI
 
         public static (string name, Color color) MedalFor(float seconds, LevelDefinition level)
         {
-            if (seconds <= level.GoldSeconds) return ("GOLD", new Color(1f, 0.788f, 0.29f));
-            if (seconds <= level.SilverSeconds) return ("SILVER", new Color(0.788f, 0.827f, 0.871f));
-            if (seconds <= level.BronzeSeconds) return ("BRONZE", new Color(0.808f, 0.541f, 0.306f));
-            return ("COMPLETE", new Color(0.44f, 0.57f, 0.69f));
+            var (name, color, _) = Medals.Standing(seconds, level);
+            return (name, color);
         }
 
         public void Show(LevelDefinition level, long clockTicks, bool newBest = false, float prevBest = -1f,
