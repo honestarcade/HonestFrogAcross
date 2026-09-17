@@ -48,7 +48,7 @@ namespace FrogAcross.UI
             gridFitter.columns = Columns;
             gridFitter.aspect = 1.12f; // room for the medal disc plus the time under it
 
-            for (int n = 1; n <= total; n++) BuildCell(surface, shell, n);
+            for (int n = 1; n <= total; n++) BuildCell(surface, shell, n, root.transform);
 
             // ---- fixed header band ----
             var band = UiKit.Fill(root.transform, "header-band", UiKit.Navy);
@@ -99,7 +99,7 @@ namespace FrogAcross.UI
             trt.anchoredPosition = new Vector2(rightOffset, -92f);
         }
 
-        private static void BuildCell(Transform parent, AppShell shell, int n)
+        private static void BuildCell(Transform parent, AppShell shell, int n, Transform screen)
         {
             string id = LevelCatalog.IdFor(n);
             bool unlocked = Progression.IsUnlocked(n);
@@ -135,13 +135,68 @@ namespace FrogAcross.UI
             time.rectTransform.pivot = new Vector2(0.5f, 0f);
             time.rectTransform.anchoredPosition = new Vector2(0f, 12f);
 
+            // Press and hold any cell — locked included — to see what the
+            // medals cost. Knowing the target before you unlock is useful, and
+            // hiding it serves nothing (#123).
+            var press = cell.gameObject.AddComponent<LongPress>();
+            press.OnHold = () => ShowTimes(screen, cell.rectTransform, n, id);
+            press.OnRelease = () => HideTimes(screen);
+
             if (unlocked)
             {
                 var btn = cell.gameObject.AddComponent<Button>();
                 btn.onClick.AddListener(() =>
-                    FrogAcross.Audio.AudioDirector.Instance.Play(FrogAcross.Audio.GameSound.UiTap));
-                btn.onClick.AddListener(() => shell.LaunchLevel(id));
+                {
+                    // OnPointerUp runs before the click, so a completed hold is
+                    // visible here — a preview must never also start the level.
+                    if (press.Held) return;
+                    FrogAcross.Audio.AudioDirector.Instance.Play(FrogAcross.Audio.GameSound.UiTap);
+                    shell.LaunchLevel(id);
+                });
             }
+        }
+
+        public const string BubbleName = "medal-times";
+
+        /// <summary>The medal deadlines for one level, floating above its cell.</summary>
+        private static void ShowTimes(Transform screen, RectTransform cell, int n, string id)
+        {
+            HideTimes(screen);
+            var level = LevelLoader.LoadFromResources(id, FrogAcross.Pieces.PieceRegistry.Load());
+
+            var bubble = UiKit.Panel(screen, BubbleName, UiKit.PanelNavy);
+            bubble.rectTransform.sizeDelta = new Vector2(300, 240);
+            // parented to the SCREEN, not the cell: the grid lives in a masked
+            // scroll view and a child bubble would be clipped at the edges
+            bubble.rectTransform.position = cell.position + new Vector3(0f, cell.rect.height * 0.75f, 0f);
+
+            UiKit.Label(bubble.transform, $"LEVEL {n}", UiKit.Micro, UiKit.TextDim,
+                new Vector2(0, 88), new Vector2(260, 34));
+
+            var rows = new[]
+            {
+                ("GOLD", Medals.Gold, level.GoldSeconds),
+                ("SILVER", Medals.Silver, level.SilverSeconds),
+                ("BRONZE", Medals.Bronze, level.BronzeSeconds),
+            };
+            float y = 30f;
+            foreach (var (name, color, seconds) in rows)
+            {
+                var dot = UiKit.Panel(bubble.transform, $"dot-{name}", color, UiKit.PillRadius);
+                dot.rectTransform.sizeDelta = new Vector2(26, 26);
+                dot.rectTransform.anchoredPosition = new Vector2(-104, y);
+                UiKit.Label(bubble.transform, name, UiKit.Micro, UiKit.TextBlue,
+                    new Vector2(-30, y), new Vector2(120, 34), TextAnchor.MiddleLeft);
+                UiKit.Label(bubble.transform, $"{seconds:0.0}s", UiKit.Caption, UiKit.White,
+                    new Vector2(80, y), new Vector2(120, 38), TextAnchor.MiddleRight);
+                y -= 52f;
+            }
+        }
+
+        private static void HideTimes(Transform screen)
+        {
+            var existing = screen.Find(BubbleName);
+            if (existing != null) Object.Destroy(existing.gameObject);
         }
 
         /// <summary>Medal disc: identical on every cell, sized for three digits.</summary>

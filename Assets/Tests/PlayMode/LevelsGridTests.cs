@@ -1,6 +1,8 @@
 using System.Collections;
+using System.Linq;
 using System.IO;
 using FrogAcross.Levels;
+using FrogAcross.Pieces;
 using FrogAcross.Services;
 using FrogAcross.UI;
 using NUnit.Framework;
@@ -185,5 +187,70 @@ namespace FrogAcross.Tests.PlayMode
             Assert.That(MenuSays("Continue — Level 1"), Is.True, "wipe + refresh returns the menu to level 1");
             Assert.That(MenuSays("Continue — Level 2"), Is.False, "no stale screen survives the wipe");
         }
+
+        [UnityTest]
+        public IEnumerator LongPressingALevel_ShowsItsMedalTimes_AndLaunchesNothing()
+        {
+            // owner: "if the user taps and holds a level, a bubble should pop up
+            // to show the times needed for the various medals" (#123)
+            SceneManager.LoadScene("Shell");
+            yield return null;
+            var shell = Object.FindAnyObjectByType<AppShell>();
+            yield return Wait1_3;
+            shell.Push("levels");
+            yield return null;
+            Canvas.ForceUpdateCanvases();
+            yield return null;
+
+            var levels = GameObject.Find("shell-canvas").transform.Find("safe-area/levels");
+            var cell = levels.GetComponentsInChildren<Transform>(true).First(t => t.name == "cell-1");
+            var press = cell.GetComponent<LongPress>();
+            Assert.That(press, Is.Not.Null, "every cell is long-pressable");
+
+            AppShell.PendingLevelId = null;
+            press.SimulateHold();
+            yield return null;
+
+            var bubble = levels.Find(LevelsScreen.BubbleName);
+            Assert.That(bubble, Is.Not.Null, "the hold shows the medal-times bubble");
+
+            var level = LevelLoader.LoadFromResources("level-001", PieceRegistry.Load());
+            var shown = bubble.GetComponentsInChildren<Text>(true).Select(t => t.text).ToList();
+            foreach (float seconds in new[] { level.GoldSeconds, level.SilverSeconds, level.BronzeSeconds })
+                Assert.That(shown, Does.Contain($"{seconds:0.0}s"),
+                    $"the bubble lists the {seconds:0.0}s threshold — shown: {string.Join(", ", shown)}");
+
+            // the hold must not have started the level
+            Assert.That(press.Held, Is.True, "the cell knows a hold happened");
+            Assert.That(AppShell.PendingLevelId, Is.Null, "a preview never launches a level");
+            Assert.That(SceneManager.GetActiveScene().name, Is.EqualTo("Shell"));
+
+            // and the bubble goes away on release
+            press.OnRelease?.Invoke();
+            yield return null;
+            Assert.That(levels.Find(LevelsScreen.BubbleName), Is.Null, "release dismisses the bubble");
+        }
+
+        [UnityTest]
+        public IEnumerator AShortTapStillLaunchesTheLevel()
+        {
+            SceneManager.LoadScene("Shell");
+            yield return null;
+            var shell = Object.FindAnyObjectByType<AppShell>();
+            yield return Wait1_3;
+            shell.Push("levels");
+            yield return null;
+
+            var levels = GameObject.Find("shell-canvas").transform.Find("safe-area/levels");
+            var cell = levels.GetComponentsInChildren<Transform>(true).First(t => t.name == "cell-1");
+            Assert.That(cell.GetComponent<LongPress>().Held, Is.False,
+                "no hold has happened, so the click must not be suppressed");
+
+            cell.GetComponent<Button>().onClick.Invoke();
+            yield return null;
+            Assert.That(AppShell.PendingLevelId, Is.EqualTo("level-001").Or.Null,
+                "a plain tap still launches");
+        }
+
     }
 }
