@@ -422,3 +422,37 @@ When `/n8-replan` processes an ad-hoc entry it appends `— reconciled by /n8-re
   **Why:** Internal testers need readable notes on what changed and what to look for. Owner approved the change in practice. Notes are hand-written above `--generate-notes` output.
 
 - **Known, not fixed:** `ProjectSettings.asset` still carries `bundleVersion: 0.4.0` and `AndroidBundleVersionCode: 1`, stale across seven releases. Harmless for shipped builds — `versioning: Custom` overrides both at build time, and the AAB self-reports 0.11.0/112 correctly — but local builds report 0.4.0. Worth either syncing on release or documenting as intentionally overridden.
+
+## /n8-plan M10 — 2026-09-17
+
+- **Decision:** The Audit milestone was renamed `M8: Audit` → **`M11: Audit`**, and the new cleanup milestone is **M10**.
+  **Why:** The workflow expects the audit to run last. M9 had already been created after M8, so the numbering was misleading before this; the owner chose to renumber rather than let M10 sit after the audit. Milestone API id is unchanged (9), so no issue lost its assignment. There is now no M8 — deliberate, not a gap to fill.
+
+- **Decision:** M10 carries the verification debt as explicit stories (#141 M2, #142 M3, #143 M4, #144 M6), rather than leaving it to bare `/n8-verify` invocations.
+  **Why:** Owner's call — one milestone owns "get to a clean board", so the seven epics closing is tracked in a definition of done instead of living only in command history.
+  **Issues:** #141 #142 #143 #144
+
+- **Decision:** Those four stories verify against **current `main`**, not each milestone's original merge commit — a deliberate deviation from `/n8-verify`'s documented default.
+  **Why:** M2–M4 merged weeks ago and M9 has since changed shared code (`UiKit`, `Medals`, `GameSim`, the medal rule, the content fixture). Verifying at the historical commit would prove the code was correct *then*; what protects the player is whether those acceptance criteria hold in the game that ships today.
+  **Issues:** #141 #142 #143 #144
+
+- **Decision:** Full per-story verification of all 40 closed stories, not epic-level AC only.
+  **Why:** Owner chose thoroughness over speed when offered epic-level (≈1 day) and spot-check alternatives. Consequence logged honestly in the milestone description: M10's size is not knowable up front, because whatever verification finds gets filed into it.
+
+- **Decision:** #135 is fixed by adding the missing assertion, with **no layout change** to the confirm dialog.
+  **Why:** Owner's call. Measured state: the real `resetConfirm` copy renders 3 lines, 132.8 of a 150-unit box, clearing the buttons by 36 units — nothing overlaps today. A 4th line would land 8 units under them, so the risk is real but latent; guarding it costs nothing and avoids re-testing dialog proportions on device.
+  **Issue:** #135
+
+- **Decision:** `bundleVersion: 0.4.0` is documented as intentionally overridden, not automated and not bumped.
+  **Why:** Owner's call. Shipped AABs already self-report correctly (`versioning: Custom` in `release.yml`); a sync-on-tag step would add a commit to the release path, and a one-off bump restarts exactly the drift that produced 0.4.0 across seven releases.
+  **Issue:** #139
+
+- **Finding while planning:** #66's third AC — peaks within −1 dBFS "across a scripted noisy sequence" — is **not** satisfied by the existing per-file check. `medal` and `level-complete` are specified to fire simultaneously, and two clips each at −1 dBFS sum to roughly +5. Filed as #140 rather than folded into the M6 verification story, because it is real engineering with a test, not verification.
+  **Issue:** #140
+
+- **Finding while planning:** M6's `blocked` / `needs-owner-action` labels are **stale** — #66 cites a blocker (#65) closed weeks ago and asset delivery that completed on 2026-09-16; #105's delivery boxes are unticked though all 15 files ship with provenance. The board was reporting phantom blockers to `/n8-stat`. Reconciliation folded into #144.
+  **Issues:** #66 #105 #144
+
+- **Decision:** #139 has no epic parent.
+  **Why:** The only fitting epic (#3, CI/CD) is closed, and reopening a verified-closed epic to host a documentation note would be worse than the alternative. Per `/n8-verify`, an issue with no epic gets its record on the milestone PR.
+  **Issue:** #139
