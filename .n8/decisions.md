@@ -387,3 +387,23 @@ When `/n8-replan` processes an ad-hoc entry it appends `— reconciled by /n8-re
 - **Decision:** The medal preview is shown for locked levels too.
   **Why:** The times are the point of the preview; knowing the target before unlocking is useful and hiding it serves nothing. The AC flagged this as the owner's call.
   **Issue:** #123
+
+## /n8-exec M9 — fix pass — 2026-09-17
+
+- **Method change (the point of this pass):** every test was run against the unfixed code *before* its fix, by reverting all four production changes at once and recording the failure message each test produced. Verification found two tests that passed while asserting nothing; writing the test first is what stops that recurring.
+  **Issues:** #127 #128 #129 #130
+
+- **Decision:** The gator's rideable zone ends at 0.68, where the drawn head begins — not at the design mock's "back and the eyes" (~0.83).
+  **Why:** The *shipped* copy (`copy.json`) is the authority a player actually reads: "ride the BACK of a closed-mouth alligator only … the head is never safe." The design mock promises more than the shipped rule. Measured from the art: body 206px, upper body (back) x=56–156 → 0.27–0.76, head x=140–186 → 0.68–0.90. 0.68 satisfies both clauses exactly. The registry guard now pins a range rather than a ceiling so it can drift neither tighter nor looser.
+  **Issue:** #129
+
+- **Decision:** `UiKit.Button`'s `fontSize` now defaults to `Body` (40) rather than 22.
+  **Why:** The silent 22 was the root cause of #121 and it was still live — the next button that forgot to opt in would inherit the same bug. A guard is a compensating control; removing the trap is better.
+  **Issue:** #130
+
+- **Decision:** `MedalRule` lives in `FrogAcross.Levels`, not in `UI.Medals`.
+  **Why:** `Progression` (Services) needs the rule for the persisted medal. Putting it in the UI layer would invert the dependency; the data layer is where all three surfaces can reach it without one depending on another.
+  **Issue:** #131
+
+- **Consequence, logged:** widening the gator zone moved 17 of 100 optimal floors, nearly all *faster* — a wider safe zone opens routes. Medals recalibrated from the new floors and the fixture re-locked, same as the #124 pass.
+  **Issue:** #129
