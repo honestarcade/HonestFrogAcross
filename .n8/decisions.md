@@ -359,3 +359,31 @@ When `/n8-replan` processes an ad-hoc entry it appends `— reconciled by /n8-re
   **Issue:** #124
 
 - **Method note:** `ContentLockTests` is hash-only on the CI path, so a green suite says nothing about whether a sim change moved a solve. The content check for #124 was a direct re-solve of all 100 levels, not the suite.
+
+- **Decision:** `ConfirmDialog`'s button guard is scoped to `btn-*` objects and floors at `UiKit.Body`, not `Heading`.
+  **Why:** A first attempt at "every Text inside a Button" swept in buttons that *wrap content* — a levels-grid cell whose text is the level number, the support card whose text is a paragraph — which legitimately set their own sizes. Body is the honest floor: a button label should never be smaller than body copy, and it clears the 44 the header chevron deliberately uses.
+  **Issue:** #121
+
+- **Decision:** The music bed level is declared absolutely (`MUSIC_DBFS`) and applied by an idempotent `--relevel`, rather than a relative gain.
+  **Why:** The owner-picked audition takes are gone (scratch clears between sessions) and hand-editing the WAV is what #120 rules out. A relative −6 dB cuts twice if run twice; measuring and scaling to an absolute target re-runs to the same number.
+  **Issue:** #120
+
+- **Decision:** Only `music-menu` was lowered; `music-gameplay` stays at −9 dBFS.
+  **Why:** The owner named the menu specifically. It leaves the two beds 6 dB apart, which wants an ear rather than my guess — flagged on the issue for the next device pass.
+  **Issue:** #120
+
+- **Decision:** Used `SOUND` (singular) rather than the owner's "Sounds".
+  **Why:** Its two neighbours are `CONTROLS` and `DATA`. Consistency with the screen beat literal wording; a one-character reversal if the owner disagrees.
+  **Issue:** #125
+
+- **Decision:** The time→medal rule moved to `UI.Medals.Standing`, used by both the HUD and the completion overlay.
+  **Why:** The AC asked for the two to agree. Sharing the rule makes that structural; two threshold tables agree only until someone edits one.
+  **Issue:** #122
+
+- **Decision:** `LongPress` does not implement `IDragHandler`, and the bubble parents to the screen rather than the cell.
+  **Why:** The nearest drag handler above a levels cell is the `ScrollRect` — claiming the drag would have stopped the grid scrolling. And the grid sits in a masked scroll view, so a child bubble would be clipped at the edges.
+  **Issue:** #123
+
+- **Decision:** The medal preview is shown for locked levels too.
+  **Why:** The times are the point of the preview; knowing the target before unlocking is useful and hiding it serves nothing. The AC flagged this as the owner's call.
+  **Issue:** #123
