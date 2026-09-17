@@ -60,6 +60,9 @@ jobs:
           # Discard the edit — nothing above reaches the live listing
           curl -sf -X DELETE -H "Authorization: Bearer $TOKEN" "$BASE" || true
 
+          # stdout as well as the summary: step summaries are not readable
+          # through the API, so a future check of this run needs them in the log
+          echo "SA: $SA_EMAIL | listings HTTP $LIST_HTTP [${LANGS:-none yet}] | write HTTP $WRITE_HTTP"
           {
             printf '## Play API access\n\n'
             printf -- '- Service account: `%s`\n' "$SA_EMAIL"

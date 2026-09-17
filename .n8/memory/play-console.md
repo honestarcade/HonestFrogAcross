@@ -11,7 +11,13 @@ metadata:
 - **App entry:** "Frog Across" (spaced — the player-visible name everywhere, per the 2026-08-28 ad-hoc ledger entry) · Game · Free (permanent) · package `com.honestarcade.frogacross` (immutable).
 - **Play App Signing:** enrollment completes automatically at the first AAB upload (M1 pipeline, #25) using the upload key from [[android-signing]].
 - **Personal-account constraint (affects M7):** production access requires a closed test with ≥12 testers continuously opted-in for 14 days. Recorded in the M7 milestone description; recruit testers at M7 start.
-- **Service account for CI (#24):** not yet created — record its identity here when it exists.
+- **Service account for CI (#24):** `frogacross-ci@frogacross-ci.iam.gserviceaccount.com`
+  (project `frogacross-ci`; key lives only in the `PLAY_SERVICE_ACCOUNT_JSON`
+  GitHub secret — it is not on any local machine, so anything needing it runs
+  in Actions). Permissions: release to tracks (#24) and, since 2026-09-17,
+  **Edit store listing, pricing & distribution** (#67) — verified by the
+  `Play API check` workflow, which writes a listing inside a throwaway edit
+  and discards it.
 - Never store credentials in this file — identifiers and constraints only.
 
 ## Data-safety form — prepared answers (#68, drafted 2026-08-28)
