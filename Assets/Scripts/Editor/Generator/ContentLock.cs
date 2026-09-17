@@ -34,6 +34,9 @@ namespace FrogAcross.Editor.Generator
     /// </summary>
     public static class ContentLock
     {
+        /// <summary>Search nodes allowed when proving a shipped level (#124).</summary>
+        public const int SolverNodeBudget = 1_000_000;
+
         public const string FixturePath = "Assets/Tests/EditMode/Content/levels-solvability.json";
         public const string LevelsFolder = "Assets/Resources/Levels";
         public const string ShippedPrefix = "level-";
@@ -78,7 +81,12 @@ namespace FrogAcross.Editor.Generator
             foreach (var file in ShippedLevelFiles())
             {
                 var level = LevelLoader.Parse(File.ReadAllText(file), registry);
-                var solve = LevelSolver.Solve(level, allowDiagonals: false, 250_000, 10_800);
+                // 1M, not 250k: level-089 needs ~917 ticks over 95 moves and blew
+                // the old budget after #124 corrected the gator ride zone. The
+                // level is provably completable — the verifier was simply
+                // under-powered, and a lock that cannot verify a good level is
+                // worse than a slow one.
+                var solve = LevelSolver.Solve(level, allowDiagonals: false, SolverNodeBudget, 10_800);
                 if (!solve.Solved)
                     throw new InvalidOperationException(
                         $"{Path.GetFileName(file)} is not solvable ({solve.FailReason}) — a broken level must not be locked");

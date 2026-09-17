@@ -38,7 +38,7 @@ namespace FrogAcross.Editor.Generator
                  + "this, a water level can need three minutes of perfect play.")]
         public float maxSolverSeconds;
 
-        public int solverNodeBudget = 250_000;
+        public int solverNodeBudget = 1_000_000;  // matches ContentLock.SolverNodeBudget (#124)
         public long solverTickBudget = 10_800;
     }
 }
