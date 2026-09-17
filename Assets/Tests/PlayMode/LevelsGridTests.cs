@@ -220,9 +220,13 @@ namespace FrogAcross.Tests.PlayMode
                 Assert.That(shown, Does.Contain($"{seconds:0.0}s"),
                     $"the bubble lists the {seconds:0.0}s threshold — shown: {string.Join(", ", shown)}");
 
-            // the hold must not have started the level
+            // The hold must SUPPRESS the click that follows it. The earlier
+            // version asserted PendingLevelId was null without ever invoking
+            // onClick — a value nothing could have changed (#127).
             Assert.That(press.Held, Is.True, "the cell knows a hold happened");
-            Assert.That(AppShell.PendingLevelId, Is.Null, "a preview never launches a level");
+            cell.GetComponent<Button>().onClick.Invoke();
+            Assert.That(AppShell.PendingLevelId, Is.Null,
+                "a preview must not launch: the click after a hold is suppressed");
             Assert.That(SceneManager.GetActiveScene().name, Is.EqualTo("Shell"));
 
             // and the bubble goes away on release
@@ -246,10 +250,14 @@ namespace FrogAcross.Tests.PlayMode
             Assert.That(cell.GetComponent<LongPress>().Held, Is.False,
                 "no hold has happened, so the click must not be suppressed");
 
+            // `.Or.Null` made this unfailable — it passed when nothing launched.
+            // LaunchLevel sets PendingLevelId then loads the scene, and the load
+            // completes on a later frame, so the id is readable right here (#127).
+            AppShell.PendingLevelId = null;
             cell.GetComponent<Button>().onClick.Invoke();
+            Assert.That(AppShell.PendingLevelId, Is.EqualTo("level-001"),
+                "a plain tap still launches the level");
             yield return null;
-            Assert.That(AppShell.PendingLevelId, Is.EqualTo("level-001").Or.Null,
-                "a plain tap still launches");
         }
 
     }

@@ -145,7 +145,7 @@ namespace FrogAcross.UI
             rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.5f);
             rt.sizeDelta = new Vector2(320, 116);
             rt.anchoredPosition = pos;
-            var t = Label(go.transform, label, 36, Vector2.zero);
+            var t = Label(go.transform, label, UiKit.Heading, Vector2.zero); // was 36 (#130)
             t.color = primary ? new Color(0.02f, 0.157f, 0.373f) : Color.white;
             t.rectTransform.sizeDelta = new Vector2(320, 116);
         }

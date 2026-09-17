@@ -11,9 +11,13 @@ namespace FrogAcross.UI
     /// </summary>
     public static class Medals
     {
-        public static readonly Color Gold = new Color(1f, 0.788f, 0.29f);
-        public static readonly Color Silver = new Color(0.788f, 0.827f, 0.871f);
-        public static readonly Color Bronze = new Color(0.808f, 0.541f, 0.306f);
+        // One palette, shared with the grid discs and the legend. These used to
+        // be separate float literals that differed from UiKit's hex by ~0.0002
+        // per channel: visually identical, not Equals-equal, so they could not
+        // be swapped in an assertion (#131).
+        public static readonly Color Gold = UiKit.Gold;
+        public static readonly Color Silver = UiKit.Silver;
+        public static readonly Color Bronze = UiKit.Bronze;
         public static readonly Color Spent = new Color(0.44f, 0.57f, 0.69f);
 
         /// <summary>
@@ -23,10 +27,13 @@ namespace FrogAcross.UI
         /// </summary>
         public static (string name, Color color, float target) Standing(float seconds, LevelDefinition level)
         {
-            if (seconds <= level.GoldSeconds) return ("GOLD", Gold, level.GoldSeconds);
-            if (seconds <= level.SilverSeconds) return ("SILVER", Silver, level.SilverSeconds);
-            if (seconds <= level.BronzeSeconds) return ("BRONZE", Bronze, level.BronzeSeconds);
-            return ("COMPLETE", Spent, 0f);
+            return MedalRule.IndexFor(seconds, level) switch
+            {
+                3 => ("GOLD", Gold, level.GoldSeconds),
+                2 => ("SILVER", Silver, level.SilverSeconds),
+                1 => ("BRONZE", Bronze, level.BronzeSeconds),
+                _ => ("COMPLETE", Spent, 0f),
+            };
         }
     }
 }

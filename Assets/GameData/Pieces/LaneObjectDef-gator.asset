@@ -22,7 +22,7 @@ MonoBehaviour:
   role: 1
   sizeCells: 3.7
   rideableZoneStart: 0.05
-  rideableZoneEnd: 0.55
+  rideableZoneEnd: 0.68
   cycleActiveTicks: 300
   cycleInactiveTicks: 120
   inactiveKills: 1

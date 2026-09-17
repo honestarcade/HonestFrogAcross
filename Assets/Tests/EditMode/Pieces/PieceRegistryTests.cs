@@ -28,7 +28,15 @@ namespace FrogAcross.Tests.EditMode.Pieces
             // Owner's gator rule is data:
             var gator = reg.Get<LaneObjectDef>("gator");
             Assert.IsTrue(gator.inactiveKills, "open-mouth gator must kill");
-            Assert.Less(gator.rideableZoneEnd, 0.7f, "head/snout must be outside the rideable zone");
+            // The zone must track the DRAWN anatomy, not merely be "small".
+            // Body art is 206px: upper body (the back) x=56..156 → 0.27..0.76,
+            // head x=140..186 → 0.68..0.90. Shipped copy: "ride the BACK … the
+            // head is never safe", so the zone ends where the head begins (#129).
+            Assert.That(gator.rideableZoneEnd, Is.EqualTo(0.68f).Within(0.02f),
+                "the zone must end where the drawn head begins — too tight and the "
+                + "rear back drowns you, too loose and the head carries you");
+            Assert.That(gator.rideableZoneStart, Is.LessThanOrEqualTo(0.1f),
+                "the tail end of the back is rideable");
         }
 
         [Test]

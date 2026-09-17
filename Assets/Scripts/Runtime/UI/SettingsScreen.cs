@@ -169,12 +169,12 @@ namespace FrogAcross.UI
             UiKit.Stretch(UiKit.Fill(canvas.transform, "scrim", new Color(0.012f, 0.055f, 0.125f, 0.78f)));
             var panel = UiKit.Panel(canvas.transform, "panel", UiKit.PanelNavy);
             panel.rectTransform.sizeDelta = new Vector2(1040, 470);
-            var t = UiKit.Label(panel.transform, title, UiKit.Title, UiKit.White, new Vector2(0, 150), new Vector2(880, 78));
+            var t = UiKit.Label(panel.transform, title, UiKit.Title, UiKit.White, new Vector2(0, 160), new Vector2(880, 78));
             t.fontStyle = FontStyle.Bold;
             // Centred and dropped clear of the title: it used to sit tight under
             // the heading and read left-aligned against centred buttons (#121).
             UiKit.Label(panel.transform, body, UiKit.Body, UiKit.TextBlue,
-                new Vector2(0, 30), new Vector2(860, 150), TextAnchor.UpperCenter);
+                new Vector2(0, 10), new Vector2(860, 150), TextAnchor.UpperCenter);
             // Heading, not the silent default of 22 — every other button in the
             // game is on the type scale and these two never opted in (#121).
             UiKit.Button(panel.transform, "Cancel", new Vector2(-232, -150), new Vector2(420, 132), () =>
