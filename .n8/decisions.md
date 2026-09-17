@@ -287,3 +287,59 @@ When `/n8-replan` processes an ad-hoc entry it appends `— reconciled by /n8-re
 - **Menu footer** enlarged from Micro (26) to Body (40) — the owner had asked for bigger and I had left that line at the smallest size.
 - **Scroll restore no longer flashes:** the coroutine restored the position a frame late, so one frame drew at the top. Now the rebuilt screen is laid out (ForceUpdateCanvases + ForceRebuildLayoutImmediate) and the position restored in the same frame.
 - **Loading screen added to the capture harness** — it had never been rendered locally, which is exactly why the regression reached the owner's phone.
+
+## Ad-hoc — 2026-08-30
+
+- **Change:** Every `UiKit.Label` stopped receiving pointer events (`raycastTarget = false`).
+  **Why:** The tap-regions preview would not close from most of the screen. Its captions are `Text`, not `Image`, and the cleanup loop only cleared `Image`s; a caption's default box is 600 units wide — wider than a 20% side zone — so it covered those zones end to end and swallowed the tap. Measured: 39 of 121 grid points never reached the dismiss surface. Text is decoration and every button blocks with its own `Image`, so nothing lost a tap target, and the class of bug cannot recur behind another label.
+  **Affects:** #74 (tap regions); any future story assuming a label can be a tap target.
+
+- **Change:** The board renderer repeats each lane object a whole wrap-loop either side, enough copies to cover the camera.
+  **Why:** Rows wrap on their own margin (3 cells for a car lane, 10 for freight) while the fitted camera reached ~20, so objects hit their wrap point in open view — measured at a 9.47-cell jump in a single frame, fully on screen. The sim is untouched: rows tile their loop exactly, so the repeat is seamless and determinism is unaffected (invariant 4 intact).
+  **Affects:** #87 (board framing); the view/sim boundary described in M3's stories.
+
+- **Change:** `CharacterDef.moveStyle` is now read by the view (`SpriteSelector.MoveArc`).
+  **Why:** Hop/Step was in the piece data for all six characters and ignored — every creature slid flat between cells. Honours invariant 3: the behaviour comes from the piece's own data, not from id-switching.
+  **Affects:** #57 (character select), M3's art integration stories.
+
+- **Change:** Lane strip art re-carved — `Lane.dc.html` now gates `bays`, `planters` and `lamps` on the `bare` prop.
+  **Why:** Second instance of #86's class, missed the first time. `lane-goal.png` shipped with two bay slots baked in and `lane-concrete.png` with a lamp post, tiled into a phantom landing pad every 8 cells and props between lanes. Re-extraction changed exactly those two strips; the other 279 renders came back byte-identical.
+  **Affects:** #86 (thought closed), M3 art stories.
+
+## Ad-hoc — 2026-09-02
+
+- **Change:** Board dimensions re-proportioned to the screen. Column ranges now scale with row count (~2.9 columns per row): 14–15 at level 1 up to 32–35 at level 100, replacing a flat 9–13. **All 100 shipped levels were regenerated, re-locked and medal-recalibrated.**
+  **Why:** The owner could only use the middle of the screen. The camera must show every row at once, so on a 21:9 panel the visible width is ~2.2 cells per row of height; against 9–13 columns only **42% of the width was playable on average, 34% at worst**. Now 85% average, 73% worst.
+  **Affects:** **M5 (Level Content) is closed and verified, and its content has since changed wholesale** — the closed verification no longer describes what ships. #61/#62/#63 (curve, content lock, medal calibration) all still pass, but their evidence was gathered against the old boards.
+
+- **Change:** A per-band ceiling on optimal play time (`maxSolverSeconds`, 8s at level 1 to 36s at level 100), and a `bayWindow` for teaching bands.
+  **Why:** Narrow boards had been bounding level length by accident. The first regeneration produced levels needing **173s and 168s** of perfect play at levels 23 and 11. Not a rule anyone had written down, because nothing had needed it.
+  **Affects:** #61's difficulty-curve story; the curve asset is the source of truth and was rebuilt.
+
+- **Change:** Level schema column cap raised 30 → 48; camera fits both axes.
+  **Why:** The cap rejected every wide candidate. The two-axis fit is required because boards sized for 21:9 would otherwise run off the sides of a narrower phone — when width binds, the camera zooms out rather than cropping edge columns.
+  **Affects:** invariant 2's schema validation (#38's guard still enforces, with a wider bound).
+
+- **Change:** The in-game HUD moved into the board's two dead wedges — clock and hint top-left, buttons bottom-right.
+  **Why:** Owner's observation, and the geometry backs it: the -8° roll means both board edges rise left to right, so the free space is above the low left end and below the high right end. The clock had been top-right, where the goal row reaches highest, and covered landing pads once boards widened.
+  **Affects:** #60 (HUD), M4 screens.
+
+## Ad-hoc — 2026-09-16
+
+- **Change:** The game's audio is **generated**, not owner-sourced. `ArtSource/pipeline/sfx.py` drives ElevenLabs text-to-sound-effects; the owner picked winners from three takes each by ear.
+  **Why:** #66 and #105 both assume the owner supplies files; the owner instead supplied an API key. This is a real deviation from the planned shape of the work — the *acceptance* is unchanged (owner picks, owner approves on device) but the sourcing, the provenance line in `LICENSES.md`, and the existence of a committed generation pipeline are all new.
+  **Affects:** #66, #105. Both still require the owner's listening pass on device before they can close.
+
+- **Change:** Music comes from the sound-effects endpoint's `loop` flag, **not Eleven Music**.
+  **Why:** Eleven Music's rights depend on a "Music Commercial Rights table" absent from the public docs, define "Studio Games" as their own category, and attach co-branding obligations to paid tiers. None of that could be verified well enough to assert a licence in `LICENSES.md`. The SFX terms are unambiguous: every paid plan grants a plain commercial licence that survives cancellation. The result is two 24s ambient beds rather than a composed soundtrack.
+  **Affects:** #66's open question "whether gameplay has music or ambient-only" — answered as ambient, by licence rather than by taste. If a composed soundtrack is ever wanted, those terms must be read first.
+
+- **Change:** Audio import rules added (`AudioImportSettings`): music is Vorbis-compressed and streamed from local storage, effects decompress on load.
+  **Why:** 4MB of raw PCM per loop is more than every other asset in the game combined. "Streaming" here means off local storage — nothing streams from the network, so invariant 1 is untouched.
+  **Affects:** #66's mix-pass AC.
+
+- **Change:** CI pins `cliVersion: v0.1.65` and grants `checks: write`.
+  **Why:** The gate broke with no change from us — `unity-test-runner` downloads a CLI at run time and defaults to `latest`, and game-ci/cli v0.1.66 was published upstream **with no release assets**, so every job 404'd two seconds in. Behind that, a second failure: tests passing 148/148 still failed the job because publishing results as a check run needs `checks: write`, which the workflow did not grant. Pinning also closes a standing hazard — an unpinned third-party download inside the merge gate lets someone else's release block every merge here.
+  **Affects:** #23 (the quality gate); the release path, which inherits the caller's grants and needed the same permission.
+
+- **Correction (mine, for the record):** commit `4915126` is titled "ci: pin the game-ci CLI version" but carries **49 audio files, `LICENSES.md`, the import rules, the guards and the pipeline script**. The CI branch was cut while standing on the audio branch, so the squash merge took both. The content is correct and passed the full gate; the history is misleading. `main` is shared and protected, so it was not rewritten — #113 (closed) holds the real write-up and #105 carries a pointer to it.
