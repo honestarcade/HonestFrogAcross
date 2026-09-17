@@ -175,6 +175,85 @@ namespace FrogAcross.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator EveryButtonLabel_IsOnTheTypeScale()
+        {
+            // The confirm dialogs never passed a fontSize, so they inherited
+            // UiKit.Button's silent default of 22 while every other button in
+            // the game runs at 46 or 64 — the owner read it as "tiny" (#121).
+            // Guarding the class, not the two dialogs: any future button that
+            // forgets to opt in fails here.
+            SceneManager.LoadScene("Shell");
+            yield return null;
+            var shell = Object.FindAnyObjectByType<AppShell>();
+            yield return Wait1_3;
+
+            // Scoped to UiKit.Button's own objects ("btn-*"), which is where the
+            // silent default lives. Buttons that WRAP content — a levels-grid
+            // cell whose text is the level number, the support card whose text
+            // is a paragraph — are a different pattern and set their own sizes.
+            // Floor is Body: a button label should never be smaller than body
+            // copy, and it clears the 44 the header chevron deliberately uses.
+            var offenders = new List<string>();
+            void Audit(GameObject where, string context)
+            {
+                foreach (var button in where.GetComponentsInChildren<Button>(true))
+                {
+                    if (!button.name.StartsWith("btn-")) continue;
+                    foreach (var label in button.GetComponentsInChildren<Text>(true))
+                    {
+                        if (string.IsNullOrWhiteSpace(label.text)) continue;
+                        if (label.fontSize < UiKit.Body)
+                            offenders.Add($"{context}/{button.name}: '{label.text}' at {label.fontSize}");
+                    }
+                }
+            }
+
+            foreach (var screen in new[] { "menu", "levels", "character", "about", "gameplay", "settings", "studio" })
+            {
+                shell.Push(screen);
+                yield return null;
+                Audit(GameObject.Find("shell-canvas"), screen);
+                shell.Back();
+                yield return null;
+            }
+
+            // and the dialog, which is built on demand and so is not on any screen
+            var dialog = ConfirmDialog.Show(shell.transform, "Restart level?",
+                "Bays and the clock reset — this attempt is abandoned.", "Restart", () => { });
+            yield return null;
+            Audit(dialog, "confirm-dialog");
+
+            Assert.That(offenders, Is.Empty,
+                "button labels below UiKit.Body (" + UiKit.Body + "): "
+                + string.Join(" | ", offenders));
+            Object.Destroy(dialog);
+        }
+
+        [UnityTest]
+        public IEnumerator ConfirmDialog_CentresItsBodyClearOfTheTitle()
+        {
+            SceneManager.LoadScene("Shell");
+            yield return null;
+            var shell = Object.FindAnyObjectByType<AppShell>();
+            yield return Wait1_3;
+
+            var dialog = ConfirmDialog.Show(shell.transform, "Quit to menu?",
+                "Your current run is abandoned.", "Quit", () => { });
+            yield return null;
+
+            var texts = dialog.GetComponentsInChildren<Text>(true);
+            var title = texts.First(t => t.text == "Quit to menu?");
+            var body = texts.First(t => t.text == "Your current run is abandoned.");
+
+            Assert.That(body.alignment, Is.EqualTo(TextAnchor.UpperCenter),
+                "the body reads centred, against centred buttons");
+            float gap = title.rectTransform.anchoredPosition.y - body.rectTransform.anchoredPosition.y;
+            Assert.That(gap, Is.GreaterThan(100f),
+                $"the body sits {gap:0} from the title — too tight under the heading");
+            Object.Destroy(dialog);
+        }
+
+        [UnityTest]
         public IEnumerator StudioScreen_SupportBoxLinksOut_AndDropsTheFooterLinks()
         {
             SceneManager.LoadScene("Shell");

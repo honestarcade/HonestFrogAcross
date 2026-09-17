@@ -164,20 +164,25 @@ namespace FrogAcross.UI
             var canvas = UiKit.Canvas(parent, "confirm-dialog", 300);
             UiKit.Stretch(UiKit.Fill(canvas.transform, "scrim", new Color(0.012f, 0.055f, 0.125f, 0.78f)));
             var panel = UiKit.Panel(canvas.transform, "panel", UiKit.PanelNavy);
-            panel.rectTransform.sizeDelta = new Vector2(980, 520);
-            var t = UiKit.Label(panel.transform, title, UiKit.Title, UiKit.White, new Vector2(0, 150), new Vector2(820, 78));
+            panel.rectTransform.sizeDelta = new Vector2(1040, 470);
+            var t = UiKit.Label(panel.transform, title, UiKit.Title, UiKit.White, new Vector2(0, 150), new Vector2(880, 78));
             t.fontStyle = FontStyle.Bold;
-            UiKit.Label(panel.transform, body, UiKit.Body, UiKit.TextBlue, new Vector2(0, 20), new Vector2(800, 180), TextAnchor.UpperLeft);
-            UiKit.Button(panel.transform, "Cancel", new Vector2(-210, -170), new Vector2(370, 116), () =>
+            // Centred and dropped clear of the title: it used to sit tight under
+            // the heading and read left-aligned against centred buttons (#121).
+            UiKit.Label(panel.transform, body, UiKit.Body, UiKit.TextBlue,
+                new Vector2(0, 30), new Vector2(860, 150), TextAnchor.UpperCenter);
+            // Heading, not the silent default of 22 — every other button in the
+            // game is on the type scale and these two never opted in (#121).
+            UiKit.Button(panel.transform, "Cancel", new Vector2(-232, -150), new Vector2(420, 132), () =>
             {
                 Object.Destroy(canvas.gameObject);
                 onCancel?.Invoke();
-            });
-            var confirm = UiKit.Button(panel.transform, confirmLabel, new Vector2(210, -170), new Vector2(370, 116), () =>
+            }, fontSize: UiKit.Heading);
+            var confirm = UiKit.Button(panel.transform, confirmLabel, new Vector2(232, -150), new Vector2(420, 132), () =>
             {
                 Object.Destroy(canvas.gameObject);
                 onConfirm();
-            });
+            }, fontSize: UiKit.Heading);
             confirm.image.color = UiKit.Danger;
             return canvas.gameObject;
         }

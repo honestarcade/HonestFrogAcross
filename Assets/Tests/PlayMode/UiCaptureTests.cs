@@ -103,6 +103,17 @@ namespace FrogAcross.Tests.PlayMode
             CaptureCanvas(overlayCanvas, "Builds/ui/device/overlay.png", 3120, 1440);
             Assert.That(File.Exists("Builds/ui/overlay.png"), Is.True);
             Object.Destroy(host);
+
+            // the confirm dialog: built on demand, so it appears on no screen
+            // and went unreviewed until the owner met it on a phone (#121)
+            var dialogHost = new GameObject("dialog-host");
+            var dialog = ConfirmDialog.Show(dialogHost.transform, "Restart level?",
+                "Bays and the clock reset — this attempt is abandoned.", "Restart", () => { });
+            yield return null;
+            CaptureCanvas(dialog.GetComponent<Canvas>(), "Builds/ui/dialog.png");
+            CaptureCanvas(dialog.GetComponent<Canvas>(), "Builds/ui/device/dialog.png", 3120, 1440);
+            Assert.That(File.Exists("Builds/ui/dialog.png"), Is.True);
+            Object.Destroy(dialogHost);
         }
 
         [UnityTest]

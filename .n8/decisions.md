@@ -343,3 +343,19 @@ When `/n8-replan` processes an ad-hoc entry it appends `— reconciled by /n8-re
   **Affects:** #23 (the quality gate); the release path, which inherits the caller's grants and needed the same permission.
 
 - **Correction (mine, for the record):** commit `4915126` is titled "ci: pin the game-ci CLI version" but carries **49 audio files, `LICENSES.md`, the import rules, the guards and the pipeline script**. The CI branch was cut while standing on the audio branch, so the squash merge took both. The content is correct and passed the full gate; the history is misleading. `main` is shared and protected, so it was not rewritten — #113 (closed) holds the real write-up and #105 carries a pointer to it.
+
+## /n8-exec M9 — 2026-09-17
+
+- **Decision:** Mirror the ride zone at the zone test in `GameSim.TryAttach` rather than adding direction-aware fields to the piece data.
+  **Why:** One rule keyed on the same sign the sprite already uses, so view and sim cannot disagree again; every asymmetric `rideableZone*` inherits it; and the authored 0.05–0.55 keeps its meaning ("measured from the nose") instead of becoming two numbers per direction.
+  **Issue:** #124
+
+- **Decision (Rule 3, discovered work):** Raised the solver node budget from 250k to 1M in `ContentLock` and `GeneratorParams`.
+  **Why:** With the zone corrected, `level-089` exhausted the old budget and the lock refused to verify it — but the level is completable in 917 ticks over 95 moves at 1M nodes. The verifier was under-powered, not the level broken. Both constants raised together so generation and locking agree; a lock that cannot verify a good level is worse than a slow one. Full re-lock costs 165.8s.
+  **Issue:** #124
+
+- **Decision:** Recalibrated medals on the 16 levels whose optimal floor moved, rather than preserving the old published times.
+  **Why:** Medals derive from the solver floor by design (#63); pinning the old numbers would make gold unreachable on the levels that got slower and trivially cheap on the ones that got faster. Shifts are small (−1.9s to +1.8s) and some are negative because a left-moving gator's back is now rideable, opening routes as well as closing them.
+  **Issue:** #124
+
+- **Method note:** `ContentLockTests` is hash-only on the CI path, so a green suite says nothing about whether a sim change moved a solve. The content check for #124 was a direct re-solve of all 100 levels, not the suite.
