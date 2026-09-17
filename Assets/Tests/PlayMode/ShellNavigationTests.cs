@@ -254,6 +254,44 @@ namespace FrogAcross.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator SettingsSectionLabels_AllMatchTheSameStyle()
+        {
+            // The four sound toggles opened the screen with no heading while
+            // CONTROLS and DATA both had one (#125). Asserting the style
+            // matches, not just that some text exists.
+            SceneManager.LoadScene("Shell");
+            yield return null;
+            var shell = Object.FindAnyObjectByType<AppShell>();
+            yield return Wait1_3;
+            shell.Push("settings");
+            yield return null;
+            Canvas.ForceUpdateCanvases();
+            yield return null;
+
+            var settings = GameObject.Find("shell-canvas").transform.Find("safe-area/settings");
+            var texts = settings.GetComponentsInChildren<Text>(true);
+            var labels = new[] { "SOUND", "CONTROLS", "DATA" }
+                .Select(name => texts.FirstOrDefault(t => t.text == name))
+                .ToList();
+            for (int i = 0; i < labels.Count; i++)
+                Assert.That(labels[i], Is.Not.Null,
+                    $"settings is missing the '{new[] { "SOUND", "CONTROLS", "DATA" }[i]}' section label");
+
+            foreach (var label in labels)
+            {
+                Assert.That(label.fontSize, Is.EqualTo(labels[1].fontSize), $"'{label.text}' font size");
+                Assert.That(label.color, Is.EqualTo(labels[1].color), $"'{label.text}' colour");
+                Assert.That(label.alignment, Is.EqualTo(labels[1].alignment), $"'{label.text}' alignment");
+            }
+
+            // and it sits ABOVE the first sound row, not merely somewhere
+            var firstRow = settings.GetComponentsInChildren<Transform>(true)
+                .First(t => t.name == "row-All sound");
+            Assert.That(labels[0].transform.position.y, Is.GreaterThan(firstRow.position.y),
+                "the SOUND label must sit above the first toggle it labels");
+        }
+
+        [UnityTest]
         public IEnumerator StudioScreen_SupportBoxLinksOut_AndDropsTheFooterLinks()
         {
             SceneManager.LoadScene("Shell");

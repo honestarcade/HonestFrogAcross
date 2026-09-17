@@ -61,8 +61,11 @@ enough to assert a licence here (2026-09-16). If a composed soundtrack is
 wanted later, those terms need reading first.
 
 Both loop seamlessly by construction, so they are neither trimmed nor faded —
-either would break the seam. They are installed at about -9 dBFS: music sits
-under the game.
+either would break the seam. Their levels are declared in `MUSIC_DBFS`
+(`ArtSource/pipeline/sfx.py`) and set by `python3 sfx.py . --relevel`, which
+measures and scales to an absolute target and so is idempotent: `music-menu` at
+-15 dBFS, `music-gameplay` at -9. The menu bed sits 6 dB lower at the owner's
+request (#120) — music sits under the game, and the menu is where you linger.
 
 ## How these were made
 

@@ -106,6 +106,31 @@ MIX_DB = {
 }
 
 
+# Absolute peak each music bed sits at once installed. Effects take their level
+# from MIX_DB applied over a -1 dBFS normalise; a bed is declared ABSOLUTELY so
+# re-levelling is idempotent — a relative cut applied twice cuts twice (#120).
+MUSIC_DBFS = {
+    "music-menu": -15.0,      # owner: "about half the volume" (2026-09-17)
+    "music-gameplay": -9.0,   # unchanged; the owner named the menu specifically
+}
+
+
+def relevel(names) -> None:
+    """Set an already-installed bed to its declared level. Idempotent."""
+    import math
+    for name in names:
+        path = DEST / f"{name}.wav"
+        with wave.open(str(path), "rb") as w:
+            channels, frames = w.getnchannels(), w.getnframes()
+            pcm = w.readframes(frames)
+        peak = audioop.max(pcm, 2) or 1
+        before_db = 20 * math.log10(peak / 32767.0)
+        target = 32767.0 * (10 ** (MUSIC_DBFS[name] / 20.0))
+        write_wav(path, audioop.mul(pcm, 2, target / peak), channels)
+        print(f"  {name}.wav  {before_db:.1f} -> {MUSIC_DBFS[name]:.1f} dBFS  "
+              f"{frames / RATE:.1f}s {channels}ch")
+
+
 def generate(prompt: str, seconds: float, key: str) -> bytes:
     """One call to the sound-effects endpoint; returns raw 16-bit mono PCM."""
     body = json.dumps({
@@ -213,6 +238,8 @@ def main() -> int:
     ap.add_argument("out_dir")
     ap.add_argument("--variants", type=int, default=3)
     ap.add_argument("--only", default="")
+    ap.add_argument("--relevel", action="store_true",
+                    help="set installed music beds to their declared MUSIC_DBFS level")
     ap.add_argument("--music", action="store_true",
                     help="generate the two looping music beds instead")
     ap.add_argument("--install", default="",
@@ -236,6 +263,11 @@ def main() -> int:
     if not key:
         print("ELEVENLABS_API_KEY is not set — source the env file first", file=sys.stderr)
         return 2
+
+    if args.relevel:
+        relevel(list(MUSIC))
+        print(f"\n{len(MUSIC)} beds re-levelled in {DEST}")
+        return 0
 
     if args.music:
         out = Path(args.out_dir)

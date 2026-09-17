@@ -29,6 +29,10 @@ namespace FrogAcross.UI
             // fixed offsets underneath them collided (owner: CONTROLS ran into
             // the Interface row; Show-regions sat on the stored-data card).
             var left = UiKit.Column(content, new Vector2(-900, -60), 820f, 26f);
+            // The screen labels CONTROLS and DATA but opened with four
+            // unlabelled toggles (#125).
+            UiKit.Label(left, "SOUND", UiKit.Caption, UiKit.TextDim,
+                Vector2.zero, new Vector2(820, 48), TextAnchor.MiddleLeft);
             SoundRow(left, "All sound", "Master switch for every sound the game makes.",
                 () => SoundSettings.Master, v => SoundSettings.Master = v);
             SoundRow(left, "Music", "Menu and gameplay music.",
