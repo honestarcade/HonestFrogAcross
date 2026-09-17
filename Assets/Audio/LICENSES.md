@@ -1,9 +1,14 @@
 # Audio provenance
 
-> **Scope note.** The repository's `LICENSE` (MIT) covers source code. The audio
-> files below are licensed to Honest Arcade for use in this game and are **not**
-> sublicensed for redistribution — ElevenLabs' terms specifically prohibit
-> licensing collections of generated output to third parties.
+> **Scope note.** The repository's `LICENSE` (MIT) covers the source code and the
+> sprite art. The audio files below are **not** covered by it: they are licensed
+> to Honest Arcade from ElevenLabs for use in Frog Across, and no licence is
+> granted to use them in another project — ElevenLabs' terms specifically
+> prohibit licensing collections of generated output to third parties.
+>
+> They ship here so the game builds and runs as released. To make your own, the
+> prompts, length budgets and mix levels are all in `ArtSource/pipeline/sfx.py`;
+> a paid ElevenLabs plan regenerates the set in a few minutes.
 
 Every audio file shipped in `Assets/Resources/Audio/` is listed here with its
 source and licence. The `TemporaryClips_AreClearlyTagged` guard fails the build

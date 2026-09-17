@@ -26,14 +26,23 @@ The suite includes the project's invariant guards (no-network/no-ads package and
 
 ## License
 
-Source code is **MIT** (see `LICENSE`) — use it, learn from it, ship your own.
+**MIT** (see `LICENSE`) — covering the source code **and the sprite art**, so a
+clone builds the actual game rather than a silhouette of it. Use it, learn from
+it, ship your own.
 
-**Assets are not.** The audio in `Assets/Resources/Audio/` is licensed to Honest
-Arcade from ElevenLabs for use in this game (provenance in
-`Assets/Audio/LICENSES.md`), and the sprite set is generated from Honest Arcade's
-own design components. Neither is sublicensed for redistribution — the MIT grant
-covers the code. This is the usual arrangement for an open-source game: read,
-build and reuse the engine; bring your own art.
+Two things are held back, because they are not ours to give away:
+
+**Audio.** The files in `Assets/Resources/Audio/` are **not** covered by the MIT
+licence. They are licensed to Honest Arcade from ElevenLabs for use in Frog
+Across, and no licence is granted to use them in any other project. The prompts,
+length budgets and mix levels that produced them are in
+`ArtSource/pipeline/sfx.py` — with a paid ElevenLabs plan you can generate your
+own set in a few minutes. Provenance: `Assets/Audio/LICENSES.md`.
+
+**Names and logos.** "Honest Arcade", "Frog Across", the frog mark
+(`Assets/Resources/UI/logo-frog.png`) and the launcher icons in `ArtSource/brand/`
+are trademarks of Honest Arcade. A copyright licence does not grant trademark
+rights: fork the game freely, but ship it under your own name and mark.
 
 ## Project management
 
