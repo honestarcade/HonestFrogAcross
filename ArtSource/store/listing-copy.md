@@ -19,7 +19,7 @@ Player-visible name everywhere: **Frog Across** (spaced).
 > Frog Across is a classic lane-crossing arcade game, rebuilt honestly for
 > modern phones. Guide your character across roads, rivers, swamps, train
 > tracks, bike lanes and moving walkways — one hop at a time — and fill every
-> lily bay to clear the level.
+> landing pad to clear the level.
 >
 > **100 levels, one clean difficulty curve.** Every level is proven completable
 > before it ships — no impossible boards, ever. New hazards arrive one at a
