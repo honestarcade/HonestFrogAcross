@@ -30,11 +30,18 @@ namespace FrogAcross.Tests.EditMode.Pieces
             Assert.IsTrue(gator.inactiveKills, "open-mouth gator must kill");
             // The zone must track the DRAWN anatomy, not merely be "small".
             // Body art is 206px: upper body (the back) x=56..156 → 0.27..0.76,
-            // head x=140..186 → 0.68..0.90. Shipped copy: "ride the BACK … the
-            // head is never safe", so the zone ends where the head begins (#129).
-            Assert.That(gator.rideableZoneEnd, Is.EqualTo(0.68f).Within(0.02f),
-                "the zone must end where the drawn head begins — too tight and the "
-                + "rear back drowns you, too loose and the head carries you");
+            // head x=140..186 → 0.68..0.90, EYES x=152..166 → 0.738..0.806.
+            //
+            // #129 ended the zone at 0.68, where the head begins, following the
+            // shipped copy's "the head is never safe". On device the owner found
+            // that wrong — landing on the eyes sinks you, and it should not
+            // (#147). The design mock always said "ride the back and the eyes
+            // like a log"; the owner confirmed the mock is the intent, so the
+            // zone now runs to just past the eyes and copy.json was rewritten to
+            // match. The snout beyond 0.81 is still lethal.
+            Assert.That(gator.rideableZoneEnd, Is.EqualTo(0.81f).Within(0.02f),
+                "the zone must end just past the drawn eyes — too tight and the "
+                + "eyes drown you, too loose and the snout carries you");
             Assert.That(gator.rideableZoneStart, Is.LessThanOrEqualTo(0.1f),
                 "the tail end of the back is rideable");
         }

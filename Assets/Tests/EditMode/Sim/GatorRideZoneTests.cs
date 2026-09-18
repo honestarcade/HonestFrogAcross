@@ -6,8 +6,9 @@ using NUnit.Framework;
 namespace FrogAcross.Tests.EditMode.Sim
 {
     /// <summary>
-    /// #124: the gator's ride zone is authored from its NOSE (0.05–0.55 of the
-    /// body), and the sprite mirrors with travel direction. The zone has to
+    /// #124: the gator's ride zone is authored from its TAIL (0 is the tail,
+    /// 1 is the snout, and it currently runs 0.05–0.81 — the back plus the
+    /// eyes, per #147), and the sprite mirrors with travel direction. The zone has to
     /// mirror with it — otherwise a left-moving gator is safe on its drawn head
     /// and deadly on its drawn back, which is how the owner kept drowning on
     /// what looked like a clean landing.
@@ -70,11 +71,14 @@ namespace FrogAcross.Tests.EditMode.Sim
         [Test]
         public void RightMoving_BackIsSafe_HeadKills()
         {
-            // art faces right, so the head is the right-hand end of the body
+            // art faces right, so the head is the right-hand end of the body.
+            // 90% along is snout; 81% is the trailing edge of the eyes and now
+            // rides, which is why this measures at a precise fraction rather
+            // than at column 4 as it used to (#147).
             Assert.That(Land("right", 2).State.Riding, Is.True,
                 "27% along a right-moving gator is its back — a landing there rides");
-            var head = Land("right", 4);
-            Assert.That(head.State.Riding, Is.False, "81% along is the snout");
+            var head = LandAt("right", 0.90f, NoseEnd);
+            Assert.That(head.State.Riding, Is.False, "90% along is the snout, past the eyes");
             Assert.That(head.State.Deaths, Is.EqualTo(1));
         }
 
@@ -87,9 +91,11 @@ namespace FrogAcross.Tests.EditMode.Sim
             Assert.That(Land("left", 4).State.Riding, Is.True,
                 "81% along a LEFT-moving gator is its back — a landing there must ride");
 
-            var head = Land("left", 2);
+            // measured from the drawn tail, so 0.90 is the snout in either
+            // direction; 0.73 is now the eyes and carries you (#147)
+            var head = LandAt("left", 0.90f, NoseEnd);
             Assert.That(head.State.Riding, Is.False,
-                "27% along a left-moving gator is its snout — that must not carry the player");
+                "90% along a left-moving gator is its snout — that must not carry the player");
             Assert.That(head.State.Deaths, Is.EqualTo(1));
         }
 

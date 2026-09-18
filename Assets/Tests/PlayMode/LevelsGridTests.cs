@@ -260,5 +260,145 @@ namespace FrogAcross.Tests.PlayMode
             yield return null;
         }
 
+        /// <summary>Owner, device UAT on v0.11.0: "it stays if you keep your
+        /// finger in the same place, but if you move your finger, even to roll
+        /// it, the popup disappears" (#146).</summary>
+        [UnityTest]
+        public IEnumerator MovingTheFinger_DoesNotDismissThePreview()
+        {
+            yield return OpenLevels();
+            var levels = LevelsRoot();
+            var cell = levels.GetComponentsInChildren<Transform>(true).First(t => t.name == "cell-1");
+            var press = cell.GetComponent<LongPress>();
+
+            press.SimulateHold();
+            yield return null;
+            Assert.That(levels.Find(LevelsScreen.BubbleName), Is.Not.Null, "the hold opened the preview");
+
+            // the finger moves off the cell while still down
+            press.OnPointerExit(new PointerEventData(EventSystem.current));
+            yield return null;
+            Assert.That(levels.Find(LevelsScreen.BubbleName), Is.Not.Null,
+                "moving the finger must not close the preview — the times sit beside "
+                + "the finger, so reading them requires moving it");
+
+            // lifting still dismisses
+            press.OnPointerUp(new PointerEventData(EventSystem.current));
+            yield return null;
+            Assert.That(levels.Find(LevelsScreen.BubbleName), Is.Null, "release dismisses it");
+        }
+
+        /// <summary>A scroll drag STARTED before the hold completes must still
+        /// cancel, or the grid stops scrolling (#123's ScrollRect guarantee).</summary>
+        [UnityTest]
+        public IEnumerator AScrollBeforeTheHoldCompletes_StillCancels()
+        {
+            yield return OpenLevels();
+            var levels = LevelsRoot();
+            var press = levels.GetComponentsInChildren<Transform>(true)
+                .First(t => t.name == "cell-1").GetComponent<LongPress>();
+
+            // Drive the REAL timer, not SimulateHold(): that seam forces _down
+            // back to true, so it cannot express a press that was cancelled.
+            press.OnPointerDown(new PointerEventData(EventSystem.current));
+            press.OnPointerExit(new PointerEventData(EventSystem.current));
+            yield return new WaitForSeconds(press.holdSeconds * 2f);
+            Assert.That(press.Held, Is.False, "the cancelled press never became a hold");
+            Assert.That(levels.Find(LevelsScreen.BubbleName), Is.Null,
+                "a finger that left before the hold completed was scrolling, not previewing");
+
+            // and the same press, left alone, DOES become a hold — otherwise
+            // this test would pass on a LongPress that never fires at all
+            press.OnPointerDown(new PointerEventData(EventSystem.current));
+            yield return new WaitForSeconds(press.holdSeconds * 2f);
+            Assert.That(press.Held, Is.True, "an uninterrupted press still completes");
+            Assert.That(levels.Find(LevelsScreen.BubbleName), Is.Not.Null,
+                "an uninterrupted press still opens the preview");
+            press.OnPointerUp(new PointerEventData(EventSystem.current));
+        }
+
+        /// <summary>The bubble must never be drawn under the finger holding it,
+        /// and must flip side so it stays on screen (#146).</summary>
+        [UnityTest]
+        public IEnumerator ThePreview_SitsBesideTheCell_OnTheSideWithRoom()
+        {
+            yield return OpenLevels();
+            var levels = LevelsRoot();
+            var cells = levels.GetComponentsInChildren<Transform>(true)
+                .Where(t => t.name.StartsWith("cell-")).Select(t => (RectTransform)t).ToList();
+            Assert.That(cells.Count, Is.GreaterThan(1), "need several cells to test both sides");
+
+            var parent = (RectTransform)levels;
+            var leftCell = cells.OrderBy(c => parent.InverseTransformPoint(c.position).x).First();
+            var rightCell = cells.OrderByDescending(c => parent.InverseTransformPoint(c.position).x).First();
+
+            foreach (var (cell, label) in new[] { (leftCell, "left-hand"), (rightCell, "right-hand") })
+            {
+                cell.GetComponent<LongPress>().SimulateHold();
+                yield return null;
+                var bubble = (RectTransform)levels.Find(LevelsScreen.BubbleName);
+                Assert.That(bubble, Is.Not.Null, $"{label} cell opened a preview");
+
+                float cellX = parent.InverseTransformPoint(cell.position).x;
+                float bubbleX = bubble.anchoredPosition.x;
+                if (cellX > 0f)
+                    Assert.That(bubbleX, Is.LessThan(cellX),
+                        $"{label} cell is in the right half — the bubble opens to its LEFT");
+                else
+                    Assert.That(bubbleX, Is.GreaterThan(cellX),
+                        $"{label} cell is in the left half — the bubble opens to its RIGHT");
+
+                // and it does not overlap the cell itself: that is what put the
+                // bronze row under the owner's finger
+                float gap = Mathf.Abs(bubbleX - cellX)
+                            - (bubble.sizeDelta.x * 0.5f + cell.rect.width * 0.5f);
+                Assert.That(gap, Is.GreaterThan(0f),
+                    $"{label}: the bubble overlaps its own cell by {-gap:0} units — it is under the finger");
+
+                // it must also stay inside the screen
+                Assert.That(Mathf.Abs(bubbleX) + bubble.sizeDelta.x * 0.5f,
+                    Is.LessThanOrEqualTo(parent.rect.width * 0.5f + 0.5f),
+                    $"{label}: the bubble runs off the screen edge");
+
+                cell.GetComponent<LongPress>().OnPointerUp(new PointerEventData(EventSystem.current));
+                yield return null;
+            }
+        }
+
+        /// <summary>The root cause of #146: the bubble is drawn above the cell,
+        /// so a raycast target in it steals the pointer, the cell gets
+        /// OnPointerExit, and the hold cancels itself.</summary>
+        [UnityTest]
+        public IEnumerator ThePreview_TakesNoRaycasts()
+        {
+            yield return OpenLevels();
+            var levels = LevelsRoot();
+            levels.GetComponentsInChildren<Transform>(true)
+                .First(t => t.name == "cell-1").GetComponent<LongPress>().SimulateHold();
+            yield return null;
+
+            var bubble = levels.Find(LevelsScreen.BubbleName);
+            Assert.That(bubble, Is.Not.Null);
+            var greedy = bubble.GetComponentsInChildren<Graphic>(true)
+                .Where(g => g.raycastTarget).Select(g => g.name).ToList();
+            Assert.That(greedy, Is.Empty,
+                "these steal the pointer from the cell underneath and cancel the hold: "
+                + string.Join(", ", greedy));
+        }
+
+        private static IEnumerator OpenLevels()
+        {
+            SceneManager.LoadScene("Shell");
+            yield return null;
+            var shell = Object.FindAnyObjectByType<AppShell>();
+            yield return Wait1_3;
+            shell.Push("levels");
+            yield return null;
+            Canvas.ForceUpdateCanvases();
+            yield return null;
+        }
+
+        private static Transform LevelsRoot() =>
+            GameObject.Find("shell-canvas").transform.Find("safe-area/levels");
     }
 }

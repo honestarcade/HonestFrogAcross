@@ -44,15 +44,18 @@ namespace FrogAcross.Tests.EditMode.Sim
         }
 
         // ---------- #49: gators (owner rules) ----------
-        // Gator: zone [0.05,0.55] of 3.7 cells → back spans x=[left+0.185, left+2.035].
-        // Cycle 300 closed / 120 open.
-        private static string GatorFixture(int phase) => @"{
+        // Gator: zone [0.05,0.81] of 3.7 cells — the back plus the eyes (#147) →
+        // rideable spans x=[left+0.185, left+2.997]. Cycle 300 closed / 120 open.
+        // The offset is a parameter because the snout (past 0.81) only lands on
+        // an integer column for some placements: at offset 1.0 the body ends at
+        // 4.7, so column 4 is the eyes and there is no snout column at all.
+        private static string GatorFixture(int phase, double offset = 1.0) => @"{
           ""id"": ""gator-1"", ""columns"": 9,
           ""medal"": {""gold"": 5, ""silver"": 10, ""bronze"": 20}, ""startColumn"": 2, ""bays"": [2],
           ""rows"": [
             {""kind"": ""goal""},
             {""kind"": ""swamp"", ""dir"": ""right"", ""speed"": 0.05, ""objects"": [
-              {""pieceId"": ""gator"", ""offset"": 1.0, ""spacing"": 0, ""phase"": " + phase + @"}]},
+              {""pieceId"": ""gator"", ""offset"": " + offset.ToString(System.Globalization.CultureInfo.InvariantCulture) + @", ""spacing"": 0, ""phase"": " + phase + @"}]},
             {""kind"": ""bank""}
           ]}";
 
@@ -81,10 +84,14 @@ namespace FrogAcross.Tests.EditMode.Sim
         [Test]
         public void GatorSnout_NeverRideable_EvenClosed()
         {
-            var sim = Sim(GatorFixture(0));
-            // head/snout: zone fraction > 0.55 → x > left+2.035; land x=4 (frac ~0.81)
+            // Snout is now zone fraction > 0.81 (#147). At offset 1.4 the body
+            // runs 1.4..5.1, so column 5 sits 97% along — unambiguously snout.
+            // Column 4 used to serve here; under the owner's corrected rule it
+            // is the eyes, and the eyes carry you.
+            var sim = Sim(GatorFixture(0, 1.4));
             sim.EnqueueMove(Move.Right); Settle(sim);
-            sim.EnqueueMove(Move.Right); Settle(sim); // col 4
+            sim.EnqueueMove(Move.Right); Settle(sim);
+            sim.EnqueueMove(Move.Right); Settle(sim); // col 5
             int deaths = 0; DeathCause cause = DeathCause.None;
             sim.OnDeath += c => { deaths++; cause = c; };
             sim.EnqueueMove(Move.Forward); Settle(sim);
