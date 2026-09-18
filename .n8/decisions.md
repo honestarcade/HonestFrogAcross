@@ -456,3 +456,33 @@ When `/n8-replan` processes an ad-hoc entry it appends `— reconciled by /n8-re
 - **Decision:** #139 has no epic parent.
   **Why:** The only fitting epic (#3, CI/CD) is closed, and reopening a verified-closed epic to host a documentation note would be worse than the alternative. Per `/n8-verify`, an issue with no epic gets its record on the milestone PR.
   **Issue:** #139
+
+## /n8-exec M9 — device UAT fix pass — 2026-09-17
+
+- **Method:** each fix was proven against the unfixed code before acceptance, by reverting only the production change and recording the failure message. #146: 3 of 4 new tests fail. #147: 2 fail. Kept from the previous pass because it is what caught two vacuous tests.
+
+- **Decision (#148): blocked rather than fixed — the reported premise is false.**
+  **Why:** #148 reported dying "a quarter to half a second before the mouth opens". Measured across the full 420-tick cycle, `firstSimLethal = firstViewOpen = 300`, i.e. **gap zero** — `GameSim` and `SpriteSelector` call the same `IsRideableAtTick` with the same tick and phase, and `BoardView` deliberately uses the integer sim tick for sprite selection. There is no desync to fix. The likely real cause is that the gator is the only timed hazard with **`warnLeadTicks: 0`** — no telegraph at all, where trains warn 1.5s ahead and turtles fade over 1s — so a player gets zero frames of warning and cannot distinguish "killed as it opened" from "killed before it opened". Which of four remedies to take (visual telegraph / real `warnLeadTicks` / shift the lethal window / accept it) is a gameplay-feel call with different costs, including whether a content re-solve is needed, so it went to the owner rather than being guessed.
+  **Landed anyway:** `GatorMouthSyncTests` pins the zero gap across both directions and three phases over two full cycles, plus a guard that the sprite asset order matches the index maths so the agreement is not vacuous. Worth keeping whatever the owner decides.
+  **Issue:** #148
+
+- **Decision (#147): the ride zone now ends at 0.81, past the drawn eyes, and `copy.json` was rewritten to match.**
+  **Why:** This **reverses #129's adjudication on the owner's authority.** #129 found the design mock ("ride the back and the eyes like a log") in conflict with the shipped copy ("the head is never safe") and chose the shipped copy; the owner's device pass chose the mock. Changing the zone without changing the copy would ship a game whose help text contradicts its rules — the exact failure #124 and #129 both produced.
+  **Issue:** #147
+
+- **Finding (#147): the reported direction asymmetry is not in the ride-zone logic.**
+  **Why it matters:** the AC required diagnosis *before* changing the number, specifically to avoid a compensating offset. Sweeping the whole body measured the safe band at 0.06–0.68 (right) and 0.32–0.94 (left) — both exactly 0.62 wide, each bounded by the drawn head, eyes outside by an identical 0.058. The sprite PNGs are true mirrors (opaque extents match exactly after flipping). No offset was added; a symmetry test was added instead. If the owner still perceives it on device, it is real and somewhere not yet looked at.
+  **Issue:** #147
+
+- **Rule 1 (#147): three existing tests were re-pointed, not relaxed.**
+  **Why:** they landed at column 4 — 81% along — which was snout under the old rule and is the eyes under the new one, so their assertions became false statements about the anatomy. They now measure genuine snout (0.90 of the body, and a fixture offset placing an integer column at 97%). `GatorFixture` gained an optional offset parameter because at offset 1.0 the body ends at 4.7 and **no** integer column lands on the snout at all.
+  **Issue:** #147
+
+- **Consequence, logged with the part that does not fit:** re-solving moved 14 of 100 floors — 11 faster, 3 slower. **level-025 slowed by 18 ticks, three times `WaitTicks`**, which falsifies as-written the explanation recorded on #136 that slower floors are benign because each fits inside one 6-tick search bucket. Recorded on #136 rather than smoothed over; the honest framing is that `minTicks` is an upper bound whose error is not bounded by `WaitTicks`.
+  **Issues:** #147 #136
+
+- **Deviation from `/n8-exec`:** #147 and #148 got no "plan before the code" comment, because for both the plan depended on a diagnosis that did not exist yet — for #148 the diagnosis disproved the issue's premise entirely and the correct action was to stop, not to implement. Full reasoning was posted to each issue instead.
+  **Issues:** #147 #148
+
+- **My own error, caught by running it:** the first version of #146's scroll-cancel test used the `SimulateHold()` seam, which forces `_down = true` and therefore cannot express a cancelled press — it failed, correctly, against working code. Rewritten to drive the real timer and assert both directions. The seam's bluntness is the subject of #134.
+  **Issue:** #146
