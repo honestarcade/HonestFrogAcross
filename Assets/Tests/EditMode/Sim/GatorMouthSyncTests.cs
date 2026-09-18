@@ -42,6 +42,70 @@ namespace FrogAcross.Tests.EditMode.Sim
         }
 
         [Test]
+        public void TheGatorWarnsBeforeItOpens_AndTheWarningEndsWhereTheKillBegins()
+        {
+            var def = PieceRegistry.Load().Get<LaneObjectDef>("gator");
+            var train = new ObjectTrain { Def = def, PhaseTicks = 0 };
+            int open = def.cycleActiveTicks;
+            int lead = SpriteSelector.TelegraphTicks;
+
+            Assert.That(SpriteSelector.GatorTelegraph(def, train, 0), Is.EqualTo(0f),
+                "a gator at the start of its closed phase is not warning yet");
+            Assert.That(SpriteSelector.GatorTelegraph(def, train, open - lead - 1), Is.EqualTo(0f),
+                "no warning before the lead window opens");
+            Assert.That(SpriteSelector.GatorTelegraph(def, train, open - lead), Is.GreaterThan(0f)
+                .Or.EqualTo(0f), "the window starts here");
+            Assert.That(SpriteSelector.GatorTelegraph(def, train, open - 1), Is.GreaterThan(0.9f),
+                "by the last closed tick the warning is at full strength");
+
+            // it must RAMP, not blink on: a one-frame flash is not a warning
+            float prev = -1f;
+            for (int t = open - lead; t < open; t++)
+            {
+                float v = SpriteSelector.GatorTelegraph(def, train, t);
+                Assert.That(v, Is.GreaterThanOrEqualTo(prev), $"the warning must build, tick {t}");
+                prev = v;
+            }
+
+            // and it stops the instant the mouth is actually open — the open
+            // sprite is the signal from there on
+            for (int t = open; t < open + def.cycleInactiveTicks; t++)
+                Assert.That(SpriteSelector.GatorTelegraph(def, train, t), Is.EqualTo(0f),
+                    $"tick {t}: the mouth is open; the warning is over");
+
+            Assert.That(lead / 60f, Is.GreaterThanOrEqualTo(0.25f),
+                "the lead must be at least human reaction time, or it warns nobody");
+        }
+
+        [Test]
+        public void TheWarningNeverChangesWhatIsLethal_OrWhatIsDrawnOpen()
+        {
+            // The telegraph is view-only. If it ever leaks into the sim or the
+            // sprite choice, the "drawn open == lethal" contract breaks and the
+            // warning starts lying (#148).
+            var def = PieceRegistry.Load().Get<LaneObjectDef>("gator");
+            var train = new ObjectTrain { Def = def, PhaseTicks = 0 };
+            int period = def.cycleActiveTicks + def.cycleInactiveTicks;
+            int warningTicks = 0;
+            for (int tick = 0; tick < period; tick++)
+            {
+                bool warning = SpriteSelector.GatorTelegraph(def, train, tick) > 0f;
+                if (!warning) continue;
+                warningTicks++;
+                Assert.That(def.IsRideableAtTick(tick, 0), Is.True,
+                    $"tick {tick}: a warning tick must still be SAFE to ride");
+                Assert.That(SpriteSelector.GatorIndex(def, train, tick, +1), Is.LessThan(2),
+                    $"tick {tick}: a warning must not draw the open mouth — that would "
+                    + "teach players an open mouth is sometimes survivable");
+            }
+
+            // Without this the test passes vacuously on a gator that never
+            // warns at all — it would `continue` past every tick.
+            Assert.That(warningTicks, Is.GreaterThan(0),
+                "the gator never warns, so this test proved nothing");
+        }
+
+        [Test]
         public void TheOpenMouthSprites_AreTheOnesIndexedAsOpen()
         {
             // The agreement above is vacuous if index >= 2 is not actually the

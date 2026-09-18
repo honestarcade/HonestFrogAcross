@@ -168,6 +168,11 @@ namespace FrogAcross.View
             _player = NewSprite("player", _character.sprites[0], -0.5f);
         }
 
+        /// <summary>What a gator flushes toward in the half second before its
+        /// mouth opens (#148). Hot, unmistakable, and not a colour any other
+        /// lane object uses.</summary>
+        private static readonly Color GatorWarn = new Color(1f, 0.42f, 0.30f, 1f);
+
         public void Render(float tickF)
         {
             var level = Sim.Level;
@@ -215,6 +220,11 @@ namespace FrogAcross.View
                             var color = Color.white;
                             if (def.cycleActiveTicks > 0 && !def.inactiveKills)
                                 color.a = SpriteSelector.TurtleAlpha(def, train, tick);
+                            // A gator about to open flushes toward its warning
+                            // colour. Timing is untouched — this only makes the
+                            // existing lethal tick visible coming (#148).
+                            float tell = SpriteSelector.GatorTelegraph(def, train, tick);
+                            if (tell > 0f) color = Color.Lerp(color, GatorWarn, tell);
                             sr.color = color;
 
                             // fit sprite to the def's cell size

@@ -51,6 +51,34 @@ namespace FrogAcross.View
             return side + liveryIndex * RiderFrames + frame;
         }
 
+        /// <summary>How long before the mouth opens the gator starts to warn.
+        /// 30 ticks is half a second at 60Hz — roughly human reaction time,
+        /// which is what the owner was missing (#148).</summary>
+        public const int TelegraphTicks = 30;
+
+        /// <summary>
+        /// 0 normally, ramping to 1 across the last <see cref="TelegraphTicks"/>
+        /// of the closed phase: the gator tensing before its mouth opens.
+        ///
+        /// Deliberately NOT a sprite change. The drawn open mouth means "this
+        /// kills you" and GatorMouthSyncTests pins that equivalence — showing
+        /// the open sprite early would teach players that an open mouth is
+        /// sometimes survivable, which is worse than no warning at all. This is
+        /// a view-only tint, like TurtleAlpha, so the sim is untouched and
+        /// solvability does not move (#148).
+        /// </summary>
+        public static float GatorTelegraph(LaneObjectDef def, ObjectTrain train, long tick)
+        {
+            if (!def.inactiveKills || def.cycleActiveTicks <= 0 || def.cycleInactiveTicks <= 0)
+                return 0f;
+            if (!def.IsRideableAtTick(tick, train.PhaseTicks)) return 0f; // already open
+            int period = def.cycleActiveTicks + def.cycleInactiveTicks;
+            long pos = ((tick + train.PhaseTicks) % period + period) % period;
+            long untilOpen = def.cycleActiveTicks - pos;          // >0 while closed
+            if (untilOpen > TelegraphTicks) return 0f;
+            return Mathf.Clamp01((TelegraphTicks - untilOpen) / (float)TelegraphTicks);
+        }
+
         /// <summary>Turtle-log has one sprite; submerged state renders via alpha.</summary>
         public static float TurtleAlpha(LaneObjectDef def, ObjectTrain train, long tick)
         {
