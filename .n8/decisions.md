@@ -486,3 +486,12 @@ When `/n8-replan` processes an ad-hoc entry it appends `— reconciled by /n8-re
 
 - **My own error, caught by running it:** the first version of #146's scroll-cancel test used the `SimulateHold()` seam, which forces `_down = true` and therefore cannot express a cancelled press — it failed, correctly, against working code. Rewritten to drive the real timer and assert both directions. The seam's bluntness is the subject of #134.
   **Issue:** #146
+
+- **Decision (#148): the gator gets a view-only visual tell, 30 ticks (0.5s) before its mouth opens. Kill timing unchanged.**
+  **Why:** Owner chose this from the four options after the measurement showed there was no sim/view desync to fix. The real gap was that the gator was the only timed hazard with `warnLeadTicks: 0`, giving zero reaction time.
+  **Why a tint and not an early open-mouth sprite:** `GatorMouthSyncTests` pins "drawn open mouth ⇔ lethal". Showing the open sprite during the warning would break that contract and teach players an open mouth is sometimes survivable — worse than no warning. The gator instead flushes toward a warning colour, following `TurtleAlpha`'s established pattern of a view-only state cue.
+  **Consequence:** the diff touches `BoardView` and `SpriteSelector` only. No sim change, no level change, no fixture change — so no re-solve and no medal movement, which is what the owner picked this option for.
+  **Issue:** #148
+
+- **My own error, caught by mutation testing:** the first version of `TheWarningNeverChangesWhatIsLethal_OrWhatIsDrawnOpen` passed vacuously with the telegraph disabled — it `continue`d past every tick and asserted nothing. It now counts warning ticks and fails with "the gator never warns, so this test proved nothing". Both telegraph tests are confirmed failing on the unfixed code.
+  **Issue:** #148
