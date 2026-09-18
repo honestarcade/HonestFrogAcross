@@ -8,7 +8,7 @@
   "swiping": "Swipe anywhere on the board. One swipe is one hop, and your character turns to face it. A clear tap hops forward. Hold a swipe at 43–47° to cover two squares in a single move. Swipes queue, so you can chain hops faster than the animation plays. Prefer taps? Turn on tap regions in Settings → Controls: left and right thirds sidestep, middle-top hops forward, middle-bottom hops back (no diagonals in this mode).",
   "ruleRoad": "Road — contact kills. Direction and speed are set per level.",
   "ruleRiver": "River — water kills. Ride logs, turtle logs and rafts; turtles submerge on a rhythm.",
-  "ruleSwamp": "Swamp — ride the BACK of a closed-mouth alligator only. An open mouth makes the whole gator lethal, and the head is never safe. Lily pads are static and safe.",
+  "ruleSwamp": "Swamp — ride the back and the eyes of a closed-mouth alligator. An open mouth makes the whole gator lethal, and the snout past the eyes is never safe. Lily pads are static and safe.",
   "ruleTracks": "Train tracks — nothing survives a train. The crossing warns before it arrives.",
   "ruleBike": "Bike lane — a collision crashes the rider, not you. You're stunned in place for two seconds while the clock runs.",
   "ruleWalkway": "Moving walkway — it carries you sideways. Ride it off the edge of the board and you're gone.",
