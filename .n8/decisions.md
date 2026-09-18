@@ -495,3 +495,16 @@ When `/n8-replan` processes an ad-hoc entry it appends `— reconciled by /n8-re
 
 - **My own error, caught by mutation testing:** the first version of `TheWarningNeverChangesWhatIsLethal_OrWhatIsDrawnOpen` passed vacuously with the telegraph disabled — it `continue`d past every tick and asserted nothing. It now counts warning ticks and fails with "the gator never warns, so this test proved nothing". Both telegraph tests are confirmed failing on the unfixed code.
   **Issue:** #148
+
+## Release v0.12.0 — 2026-09-18
+
+- **Released:** `v0.12.0` at `eef765d`, versionCode **113**, Google Play **internal** track. Play edit `16653693746948032648` committed; tester URL https://play.google.com/apps/test/com.honestarcade.frogacross/113
+  **Covers:** the three device-UAT fixes (#146 preview, #147 gator eyes, #148 gator telegraph) from PRs #150 and #151, plus the M10 planning ledger (#145).
+  **Gate:** the tag re-ran the identical PR checks on the tagged commit — EditMode 162/162, PlayMode 43/43, Android build — before the upload job could run.
+
+- **Decision:** cut with M9 still open and five `confirmed` bugs outstanding, against `/n8-release`'s preconditions — the same waiver as v0.11.0, re-stated to the owner rather than treated as routine.
+  **Why:** M9's three remaining ACs are all "owner confirms on device", which cannot be satisfied without the build the release produces. The five open bugs (#152–#156) are all `sev:medium` and none changes what the owner would be testing: two are staleness in an editor script and a design mock, two are test quality plus a future-piece edge case, one needs a deliberate Back-press mid-hold. Owner confirmed after both breaches were restated.
+  **Issues:** #152 #153 #154 #155 #156
+
+- **Player-visible consequence, recorded because it is not reversible for a player:** 14 of 100 medal thresholds moved between v0.11.0 and v0.12.0 (11 easier, 3 harder) as a second-order effect of widening the gator zone in #147. Anyone holding a best time on those levels finds the bar moved. Called out in the release notes rather than left to be discovered.
+  **Issue:** #147
